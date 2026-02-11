@@ -2,21 +2,21 @@
 
 ## Summary
 - References found: 1
-- RED (rewritten): 1
-- AMBER (softened): 0
+- RED (rewritten): 0
+- AMBER (softened): 1
 - GREEN (kept): 0
 - Political acknowledgments added: 0
 
 ## Changes Made
-| Line | Severity | Before (excerpt) | After (excerpt) | Principle Applied |
-|------|----------|-------------------|-----------------|-------------------|
-| ~33 | RED | "At a European G-SIB, building the first interaction matrix revealed that counterparty credit risk was connected..." | "In practice, constructing the first interaction matrix at an institution typically reveals surprising connection patterns. Counterparty credit risk may connect..." | Generalise from specific achievement to typical practice; remove "building the first" claim |
+
+| # | Severity | Before (excerpt) | After (excerpt) | Principle |
+|---|----------|-------------------|-----------------|-----------|
+| 1 | AMBER | "At a European G-SIB, building the first interaction matrix revealed that counterparty credit risk was connected...to eleven other material risks. Market risk connected to nine. These were not surprises..." | "Building the first interaction matrix at an institution typically reveals extensive connections...may connect...to ten or more other material risks...These connections are not surprises..." | P2 (Generalise) + P1 (Less is more) |
 
 ## Tone Check
-- Author credibility preserved: YES (methodology insight remains)
-- Heroic framing removed: YES (no longer "I built the first matrix and discovered...")
-- Former colleague safe: YES (institution not identified with specific discovery)
-- Methodology grounded: YES (framed as what typically happens, not what "I achieved")
+- Author credibility preserved: YES — insight conveyed without personal attribution
+- Heroic framing removed: YES — no "I built" narrative
+- Methodology grounded: YES — presented as typical institutional experience
 
 ## Notes
-Single edit successfully transforms a personal achievement claim ("I built the first interaction matrix at [institution] and discovered X") into a generalised statement about what constructing interaction matrices typically reveals. The word "typically" appropriately hedges the claim while preserving the analytical value.
+Chapter 10 had only one work-history reference. The specific numbers (11, 9) were generalized to "ten or more" to avoid falsifiable institutional detail while preserving the methodological point. No RED-level heroic claims found.

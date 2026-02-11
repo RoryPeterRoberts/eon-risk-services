@@ -85,9 +85,9 @@ Every field serves a purpose. Remove any one and you create a gap that, under pr
 
 If the fourteen fields sound like a bureaucratic exercise, consider what happens without them.
 
-I described in Chapter 7 what I called **compliance theatre** — the appearance of risk identification without the substance. Bottom-up submissions that roll forward prior year without genuine analysis. Risk definitions copied verbatim from one cycle to the next. Control effectiveness ratings that never change. The inventory equivalent of compliance theatre is a risk register with the right number of columns but the wrong kind of content: generic definitions, stale assessments, no interaction data, no KRI values, and review dates that tell you the register was updated on the same day by the same person for every risk in the book.
+Chapter 7 described **compliance theatre** — the appearance of risk identification without the substance. Bottom-up submissions that roll forward prior year without genuine analysis. Risk definitions copied verbatim from one cycle to the next. Control effectiveness ratings that never change. The inventory equivalent of compliance theatre is a risk register with the right number of columns but the wrong kind of content: generic definitions, stale assessments, no interaction data, no KRI values, and review dates that tell you the register was updated on the same day by the same person for every risk in the book.
 
-A common pattern at institutions with immature processes is reconciliation documentation that consists of a merged spreadsheet with colour-coding but no gap analysis, no challenge sessions, and no enterprise portfolio view. The institution had two identification tracks. It did not have reconciliation. And the documentation — which should have made the absence of reconciliation visible — instead concealed it, because the spreadsheet looked complete to anyone who did not know what to look for.
+This occurs in practice. Reconciliation documentation from a given cycle may consist of a merged spreadsheet with colour-coding but no gap analysis, no challenge sessions, and no enterprise portfolio view. The institution has two identification tracks but no reconciliation. And the documentation — which should make the absence of reconciliation visible — instead conceals it, because the spreadsheet looks complete to anyone who does not know what to look for.
 
 The fourteen-field structure is designed to make the absence of substance visible. An empty Risk Interaction Summary field is a gap you can see. A Data Quality Rating of "Medium" applied to every risk in the inventory is a pattern that Internal Audit can challenge. A Trend Indicator that has been "Stable" for twelve consecutive quarters on a risk whose external environment has materially changed is a flag. The structure creates the conditions for accountability.
 
@@ -114,23 +114,15 @@ The risk profile contains fourteen elements:
 13. **Trend and outlook** — direction of travel with forward-looking assessment; not just "Increasing" but why it is increasing, what would reverse the trend, and what the risk owner is doing about it
 14. **Risk owner** — the named individual accountable, with escalation path to CRO and Board Risk Committee
 
-The risk profile is not a form to be filled in. It is a structured analysis. But to understand why the first submissions are almost always poor, you have to understand the institutional reality in which the Risk Identification Lead operates.
-
-A practitioner building a risk identification process for the first time should be under no illusion about how the work is perceived. To most people in the institution, you are a nuisance. The bank is set up to originate business, manage portfolios, satisfy regulators, and generate returns. It is not set up to have someone from enterprise risk management ask uncomfortable questions about risks that nobody has named. Most colleagues will assume you are naive. The business lines will wonder why you are trying to dig up new risks when the existing ones are already difficult enough to manage. The specialist risk functions will wonder why you are duplicating their work. And behind the polite resistance lies a harder calculation: identifying a new risk creates an obligation to act on it, to report it, and — potentially — to disclose it to the regulator. The institutional incentive to leave well alone is powerful.
-
-This is not cynicism. It is the operating environment. And any methodology that does not account for it will produce exactly the compliance theatre described above.
-
-When risk profiles for material risks are first introduced, initial submissions from business units reflect this reality — boilerplate definitions, controls listed as "effective" without evidence, and outlook sections that read like reassurance rather than analysis. The submissions are not poor because the people writing them are incompetent. They are poor because the people writing them have no incentive to make them good, and considerable incentive to make them unremarkable.
-
-The first cycle requires significant push-back from the Risk Identification Lead — returning thin submissions with specific questions, requiring evidence for control ratings, challenging outlook sections that contain no forward-looking analysis. This is where the governance mandate from Chapter 3 earns its keep. Without visible CRO support, the push-back will be ignored. With it, the push-back carries institutional weight.
-
-By the second cycle, business units understand that risk profiles with thin content will be challenged and returned. By the third cycle, the quality improves materially — not because people have become better risk analysts overnight, but because the structure and the challenge process create accountability for substance. The institutional incentive has shifted: it is now easier to write a good risk profile than to defend a poor one through repeated rounds of challenge.
+The risk profile is not a form to be filled in. It is a structured analysis. When risk profiles are first introduced, initial submissions from business units are often precisely the kind of compliance theatre described above — boilerplate definitions, controls listed as "effective" without evidence, and outlook sections that read like reassurance rather than analysis. The first cycle typically requires significant push-back from the Risk Identification Lead. By the second cycle, business units understand that risk profiles with thin content will be challenged and returned. By the third cycle, quality improves materially — not because people have become better risk analysts overnight, but because the structure and the challenge process create accountability for substance.
 
 ### Risk Profiles as Board Communication
 
 The risk profile serves dual purposes. It is a practitioner tool — detailed enough for the risk owner and the Risk Identification Lead to manage the risk actively. It is also a Board communication tool. The principal risk report, which Chapter 3 defined with ten specific contents, draws directly from these profiles. When the Board Risk Committee asks "What is our current position on cyber risk?" — the risk profile provides the answer: the definition, the exposure, the appetite position, the controls, the KRIs, the trend, and the interactions with other risks.
 
 A Board member reading a well-constructed risk profile should understand within five minutes: what the risk is, how bad it could get, what is being done about it, how confident the institution is in its assessment, and what has changed since the last report. If the profile cannot deliver that in a structured one-to-two-page document, it needs to be rewritten.
+
+A practitioner should be under no illusion that a sound methodology guarantees sound outcomes — institutional culture and commercial pressure can undermine even well-designed processes. The risk profile provides transparency and accountability, but it cannot substitute for the Board's judgment and willingness to act on what the profile reveals.
 
 ### Bow-Tie Integration
 
@@ -160,7 +152,7 @@ Two outputs from earlier phases require specific documentation treatment in the 
 
 The **disagreement log**, introduced in Chapter 6 and referenced in the challenge sessions of Chapter 8, records instances where senior participants held materially different views about a risk's nature, severity, or even existence. Chapter 9 described how the four-dimensional framework often resolves disagreement — participants may agree on different dimensions — but where disagreement persists, it must be preserved in the inventory. The minority view, the evidence basis for both positions, and the data quality ratings are all documented. The Board receives both views.
 
-Disagreement is information. A risk where the CRO and the head of the investment bank genuinely disagree on severity after structured analysis is, in my experience, disproportionately likely to be one of the risks the institution most needs to understand. Averaging their views destroys that signal. The inventory preserves it.
+Disagreement is information. A risk where the CRO and the head of the investment bank genuinely disagree on severity after structured analysis is disproportionately likely to be one of the risks the institution most needs to understand. Averaging their views destroys that signal. The inventory preserves it.
 
 The **assumption register**, also introduced in Chapter 6, records key assumptions that were identified and challenged during workshops. Assumptions about correlations, about the effectiveness of hedging strategies, about the stability of funding markets, about the behaviour of counterparties under stress. Each assumption is linked to the risks it underpins. When the assumption is revisited in a subsequent cycle — as Chapter 13's ongoing process requires — the inventory provides the reference point.
 
@@ -212,7 +204,7 @@ A compliance artefact also has observable characteristics:
 - **The Risk Interaction Summary field is blank** — risks exist in isolation, which they do not
 - **Every risk was last reviewed on the same date** — the entire inventory was updated in a single batch, probably in the week before the Board Risk Committee meeting, probably by one person
 
-I have encountered both. The difference is not the structure — both may have fourteen fields. The difference is whether the structure is enforced through the challenge process (the Risk Identification Lead sending back non-compliant submissions, as Chapter 7 described), the governance framework (the Board Risk Committee asking substantive questions, as Chapter 3 described), and the audit process (Internal Audit testing quality, not just existence).
+Both patterns occur in practice. The difference is not the structure — both may have fourteen fields. The difference is whether the structure is enforced through the challenge process (the Risk Identification Lead sending back non-compliant submissions, as Chapter 7 described), the governance framework (the Board Risk Committee asking substantive questions, as Chapter 3 described), and the audit process (Internal Audit testing quality, not just existence).
 
 ---
 
@@ -273,7 +265,7 @@ An inventory that shrinks without documented retirements should be treated with 
 
 ## Technology and the Inventory
 
-The fourteen-field structure can be implemented in a spreadsheet. This is not theoretical — functional risk inventories have been built in structured spreadsheets before institutions invested in dedicated GRC (governance, risk, and compliance) technology. A well-structured spreadsheet with defined fields, data validation, change tracking, and version control can serve as a functional inventory for the early cycles of a risk identification programme.
+The fourteen-field structure can be implemented in a spreadsheet. Experience shows that the initial inventory can be built in a structured spreadsheet before the institution invests in dedicated GRC (governance, risk, and compliance) technology. A well-structured spreadsheet with defined fields, data validation, change tracking, and version control can serve as a functional inventory for the early cycles of a risk identification programme.
 
 But a spreadsheet has limitations that become material as the inventory matures. It does not enforce referential integrity — if a risk owner leaves and the name is updated in the inventory but not in the risk profile, there is no automatic check. It does not support the kind of network queries that the Risk Interaction Summary field demands — "show me all risks that are triggered by a liquidity event" requires either manual searching or custom formulae. It does not provide role-based access control — anyone with file access can modify any entry.
 

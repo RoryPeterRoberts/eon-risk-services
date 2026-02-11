@@ -30,7 +30,7 @@ Without Phase 6, the methodology produces a sophisticated point-in-time exercise
 
 The quarterly cycle is the heartbeat of the ongoing process. It is also the area where most institutions fall short, because the temptation to reduce it to a re-assessment of existing risks — simply updating scores on a static list — is almost irresistible.
 
-The methodology requires something fundamentally different. Consistent with Fed SR 15-18, the quarterly cycle is an **active re-identification** — not a passive review. This distinction matters in practice. When the CRO requires the risk identification process to feed directly into CCAR submissions, the Material Risk Inventory must be comprehensive and current. This means every quarter the institution must ask not just "have our existing risks changed?" but "are there new risks we did not identify last quarter?"
+The methodology requires something fundamentally different. Consistent with Fed SR 15-18, the quarterly cycle is an **active re-identification** — not a passive review. This distinction becomes critical when regulatory requirements demand quarterly updates. The Material Risk Inventory that CCAR demands must be comprehensive and current, and that means every quarter the institution must ask not just "have our existing risks changed?" but "are there new risks we did not identify last quarter?"
 
 The quarterly cycle encompasses six activities, each building on the infrastructure established in earlier phases.
 
@@ -56,7 +56,7 @@ Once per year, the full methodology is re-executed from the beginning. All six p
 
 This is the most demanding exercise in the ongoing cycle, and the point where compliance theatre is most likely to take hold. The temptation to roll forward last year's inventory with minor updates — adjusting a few scores, adding one or two risks that have become obvious, retiring one or two that have resolved — is considerable. It saves time, avoids difficult conversations, and produces a document that looks substantially similar to last year's, which many participants interpret as evidence of stability rather than evidence of stagnation.
 
-It is precisely the pattern I encountered at the first institution when I received bottom-up submissions that had not changed in three years (Chapter 7). Compliance theatre — the appearance of identification without the substance — is not merely ineffective. It is dangerous, because it creates a documented record that identification has occurred, providing false assurance to the Board, regulators, and capital planning functions that rely on the inventory's currency.
+Compliance theatre — the appearance of identification without the substance — is not merely ineffective. It is dangerous, because it creates a documented record that identification has occurred, providing false assurance to the Board, regulators, and capital planning functions that rely on the inventory's currency. Practitioners frequently encounter bottom-up submissions that have not changed in years, a clear indicator that the process has devolved into administrative exercise rather than genuine re-identification.
 
 The annual re-identification is designed to prevent this. It requires:
 

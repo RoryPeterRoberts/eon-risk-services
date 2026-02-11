@@ -30,31 +30,30 @@
 
 | Chapter | Date | Anonymized | Preserved | Metrics | Status |
 |---|---|---|---|---|---|
-| 1 | 2026-02-10 | 6 | 2 | 0 | Complete |
-| 2 | 2026-02-10 | 3 | 0 | 0 | Complete |
-| 3 | 2026-02-10 | 3 | 6 | 0 | Complete |
-| 4 | 2026-02-10 | 4 | 3 | 3 | Complete |
-| 5 | 2026-02-10 | 2 | 5 | 0 | Complete |
-| 6 | 2026-02-10 | 4 | 5 | 0 | Complete |
-| 7 | 2026-02-10 | 4 | 8 | 0 | Complete |
-| 8 | 2026-02-10 | 5 | 4 | 3 | Complete |
-| 9 | 2026-02-10 | 2 | 14 | 0 | Complete |
-| 10 | 2026-02-10 | 1 | 9 | 2 | Complete |
-| 11 | 2026-02-10 | 3 | 6 | 0 | Complete |
-| 12 | 2026-02-10 | 3 | 6 | 2 | Complete |
-| 13 | 2026-02-10 | 2 | 8 | 0 | Complete |
-| 14 | 2026-02-10 | 2 | 7 | 0 | Complete |
-| 15 | 2026-02-10 | 6 | 1 | 3 | Complete |
-| 16 | 2026-02-10 | 1 | 7 | 0 | Complete |
-| **TOTAL** | — | **51** | **91** | **13** | **All Complete** |
+| 1 | 2026-02-11 | 5 | 2 | 0 | Re-sanitized |
+| 2 | 2026-02-11 | 3 | 0 | 0 | Re-sanitized |
+| 3 | 2026-02-11 | 2 | 2 | 0 | Re-sanitized |
+| 4 | 2026-02-11 | 6 | 0 | 3 | Re-sanitized |
+| 5 | 2026-02-11 | 2 | 3 | 0 | Re-sanitized |
+| 6 | 2026-02-11 | 6 | 2 | 0 | Re-sanitized |
+| 7 | 2026-02-11 | 5 | 2 | 0 | Re-sanitized |
+| 8 | 2026-02-11 | 8 | 2 | 4 | Re-sanitized |
+| 9 | 2026-02-11 | 2 | 2 | 0 | Re-sanitized |
+| 10 | 2026-02-11 | 2 | 0 | 0 | Re-sanitized |
+| 11 | 2026-02-11 | 3 | 0 | 0 | Re-sanitized |
+| 12 | 2026-02-11 | 2 | 0 | 0 | Re-sanitized |
+| 13 | 2026-02-11 | 2 | 0 | 0 | Re-sanitized |
+| 14 | 2026-02-11 | 2 | 0 | 0 | Re-sanitized |
+| 15 | 2026-02-11 | 5 | 0 | 3 | Re-sanitized |
+| 16 | 2026-02-11 | 8 | 0 | 0 | Re-sanitized |
+| **TOTAL** | — | **63** | **15** | **10** | **All Re-sanitized** |
 
 ## Summary
 
-- **Total changes applied:** 64 (51 employer name anonymizations + 13 metric conversions)
-- **Total public case study references preserved:** 91
-- **Chapters with most changes:** Ch 8 (8 changes), Ch 4 (7 changes), Ch 1 (6 changes), Ch 15 (6 changes)
-- **Chapters with fewest changes:** Ch 16 (1 change), Ch 10 (1 change), Ch 5 (2 changes), Ch 9 (2 changes), Ch 13 (2 changes), Ch 14 (2 changes)
-- **Ambiguous cases flagged:** 3 (all resolved — see delta_08.md for details)
+- **Total changes applied:** 73 (63 employer name anonymizations + 10 metric conversions)
+- **All public case study references preserved intact**
+- **Chapters with most changes:** Ch 8 (12), Ch 16 (8), Ch 4 (9), Ch 6 (6), Ch 15 (8)
+- **Re-sanitized:** 2026-02-11 — all 16 chapters re-processed from corrected source after 28 factual corrections
 
 ## Notes
 

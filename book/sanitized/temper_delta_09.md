@@ -1,23 +1,23 @@
-# Temper Delta — Chapter 09
+# Temper Delta — Chapter 9
 
 ## Summary
 - References found: 2
-- RED (rewritten): 1
-- AMBER (softened): 1
+- RED (rewritten): 0
+- AMBER (softened): 2
 - GREEN (kept): 0
 - Political acknowledgments added: 0
 
 ## Changes Made
-| Line | Severity | Before (excerpt) | After (excerpt) | Principle Applied |
-|------|----------|-------------------|-----------------|-------------------|
-| ~194 | RED | "During my time building the process at a European G-SIB, one of the most productive exercises was mapping..." | "A productive exercise for identifying control dependency is mapping..." | De-personalise; shift from "my achievement" to general practice |
-| ~216 | AMBER | "At the G-SIB, I found that the risks where senior participants genuinely disagreed..." | "In practice, risks where senior participants genuinely disagreed..." | Soften institutional reference to learning stance |
+
+| # | Severity | Before (excerpt) | After (excerpt) | Principle |
+|---|----------|-------------------|-----------------|-----------|
+| 1 | AMBER | "During my time building the process at a European G-SIB, one of the most productive exercises was mapping inherent-residual gaps..." | "One of the most productive exercises in this process is mapping inherent-residual gaps..." | P2 (Generalise) + P3 (Deflate heroic framing) |
+| 2 | AMBER | "At the first institution, I found that the risks where senior participants genuinely disagreed..." | "Experience suggests that the risks where senior participants genuinely disagree..." | P2 (Generalise) |
 
 ## Tone Check
-- Author credibility preserved: YES (methodology expertise clear without heroic framing)
-- Heroic framing removed: YES (no longer "I discovered this productive exercise")
-- Former colleague safe: YES (no institution-specific claims)
-- Methodology grounded: YES (presented as general practice, not personal achievement)
+- Author credibility preserved: YES — expertise conveyed through universal principles
+- Heroic framing removed: YES — no "I built this" narrative
+- Methodology grounded: YES — focus on what practitioners encounter, not personal achievement
 
 ## Notes
-Both edits in Chapter 9 successfully remove first-person institutional claims while preserving the analytical insight. The second edit (line 216) was borderline GREEN per the instructions, but softening "At the G-SIB" to "In practice" maintains the learning stance while avoiding implicit credit-taking for institutional implementation.
+Chapter 9 had minimal work-history references. Both were institutional references used to validate methodology points. Converted to general practitioner experience. No RED-level claims of validation or heroic framing found.

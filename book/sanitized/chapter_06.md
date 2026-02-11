@@ -2,23 +2,15 @@
 
 ## The Workshop Where Everyone Agreed
 
-Without clear definitions, risk identification workshops become a talking shop. I learned this the hard way.
+Risk identification workshops at large banking institutions often follow a predictable pattern. Twelve senior people sit around a conference table. A facilitator from the risk function opens with a question: "What are the key risks facing our business?"
 
-These workshops involve very senior people — CROs, business unit heads, the treasurer, heads of risk functions. If the session is not well-structured, it is not just unproductive — it is embarrassing. Senior executives will tolerate many things, but they will not tolerate having their time wasted. And a poorly facilitated workshop, in which twelve highly paid people spend two hours restating what they already know, wastes everyone's time.
+The most senior person in the room speaks first. Three risks are identified — typically the same three that appeared at the top of the previous year's risk register: regulatory change, market volatility, and credit deterioration. The next person agrees with all three and adds a fourth. The person after that agrees with all four. Within thirty minutes, the room has produced a list of eight risks, each essentially a restatement of the existing register, and the facilitator is already moving to the assessment phase.
 
-The pattern is predictable. The facilitator opens with a broad question: "What are the key risks facing our business?" The most senior person in the room speaks first. He identifies three risks — the same three that appeared at the top of last year's risk register: regulatory change, market volatility, and credit deterioration. The next person agrees and adds a fourth. The person after that agrees with all four. Within thirty minutes, the room has produced a list of eight risks, each essentially a restatement of the existing register, and the facilitator is already moving to assessment.
+Critical questions go unasked. Counterparty concentration across business lines. Visibility into leveraged client exposures. What happens if a single counterparty defaults across multiple desks simultaneously. These are the gaps that unstructured workshops systematically miss — and that have produced some of the largest losses in banking history.
 
-The participants are not being lazy. They are correctly discussing the risks they are most concerned with. The problem is that they are doing so in a completely unstructured way — without definitions, without guide words, without a framework that forces them beyond what they already know. The discussion is genuine. The output is useless.
+Such workshops are worse than useless — they are actively dangerous, because they create documented records showing that senior management has "identified" institutional risks, when in reality the process has done nothing more than confirm existing assumptions. The risk register looks comprehensive. The governance box is ticked. And the bank remains blind to the exposures that matter most.
 
-I found, through experience, that the key is to anchor everything to a single, clear definition: *a risk is an event or condition that causes uncertainty to a strategic or business objective.* When you hold the room to that definition — when every proposed risk must be expressed as a source of uncertainty to a named objective — the conversation changes. Vague concerns become specific. Overlapping risks become distinct. And the question shifts from "what worries you?" to "what could prevent this institution from achieving what it has committed to achieve?"
-
-That the same unfocused approach persisted at many institutions — including those that later suffered losses from concentrated counterparty exposures — reflects systemic process failures across the industry, not individual failures of imagination.
-
-The unfocused workshop is worse than useless — it is actively dangerous, because it creates a documented record showing that senior management has "identified" the institution's risks, when in reality the process has done nothing more than confirm existing assumptions. The risk register looks comprehensive. The governance box is ticked. And the bank remains blind to critical exposures.
-
-The entire approach needs to be redesigned. Traditional brainstorming, applied to risk identification in a hierarchical institution, does not identify risks. It identifies consensus. And consensus, in risk management, is the enemy.
-
-The answer is structure. Not more discussion — more disciplined discussion. The **Structured What-If Technique (SWIFT)**, described in the remainder of this chapter, replaces the open question ("what are the risks?") with prepared guide words applied systematically to each element of the institution's strategy and operations. It forces the room beyond what they already know. Combined with the definition anchor — every risk expressed as uncertainty to a named objective — it transforms the workshop from a talking shop into the most productive two hours in the risk calendar.
+Traditional brainstorming, applied to risk identification in a hierarchical institution, does not identify risks. It identifies consensus. And consensus, in risk management, is the enemy.
 
 ## Why Brainstorming Fails
 
@@ -50,7 +42,7 @@ Bottom-up identification — the subject of Chapter 7 — captures risks that ar
 
 As Oliver Wyman observed in their analysis of risk identification practices, the use of parallel top-down and bottom-up processes provides a higher likelihood of identifying an organisation's full suite of risks than either process in isolation. The top-down process captures strategic and emerging risks; the bottom-up process achieves comprehensive, granular coverage. The reconciliation between them — which Chapter 8 will address — is where the methodology creates its most distinctive value.
 
-The straw man risk list, prepared by the Risk Identification Lead during Phase 1, bridges both tracks. It is circulated to workshop participants in advance, providing an evidence-based starting point that prevents blank-page syndrome while being explicitly designed to be challenged, modified, and torn apart. The framing of this document matters enormously — present it as a "proposed risk list" and participants defer to it; present it as a document to be dismantled and they engage critically.
+The straw man risk list, prepared by the Risk Identification Lead during Phase 1, bridges both tracks. It is circulated to workshop participants in advance, providing an evidence-based starting point that prevents blank-page syndrome while being explicitly designed to be challenged, modified, and torn apart. Experience shows that framing matters enormously — present it as a "proposed risk list" and participants defer to it; present it as a document to be dismantled and they engage critically.
 
 ## Designing the Top-Down Workshop
 
@@ -152,7 +144,7 @@ The Risk Identification Lead, who facilitates these workshops, requires a specif
 
 **Protecting the process from political interference.** The most difficult facilitation challenge occurs when a senior participant attempts to remove a risk from the list or downgrade its significance for reasons that are political rather than analytical. The facilitator must ensure that the risk remains documented, the challenge is recorded, and the final decision reflects genuine analytical judgement rather than political pressure. This requires the structural independence described in Chapter 3 — the Risk Identification Lead must have the mandate and the protection to maintain the integrity of the output.
 
-These skills develop through practice, not training. Managing the moment when a senior participant publicly challenges a risk identification — maintaining the evidence base, seeking corroborating data, escalating through the governance framework when necessary — is the craft that distinguishes a process that produces genuine risk intelligence from one that merely produces documentation.
+These facilitation skills are developed through practice, not classroom training. Moments arise where business unit heads dismiss risks that other participants have identified. The political skill required to navigate those moments — to document the disagreement, to seek supporting evidence from other participants, to escalate through the governance structure when necessary — is the craft that distinguishes a process that works from a process that merely exists on paper.
 
 ## Scenario Analysis as an Identification Technique
 
@@ -180,7 +172,7 @@ The multivoting output is preliminary. The detailed four-dimensional assessment 
 
 ## The Archegos Failure: What a SWIFT Workshop Would Have Asked
 
-On 26 March 2021, Archegos Capital Management — a family office run by Bill Hwang — collapsed, triggering $20 billion in losses across its prime brokers. Credit Suisse absorbed $5.5 billion of those losses, a blow that contributed materially to the institution's eventual demise.
+On 26 March 2021, Archegos Capital Management — a family office run by Bill Hwang — collapsed, triggering approximately $10 billion in net losses across its prime brokers as an estimated $20 billion in concentrated positions were unwound. Credit Suisse absorbed $5.5 billion of those losses, a blow that contributed materially to the institution's eventual demise.
 
 The mechanism was straightforward. Hwang used total return swaps to build massive concentrated positions in a handful of stocks, leveraged at five to eight times, across multiple prime brokers. No single prime broker had visibility into his total exposure. Each bank assessed its bilateral exposure to Archegos as manageable. None asked the question that mattered: what is this client's aggregate position across all brokers?
 
@@ -259,7 +251,7 @@ The connection between SWIFT workshops and CCAR is direct. The Fed expects insti
 
 The quarterly re-identification cycle established in Chapter 3 means that SWIFT workshops are not annual events. The full annual workshop covers all domains comprehensively. Quarterly workshops are more focused — targeting areas where the risk landscape has changed, where new risks have emerged, or where prior identifications need to be revisited in light of new information. The straw man for quarterly workshops draws on the prior quarter's inventory, updated PESTLE factors, and any event-driven triggers that have occurred since the last cycle.
 
-This integration between the identification methodology and the CCAR framework is not incidental. Risk identification must feed directly into the CCAR submission. The Material Risk Inventory produced by the methodology — through SWIFT workshops, Delphi consultations, and the bottom-up processes described in the next chapter — becomes the foundation for scenario design and stress testing. Risk identification is not a standalone exercise. It is the front end of the capital planning process.
+This integration between the identification methodology and the CCAR framework is not incidental. In practice, risk identification processes at CCAR institutions must feed directly into capital planning submissions. The Material Risk Inventory produced by the methodology — through SWIFT workshops, Delphi consultations, and the bottom-up processes described in the next chapter — becomes the foundation for scenario design and stress testing. Risk identification is not a standalone exercise. It is the front end of the capital planning process.
 
 ## Top-Down Outputs
 

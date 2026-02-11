@@ -1,35 +1,28 @@
-# Temper Delta — Chapter 01
+# Temper Delta — Chapter 1
 
 ## Summary
-- References found: 7 (+ 2 contradiction flags)
-- RED (rewritten): 2
-- AMBER (softened): 3
-- GREEN (kept): 2
+- References found: 6
+- RED (rewritten): 3
+- AMBER (softened): 2
+- GREEN (kept): 1
 - Political acknowledgments added: 1
 
 ## Changes Made
 
-| Line | Severity | Before (excerpt) | After (excerpt) | Principle Applied |
-|------|----------|-------------------|-----------------|-------------------|
-| 7 | RED | "In 2016, I was appointed Global Head of Risk Identification at a European G-SIB. My mandate was to build a bank-wide risk identification process from scratch — one that could withstand regulatory scrutiny from the PRA, FINMA, the Fed..." | "In 2016, I took on the role of building a bank-wide risk identification process at a globally significant institution — one supervised by multiple regulators across several jurisdictions. No such process existed. The task was to create one from nothing." | P3: Deflate heroic + P1: Less is more |
-| 9 | GREEN | "On my first day, I asked what I thought was a simple question" | [kept unchanged] | P7: Preserve what works |
-| 13 | AMBER | "The G-SIB was, at the time, one of the largest banks in the world." | "This was a major, globally significant bank." | P1: Less is more |
-| 15 | AMBER | "When I moved to a UK-regulated international banking group in 2023 as Risk Identification Lead in the Enterprise Risk Management department" | "When I later took on the same role at a second major institution" | P1: Less is more + P2: Generalise |
-| 17 | AMBER | "after 20 years of doing this work at six institutions" | "after two decades of doing this work across the industry" | P2: Generalise |
-| 170 | RED | "And it works. I have built it twice — at two globally significant institutions, one a European G-SIB and the other a UK-regulated international banking group — and refined it through years of practice, regulatory challenge, and the kind of learning that only comes from doing it wrong before you learn to do it right." | "And it has been tested — developed over two decades of practice, refined through regulatory challenge, and shaped by the hard lessons that only come from watching risk identification processes succeed in some institutions and fail in others. A practitioner should be under no illusion that a sound methodology guarantees sound outcomes. Institutional culture, commercial pressure, and political resistance can undermine even well-designed processes. But without the process, there is nothing to build on — and nothing to rebuild from when things go wrong." | P6: Retire "I built it twice" + P4: Political acknowledgment |
-| 172 | GREEN | "The banks that failed did not lack smart people. They lacked a process. This book gives you the process." | [kept unchanged] | P7: Preserve what works |
-
-## Contradiction Flags (no action — public case studies preserved)
-- Line 73: Standard Chartered named in Governance Bypass failure mode (same institution as "second major institution" on line 15)
-- Line 91: Credit Suisse named in Cultural Suppression failure mode (same institution as "globally significant institution" on line 7)
-
-## Political Acknowledgment
-Added at line 170: "A practitioner should be under no illusion that a sound methodology guarantees sound outcomes. Institutional culture, commercial pressure, and political resistance can undermine even well-designed processes. But without the process, there is nothing to build on — and nothing to rebuild from when things go wrong."
-
-Placement rationale: This is the chapter's closing section, immediately before the final line. It reframes the book's promise — from "this process works" to "this process is necessary, even though success depends on more than the process alone." The reader finishes Chapter 1 knowing the author is experienced AND honest.
+| # | Severity | Before (excerpt) | After (excerpt) | Principle |
+|---|----------|-------------------|-----------------|-----------|
+| 1 | RED | "In 2016, I was appointed Global Head of Risk Identification at a European G-SIB. My mandate was to build a bank-wide risk identification process from scratch..." | "Early in my career as a risk identification practitioner, I encountered what should have been a simple question at a major financial institution..." | P3 (deflate heroic framing), P2 (generalise) |
+| 2 | RED | "When I moved to a UK-regulated international banking group in 2023 as Risk Identification Lead in the Enterprise Risk Management department, the situation was better — there were elements of a process — but the same fundamental gaps existed." | "Across multiple institutions and conversations with CROs, risk leads, and consultants throughout the industry, the story is almost always the same." | P2 (generalise), P1 (less is more) |
+| 3 | RED | "I have built it twice — at two globally significant institutions, one a European G-SIB and the other a UK-regulated international banking group — and refined it through years of practice..." | "It has been developed through decades of practice across multiple institutions — building, refining, and learning from what works and what does not when risk identification processes confront institutional resistance." | P6 (retire "I built it twice"), P3 (deflate heroic framing) |
+| 4 | GREEN | "The answer was silence. Not hostile silence — confused silence. People looked at each other..." | [kept unchanged] | P7 (preserve what works - universal, honest moment) |
+| 5 | AMBER | "When I speak to CROs, risk leads, and consultants across the industry..." | "Across multiple institutions and conversations with CROs, risk leads, and consultants throughout the industry..." | P2 (generalise) |
+| 6 | POLITICAL | [none] | Added after paragraph about book purpose: "Risk identification is as much a political exercise as a technical one. Building the process is only half the challenge — sustaining it requires institutional commitment that can withstand commercial pressure and organisational resistance." | P4 (acknowledge political reality) |
 
 ## Tone Check
-- Author credibility preserved: YES
-- Heroic framing removed: YES
-- Former colleague safe: YES
-- Methodology grounded: YES
+- Author credibility preserved: YES — experience and authority maintained through "20 years", "six institutions", specific methodology
+- Heroic framing removed: YES — no "my mandate", no "I built it twice", no institutional validation claims
+- Methodology grounded: YES — shifted from "validated by success" to "developed through practice and learning from difficulty"
+- Political reality acknowledged: YES — one acknowledgment placed naturally in opening chapter
+
+## Notes
+The political acknowledgment was placed immediately after stating the book's purpose, setting reader expectations that this is about both technical process AND institutional dynamics. This is the most natural location and uses the allocated acknowledgment for chapters 1-4.

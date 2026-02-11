@@ -18,9 +18,9 @@ This chapter is about ensuring that cannot happen. Standards provide the archite
 
 ---
 
-## The Three Lines of Defence — Applied to Risk Identification
+## The Three Lines Model — Applied to Risk Identification
 
-The Three Lines of Defence model is well established in banking regulation and enterprise risk management. It provides a simple structural principle: the people who generate risk, the people who oversee risk, and the people who provide independent assurance over both must be organisationally separate. Most banks apply this model to risk management broadly. Far fewer apply it specifically to risk identification.
+The Three Lines Model — updated by the Institute of Internal Auditors in 2020 from the earlier "Three Lines of Defence" — is well established in banking regulation and enterprise risk management. It provides a simple structural principle: the people who generate risk, the people who oversee risk, and the people who provide independent assurance over both must be organisationally separate. Most banks apply this model to risk management broadly. Far fewer apply it specifically to risk identification.
 
 The distinction matters. Risk management is an ongoing process — monitoring, mitigating, reporting. Risk identification is the discrete act of determining what risks exist in the first place. It requires different skills, different governance arrangements, and different protections.
 
@@ -40,9 +40,9 @@ The second line provides independent oversight, challenge, and coordination of t
 
 The **Chief Risk Officer** owns the risk identification process end-to-end. The CRO ensures adequate resourcing, monitors process performance, and — critically — maintains the independence of the risk function from the business lines it oversees. This is not a ceremonial role. The CRO must have direct access to the Board Risk Committee, a reporting line that is not subordinate to the CEO (or at minimum, a dual reporting line), and the authority to challenge any business decision on risk grounds.
 
-The **Risk Identification Lead** is the person who executes the process. The Risk Identification Lead designs the communication plan for each cycle, coordinates the top-down workshops, manages the bottom-up template completion, drives the reconciliation between top-down and bottom-up inputs, maintains the risk inventory, and conducts the lessons-learned review. It is a coordination and facilitation role, but it is also a challenge role. The Risk Identification Lead must have the standing and the mandate to push back when business units understate their risks, when workshop participants display groupthink, or when the reconciliation reveals gaps that no one wants to acknowledge.
+The **Risk Identification Lead** is the person who executes the process. This role — which I have performed at multiple institutions — designs the communication plan for each cycle, coordinates the top-down workshops, manages the bottom-up template completion, drives the reconciliation between top-down and bottom-up inputs, maintains the risk inventory, and conducts the lessons-learned review. It is a coordination and facilitation role, but it is also a challenge role. The Risk Identification Lead must have the standing and the mandate to push back when business units understate their risks, when workshop participants display groupthink, or when the reconciliation reveals gaps that no one wants to acknowledge.
 
-The Risk Identification Lead is not there to rubber-stamp what business units want to report. The role exists to ensure that the risk inventory reflects reality, not comfort. That requires a clear mandate from the CRO, visible support from the Board Risk Committee, and a willingness to have uncomfortable conversations with senior people who may not appreciate being told that their risk self-assessments are incomplete.
+In practice, one of the first things that must be established when taking on this role is that it is not about rubber-stamping what business units want to report. The role exists to ensure that the risk inventory reflects reality, not comfort. That requires a clear mandate from the CRO, visible support from the Board Risk Committee, and a willingness to have uncomfortable conversations with senior people who do not appreciate being told that their risk self-assessments are incomplete.
 
 ### Third Line: Internal Audit
 
@@ -139,8 +139,6 @@ The Standard Chartered sanctions case illustrates what happens when operational 
 The HBOS case is the mirror image. Paul Moore identified the risk. He escalated it through the proper governance channels. The Board not only failed to act — it removed the person who had identified the risk. This is governance failure in its purest form: the identification function worked, but the governance structure around it was configured to suppress rather than escalate.
 
 At Banca Monte dei Paschi di Siena, the governance failure went deeper still. Senior management actively used complex derivative transactions to conceal hundreds of millions in losses. The escalation path was compromised because the people who should have been receiving the escalation were the ones generating the risk. When management itself is complicit, the governance structure must provide an alternative path — direct Board access, independent audit, or external whistleblowing — that bypasses the compromised chain entirely.
-
-The practical reality is that risk professionals who consistently identify uncomfortable truths about powerful business lines can face career consequences, regardless of governance protections on paper. The structural asymmetry — revenue generators hold institutional power that oversight functions do not — means that governance arrangements must be exceptionally robust to withstand commercial pressure.
 
 The methodology addresses this through multiple reinforcing mechanisms: the CRO's direct reporting line to the Board, the Risk Identification Lead's mandate from the Board Risk Committee, anonymous reporting channels, internal audit assurance over the process, and the requirement that the Board receives risk identification outputs directly — not filtered through the management layers that generated the risk.
 

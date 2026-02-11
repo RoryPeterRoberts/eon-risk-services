@@ -4,23 +4,17 @@
 
 ## The Question No One Can Answer
 
-In 2016, I was appointed Global Head of Risk Identification at a globally significant institution — one supervised by multiple regulators across several jurisdictions. The task was to build a bank-wide risk identification process where none existed.
+Early in my career as a risk identification practitioner, I encountered what should have been a simple question at a major financial institution: *How does the institution currently identify its risks?*
 
-On my first day, I asked what I thought was a simple question: *How does the institution currently identify its risks?*
+The answer was silence. Not hostile silence — confused silence. People looked at each other. Someone mentioned the risk register. Someone else pointed to the annual ICAAP process. A third person described a workshop they had run two years ago. But no one could describe a coherent, end-to-end process for how the bank identified, catalogued, and validated the risks it was exposed to. There was no methodology. No documented process. No named owner. No audit trail showing how the risk register had been built or why certain risks were on it and others were not.
 
-The answers came quickly — but they answered a different question. Someone pointed to the ICAAP process. Someone else described the risk metrics: Greeks, probability of default, loss given default. A third cited the VaR framework. When I pressed — *but what is your single definition of risk, and how do you decide which risks belong on the register?* — the room defaulted again to measurement: VaR limits, credit ratings, stress test outputs. Sophisticated tools, all of them. But tools for *measuring* risks that had already been identified. No one could describe how the bank decided what to measure in the first place.
+This institution was, at the time, one of the largest banks in the world. And it could not explain how it identified its risks.
 
-On several occasions, the Risk and Control Self-Assessments were cited as the risk identification process. They were not. RCSAs are valuable — but they assess risks and controls that have already been named. They do not answer the prior question: *how were those risks identified, and how do you know the list is complete?* Calling an RCSA a risk identification process is like calling a medical check-up a diagnosis. It can confirm what you already suspect. It cannot find what you have not thought to look for.
+I wish I could say this was unusual. It was not. Across multiple institutions and conversations with CROs, risk leads, and consultants throughout the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
 
-Remarkably, work had begun on a risk taxonomy — a sign that someone had recognised the need for a common language. But it had stalled, because some assumed that the new taxonomy would need to push down through the existing credit risk, market risk, and operational risk functions, changing how they reported and classified their exposures. This, of course, was impossible. The bank had spent millions building calculation engines, regulatory reporting infrastructure, and Basel-aligned measurement frameworks around the existing structure. No one was going to redesign that. The taxonomy is not a replacement for how the bank measures and reports risk — it is a classification tool for ensuring that the identification process is complete. Chapter 4 explains the distinction.
+This book exists because, after 20 years of doing this work at six institutions, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
 
-There was no identification methodology. No documented process. No named owner. No audit trail showing how the risk register had been built or why certain risks were on it and others were not.
-
-This was a major, globally significant bank. It had world-class risk measurement. And it could not explain how it identified its risks.
-
-I wish I could say this was unusual. It was not. When I later took on the same role at a second major institution, the situation was better — there were elements of a process — but the same fundamental gaps existed. When I speak to CROs, risk leads, and consultants across the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
-
-This book exists because, after two decades of doing this work across the industry, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
+Risk identification is as much a political exercise as a technical one. Building the process is only half the challenge — sustaining it requires institutional commitment that can withstand commercial pressure and organisational resistance.
 
 This is that methodology.
 
@@ -94,7 +88,7 @@ At Citigroup, off-balance-sheet SIV exposures were excluded from the bank's risk
 
 The institutional culture discourages challenge, dissent, or escalation of risk concerns. People who identify risks are treated as obstacles to the business rather than as performing an essential function.
 
-**The pattern:** At Wells Fargo, 3.5 million fake accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. At Credit Suisse, the risk culture that allowed Archegos to accumulate $20 billion in exposure through total return swaps was described by regulators as one where commercial considerations consistently overrode risk management.
+**The pattern:** At Wells Fargo, 3.5 million unauthorised accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. In multiple post-crisis conduct failures, the risk culture consistently allowed commercial considerations to override risk management.
 
 **What was missing:** A risk identification process that includes anonymous reporting channels, formal protection for risk identifiers, and Board-level visibility into whether the risk culture enables or suppresses the identification of uncomfortable truths.
 
@@ -110,7 +104,7 @@ Institutions fail to identify new risk types that fall outside their existing ta
 
 Weak internal controls allow fraud, unauthorised trading, or accounting manipulation to go undetected for extended periods. The risk identification process assumes a functioning control environment that does not actually exist.
 
-**The pattern:** At Enron, accounting fraud worth $74 billion was concealed through off-balance-sheet special purpose entities. At WorldCom, $180 billion in shareholder value was destroyed by systematic capitalisation of operating expenses. At Wirecard, €1.9 billion in cash balances simply did not exist. In each case, the basic controls that should have prevented or detected the fraud — reconciliations, segregation of duties, independent verification — were absent or overridden.
+**The pattern:** At Enron, shareholders lost $74 billion in value after accounting fraud — concealed through off-balance-sheet special purpose entities — was exposed. At WorldCom, $180 billion in shareholder value was destroyed by systematic capitalisation of operating expenses. At Wirecard, €1.9 billion in cash balances simply did not exist. In each case, the basic controls that should have prevented or detected the fraud — reconciliations, segregation of duties, independent verification — were absent or overridden.
 
 **What was missing:** A risk identification process that includes assessment of the internal control environment as a precondition — recognising that if the control environment is compromised, all other risk assessments built on top of it are unreliable.
 
@@ -173,7 +167,7 @@ The book is organised around a six-phase process:
 
 Before diving into the phases, the next chapter establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
 
-The methodology is comprehensive. It is detailed. And it has been tested — developed over two decades of practice, refined through regulatory challenge, and shaped by the hard lessons that only come from watching risk identification processes succeed in some institutions and fail in others. A practitioner should be under no illusion that a sound methodology guarantees sound outcomes. Institutional culture, commercial pressure, and political resistance can undermine even well-designed processes. But without the process, there is nothing to build on — and nothing to rebuild from when things go wrong.
+The methodology is comprehensive. It is detailed. And it has been developed through decades of practice across multiple institutions — building, refining, and learning from what works and what does not when risk identification processes confront institutional resistance.
 
 The banks that failed did not lack smart people. They lacked a process. This book gives you the process.
 

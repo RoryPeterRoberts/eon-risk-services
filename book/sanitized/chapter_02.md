@@ -8,7 +8,7 @@ In every regulatory examination I have sat through — PRA, FINMA, the Fed, the 
 
 The question is not academic. It is a test. The regulator is establishing whether the institution's process is grounded in internationally recognised standards or whether someone has invented something from scratch — and whether the people responsible for the process understand the difference.
 
-One of the first things any risk identification process needs is a clear standards architecture. Not because ISO 31000 or COSO ERM will tell you exactly how to identify risks in a global investment bank — they will not — but because every regulator with jurisdiction over the bank will assess the process against those standards. If the methodology cannot trace its key design decisions back to specific provisions of ISO 31000, ISO 31010, and COSO ERM, it will fail the first supervisory test before anyone even looks at the content.
+When building risk identification processes, one of the first things to establish is the standards architecture. Not because ISO 31000 or COSO ERM tells you exactly how to identify risks in a global investment bank — they will not — but because every regulator with jurisdiction over the bank will assess the process against those standards. If the methodology cannot trace its key design decisions back to specific provisions of ISO 31000, ISO 31010, and COSO ERM, it will fail the first supervisory test before anyone even looks at the content.
 
 This chapter examines the four standards and frameworks that provide the foundation for the methodology in this book: **ISO 31000** (Risk Management: Principles and Guidelines), **ISO 31010** (Risk Management: Risk Assessment Techniques), the **COSO Enterprise Risk Management Integrated Framework**, and the **BCBS Corporate Governance Principles**. These are not interchangeable. Each serves a different purpose. Together, they form the standards architecture that every bank risk identification process must be built on.
 
@@ -16,7 +16,7 @@ This chapter examines the four standards and frameworks that provide the foundat
 
 ## ISO 31000: The Architecture
 
-ISO 31000:2009 is the international standard for risk management. Published by the International Organization for Standardization, it provides principles and guidelines that apply to any organisation, in any sector, managing any type of risk. It is not specific to banking — and that is both its strength and its limitation.
+ISO 31000 is the international standard for risk management. Originally published in 2009 and revised in 2018, it provides principles and guidelines that apply to any organisation, in any sector, managing any type of risk. References in this book follow the current ISO 31000:2018 edition unless otherwise noted. It is not specific to banking — and that is both its strength and its limitation.
 
 The standard is built on a three-layer architecture: **Principles**, **Framework**, and **Process**. Understanding this architecture is essential because it determines how a risk identification process should be designed, governed, and operated.
 
@@ -73,7 +73,7 @@ This is not a weakness. It is by design. ISO 31000 is intended to be applicable 
 
 ## ISO 31010: The Technique Toolkit
 
-If ISO 31000 provides the architecture, ISO 31010:2009 provides the tools. Published as a supporting standard, ISO 31010 catalogues 31 risk assessment techniques and provides guidance on selecting which ones to use for different purposes.
+If ISO 31000 provides the architecture, ISO 31010 provides the tools. Originally published in 2009 and revised in 2019, the current ISO 31010:2019 edition catalogues risk assessment techniques and provides guidance on selecting which ones to use for different purposes.
 
 The standard organises these techniques across three stages of risk assessment: identification, analysis, and evaluation. What makes ISO 31010 valuable for practitioners is Table A.1 — the applicability matrix — which maps each of the 31 techniques against these three stages and rates their applicability as "strongly applicable," "applicable," or "not applicable."
 
@@ -148,7 +148,7 @@ COSO ERM defines eight interrelated components that together constitute an effec
 
 COSO ERM's distinctive contribution is the three-dimensional model — often represented as a cube — that maps the eight components against the four objective categories against the organisational entity levels (subsidiary, division, business unit, entity). This three-dimensional view forces a critical question: *Have we identified risks across all components, all objective categories, and all organisational levels?*
 
-The COSO cube serves as an effective completeness check. Practitioners map each identified risk against the matrix and look for empty cells — combinations of component, objective, and entity where no risks have been identified. The empty cells are not proof that no risks exist in those spaces. They are proof that no one has looked. And when practitioners look, they invariably find risks that the standard workshop-and-brainstorm approach has missed.
+In practice, this model is one of the most effective tools for identifying gaps in risk identification coverage. The COSO cube can be used as a completeness check — mapping every identified risk against the matrix and looking for empty cells, combinations of component, objective, and entity where no risks have been identified. The empty cells are not proof that no risks exist in those spaces. They are proof that the process has not looked there. And when practitioners look, they invariably find risks that the standard workshop-and-brainstorm approach had missed.
 
 ---
 
@@ -196,7 +196,7 @@ This is how the methodology in this book is designed. Each phase traces back to 
 - **Phase 3 (Assessment)** follows ISO 31000 Section 5.4.3–5.4.4 and COSO ERM Component 4, using techniques from ISO 31010 (scenario analysis, bow-tie, fault tree).
 - **Phase 4 (Documentation)** satisfies ISO 31010's requirement for transparent recording of methods, assumptions, and limitations, and COSO ERM Component 7 (Information and Communication).
 - **Phase 5 (Integration)** maps to ISO 31000 Principle b (integral part of organisational processes), COSO ERM Component 7, and the BCBS requirement for Board reporting.
-- **Phase 6 (Ongoing Cycle)** satisfies ISO 31000 Principle j (dynamic, iterative, responsive to change), COSO ERM Component 8 (Monitoring), and the BCBS requirement for ongoing identification.
+- **Phase 6 (Ongoing Cycle)** satisfies ISO 31000 Principle j (dynamic, iterative, responsive to change), COSO ERM Component 8 (Monitoring), and the BCCS requirement for ongoing identification.
 
 This traceability is not academic. When a regulator examines your risk identification process and asks what standards it is built on, you need to be able to point to each phase and say: *This phase implements these specific provisions of these specific standards.* That traceability is what distinguishes a defensible methodology from an ad hoc collection of risk workshops.
 
@@ -208,7 +208,7 @@ Let me be direct about something the standards will not tell you. They will not 
 
 Standards provide the architecture. They do not provide the craft.
 
-Experience implementing standards-based risk frameworks across multiple entities shows that the institutions that succeed are not the ones with the most comprehensive standards mapping. They are the ones that understand the standards well enough to know where the standards end and where practitioner judgement begins.
+In my experience implementing risk frameworks across multiple institutions and contexts — from Solvency II implementation at a major European insurer to dealing floor operations — the institutions that succeeded were not the ones with the most comprehensive standards mapping. They were the ones that understood the standards well enough to know where the standards ended and where practitioner judgement began.
 
 The same is true here. ISO 31000, ISO 31010, COSO ERM, and the BCBS principles give you the architecture, the techniques, the enterprise lens, and the regulatory mandate. They tell you what a good process looks like in structural terms. But turning that structure into a working process that actually identifies the risks that matter — that requires governance, methodology, and the kind of operational detail that no standard can provide.
 

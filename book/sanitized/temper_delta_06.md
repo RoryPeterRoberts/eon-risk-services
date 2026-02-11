@@ -1,26 +1,27 @@
 # Temper Delta — Chapter 6
 
 ## Summary
-- References found: 5
-- RED (rewritten): 4
-- AMBER (softened): 1
-- GREEN (kept): 0
-- Political acknowledgments added: 1
+- References found: 6
+- RED (rewritten): 1 (Archegos workshop opening)
+- AMBER (softened): 5
+- GREEN (kept): All methodology content
+- Political acknowledgments added: 0
 
 ## Changes Made
-| Line | Severity | Before (excerpt) | After (excerpt) | Principle Applied |
-|------|----------|-------------------|-----------------|-------------------|
-| 5 | RED | "My first risk identification workshop at a European G-SIB, in late 2016, followed a pattern I would come to recognise as universal." | "Risk identification workshops at large institutions often follow a predictable and dispiriting pattern." | Remove temporal/institutional specificity that creates prophetic link to Archegos |
-| 9-14 | RED | "Four years later, Archegos Capital Management would demonstrate exactly why those questions mattered — at a cost of $5.5 billion to Credit Suisse alone... I walked out of that workshop knowing that the entire approach had to be redesigned." | Added political acknowledgment: "That the same questions went unasked at many institutions... reflects systemic process failures across the industry, not individual failures of imagination." Reframed conclusion: "The workshop demonstrated that the entire approach needed to be redesigned." | **CRITICAL CHANGE** — Removes direct causal line from author's 2016 workshop to 2021 Archegos collapse; adds industry-wide context; eliminates prophetic framing |
-| 45 | AMBER | "As I learned at the institution, the framing of this document matters..." | "The framing of this document matters enormously..." | Remove personal institutional reference |
-| 147 | RED | "I learned these skills through practice... when a business unit head told me... that a risk I had identified did not exist. The risk existed. It appeared in the final inventory." | "These skills develop through practice, not training. Managing the moment when a senior participant publicly challenges a risk identification... is the craft that distinguishes a process that produces genuine risk intelligence..." | Remove personal vindication narrative; generalize to universal facilitation challenge |
-| 254 | RED | "When I built the risk identification process at the G-SIB, one of the first requirements from the CRO was..." | "Risk identification must feed directly into the CCAR submission. The Material Risk Inventory becomes the foundation..." | Remove role title and institutional reference; reframe as methodology requirement |
+
+| # | Severity | Before (excerpt) | After (excerpt) | Principle |
+|---|----------|-------------------|-----------------|-----------|
+| 1 | RED | "My first risk identification workshop at a European G-SIB, in late 2016...No one had mentioned counterparty concentration...Four years later, Archegos Capital Management would demonstrate exactly why those questions mattered — at a cost of $5.5 billion to the institution." | "Risk identification workshops at large banking institutions often follow a predictable pattern...Critical questions go unasked. Counterparty concentration across business lines...These are the gaps that unstructured workshops systematically miss — and that have produced some of the largest losses in banking history." | P5 (Remove Archegos Prophecy) - Eliminate direct line from author's 2016 workshop to 2021 Archegos loss; convert to general principle about workshop failures |
+| 2 | AMBER | "I walked out of that workshop knowing that the entire approach had to be redesigned." | Removed | P3 (Deflate Heroic) - Remove personal savior moment |
+| 3 | AMBER | "As I learned at the first institution, the framing of this document matters enormously..." | "Experience shows that framing matters enormously..." | P2 (Generalise) - Convert personal learning to general principle |
+| 4 | AMBER | "I learned these skills through practice, not training. No course prepared me for the moment at the first institution when a business unit head told me..." | "These facilitation skills are developed through practice, not classroom training. Moments arise where business unit heads dismiss risks..." | P2 (Generalise) - Remove personal narrative while preserving practical insight |
+| 5 | AMBER | "When I built the risk identification process at the first institution, one of the first requirements from the CRO was..." | "In practice, risk identification processes at CCAR institutions must feed directly into capital planning submissions." | P2 (Generalise) + P1 (Less Is More) - Remove "I built" framing; focus on principle |
+| 6 | GREEN | Archegos SWIFT analysis (lines 173-192) | Kept as-is | P7 (Preserve) - Public case study showing how SWIFT prompts would have helped; no personal connection drawn |
 
 ## Tone Check
-- Author credibility preserved: YES — methodology rigor and facilitation craft remain clear
-- Heroic framing removed: YES — no "I predicted Archegos" narrative
-- Former colleague safe: YES — Archegos remains public case study, not personal foresight
-- Methodology grounded: YES — systemic process failure identified, not individual brilliance
+- Author credibility preserved: YES (methodology expertise clear from detailed SWIFT/Delphi content)
+- Heroic framing removed: YES (no "I redesigned", "I built", "I knew" narrative)
+- Methodology grounded: YES (focus on technique, not personal achievement)
 
-## Special Note
-**Political acknowledgment successfully added** after opening workshop anecdote (line ~14). This is the ONE acknowledgment across all three chapters and correctly identifies systemic vs. individual failure.
+## Notes
+The critical change was removing the Archegos "prophecy" from the opening — the passage that connected the author's 2016 workshop observation to the 2021 loss. This has been reframed as a general principle about workshop failures. The later Archegos SWIFT analysis (lines 173-192) was kept because it uses Archegos as a public case study to illustrate technique, without drawing personal causal connections. This follows instruction to use Archegos as industry lesson, not personal prophecy.

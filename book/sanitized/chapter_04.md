@@ -2,19 +2,17 @@
 
 ## The Meeting Where Nobody Agreed
 
-At the first institution where I built this process, every risk department was involved in creating the taxonomy. This should have been a strength — broad participation, deep expertise, institutional buy-in. Instead, it nearly derailed the entire effort. Every department's natural instinct was to align the taxonomy with its own reporting structure. Credit risk wanted the taxonomy to reflect how they reported credit exposures. Market risk wanted it to reflect their trading book categories. Operational risk wanted it organised around their loss event types. Each was proposing, in effect, that the enterprise risk taxonomy should look like their department's existing classification — because that was the structure they understood, the structure their systems were built around, and the structure their teams were trained to use.
+Early in my experience building risk identification processes, I convened a meeting to reconcile risk registers across business units. What I expected was a straightforward alignment exercise. What I got was a two-hour argument about what things were called.
 
-The result was a taxonomy design process that had stalled before it started. Different functions classified the same exposures differently — the investment bank called certain derivative exposures market risk, the risk function classified them as counterparty credit risk, and treasury labelled a subset as liquidity risk. Each was correct within its own framework. None was wrong. But aggregating these into an enterprise view — to answer the basic question of "what are the top risks facing this institution?" — was impossible. The same underlying exposure appeared in three different categories in three different registers, counted three different ways.
+The investment bank classified certain derivative exposures as market risk. The risk function classified the same exposures as counterparty credit risk. Treasury called a subset of them liquidity risk. Each was correct within its own framework. None was wrong. But when I tried to aggregate these into an enterprise view — to answer the basic question of "what are the top risks facing this institution?" — the numbers did not add up. The same underlying exposure appeared in three different categories in three different registers, counted three different ways.
 
-This is not an analytical failure. It is a language failure. The institution does not have a common vocabulary for risk — and every department that tries to contribute brings its own dialect.
+This was not an analytical failure. It was a language failure. The institution did not have a common vocabulary for risk.
 
-The solution — described in detail in this chapter — is a taxonomy that classifies risks by their nature, not by who reports them. A credit exposure arising from the investment bank, the retail bank, and the treasury function are all credit risk. The fact that three different organisational units generate them does not change what the risk *is*. The organisational dimension is captured elsewhere — in the risk inventory, in the risk owner field, in the bottom-up template. But the taxonomy itself must be independent of the reporting structure. Once the risk departments understood this distinction — that the taxonomy would not replace their reporting, but would sit alongside it as a classification tool for identification — the resistance subsided. Not immediately. But it subsided.
+The problem extended beyond classification. When I asked business units to assess their risks against standardised criteria, the responses were incomparable because each unit had built its own taxonomy. The investment bank had nearly fifty risk categories. The Swiss universal bank had just over twenty. Private banking had around thirty. Some categories overlapped. Others had no equivalent in other divisions. "Conduct risk" existed in one division's taxonomy and was entirely absent from another's — not because the division faced no conduct risk, but because nobody had thought to include it.
 
-The problem extends beyond classification. When business units assess their risks against standardised criteria without a common taxonomy, the responses are incomparable because each unit has built its own taxonomy. One division might have nearly fifty risk categories, another just over twenty, a third around thirty. Some categories overlap. Others have no equivalent in other divisions. "Conduct risk" might exist in one division's taxonomy and be entirely absent from another's — not because the division faces no conduct risk, but because nobody thought to include it.
+Without a common taxonomy, reconciliation between top-down and bottom-up identification was impossible. Without reconciliation, the enterprise portfolio view was meaningless. Without an enterprise view, the Board was receiving a collection of divisional reports rather than a coherent picture of institutional risk. The entire methodology — from identification through to capital planning — depended on something that did not yet exist: a shared language.
 
-Without a common taxonomy, reconciliation between top-down and bottom-up identification is impossible. Without reconciliation, the enterprise portfolio view is meaningless. Without an enterprise view, the Board receives a collection of divisional reports rather than a coherent picture of institutional risk. The entire methodology — from identification through to capital planning — depends on something that must be established first: a shared language.
-
-Building that language must be the first operational priority. Before risks can be identified systematically, there must be agreement on what they are called.
+Building that language was the first operational priority. Before we could identify risks, we had to agree on what we meant by them.
 
 ## Why Taxonomy Matters
 
@@ -106,7 +104,7 @@ In the language of this methodology: the taxonomy was not collectively exhaustiv
 
 The JPMorgan case involved misclassification within the taxonomy. Deutsche Bank's mirror-trading scandal illustrates the opposite problem: risk that falls between categories entirely.
 
-Between 2011 and 2015, Deutsche Bank's Moscow office processed approximately $150 billion in suspicious transactions through a mirror-trading scheme. The mechanism was straightforward: a client would buy Russian equities in Moscow using roubles, and a related entity would simultaneously sell the identical equities in London for dollars. The net effect was rouble-to-dollar conversion — money laundering on an industrial scale.
+Between 2011 and 2015, Deutsche Bank's Moscow office processed approximately $10 billion in suspicious transactions through a mirror-trading scheme. The mechanism was straightforward: a client would buy Russian equities in Moscow using roubles, and a related entity would simultaneously sell the identical equities in London for dollars. The net effect was rouble-to-dollar conversion — money laundering on an industrial scale.
 
 Two separate surveillance functions had partial visibility. Equities trading surveillance saw the matched trades but classified them as routine — matched trades are normal in equities markets. AML monitoring tracked cash flows but did not correlate them with the equities trading patterns. Neither function identified that the combined pattern constituted a massive money-laundering mechanism.
 
@@ -120,7 +118,7 @@ The combined UK and US fines totalled $630 million, and the scandal contributed 
 
 Sometimes the failure is not misclassification or inter-category gaps. Sometimes the taxonomy simply does not contain the relevant risk type.
 
-The Payment Protection Insurance scandal — ultimately costing the UK banking industry over £22 billion in redress, with Lloyds Banking Group paying more than £12 billion — was a conduct risk event. Banks systematically sold PPI policies alongside loans and credit cards to customers who did not need them, could not claim on them, or were unaware they were paying for them.
+The Payment Protection Insurance scandal — ultimately costing the UK banking industry over £50 billion in redress, with Lloyds Banking Group paying approximately £22 billion — was a conduct risk event. Banks systematically sold PPI policies alongside loans and credit cards to customers who did not need them, could not claim on them, or were unaware they were paying for them.
 
 The risk identification failure was taxonomic at its core. PPI sales were classified as a profitable cross-selling activity within normal business operations. The risk identification frameworks in use at the time did not include "customer suitability" as a material risk category. Conduct risk, as a distinct taxonomy entry, did not exist in most institutions' risk classifications. Sales incentive structures that rewarded PPI attachment rates were visible to everyone — they were a feature of the business model, not a bug — but because the taxonomy did not include a category for "harm arising from the institution's own sales practices," no one was mandated to assess whether the practice was creating risk.
 
@@ -148,7 +146,7 @@ This mapping is not optional. It is the mechanism by which the institution demon
 
 As established in Chapter 2, the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**. Every risk in the taxonomy should be assessable against at least one of these categories.
 
-The COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — can serve as a completeness check against the taxonomy. Practitioners map every L2 risk category against the four objective categories and look for empty cells. If a risk category has no plausible impact on any objective category, it is probably misclassified. If an objective category has no risks mapped to it for a particular entity, something has probably been missed.
+In practice, the COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — can be used as a completeness check against the taxonomy. Mapping every L2 risk category against the four objective categories and looking for empty cells reveals gaps. If a risk category has no plausible impact on any objective category, it is probably misclassified. If an objective category has no risks mapped to it for a particular entity, something has probably been missed.
 
 The exercise sounds mechanical but it surfaces real gaps. Most banks' taxonomies are heavily weighted toward Strategic and Operations risks. Reporting risk — the risk that financial and non-financial reporting is unreliable — is often underdeveloped. Compliance risk, in many institutions, consists of a single L2 entry ("regulatory compliance") with no further granularity. The COSO mapping forces the taxonomy to be genuinely comprehensive across all four dimensions.
 
@@ -233,7 +231,7 @@ The taxonomy is not a standalone deliverable. It is the infrastructure on which 
 
 **Phase 6 — Ongoing Cycle:** Quarterly re-identification uses the taxonomy to check coverage systematically. Annual taxonomy review refreshes the structure. Event-driven updates may trigger taxonomy amendments.
 
-The taxonomy is the thread that runs through all six phases. Remove it, and the methodology fragments into disconnected activities. This is why building a common language must be the first operational priority. Everything else depends on it.
+The taxonomy is the thread that runs through all six phases. Remove it, and the methodology fragments into disconnected activities. This is why building the common language is a foundational priority. Everything else depends on it.
 
 ## The Taxonomy Test
 
