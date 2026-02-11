@@ -1,0 +1,16 @@
+# Generated artifacts (regenerable)
+book/output/
+book/__pycache__/
+
+# Large reference files (not authored content)
+reference/
+
+# Manual backup (superseded by git)
+book backup/
+
+# Root-level screenshots
+*.png
+*.odt
+
+# Claude session data
+.claude/

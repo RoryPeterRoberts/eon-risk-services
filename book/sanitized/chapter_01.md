@@ -1,0 +1,182 @@
+# Chapter 1: Why Banks Fail at Risk Identification
+
+---
+
+## The Question No One Can Answer
+
+In 2016, I was appointed Global Head of Risk Identification at a globally significant institution — one supervised by multiple regulators across several jurisdictions. The task was to build a bank-wide risk identification process where none existed.
+
+On my first day, I asked what I thought was a simple question: *How does the institution currently identify its risks?*
+
+The answers came quickly — but they answered a different question. Someone pointed to the ICAAP process. Someone else described the risk metrics: Greeks, probability of default, loss given default. A third cited the VaR framework. When I pressed — *but what is your single definition of risk, and how do you decide which risks belong on the register?* — the room defaulted again to measurement: VaR limits, credit ratings, stress test outputs. Sophisticated tools, all of them. But tools for *measuring* risks that had already been identified. No one could describe how the bank decided what to measure in the first place.
+
+On several occasions, the Risk and Control Self-Assessments were cited as the risk identification process. They were not. RCSAs are valuable — but they assess risks and controls that have already been named. They do not answer the prior question: *how were those risks identified, and how do you know the list is complete?* Calling an RCSA a risk identification process is like calling a medical check-up a diagnosis. It can confirm what you already suspect. It cannot find what you have not thought to look for.
+
+Remarkably, work had begun on a risk taxonomy — a sign that someone had recognised the need for a common language. But it had stalled, because some assumed that the new taxonomy would need to push down through the existing credit risk, market risk, and operational risk functions, changing how they reported and classified their exposures. This, of course, was impossible. The bank had spent millions building calculation engines, regulatory reporting infrastructure, and Basel-aligned measurement frameworks around the existing structure. No one was going to redesign that. The taxonomy is not a replacement for how the bank measures and reports risk — it is a classification tool for ensuring that the identification process is complete. Chapter 4 explains the distinction.
+
+There was no identification methodology. No documented process. No named owner. No audit trail showing how the risk register had been built or why certain risks were on it and others were not.
+
+This was a major, globally significant bank. It had world-class risk measurement. And it could not explain how it identified its risks.
+
+I wish I could say this was unusual. It was not. When I later took on the same role at a second major institution, the situation was better — there were elements of a process — but the same fundamental gaps existed. When I speak to CROs, risk leads, and consultants across the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
+
+This book exists because, after two decades of doing this work across the industry, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
+
+This is that methodology.
+
+---
+
+## The Gap in the Risk Management Cycle
+
+Every risk management framework — ISO 31000, COSO ERM, the BCBS Corporate Governance Principles — begins with the same step: *identify the risks*. It is the foundation upon which everything else is built. Assessment, mitigation, monitoring, reporting, capital allocation — all of it depends on having first identified what you are exposed to.
+
+And yet, if you look at where banks invest their time, talent, and technology, risk identification barely registers. The measurement functions are well-resourced: credit risk modelling teams with dozens of quants, market risk systems running millions of simulations per day, operational risk databases painstakingly cataloguing loss events. Capital calculation engines are sophisticated. Reporting frameworks are elaborate. Stress testing programmes consume thousands of person-hours per year.
+
+But the question that precedes all of this — *What are the risks?* — is typically addressed in a two-day workshop once a year, run by someone who has never been trained in facilitation techniques, using a brainstorming methodology that produces groupthink rather than genuine risk intelligence. The output is a spreadsheet. The spreadsheet becomes the risk register. The risk register is updated annually — which in practice means it is updated when someone remembers to do it, or when a regulator asks.
+
+This is the gap. Banks have invested billions in measuring and managing risks, but almost nothing in *finding* them in the first place. It is as if a hospital had the world's best surgeons and diagnostic equipment but no process for examining patients. The treatments are excellent. The diagnosis is guesswork.
+
+---
+
+## What the Evidence Shows
+
+To understand how serious this gap is, I studied every major bank failure I could find — from the savings and loan crisis of the 1980s through the Global Financial Crisis, the post-crisis conduct era, and into the 2020s. I built a database of 179 bank loss events, covering institutions across 30 countries and six decades, with aggregate losses exceeding $2.3 trillion.
+
+For each entry, I asked the same question: *Was the risk identifiable before the loss materialised?*
+
+The answer, in every single case, was yes.
+
+The risks that destroyed Barings, LTCM, Enron, Northern Rock, Lehman Brothers, and dozens of other institutions were not unknowable. They were not black swans. They were identifiable — often glaringly so — using information that was available at the time. In many cases, the risks had been explicitly flagged by internal audit, by individual employees, by external analysts, or by the institutions' own risk functions. The problem was not that the risks could not be identified. The problem was that the *process* for identifying them was absent, inadequate, or actively undermined.
+
+The database reveals ten recurring failure modes — patterns that appear again and again across different institutions, different decades, and different geographies. Understanding these failure modes is the starting point for building a methodology that prevents them.
+
+---
+
+## The Ten Failure Modes
+
+### 1. Concentration Blindness
+
+The most common failure mode in the database. Institutions fail to identify that their exposure to a single sector, counterparty, asset class, or geography has reached a level where it poses an existential threat. The concentration is often masked by a narrative of diversification — the portfolio *looks* diversified at the instrument level, but the underlying risk factors are correlated.
+
+**The pattern:** Fannie Mae and Freddie Mac, Countrywide, Northern Rock, the Icelandic banks, Washington Mutual, Anglo Irish Bank, and dozens of others all shared the same fundamental problem — extreme concentration in property-related credit risk, disguised by the apparent diversification of having many individual loans. When the housing market turned, the diversification disappeared because every loan was exposed to the same macro factor.
+
+**What was missing:** An enterprise portfolio view that aggregated exposures across business lines and looked for common underlying risk factors, not just instrument-level diversification. A process that asked: *What single scenario would impair the largest number of our assets simultaneously?*
+
+### 2. Model Overreliance
+
+Institutions place excessive trust in quantitative models — Value at Risk, credit ratings, internal models — that fail to capture tail risks, correlation breakdowns, or regime changes. The model becomes a substitute for judgement rather than an input to it.
+
+**The pattern:** Long-Term Capital Management's Nobel Prize-winning founders built a $125 billion portfolio on models calibrated to normal market conditions. When the Russian crisis caused correlations to spike across all markets simultaneously, the models were useless. LTCM's VaR told them their maximum daily loss was $35 million. They lost $553 million in a single day.
+
+Merrill Lynch, Citigroup, and Bear Stearns all treated AAA credit ratings on CDO tranches as definitive assessments of risk, substituting an external agency's opinion for independent risk analysis. When the ratings proved wrong, the losses were catastrophic.
+
+**What was missing:** A risk identification process that treated models as one input among many, not as the final word. A culture that asked: *What does this model NOT capture?* And a governance framework that required independent challenge of model assumptions.
+
+### 3. Governance Bypass
+
+Risk identification frameworks exist on paper but are circumvented by dominant individuals, commercial pressure, or cultural inertia. Risks are identified at the working level but never reach the people who can act on them — or they reach those people and are ignored.
+
+**The pattern:** At Barings, internal audit identified the segregation-of-duties violation in Nick Leeson's Singapore operation. Management did not act. At Standard Chartered, the compliance function identified the sanctions risk in the Iranian business. Senior management overruled the concerns because the business was commercially important. At Lehman Brothers, the Chief Risk Officer raised increasingly urgent warnings about leverage and mortgage exposure. She was first marginalised and then replaced.
+
+**What was missing:** A governance structure with clear escalation paths, where risk identification findings cannot be unilaterally overruled by the business, and where the Board receives risk information that has not been filtered through the very management responsible for generating the risk.
+
+### 4. Silo Thinking
+
+Risk identification is conducted within individual business lines or risk types without aggregation across the enterprise. Each silo sees its own piece of the picture but no one assembles the whole.
+
+**The pattern:** At JPMorgan, the Chief Investment Office's "London Whale" trades were classified as hedging rather than proprietary trading. Because of this classification, the CIO was exempted from the bank's trading risk limits and VaR monitoring. The organisational silo determined the level of risk oversight, and the hedge designation was never independently challenged.
+
+At Citigroup, off-balance-sheet SIV exposures were excluded from the bank's risk aggregation framework because the liquidity puts were considered remote contingencies. No one asked what would happen if *all* the contingent exposures crystallised simultaneously.
+
+**What was missing:** A reconciliation process that brings together top-down and bottom-up risk views and explicitly asks: *What risks are we missing because of the way we are organised?* An enterprise portfolio view that aggregates across silos.
+
+### 5. Cultural Suppression
+
+The institutional culture discourages challenge, dissent, or escalation of risk concerns. People who identify risks are treated as obstacles to the business rather than as performing an essential function.
+
+**The pattern:** At Wells Fargo, 3.5 million fake accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. At Credit Suisse, the risk culture that allowed Archegos to accumulate $20 billion in exposure through total return swaps was described by regulators as one where commercial considerations consistently overrode risk management.
+
+**What was missing:** A risk identification process that includes anonymous reporting channels, formal protection for risk identifiers, and Board-level visibility into whether the risk culture enables or suppresses the identification of uncomfortable truths.
+
+### 6. Emerging Risk Blindness
+
+Institutions fail to identify new risk types that fall outside their existing taxonomy or historical experience. The risk is novel, and because no one has lost money on it before, no one recognises it as a risk.
+
+**The pattern:** Before the PPI scandal, no UK bank had "product mis-selling" as a named risk in its risk register. Before Wirecard, "fintech fraud" was not a standard risk category. Before the GFC, "securitisation market closure" was not a scenario that banks modelled. In each case, the risk was identifiable — the warning signals existed — but the institutions' risk taxonomies and identification processes did not have a category for it.
+
+**What was missing:** A structured horizon-scanning process — such as the Delphi Method — that systematically asks: *What risks could emerge in the next three to five years that are not currently in our taxonomy?*
+
+### 7. Control Environment Failure
+
+Weak internal controls allow fraud, unauthorised trading, or accounting manipulation to go undetected for extended periods. The risk identification process assumes a functioning control environment that does not actually exist.
+
+**The pattern:** At Enron, accounting fraud worth $74 billion was concealed through off-balance-sheet special purpose entities. At WorldCom, $180 billion in shareholder value was destroyed by systematic capitalisation of operating expenses. At Wirecard, €1.9 billion in cash balances simply did not exist. In each case, the basic controls that should have prevented or detected the fraud — reconciliations, segregation of duties, independent verification — were absent or overridden.
+
+**What was missing:** A risk identification process that includes assessment of the internal control environment as a precondition — recognising that if the control environment is compromised, all other risk assessments built on top of it are unreliable.
+
+### 8. Information Asymmetry
+
+Key risk information is held by the front office, individual traders, or senior management and is not shared with the risk function or the Board. The people who need the information to identify risks do not have it.
+
+**The pattern:** At Bear Stearns, the collapse of two hedge funds in June 2007 was treated as an isolated subsidiary event rather than identified as an early warning signal of the same concentration risk in the parent bank's own balance sheet. At Lehman, the Repo 105 programme — used to temporarily remove assets from the balance sheet at reporting dates — was known to a small group of executives but not to the risk function or the Board in a way that allowed them to assess its implications.
+
+**What was missing:** A risk identification process that actively seeks out information from across the institution rather than waiting for it to be volunteered. Bottom-up templates that require front-line disclosure. Top-down workshops that include people with direct operational knowledge, not just senior management.
+
+### 9. Regulatory Arbitrage Masking
+
+Complex financial structures designed to optimise capital or accounting treatment simultaneously obscure the true risk profile. The structure is legal but the risk is hidden.
+
+**The pattern:** Citigroup's SIVs, Lehman's Repo 105, the entire shadow banking system's use of off-balance-sheet vehicles — all of these were structures that reduced reported risk while increasing actual risk. The regulatory capital framework said the risk was low. The economic reality was that the risk was enormous.
+
+**What was missing:** A risk identification process that asks: *Where is there a material gap between our regulatory risk profile and our economic risk profile?* And a culture that treats regulatory arbitrage as a risk to be identified, not a benefit to be celebrated.
+
+### 10. Complacency
+
+Extended periods of low losses breed overconfidence and reduced vigilance. The absence of recent failures is interpreted as evidence that risks do not exist, rather than as a period during which risks are accumulating.
+
+**The pattern:** Northern Rock's business model had worked for years. LTCM had a track record of exceptional returns. The US housing market had not experienced a nationwide decline in living memory. In each case, the recent track record was used as evidence that the risk was low, when in fact the absence of losses was a lagging indicator that said nothing about the risks currently being accumulated.
+
+**What was missing:** A risk identification process that explicitly challenges the "it's always worked before" assumption. Scenario analysis that asks: *What would have to happen for this to go badly wrong?* — regardless of whether it has happened recently.
+
+---
+
+## The Common Thread
+
+These ten failure modes are different in their specifics but identical in their root cause: **the institution did not have a process designed to find the risks it was exposed to.** In some cases, there was no process at all. In others, the process existed but was structurally incapable of catching the risks that mattered — because it was top-down only, or annual only, or disconnected from the business, or run without a structured methodology, or undermined by a culture that did not want to hear the answers.
+
+The losses that resulted were not inevitable. They were preventable. Every one of the 179 failures in the database could have been mitigated — not necessarily prevented entirely, but identified early enough to reduce the exposure before it became existential. The risk was there. The information was there. What was missing was the process.
+
+---
+
+## What This Book Is For
+
+This book provides that process.
+
+It is not a textbook on risk management theory. It is not an academic survey of risk identification techniques. It is a practitioner's methodology — a complete, end-to-end process for identifying risks in a banking institution, designed to be implemented by real practitioners in real banks under real regulatory scrutiny.
+
+The methodology is built on three foundations:
+
+**Standards.** The process is grounded in ISO 31000 (Risk Management Principles and Guidelines), ISO 31010 (Risk Assessment Techniques), and the COSO Enterprise Risk Management Integrated Framework. These are the international standards that regulators reference and against which processes are assessed. Every element of the methodology traces back to a specific provision of these standards.
+
+**Regulation.** The process maps to 16 regulatory frameworks across the BCBS, PRA, EBA, ECB, Fed, OCC, and FCA. Every regulatory requirement for risk identification is traceable to a specific section of the methodology. This is not an academic framework — it is a process designed to pass regulatory examination.
+
+**Evidence.** The process is informed by the Industry Loss Database — the 179 bank failures, the ten failure modes, and the $2.3 trillion in losses that demonstrate what goes wrong when risk identification fails. Every phase of the methodology exists because history showed what happens without it.
+
+The book is organised around a six-phase process:
+
+- **Phase 1: Foundation Setting** — establishing the external and internal context, defining risk criteria and appetite, and building the starting universe of risks to investigate
+- **Phase 2: Dual-Track Identification** — a structured top-down and bottom-up identification process with mandatory reconciliation
+- **Phase 3: Assessment and Prioritisation** — four-dimensional scoring, multi-dimensional impact analysis, data quality ratings, and bow-tie analysis
+- **Phase 4: Documentation** — the living risk inventory and risk profiles
+- **Phase 5: Integration** — linking identification outputs to capital planning, strategic planning, and Board reporting
+- **Phase 6: Ongoing Cycle** — quarterly re-identification, event-driven updates, and internal audit assurance
+
+Before diving into the phases, the next chapter establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
+
+The methodology is comprehensive. It is detailed. And it has been tested — developed over two decades of practice, refined through regulatory challenge, and shaped by the hard lessons that only come from watching risk identification processes succeed in some institutions and fail in others. A practitioner should be under no illusion that a sound methodology guarantees sound outcomes. Institutional culture, commercial pressure, and political resistance can undermine even well-designed processes. But without the process, there is nothing to build on — and nothing to rebuild from when things go wrong.
+
+The banks that failed did not lack smart people. They lacked a process. This book gives you the process.
+
+---
+
+*In the next chapter, we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*

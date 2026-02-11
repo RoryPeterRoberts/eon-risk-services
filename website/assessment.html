@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Identification Self-Assessment — EON Risk Services</title>
+  <meta name="description" content="Score your bank's risk identification process in 10 minutes. Get a maturity rating and gap analysis showing where regulators will find weaknesses.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="about.html" class="nav__link">About</a>
+        <a href="methodology.html" class="nav__link">Methodology</a>
+        <a href="book.html" class="nav__link">Book</a>
+        <a href="course.html" class="nav__link">Course</a>
+        <a href="consulting.html" class="nav__link">Consulting</a>
+        <a href="insights.html" class="nav__link">Insights</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="assessment.html" class="nav__link nav__link--cta nav__link--active">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Self-Assessment</p>
+      <h1>How Mature Is Your Bank's Risk Identification Process?</h1>
+      <p class="lead">Score your process in 10 minutes. Get a maturity rating and gap analysis showing where you're strong and where regulators will find weaknesses.</p>
+    </div>
+  </section>
+
+  <!-- Assessment Tool -->
+  <section class="section section--white">
+    <div class="container-narrow">
+
+      <div style="margin-bottom: 40px; padding: 24px; background: var(--offwhite); border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+        <h4 style="margin-bottom: 8px;">How it works</h4>
+        <p class="text-light" style="font-size: 0.95rem; margin-bottom: 0;">27 questions across 9 sections. For each question, select the option that best describes your bank's current practice. Your answers produce a maturity score (0&ndash;100), a section-by-section breakdown, and your top 3 gaps. No data is stored or transmitted &mdash; everything runs in your browser.</p>
+      </div>
+
+      <div id="assessment-app">
+        <!-- Assessment renders here via JavaScript -->
+      </div>
+
+      <noscript>
+        <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+          <h3>JavaScript Required</h3>
+          <p>The self-assessment tool requires JavaScript to run. Please enable JavaScript in your browser settings.</p>
+        </div>
+      </noscript>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="about.html" class="footer__link">About</a>
+          <a href="methodology.html" class="footer__link">Methodology</a>
+          <a href="book.html" class="footer__link">Book</a>
+          <a href="course.html" class="footer__link">Course</a>
+          <a href="consulting.html" class="footer__link">Consulting</a>
+          <a href="insights.html" class="footer__link">Insights</a>
+          <a href="contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" class="footer__link">Privacy</a>
+          <a href="#" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/assessment.js"></script>
+</body>
+</html>
