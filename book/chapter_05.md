@@ -4,13 +4,13 @@
 
 In October 2007, I joined Hypo Real Estate as a Financial Risk Manager. My job was to price CDOs and mortgage-backed securities — the products that were, at that very moment, beginning to destroy the global financial system.
 
-Hypo Real Estate had just completed the acquisition of Depfa Bank, an Irish-domiciled public-sector lender with a balance sheet of approximately €400 billion. Depfa's business model was straightforward: lend long to governments and public-sector entities, fund short through the wholesale interbank market. The credit quality of the assets was excellent. The yields were thin but reliable. And the maturity mismatch between the assets and the funding was catastrophic.
+Hypo Real Estate had just completed the acquisition of Depfa Bank, an Irish-domiciled public-sector lender with a balance sheet of approximately €400 billion.[^ch5-1] Depfa's business model was straightforward: lend long to governments and public-sector entities, fund short through the wholesale interbank market. The credit quality of the assets was excellent. The yields were thin but reliable. And the maturity mismatch between the assets and the funding was catastrophic.
 
-By the time I arrived, the external environment had already changed in ways that made Depfa's business model existentially fragile. BNP Paribas had suspended three funds exposed to US subprime in August 2007. Northern Rock had experienced the first British bank run since 1866 in September. Interbank lending rates were spiking. Central banks were injecting emergency liquidity. The wholesale funding markets on which Depfa depended for its survival were under unprecedented stress.
+By the time I arrived, the external environment had already changed in ways that made Depfa's business model existentially fragile. BNP Paribas had suspended three funds exposed to US subprime in August 2007.[^ch5-2] Northern Rock had experienced the first British bank run since 1866 in September.[^ch5-3] Interbank lending rates were spiking. Central banks were injecting emergency liquidity. The wholesale funding markets on which Depfa depended for its survival were under unprecedented stress.
 
 None of this was secret. It was on the front page of the Financial Times every day. The question is not whether this information was available. The question is whether it was systematically assessed as part of Hypo Real Estate's risk identification process and mapped to the specific vulnerabilities in its own business model.
 
-It was not. Within twelve months, Hypo Real Estate required a €102 billion German government guarantee — one of the largest financial sector bailouts in European history. The bank was nationalised in 2009 and its assets wound down through a bad bank. The Depfa acquisition, which was supposed to diversify and strengthen the group, destroyed it.
+It was not. Within twelve months, Hypo Real Estate required a €102 billion German government guarantee[^ch5-4] — one of the largest financial sector bailouts in European history. The bank was nationalised in 2009[^ch5-5] and its assets wound down through a bad bank. The Depfa acquisition, which was supposed to diversify and strengthen the group, destroyed it.
 
 I was there. I watched it happen from the inside. And the experience convinced me that the most technically sophisticated risk measurement in the world is worthless if the foundation — the systematic assessment of the environment in which those risks exist — is absent.
 
@@ -18,7 +18,7 @@ This chapter is about that foundation. Phase 1 of the methodology — **Foundati
 
 ## Why Foundation Setting Comes First
 
-ISO 31000 Section 5.3 is explicit: establishing the context precedes risk assessment. This is not procedural sequencing for its own sake. The context determines what risks are relevant, how they should be evaluated, and what constitutes a material threat. Without that context, identification becomes an exercise in listing whatever risks participants happen to think of on the day — which is exactly how most banks do it, and exactly why they miss what matters.
+ISO 31000 Section 5.3 is explicit: establishing the context precedes risk assessment.[^ch5-6] This is not procedural sequencing for its own sake. The context determines what risks are relevant, how they should be evaluated, and what constitutes a material threat. Without that context, identification becomes an exercise in listing whatever risks participants happen to think of on the day — which is exactly how most banks do it, and exactly why they miss what matters.
 
 Phase 1 comprises six activities:
 
@@ -33,7 +33,7 @@ Each of these is a documented output. Each requires specific inputs and produces
 
 ## External Context: The PESTLE Framework
 
-The external context assessment follows the **PESTLE framework** — Political, Economic, Social, Technological, Legal, Environmental — adapted specifically for banking. This is one of the **checklist** techniques catalogued in ISO 31010 (as mapped in Chapter 2). Used properly, PESTLE ensures that the assessment covers all relevant dimensions of the external environment systematically rather than relying on whatever happens to be in the news.
+The external context assessment follows the **PESTLE framework** — Political, Economic, Social, Technological, Legal, Environmental — adapted specifically for banking. This is one of the **checklist** techniques catalogued in ISO 31010[^ch5-7] (as mapped in Chapter 2). Used properly, PESTLE ensures that the assessment covers all relevant dimensions of the external environment systematically rather than relying on whatever happens to be in the news.
 
 Each dimension is assessed for its relevance to the institution's specific business model, geographic footprint, and risk profile. The findings must be mappable to the risk taxonomy established in Chapter 4 — a PESTLE finding that cannot be connected to a taxonomy node is either an indication that the taxonomy is incomplete or that the finding is not relevant to this institution.
 
@@ -51,7 +51,7 @@ Changing customer expectations, workforce demographics, public trust in the bank
 
 ### Technological Environment
 
-Technology dependencies, the cyber threat landscape, digital transformation, artificial intelligence and automation, fintech disruption, and cloud and third-party technology risk. The pace of change in this dimension means that a technology assessment completed twelve months ago may be materially outdated. The Capital One data breach in 2019 — where a misconfigured web application firewall in AWS exposed over 100 million customer records — illustrates that technology risk identification must extend beyond infrastructure to include configuration, access controls, and the interaction between cloud services and legacy systems.
+Technology dependencies, the cyber threat landscape, digital transformation, artificial intelligence and automation, fintech disruption, and cloud and third-party technology risk. The pace of change in this dimension means that a technology assessment completed twelve months ago may be materially outdated. The Capital One data breach in 2019 — where a misconfigured web application firewall in AWS exposed over 100 million customer records[^ch5-8] — illustrates that technology risk identification must extend beyond infrastructure to include configuration, access controls, and the interaction between cloud services and legacy systems.
 
 ### Legal and Regulatory Environment
 
@@ -63,7 +63,7 @@ Climate-related financial risks are assessed through a dedicated framework due t
 
 #### Climate and ESG Risk Identification Framework
 
-Climate risk identification follows the EBA ESG Guidelines and the ECB Guide on Climate-Related and Environmental Risks. The framework maps risks through six **transmission channels**:
+Climate risk identification follows the EBA ESG Guidelines[^ch5-9] and the ECB Guide on Climate-Related and Environmental Risks.[^ch5-10] The framework maps risks through six **transmission channels**:
 
 | Channel | Description | Examples |
 |---|---|---|
@@ -86,11 +86,11 @@ The critical discipline is documentation. Each PESTLE dimension produces a writt
 
 Northern Rock provides the defining example of what happens when the external context is not systematically assessed and connected to the institution's specific vulnerabilities.
 
-Northern Rock funded 75% of its mortgage lending through securitisation and wholesale markets rather than retail deposits. This was not an accident or an oversight. It was the strategy. Northern Rock had explicitly chosen wholesale-funded rapid growth as its competitive model. The board approved it. The regulator was aware of it. Analysts covered it.
+Northern Rock funded 75% of its mortgage lending through securitisation and wholesale markets rather than retail deposits.[^ch5-11] This was not an accident or an oversight. It was the strategy. Northern Rock had explicitly chosen wholesale-funded rapid growth as its competitive model. The board approved it. The regulator was aware of it. Analysts covered it.
 
 The external context was changing throughout 2006 and into 2007. US subprime delinquencies were rising. Structured credit markets were showing stress. Wholesale funding spreads were widening. Each of these developments was individually visible. What was missing was a systematic assessment that connected these external changes to Northern Rock's specific business model — an assessment that would have asked: what happens to an institution that depends on continuous securitisation market access if that market seizes?
 
-The answer, when it came in September 2007, was a bank run. Northern Rock experienced the first run on a British bank since 1866. It was nationalised in February 2008. Taxpayers lost approximately £2 billion.
+The answer, when it came in September 2007, was a bank run. Northern Rock experienced the first run on a British bank since 1866. It was nationalised in February 2008.[^ch5-12] Taxpayers lost approximately £2 billion.[^ch5-13]
 
 Northern Rock's business model was itself the unidentified risk. A PESTLE assessment that mapped wholesale funding market conditions to the institution's specific funding structure would have identified the vulnerability. The methodology requires exactly this mapping: external context findings are not abstract observations about the world but specific inputs to the identification of risks that affect this institution.
 
@@ -98,7 +98,7 @@ Northern Rock's business model was itself the unidentified risk. A PESTLE assess
 
 ## Internal Context
 
-Where the external context defines the environment, the internal context defines the institution itself. ISO 31000 Section 5.3.3 requires this assessment. The internal context establishes what the institution is, what it is trying to achieve, and what resources and constraints shape its risk profile.
+Where the external context defines the environment, the internal context defines the institution itself. ISO 31000 Section 5.3.3 requires this assessment.[^ch5-14] The internal context establishes what the institution is, what it is trying to achieve, and what resources and constraints shape its risk profile.
 
 Six elements are assessed:
 
@@ -110,7 +110,7 @@ Six elements are assessed:
 
 **Capabilities and resources.** Skills, expertise, technology, data quality, and risk management capacity. An institution that lacks the analytical capability to model complex structured products should not be holding them. If it does, the capabilities gap is itself a risk that must be identified. The methodology requires honest assessment of whether the institution has the resources to identify and manage the risks it has taken on.
 
-**Information systems and data flows.** How risk information is captured, aggregated, and reported. If the institution cannot produce a consolidated view of its exposures across business units and legal entities within a reasonable timeframe, that data infrastructure gap is a material risk. BCBS 239 (Principles for effective risk data aggregation and risk reporting) provides the regulatory benchmark against which this assessment should be measured.
+**Information systems and data flows.** How risk information is captured, aggregated, and reported. If the institution cannot produce a consolidated view of its exposures across business units and legal entities within a reasonable timeframe, that data infrastructure gap is a material risk. BCBS 239 (Principles for effective risk data aggregation and risk reporting)[^ch5-15] provides the regulatory benchmark against which this assessment should be measured.
 
 **Risk appetite statement.** The Board-approved qualitative and quantitative appetite metrics. The risk appetite statement is the standard against which identified risks will ultimately be measured. It must exist, it must be specific, and it must be operational — meaning it must contain metrics that can actually be monitored and breached. I have encountered institutions where the risk appetite statement was a single paragraph of aspirational language that provided no practical constraint on risk-taking. That is not a risk appetite. It is a mission statement with the word "risk" in it.
 
@@ -118,7 +118,7 @@ Six elements are assessed:
 
 The previous two assessments — external and internal context — are analytical exercises. They involve gathering data, mapping it, and documenting findings. The internal environment assessment is different. It requires the institution to look in the mirror and answer honestly whether its culture, values, and organisational conditions will support or undermine the risk identification process.
 
-This is the assessment that Chapter 1 promised when it described the Control Environment Failure mode — institutions where the fundamental organisational conditions for effective risk management were absent. COSO ERM places the **Internal Environment** as the first of its eight components because everything else rests on it. If the internal environment is weak, no amount of process design will produce reliable risk identification.
+This is the assessment that Chapter 1 promised when it described the Control Environment Failure mode — institutions where the fundamental organisational conditions for effective risk management were absent. COSO ERM places the **Internal Environment** as the first of its eight components[^ch5-16] because everything else rests on it. If the internal environment is weak, no amount of process design will produce reliable risk identification.
 
 The assessment evaluates seven elements drawn from the COSO ERM framework:
 
@@ -140,11 +140,11 @@ Anglo Irish Bank demonstrates what happens when a weak internal environment corr
 
 Under chairman Sean FitzPatrick, Anglo Irish pursued aggressive commercial property lending during the Celtic Tiger era. The bank's CRE concentration grew to extraordinary levels relative to its capital base. This was not hidden. The loan book was visible in the financial statements. Analysts commented on the concentration. The risk, in the most basic sense, was identifiable from the outside.
 
-But inside the bank, the internal environment made identification impossible. A culture of deference to the chairman meant that challenging the lending strategy was career-threatening. Growth was equated with success — the bank's share price and profitability reinforced the narrative that concentrated property lending was not a risk but a competitive advantage. FitzPatrick himself concealed €87 million in personal loans by temporarily transferring them to another bank around year-end reporting dates, a fraud that persisted because no one was positioned or willing to question the chairman's activities.
+But inside the bank, the internal environment made identification impossible. A culture of deference to the chairman meant that challenging the lending strategy was career-threatening. Growth was equated with success — the bank's share price and profitability reinforced the narrative that concentrated property lending was not a risk but a competitive advantage. FitzPatrick himself concealed €87 million in personal loans by temporarily transferring them to another bank around year-end reporting dates[^ch5-17], a fraud that persisted because no one was positioned or willing to question the chairman's activities.
 
 The board did not independently challenge the lending concentration. Risk identification, such as it was, treated the property portfolio as core business rather than a systemic exposure. The internal environment — the culture of deference, the alignment of incentives with growth, the absence of independent challenge, the conflation of revenue with safety — rendered the identification process structurally incapable of producing an honest assessment.
 
-Anglo Irish was nationalised in 2009. The taxpayer cost was €29.3 billion. The bank was renamed the Irish Bank Resolution Corporation and liquidated in 2013. Executives were prosecuted. FitzPatrick faced multiple trials.
+Anglo Irish was nationalised in 2009.[^ch5-18] The taxpayer cost was €29.3 billion.[^ch5-19] The bank was renamed the Irish Bank Resolution Corporation and liquidated in 2013.[^ch5-20] Executives were prosecuted. FitzPatrick faced multiple trials.
 
 **What was missing:** A formal internal environment assessment that evaluated whether the organisational culture supported or undermined honest risk identification. An assessment of the seven COSO elements would have flagged: a risk management philosophy subordinated to growth objectives, a board that did not independently challenge the dominant strategy, ethical values compromised by deference to the chairman, compensation structures that rewarded asset growth without adjusting for concentration risk, and human resource standards that penalised dissent. Each of these findings would have been escalated to the Board Risk Committee as a material weakness in the foundation on which risk identification depends.
 
@@ -160,7 +160,7 @@ Before identification and assessment can begin, the criteria against which risk 
 
 Risk criteria comprise five components:
 
-**Impact scales.** Definitions for each level of consequence across multiple dimensions. The methodology uses a multi-dimensional approach — a risk's impact is assessed not only in financial terms but across financial, reputational, regulatory, customer, and operational dimensions. The COSO ERM practice guidance recommends five-point scales as providing meaningful differentiation without implying false precision. The highest applicable dimension determines the impact rating. A risk that has moderate financial impact but extreme reputational impact receives the extreme rating. Impact scales must be calibrated to the institution's size and complexity — the financial thresholds for a global systemically important bank differ from those for a regional institution.
+**Impact scales.** Definitions for each level of consequence across multiple dimensions. The methodology uses a multi-dimensional approach — a risk's impact is assessed not only in financial terms but across financial, reputational, regulatory, customer, and operational dimensions. The COSO ERM practice guidance recommends five-point scales[^ch5-21] as providing meaningful differentiation without implying false precision. The highest applicable dimension determines the impact rating. A risk that has moderate financial impact but extreme reputational impact receives the extreme rating. Impact scales must be calibrated to the institution's size and complexity — the financial thresholds for a global systemically important bank differ from those for a regional institution.
 
 **Likelihood scales.** Definitions for each level of probability, expressed as both annual frequency and probability over a defined horizon. Likelihood assessment in risk identification is inherently qualitative — we are not running Monte Carlo simulations at this stage. The scales provide a common language for expressing professional judgement about how often a risk event might occur.
 
@@ -262,3 +262,47 @@ The foundation is not neutral. It shapes everything that follows. An external co
 This is why Foundation Setting is a formal phase, not a planning step. It has defined inputs, documented outputs, quality standards, and governance requirements. The CRO approves the risk criteria. The Board Risk Committee endorses them. The internal environment assessment findings are escalated if they reveal material weaknesses. The PESTLE assessment is dated, authored, and retained for audit.
 
 With the foundation set and the straw man prepared, the actual identification begins. In the next chapter, we turn to the dual-track approach — the top-down workshops using SWIFT and Delphi techniques that bring senior management's strategic perspective to bear on the risk landscape, combined with the bottom-up analysis that captures what only the people closest to the business can see. Neither track alone is sufficient. Together, they produce the comprehensive identification that the standards require and that the evidence shows banks consistently fail to achieve on their own.
+
+---
+
+[^ch5-1]: Depfa Bank plc's balance sheet size at the time of the Hypo Real Estate acquisition is reported in Hypo Real Estate Holding AG, *Annual Report 2007*, and in BaFin's subsequent supervisory assessments. See also German Bundestag, *Parlamentarischer Untersuchungsausschuss zur Hypo Real Estate*, documentation of the Depfa acquisition.
+
+[^ch5-2]: BNP Paribas announced the suspension of three funds (Parvest Dynamic ABS, BNP Paribas ABS EURIBOR, and BNP Paribas ABS EONIA) on 9 August 2007, citing an inability to value structured assets. See BNP Paribas press release, 9 August 2007, and Financial Crisis Inquiry Commission (FCIC), *The Financial Crisis Inquiry Report*, January 2011, p. 248.
+
+[^ch5-3]: House of Commons Treasury Committee, *The Run on the Rock*, Fifth Report of Session 2007–08, HC 56-I, 26 January 2008, paragraph 1. The report confirmed this was the first bank run in the United Kingdom since the failure of Overend, Gurney & Company in 1866.
+
+[^ch5-4]: The €102 billion federal guarantee to Hypo Real Estate Holding AG was authorised by the German government through the Finanzmarktstabilisierungsgesetz (Financial Market Stabilisation Act) in October 2008. See German Federal Ministry of Finance press releases, October 2008, and BaFin supervisory records.
+
+[^ch5-5]: Hypo Real Estate Holding AG was nationalised through the Rettungsübernahmegesetz (Rescue Acquisition Act) enacted by the German Bundestag in April 2009, with the Federal Republic acquiring full ownership via the Financial Market Stabilisation Fund (SoFFin).
+
+[^ch5-6]: ISO 31000:2018, *Risk Management — Guidelines*, International Organization for Standardization, February 2018, Section 6.3 (Scope, context and criteria). Note: the 2018 edition restructured the numbering from the 2009 edition's Section 5.3 but retains the requirement that context establishment precedes risk assessment.
+
+[^ch5-7]: ISO 31010:2019, *Risk Management — Risk Assessment Techniques*, International Organization for Standardization, June 2019. Checklists are described as a risk identification technique in Section 6.3.2 and Table A.1.
+
+[^ch5-8]: US Department of Justice, *Seattle Woman Arrested for Data Theft Involving Large Capital One Financial Data Breach*, press release, 29 July 2019. Capital One Financial Corporation disclosed that the breach affected approximately 106 million individuals. See also OCC Consent Order AA-EC-2020-44, 6 August 2020, which assessed an $80 million civil money penalty against Capital One for the security failures.
+
+[^ch5-9]: European Banking Authority (EBA), *Report on Management and Supervision of ESG Risks for Credit Institutions and Investment Firms*, EBA/REP/2021/18, 23 June 2021, and EBA, *Guidelines on the Management of ESG Risks*, issued under the Capital Requirements Directive.
+
+[^ch5-10]: European Central Bank, *Guide on Climate-Related and Environmental Risks: Supervisory Expectations Relating to Risk Management and Disclosure*, November 2020.
+
+[^ch5-11]: House of Commons Treasury Committee, *The Run on the Rock*, Fifth Report of Session 2007–08, HC 56-I, 26 January 2008, paragraph 18: Northern Rock's reliance on securitisation and wholesale funding rather than retail deposits is documented as approximately 75% of total funding.
+
+[^ch5-12]: Northern Rock plc was taken into temporary public ownership on 22 February 2008 under the Banking (Special Provisions) Act 2008. See HM Treasury press release, 22 February 2008.
+
+[^ch5-13]: The National Audit Office reported the net cost to the taxpayer of the Northern Rock intervention. See National Audit Office, *HM Treasury: The Nationalisation of Northern Rock*, HC 298, Session 2008–09, 20 March 2009, and subsequent NAO updates on the disposal of Northern Rock assets.
+
+[^ch5-14]: ISO 31000:2018, *Risk Management — Guidelines*, International Organization for Standardization, February 2018, Section 6.3 (Scope, context and criteria), which covers internal and external context establishment.
+
+[^ch5-15]: BCBS, *Principles for Effective Risk Data Aggregation and Risk Reporting* (BCBS 239), January 2013. The 14 principles cover governance, data architecture, accuracy, completeness, timeliness, and adaptability of risk data aggregation and reporting.
+
+[^ch5-16]: COSO, *Enterprise Risk Management — Integrated Framework*, September 2004. The Internal Environment is the first of eight components in the COSO ERM framework (the others being Objective Setting, Event Identification, Risk Assessment, Risk Response, Control Activities, Information & Communication, and Monitoring).
+
+[^ch5-17]: The concealment of Sean FitzPatrick's personal loans through temporary transfers to Irish Nationwide Building Society around year-end dates was established in the investigation by the Office of the Director of Corporate Enforcement (ODCE), Ireland, and documented in the subsequent criminal proceedings. See also Nyberg Commission, *Misjudging Risk: Causes of the Systemic Banking Crisis in Ireland*, Report of the Commission of Investigation into the Banking Sector in Ireland, March 2011, Chapter 4.
+
+[^ch5-18]: Anglo Irish Bank Corporation was nationalised under the Anglo Irish Bank Corporation Act 2009, enacted by the Oireachtas on 21 January 2009.
+
+[^ch5-19]: The €29.3 billion net cost to the Irish taxpayer from Anglo Irish Bank is documented in the National Asset Management Agency (NAMA) records and the Central Bank of Ireland's financial stability reports. See also Nyberg Commission, *Misjudging Risk: Causes of the Systemic Banking Crisis in Ireland*, March 2011, and the Comptroller and Auditor General, *Special Report on Anglo Irish Bank*, various years.
+
+[^ch5-20]: Anglo Irish Bank was merged with Irish Nationwide Building Society to form the Irish Bank Resolution Corporation (IBRC) in July 2011. IBRC was placed into special liquidation on 7 February 2013 under the Irish Bank Resolution Corporation Act 2013.
+
+[^ch5-21]: COSO, *Enterprise Risk Management — Integrating with Strategy and Performance: Compendium of Examples*, June 2018, provides illustrative impact and likelihood scales. The five-point scale recommendation is also reflected in COSO, *Enterprise Risk Management — Integrated Framework: Application Techniques*, September 2004.

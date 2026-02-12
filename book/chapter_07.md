@@ -98,7 +98,7 @@ Each specialist sub-process is owned by the relevant specialist function. Each m
 
 **RCSA** is the most widely deployed operational risk identification tool in banking, and the one most frequently reduced to compliance theatre. A well-designed RCSA is a collaborative process where business units and risk functions jointly identify operational risks and assess the effectiveness of controls. A poorly designed RCSA is a spreadsheet that gets rolled forward every quarter.
 
-The methodology requires RCSA to incorporate the full **BIS Principles for the Sound Management of Operational Risk (PSMOR)** toolbox: the self-assessment itself, key risk indicators (KRIs), external loss data from industry databases, business process mapping, and event management. Internal and external loss data must be used as inputs to identification — not just as validation after the fact. Event management provides the critical feedback loop: when an operational risk materialises, that event must feed back into the RCSA to update the identification and control assessment.
+The methodology requires RCSA to incorporate the full **BIS Principles for the Sound Management of Operational Risk (PSMOR)** toolbox[^ch7-1]: the self-assessment itself, key risk indicators (KRIs), external loss data from industry databases, business process mapping, and event management. Internal and external loss data must be used as inputs to identification — not just as validation after the fact. Event management provides the critical feedback loop: when an operational risk materialises, that event must feed back into the RCSA to update the identification and control assessment.
 
 The difference between effective and ineffective RCSA is whether the business unit treats it as an analytical exercise or a filing exercise. Effective RCSA involves structured workshops within the business unit, uses Ishikawa diagrams to map control weaknesses, challenges existing control effectiveness ratings against actual incident data, and produces genuinely new risk identifications each cycle. Ineffective RCSA involves one person updating a spreadsheet.
 
@@ -116,7 +116,7 @@ RSR must therefore look across all other risk categories and ask: if this risk m
 
 ### 4. Conduct Risk Assessment
 
-**Conduct risk** identifies risks arising from behaviours by the firm or its staff that result in poor outcomes for customers, market integrity, or competition. The FCA's **five Conduct Questions** framework provides the regulatory basis:
+**Conduct risk** identifies risks arising from behaviours by the firm or its staff that result in poor outcomes for customers, market integrity, or competition. The FCA's **five Conduct Questions** framework provides the regulatory basis:[^ch7-2]
 
 1. What could cause harm to customers or markets?
 2. What could undermine market integrity?
@@ -136,19 +136,19 @@ The model risk assessment must identify not just the risk that a model is wrong,
 
 ### 6. ICT and Cyber Security Assessment
 
-ICT risk identification must be consistent with **EBA GL/2019/04** (Guidelines on ICT and Security Risk Management). The institution must classify and maintain an inventory of all information assets and ICT systems, conduct annual ICT risk assessments, and identify risks arising from ICT change management, data integrity, and business continuity of ICT services.
+ICT risk identification must be consistent with **EBA GL/2019/04** (Guidelines on ICT and Security Risk Management).[^ch7-3] The institution must classify and maintain an inventory of all information assets and ICT systems, conduct annual ICT risk assessments, and identify risks arising from ICT change management, data integrity, and business continuity of ICT services.
 
 Cyber risk identification has a characteristic that distinguishes it from most other risk types: the threat landscape changes continuously and adversarially. Unlike credit risk, where the drivers are economic conditions and borrower behaviour, cyber risk is driven by intelligent adversaries who actively seek and exploit vulnerabilities. This means the identification process must incorporate external threat intelligence — not just internal vulnerability assessment — and must be refreshed more frequently than the annual cycle. ICT risk identification should connect to the event-driven update triggers defined in Chapter 3: a material cyber incident anywhere in the industry should prompt reassessment of the institution's own exposure.
 
 ### 7. AML/CFT and Financial Crimes Assessment
 
-Anti-money laundering and counter-terrorist financing risk identification follows **EU AMLD6** and local AML/CFT regulations. The institution must conduct entity-level ML/TF risk identification and assessment aligned with national risk assessments. Critically, AML/CFT risks must be identified for all new products, services, and delivery channels **before launch** — not retrospectively.
+Anti-money laundering and counter-terrorist financing risk identification follows **EU AMLD6** and local AML/CFT regulations.[^ch7-4] The institution must conduct entity-level ML/TF risk identification and assessment aligned with national risk assessments. Critically, AML/CFT risks must be identified for all new products, services, and delivery channels **before launch** — not retrospectively.
 
 Financial crimes assessment covers money laundering, terrorist financing, sanctions evasion, fraud, bribery, and corruption. The identification challenge is that these risks are deliberately concealed by the actors creating them. Unlike operational risk, where failures are usually visible after the fact, financial crime risks may persist for years before detection — as Deutsche Bank's mirror-trading scheme, described in Chapter 4, demonstrated. The specialist function must therefore look for structural indicators: product features that facilitate anonymity, delivery channels that reduce oversight, customer segments with inherently higher ML/TF risk, and geographic exposures to high-risk jurisdictions.
 
 ### 8. Third-Party and Outsourcing Risk Assessment
 
-Per the **EBA Outsourcing Guidelines**, the institution must maintain a comprehensive outsourcing register, identify risks associated with each material outsourcing arrangement — including sub-outsourcing and fourth-party dependencies — and assess concentration risk where multiple critical services depend on the same provider or geographic location.
+Per the **EBA Outsourcing Guidelines**,[^ch7-5] the institution must maintain a comprehensive outsourcing register, identify risks associated with each material outsourcing arrangement — including sub-outsourcing and fourth-party dependencies — and assess concentration risk where multiple critical services depend on the same provider or geographic location.
 
 Third-party risk identification has become materially more important as banks outsource critical functions to a decreasing number of cloud providers, technology vendors, and service companies. The concentration dimension is critical: if five critical functions depend on a single cloud provider, the failure of that provider is not five independent operational risks — it is one systemic risk. The identification must look through the bilateral relationship to the aggregate dependency.
 
@@ -168,7 +168,7 @@ Treasury risk identification has a structural challenge: many of the risks it mu
 
 ## When Bottom-Up Identification Fails: AIB and John Rusnak
 
-In February 2002, Allied Irish Banks disclosed that a foreign exchange trader named John Rusnak at its US subsidiary, Allfirst Financial, had concealed $691 million in losses through fictitious option trades. The losses had accumulated over several years. Rusnak was sentenced to seven and a half years in prison. AIB absorbed the full loss. Allfirst was subsequently sold to M&T Bank.
+In February 2002, Allied Irish Banks disclosed that a foreign exchange trader named John Rusnak at its US subsidiary, Allfirst Financial, had concealed $691 million in losses through fictitious option trades.[^ch7-6] The losses had accumulated over several years. Rusnak was sentenced to seven and a half years in prison.[^ch7-7] AIB absorbed the full loss. Allfirst was subsequently sold to M&T Bank.[^ch7-8]
 
 The Rusnak case is a textbook failure of bottom-up identification across geographic boundaries. Allfirst operated with significant autonomy from AIB's Dublin headquarters. The subsidiary had its own risk management function, its own reporting lines, and its own operational processes. AIB's central risk function relied on local management assurances that risks were being properly identified and controlled.
 
@@ -187,13 +187,13 @@ Every element of this failure maps to a bottom-up identification deficiency:
 
 ## The Same Failure, Repeated: UBS and Kweku Adoboli
 
-Nine years after Rusnak, in September 2011, UBS disclosed that a trader named Kweku Adoboli on its London Delta One desk had concealed $2.3 billion in losses from unauthorised ETF trading by creating fictitious hedging positions. Adoboli exploited gaps between the bank's trading and settlement systems — he booked fictitious trades that offset his real positions, and the reconciliation processes that should have detected the discrepancies were insufficiently automated. He was sentenced to seven years.
+Nine years after Rusnak, in September 2011, UBS disclosed that a trader named Kweku Adoboli on its London Delta One desk had concealed $2.3 billion in losses from unauthorised ETF trading by creating fictitious hedging positions.[^ch7-9] Adoboli exploited gaps between the bank's trading and settlement systems — he booked fictitious trades that offset his real positions, and the reconciliation processes that should have detected the discrepancies were insufficiently automated. He was sentenced to seven years.[^ch7-10]
 
-The UBS case is remarkable because it occurred *after* the global financial crisis, *after* UBS had suffered $37 billion in losses from structured credit exposures, *after* the Swiss National Bank had created a special purpose vehicle to absorb $39 billion in toxic assets, and *after* UBS had undertaken a comprehensive risk management overhaul. Despite all of this, the bottom-up identification process still contained the same fundamental gap: fictitious trades booked against genuine positions were not independently verified.
+The UBS case is remarkable because it occurred *after* the global financial crisis, *after* UBS had suffered $37 billion in losses from structured credit exposures,[^ch7-11] *after* the Swiss National Bank had created a special purpose vehicle to absorb $39 billion in toxic assets[^ch7-12], and *after* UBS had undertaken a comprehensive risk management overhaul. Despite all of this, the bottom-up identification process still contained the same fundamental gap: fictitious trades booked against genuine positions were not independently verified.
 
-The RCSA for the Delta One desk — which UBS undoubtedly conducted, given the regulatory requirements — had not identified that the control framework assumed trade authenticity rather than testing it. The control assessment said reconciliation processes existed. It did not ask whether those processes could detect deliberately fabricated trades. The FSA fined UBS 29.7 million for systems and controls failures. The incident accelerated UBS's strategic exit from large parts of investment banking.
+The RCSA for the Delta One desk — which UBS undoubtedly conducted, given the regulatory requirements — had not identified that the control framework assumed trade authenticity rather than testing it. The control assessment said reconciliation processes existed. It did not ask whether those processes could detect deliberately fabricated trades. The FSA fined UBS £29.7 million for systems and controls failures.[^ch7-13] The incident accelerated UBS's strategic exit from large parts of investment banking.
 
-The Adoboli case, following Kerviel at Societe Generale in 2008 and Rusnak at AIB in 2002, demonstrates that rogue trading is not an unpredictable individual event. It is a recurring operational risk with identifiable structural preconditions: a trader who understands the control chain, inadequate independent verification of trade authenticity, and an RCSA process that assesses controls against design specification rather than against determined circumvention.
+The Adoboli case, following Kerviel at Societe Generale in 2008[^ch7-14] and Rusnak at AIB in 2002, demonstrates that rogue trading is not an unpredictable individual event. It is a recurring operational risk with identifiable structural preconditions: a trader who understands the control chain, inadequate independent verification of trade authenticity, and an RCSA process that assesses controls against design specification rather than against determined circumvention.
 
 **What was missing:** An RCSA process that incorporated external loss data — Kerviel and Rusnak were both available as inputs — to challenge the assumption that existing controls were adequate. A traded risk assessment that examined not just whether controls existed, but whether they could withstand deliberate exploitation. And a bottom-up template that required the business unit to assess control effectiveness against specific failure scenarios drawn from the industry loss database.
 
@@ -250,3 +250,33 @@ The register must be designed for reconciliation. Every risk must carry its taxo
 The bottom-up track has now produced its output: hundreds of granular risks, identified through structured techniques, captured in standardised templates, submitted by business units and specialist functions across the institution. The top-down track, described in Chapter 6, has produced its output: a principal risk list of fifteen to thirty strategic risks, an emerging risk register, an assumption register, a disagreement log, and a taxonomy gap list.
 
 These two outputs must now be brought together. The next chapter describes the reconciliation process — the iterative comparison between top-down and bottom-up that identifies gaps, resolves conflicts, escalates bottom-up risks of strategic significance, assigns top-down risks to business unit owners, and ultimately produces the enterprise portfolio view that gives the Board and CRO a single, integrated picture of the institution's risk landscape. It is in reconciliation that most banks fail. They perform either top-down or bottom-up, but not both — and they almost never iterate between them. The methodology requires both tracks precisely because the reconciliation between them is where the most valuable risk identification occurs.
+
+---
+
+[^ch7-1]: Basel Committee on Banking Supervision, *Principles for the Sound Management of Operational Risk (PSMOR)*, BCBS 195, June 2011 (revised). The principles establish expectations for identification tools including RCSA, KRIs, external loss data, business process mapping, and event management.
+
+[^ch7-2]: Financial Conduct Authority, *Five Conduct Questions*, FCA Approach to Supervision, 2015. The FCA introduced the five conduct questions as part of its supervisory framework to assess firms' conduct risk.
+
+[^ch7-3]: European Banking Authority, *Guidelines on ICT and Security Risk Management*, EBA/GL/2019/04, 28 November 2019. The guidelines set expectations for institutions' ICT risk management frameworks, including asset classification, risk assessment, and business continuity.
+
+[^ch7-4]: Directive (EU) 2018/1673 of the European Parliament and of the Council of 23 October 2018 on combating money laundering by criminal law (6th Anti-Money Laundering Directive, AMLD6). Transposition deadline: 3 December 2020.
+
+[^ch7-5]: European Banking Authority, *Guidelines on Outsourcing Arrangements*, EBA/GL/2019/02, 25 February 2019. The guidelines require institutions to maintain a register of all outsourcing arrangements and to identify and manage associated risks, including sub-outsourcing and concentration risk.
+
+[^ch7-6]: Allied Irish Banks, public disclosure and SEC filings, February 2002. See also: Promontory Financial Group and Wachtell, Lipton, Rosen & Katz, *Report to the Boards of Directors of Allied Irish Banks, p.l.c., Allfirst Financial Inc., and Allfirst Bank Concerning Currency Trading Losses*, 12 March 2002 (the Ludwig Report).
+
+[^ch7-7]: United States District Court, District of Maryland, *United States v. John M. Rusnak*, Case No. 1:02-cr-00049, sentencing January 2003. Rusnak pleaded guilty to one count of bank fraud and was sentenced to 7.5 years in federal prison.
+
+[^ch7-8]: AIB completed the sale of Allfirst to M&T Bank Corporation in April 2003 in exchange for a 22.5% stake in M&T. See: AIB Group Annual Report, 2003.
+
+[^ch7-9]: UBS AG press release, 15 September 2011, disclosing the unauthorised trading loss. The initial estimate of $2 billion was subsequently revised to approximately $2.3 billion. See also: FSA Final Notice to UBS AG, 26 November 2012.
+
+[^ch7-10]: Southwark Crown Court, *R v Kweku Adoboli*, sentencing 20 November 2012. Adoboli was convicted of two counts of fraud by abuse of position and sentenced to seven years' imprisonment.
+
+[^ch7-11]: UBS AG, *Shareholder Report on UBS's Write-Downs*, 18 April 2008. UBS disclosed cumulative write-downs of approximately $37 billion related to US residential mortgage-backed securities and CDO positions. See also: Swiss Federal Banking Commission (SFBC), *Subprime Crisis: SFBC Investigation into the Causes of the Write-downs of UBS AG*, 30 September 2008.
+
+[^ch7-12]: Swiss National Bank established the StabFund SPV in October 2008 to acquire up to $39.1 billion in illiquid assets from UBS. See: Swiss National Bank press release, 16 October 2008; UBS AG press release, 16 October 2008.
+
+[^ch7-13]: Financial Services Authority, *Final Notice to UBS AG*, 26 November 2012. The FSA imposed a financial penalty of £29.7 million on UBS AG for systems and controls failures relating to the unauthorised trading loss caused by Kweku Adoboli.
+
+[^ch7-14]: Societe Generale disclosed a EUR 4.9 billion loss in January 2008 from unauthorised trading by Jerome Kerviel on European equity index futures. See: Societe Generale, *General Inspection Department Mission Green: Summary Report*, 20 May 2008; Cour d'appel de Versailles, *Ministere Public c. Kerviel*, 2012.

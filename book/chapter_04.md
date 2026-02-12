@@ -59,7 +59,7 @@ These thirteen categories are not arbitrary. They correspond to the risk types t
 |---|---|
 | Credit Risk | Counterparty Credit Risk, Credit Concentration Risk, Country and Transfer Risk, Settlement Risk, Sovereign Risk |
 | Market Risk | Interest Rate Risk, Foreign Exchange Risk, Equity Risk, Commodity Risk, Credit Spread Risk, Basis Risk |
-| Operational Risk | Internal Fraud, External Fraud, Employment Practices, Clients/Products/Business Practices, Physical Asset Damage, Business Disruption/System Failure, Execution/Delivery/Process Management |
+| Operational Risk | Internal Fraud, External Fraud, Employment Practices, Clients/Products/Business Practices, Physical Asset Damage, Business Disruption/System Failure, Execution/Delivery/Process Management[^ch4-1] |
 | Conduct Risk | Product Mis-selling, Market Manipulation, Information Misuse, Unfair Treatment, Conflicts of Interest |
 
 L2 is where the taxonomy begins to have operational specificity. A risk assessor completing a bottom-up template maps each identified risk to an L1/L2 node. A SWIFT workshop facilitator uses L2 categories as prompts. The specialist sub-processes — RCSA, conduct risk assessment, ICT risk assessment, AML/CFT assessment — all feed their outputs into the central inventory using L1/L2 classification.
@@ -86,13 +86,13 @@ This is precisely what happened at JPMorgan Chase in 2012.
 
 ## When Classification Determines Oversight: JPMorgan and the London Whale
 
-JPMorgan's Chief Investment Office in London built massive synthetic credit positions through credit default swaps. By early 2012, trader Bruno Iksil — nicknamed the "London Whale" for the size of his positions — had accumulated exposures large enough to move the market.
+JPMorgan's Chief Investment Office in London built massive synthetic credit positions through credit default swaps. By early 2012, trader Bruno Iksil — nicknamed the "London Whale" for the size of his positions[^ch4-11] — had accumulated exposures large enough to move the market.
 
 The positions were classified as portfolio hedges. This was the critical decision. The CIO was designated as a hedging function, not a proprietary trading desk. That classification determined everything that followed.
 
 Because the CIO was classified as hedging, its positions were exempt from the bank's proprietary trading risk limits. They were exempt from the VaR monitoring applied to trading desks. They were subject to a different, less stringent set of controls. The hedge designation was never independently challenged. Nobody asked the fundamental question: if these positions are hedges, what specifically are they hedging, and does the hedge relationship actually hold?
 
-The positions were not hedges. They were directional bets on credit indices. When the market moved against them, JPMorgan lost $6.2 billion.
+The positions were not hedges. They were directional bets on credit indices. When the market moved against them, JPMorgan lost $6.2 billion.[^ch4-2]
 
 The risk identification failure was not analytical. JPMorgan had one of the most sophisticated risk management infrastructures in global banking. The failure was taxonomic. The organisational classification of the activity — hedging versus trading — determined the level of oversight applied to it. The risk existed in the institution's actual exposure. It did not exist in the category structure that governed how that exposure was monitored.
 
@@ -104,13 +104,13 @@ In the language of this methodology: the taxonomy was not collectively exhaustiv
 
 The JPMorgan case involved misclassification within the taxonomy. Deutsche Bank's mirror-trading scandal illustrates the opposite problem: risk that falls between categories entirely.
 
-Between 2011 and 2015, Deutsche Bank's Moscow office processed approximately $10 billion in suspicious transactions through a mirror-trading scheme. The mechanism was straightforward: a client would buy Russian equities in Moscow using roubles, and a related entity would simultaneously sell the identical equities in London for dollars. The net effect was rouble-to-dollar conversion — money laundering on an industrial scale.
+Between 2011 and 2015, Deutsche Bank's Moscow office processed approximately $10 billion in suspicious transactions through a mirror-trading scheme.[^ch4-3] The mechanism was straightforward: a client would buy Russian equities in Moscow using roubles, and a related entity would simultaneously sell the identical equities in London for dollars. The net effect was rouble-to-dollar conversion — money laundering on an industrial scale.
 
 Two separate surveillance functions had partial visibility. Equities trading surveillance saw the matched trades but classified them as routine — matched trades are normal in equities markets. AML monitoring tracked cash flows but did not correlate them with the equities trading patterns. Neither function identified that the combined pattern constituted a massive money-laundering mechanism.
 
 The taxonomy created a structural gap. The equities surveillance function looked at its risk categories and saw nothing unusual within them. The AML function looked at its risk categories and saw nothing unusual within them. The risk existed in the space between the two — in the interaction between a trading pattern and a cash flow pattern that, taken together, constituted something neither function was mandated to find.
 
-The combined UK and US fines totalled $630 million, and the scandal contributed to years of regulatory scrutiny that reshaped Deutsche Bank's entire strategic direction.
+The combined UK and US fines totalled $630 million[^ch4-4], and the scandal contributed to years of regulatory scrutiny that reshaped Deutsche Bank's entire strategic direction.
 
 **What was missing:** A taxonomy designed to force cross-category analysis. The methodology addresses this through two mechanisms. First, the enterprise portfolio view in the reconciliation phase requires explicit identification of common exposures across business units — where multiple functions share exposure to the same underlying driver. Second, risk interaction analysis maps which risks can trigger, amplify, or be triggered by other risks. The mirror-trading pattern was an interaction between market risk (equities trading) and compliance risk (AML) that neither function would catch in isolation. A taxonomy that includes cross-references between L2 categories — combined with a reconciliation process that actively looks for gaps between specialist sub-processes — would have surfaced the question even if no individual function had the answer.
 
@@ -118,7 +118,7 @@ The combined UK and US fines totalled $630 million, and the scandal contributed 
 
 Sometimes the failure is not misclassification or inter-category gaps. Sometimes the taxonomy simply does not contain the relevant risk type.
 
-The Payment Protection Insurance scandal — ultimately costing the UK banking industry over £50 billion in redress, with Lloyds Banking Group paying approximately £22 billion — was a conduct risk event. Banks systematically sold PPI policies alongside loans and credit cards to customers who did not need them, could not claim on them, or were unaware they were paying for them.
+The Payment Protection Insurance scandal — ultimately costing the UK banking industry over £50 billion in redress[^ch4-5], with Lloyds Banking Group paying approximately £22 billion[^ch4-6] — was a conduct risk event. Banks systematically sold PPI policies alongside loans and credit cards to customers who did not need them, could not claim on them, or were unaware they were paying for them.
 
 The risk identification failure was taxonomic at its core. PPI sales were classified as a profitable cross-selling activity within normal business operations. The risk identification frameworks in use at the time did not include "customer suitability" as a material risk category. Conduct risk, as a distinct taxonomy entry, did not exist in most institutions' risk classifications. Sales incentive structures that rewarded PPI attachment rates were visible to everyone — they were a feature of the business model, not a bug — but because the taxonomy did not include a category for "harm arising from the institution's own sales practices," no one was mandated to assess whether the practice was creating risk.
 
@@ -144,7 +144,7 @@ This mapping is not optional. It is the mechanism by which the institution demon
 
 ### Use COSO Objective Categories as a Completeness Check
 
-As established in Chapter 2, the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**. Every risk in the taxonomy should be assessable against at least one of these categories.
+As established in Chapter 2, the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**.[^ch4-7] Every risk in the taxonomy should be assessable against at least one of these categories.
 
 At Credit Suisse, we used the COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — as a completeness check against the taxonomy. We mapped every L2 risk category against the four objective categories and looked for empty cells. If a risk category had no plausible impact on any objective category, it was probably misclassified. If an objective category had no risks mapped to it for a particular entity, we had probably missed something.
 
@@ -168,13 +168,13 @@ This has practical implications. When a business unit is reorganised, the taxono
 
 ## ISO Guide 73 and Definitional Consistency
 
-Chapter 2 established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**, which provides standardised definitions for risk management terms.
+Chapter 2 established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**[^ch4-8], which provides standardised definitions for risk management terms.
 
 Definitional consistency matters because taxonomy is fundamentally about shared meaning. If "credit risk" means one thing to the credit risk function and something slightly different to the operational risk function, the taxonomy fails its purpose even if the category names are identical.
 
 The taxonomy should reference ISO Guide 73 definitions as the baseline, adapting them where necessary for the institution's specific context but maintaining consistency with the standard's intent. Where the institution's definition diverges from ISO Guide 73, the divergence should be documented and justified.
 
-This applies particularly to terms that cross category boundaries. "Counterparty credit risk" has a specific meaning in the Basel framework (linked to derivatives and securities financing transactions) that differs from the broader sense in which some institutions use the term. "Operational risk" under Basel includes legal risk but excludes strategic and reputational risk — a narrower definition than many institutions' internal usage. The taxonomy must be explicit about which definition applies, and the regulatory mapping table must reconcile any differences.
+This applies particularly to terms that cross category boundaries. "Counterparty credit risk" has a specific meaning in the Basel framework (linked to derivatives and securities financing transactions) that differs from the broader sense in which some institutions use the term. "Operational risk" under Basel includes legal risk but excludes strategic and reputational risk[^ch4-9] — a narrower definition than many institutions' internal usage. The taxonomy must be explicit about which definition applies, and the regulatory mapping table must reconcile any differences.
 
 ## The Regulatory Taxonomy Divergence Problem
 
@@ -184,7 +184,7 @@ This creates a practical challenge for any institution operating across multiple
 
 - The ECB expects risk identification against EBA risk categories, including ESG risk with specific transmission channel mapping.
 - The PRA expects ICAAP risk identification with emphasis on step-in risk, pension obligation risk, and reverse stress testing.
-- The Fed expects a Material Risk Inventory updated quarterly under SR 15-18, with risk categories aligned to CCAR stress scenario design.
+- The Fed expects a Material Risk Inventory updated quarterly under SR 15-18[^ch4-10], with risk categories aligned to CCAR stress scenario design.
 
 All three regulators expect to see credit risk, market risk, operational risk, and liquidity risk — but the boundaries, sub-categories, and reporting granularity differ. A risk that the ECB classifies under one heading may need to appear under a different heading for the PRA.
 
@@ -246,3 +246,27 @@ That process is taxonomy maintenance, supported by evidence from loss data, inte
 The taxonomy is where the methodology begins. Without it, risk identification is a conversation where no one is speaking the same language. With it, every participant — from Board to front line — can identify, classify, and communicate risk in a way that aggregates into an enterprise view.
 
 In the next chapter, we turn to what that enterprise view requires before identification can begin: the systematic assessment of the external environment, the internal context, and the risk culture that will either enable or undermine every step that follows.
+
+---
+
+[^ch4-1]: The seven Level 2 operational risk event-type categories listed here correspond to the Basel II loss event-type classification defined in Annex 9 of BCBS, *International Convergence of Capital Measurement and Capital Standards: A Revised Framework — Comprehensive Version* (BCBS 128), June 2006.
+
+[^ch4-2]: The $6.2 billion trading loss was reported in JPMorgan Chase's restated 10-Q filing and detailed in the US Senate Permanent Subcommittee on Investigations, *JPMorgan Chase Whale Trades: A Case History of Derivatives Risks and Abuses*, 15 March 2013.
+
+[^ch4-11]: Bruno Iksil's trading activities and the "London Whale" nickname are documented in the US Senate Permanent Subcommittee on Investigations, *JPMorgan Chase Whale Trades: A Case History of Derivatives Risks and Abuses*, 15 March 2013, and in the SEC Order Instituting Cease-and-Desist Proceedings against JPMorgan Chase & Co., Administrative Proceeding File No. 3-15507, 19 September 2013.
+
+[^ch4-3]: The approximately $10 billion in mirror trades processed through Deutsche Bank's Moscow office between 2011 and 2015 is documented in the FCA Final Notice to Deutsche Bank AG, Ref. 150018, 31 January 2017, and the NYDFS Consent Order under the New York Banking Law, 30 January 2017.
+
+[^ch4-4]: The combined fines comprised $425 million from the NYDFS (Consent Order, 30 January 2017) and £163 million (~$204 million) from the FCA (Final Notice, Ref. 150018, 31 January 2017), totalling approximately $630 million.
+
+[^ch4-5]: The FCA reported total PPI complaints costs to the industry exceeding £50 billion. See FCA, *PPI Complaints Data*, published periodically through the PPI complaints deadline of 29 August 2019, and FCA Aggregate PPI Complaints Data tables.
+
+[^ch4-6]: Lloyds Banking Group's cumulative PPI provisions of approximately £22 billion are reported across its Annual Reports and Accounts (2011–2019) and summarised in Lloyds Banking Group PLC, *Annual Report and Accounts 2019*, p. 58 (provisions note).
+
+[^ch4-7]: COSO, *Enterprise Risk Management — Integrated Framework*, September 2004 (the "COSO ERM Cube"), defines the four objective categories as Strategic, Operations, Reporting, and Compliance. These categories are retained in COSO, *Enterprise Risk Management — Integrating with Strategy and Performance*, June 2017, though the updated framework reorganises the component structure.
+
+[^ch4-8]: ISO Guide 73:2009, *Risk Management — Vocabulary*, International Organization for Standardization, 2009. This standard provides definitions for generic risk management terms and is designed to be used alongside ISO 31000:2018.
+
+[^ch4-9]: BCBS, *International Convergence of Capital Measurement and Capital Standards: A Revised Framework — Comprehensive Version* (BCBS 128), June 2006, paragraph 644: "Operational risk is defined as the risk of loss resulting from inadequate or failed internal processes, people and systems or from external events. This definition includes legal risk, but excludes strategic and reputational risk."
+
+[^ch4-10]: Board of Governors of the Federal Reserve System, *Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms*, SR 15-18, 18 December 2015.

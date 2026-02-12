@@ -16,13 +16,13 @@ This chapter examines the four standards and frameworks that provide the foundat
 
 ## ISO 31000: The Architecture
 
-ISO 31000 is the international standard for risk management. Originally published in 2009 and revised in 2018, it provides principles and guidelines that apply to any organisation, in any sector, managing any type of risk. References in this book follow the current ISO 31000:2018 edition unless otherwise noted. It is not specific to banking — and that is both its strength and its limitation.
+ISO 31000 is the international standard for risk management. Originally published in 2009 and revised in 2018,[^ch2-1] it provides principles and guidelines that apply to any organisation, in any sector, managing any type of risk. References in this book follow the current ISO 31000:2018 edition unless otherwise noted. It is not specific to banking — and that is both its strength and its limitation.
 
 The standard is built on a three-layer architecture: **Principles**, **Framework**, and **Process**. Understanding this architecture is essential because it determines how a risk identification process should be designed, governed, and operated.
 
 ### Principles (Clause 3)
 
-ISO 31000 establishes eleven principles that risk management should satisfy. These are not optional guidelines — they are the criteria against which a regulator will assess whether your process is fit for purpose. The principles most directly relevant to risk identification are:
+ISO 31000 establishes eleven principles that risk management should satisfy.[^ch2-2] These are not optional guidelines — they are the criteria against which a regulator will assess whether your process is fit for purpose. The principles most directly relevant to risk identification are:
 
 - **Creates value** (Principle a) — Risk identification is not a compliance exercise. It must contribute to the achievement of objectives and the protection of value. A risk identification process that produces a spreadsheet no one reads creates no value.
 - **Is an integral part of organisational processes** (Principle b) — Risk identification cannot exist as a standalone annual exercise disconnected from strategy, capital planning, and business decision-making. It must be embedded.
@@ -37,7 +37,7 @@ These principles are not aspirational. When a regulator examines your risk ident
 
 ### Framework (Clause 4)
 
-The framework layer describes the organisational arrangements needed to support risk management. ISO 31000, Clause 4 specifies a continuous improvement cycle: **Mandate and Commitment** (4.2) establishes leadership accountability. **Design of Framework** (4.3) requires understanding the organisational context, establishing policy, defining accountability, integrating into organisational processes, allocating resources, and establishing communication mechanisms. **Implementing Risk Management** (4.4) covers both the framework and the process. **Monitoring and Review** (4.5) and **Continual Improvement** (4.6) close the loop.
+The framework layer describes the organisational arrangements needed to support risk management. ISO 31000, Clause 4 specifies a continuous improvement cycle: **Mandate and Commitment** (4.2) establishes leadership accountability. **Design of Framework** (4.3) requires understanding the organisational context, establishing policy, defining accountability, integrating into organisational processes, allocating resources, and establishing communication mechanisms. **Implementing Risk Management** (4.4) covers both the framework and the process. **Monitoring and Review** (4.5) and **Continual Improvement** (4.6) close the loop.[^ch2-3]
 
 For risk identification specifically, the framework layer means that the process must have:
 - A clear mandate from senior management and the Board
@@ -51,11 +51,11 @@ This is where most banks fall down. They may have a reasonable risk identificati
 
 ### Process (Clause 5)
 
-The process layer is where risk identification lives. ISO 31000, Clause 5 defines the risk management process as a sequence: **Establishing the Context** (5.3), **Risk Assessment** (5.4) — which comprises Risk Identification (5.4.2), Risk Analysis (5.4.3), and Risk Evaluation (5.4.4) — and **Risk Treatment** (5.5), all wrapped in continuous **Communication and Consultation** (5.2) and **Monitoring and Review** (5.6).
+The process layer is where risk identification lives. ISO 31000, Clause 5 defines the risk management process as a sequence: **Establishing the Context** (5.3), **Risk Assessment** (5.4) — which comprises Risk Identification (5.4.2), Risk Analysis (5.4.3), and Risk Evaluation (5.4.4) — and **Risk Treatment** (5.5), all wrapped in continuous **Communication and Consultation** (5.2) and **Monitoring and Review** (5.6).[^ch2-4]
 
-Section 5.4.2 — Risk Identification — is the provision most directly relevant to this book. The standard requires that the organisation identify sources of risk, areas of impacts, events and their causes, and their potential consequences. It specifies that the aim is to generate a comprehensive list of risks based on those events that might create, enhance, prevent, degrade, accelerate, or delay the achievement of objectives. It requires that risks be identified whether or not their source is under the control of the organisation, and emphasises the importance of identifying risks associated with not pursuing an opportunity.
+Section 5.4.2 — Risk Identification — is the provision most directly relevant to this book. The standard requires that the organisation identify sources of risk, areas of impacts, events and their causes, and their potential consequences. It specifies that the aim is to generate a comprehensive list of risks based on those events that might create, enhance, prevent, degrade, accelerate, or delay the achievement of objectives. It requires that risks be identified whether or not their source is under the control of the organisation, and emphasises the importance of identifying risks associated with not pursuing an opportunity.[^ch2-5]
 
-The standard also makes a critical point that practitioners often miss: risk identification should include examination of the knock-on effects of particular consequences, including cascade and cumulative effects. This is the standards basis for the risk interaction analysis covered in Chapter 10 of this book — the requirement to look beyond individual risks to their interconnections.
+The standard also makes a critical point that practitioners often miss: risk identification should include examination of the knock-on effects of particular consequences, including cascade and cumulative effects.[^ch2-6] This is the standards basis for the risk interaction analysis covered in Chapter 10 of this book — the requirement to look beyond individual risks to their interconnections.
 
 Two additional elements of the process layer matter enormously for risk identification:
 
@@ -73,9 +73,9 @@ This is not a weakness. It is by design. ISO 31000 is intended to be applicable 
 
 ## ISO 31010: The Technique Toolkit
 
-If ISO 31000 provides the architecture, ISO 31010 provides the tools. Originally published in 2009 and revised in 2019, the current ISO 31010:2019 edition catalogues risk assessment techniques and provides guidance on selecting which ones to use for different purposes.
+If ISO 31000 provides the architecture, ISO 31010 provides the tools. Originally published in 2009 and revised in 2019,[^ch2-7] the current ISO 31010:2019 edition catalogues risk assessment techniques and provides guidance on selecting which ones to use for different purposes.
 
-The standard organises these techniques across three stages of risk assessment: identification, analysis, and evaluation. What makes ISO 31010 valuable for practitioners is Table A.1 — the applicability matrix — which maps each of the 31 techniques against these three stages and rates their applicability as "strongly applicable," "applicable," or "not applicable."
+The standard organises these techniques across three stages of risk assessment: identification, analysis, and evaluation. What makes ISO 31010 valuable for practitioners is Table A.1 — the applicability matrix — which maps each of the 31 techniques against these three stages and rates their applicability as "strongly applicable," "applicable," or "not applicable."[^ch2-8]
 
 For risk identification specifically, the techniques rated as strongly applicable include:
 
@@ -91,21 +91,21 @@ For risk identification specifically, the techniques rated as strongly applicabl
 | **Bow-tie analysis** | Visual mapping of causes, controls, and consequences for a specific risk event | Phase 3 risk interaction analysis (Ch 10) |
 | **Fault tree analysis** | Top-down logical decomposition of how a risk event can occur | Phase 3 detailed analysis of material risks (Ch 10) |
 
-The standard also provides guidance on technique selection. Section 6.2 identifies three factors that should drive the choice: the availability of resources and expertise, the nature and degree of uncertainty, and the complexity of the situation. In practice, this means that a bank risk identification process cannot rely on a single technique. Brainstorming alone will not identify emerging risks — it amplifies groupthink. Checklists alone will not identify novel risks — they only find what is already on the list. Scenario analysis alone will not identify operational risks in individual business units — it operates at too high a level.
+The standard also provides guidance on technique selection. Section 6.2 identifies three factors that should drive the choice: the availability of resources and expertise, the nature and degree of uncertainty, and the complexity of the situation.[^ch2-9] In practice, this means that a bank risk identification process cannot rely on a single technique. Brainstorming alone will not identify emerging risks — it amplifies groupthink. Checklists alone will not identify novel risks — they only find what is already on the list. Scenario analysis alone will not identify operational risks in individual business units — it operates at too high a level.
 
 This is why the methodology in this book uses a combination of techniques across its six phases. ISO 31010 provides the standards justification for this multi-technique approach: no single technique is sufficient for comprehensive risk identification.
 
-The standard makes another point that practitioners consistently overlook. Section 5.2 on risk identification states that the output should include a structured record not just of the risks identified but also of the information used, the assumptions made, and the limitations of the analysis. This requirement for transparency about methodology limitations is critical — it is the difference between a process that can be audited and improved, and one that produces an opaque list of risks with no traceability.
+The standard makes another point that practitioners consistently overlook. Section 5.2 on risk identification states that the output should include a structured record not just of the risks identified but also of the information used, the assumptions made, and the limitations of the analysis.[^ch2-10] This requirement for transparency about methodology limitations is critical — it is the difference between a process that can be audited and improved, and one that produces an opaque list of risks with no traceability.
 
 ---
 
 ## COSO ERM: The Enterprise Lens
 
-The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004, and updated it in 2017 as *Enterprise Risk Management — Integrating with Strategy and Performance*. The 2017 update reorganised the framework around five components and twenty principles, with greater emphasis on strategy and performance integration. This book references the 2004 framework's eight-component structure because it remains the version most widely embedded in banking practice and regulatory expectations, particularly the three-dimensional cube model used as a completeness check in Chapter 4. Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
+The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004,[^ch2-11] and updated it in 2017 as *Enterprise Risk Management — Integrating with Strategy and Performance*.[^ch2-12] The 2017 update reorganised the framework around five components and twenty principles, with greater emphasis on strategy and performance integration. This book references the 2004 framework's eight-component structure because it remains the version most widely embedded in banking practice and regulatory expectations, particularly the three-dimensional cube model used as a completeness check in Chapter 4. Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
 
 ### Origins and Context
 
-COSO's origins matter for understanding why the framework looks the way it does. The Treadway Commission was established in 1985 in response to a wave of financial fraud and reporting failures in the United States. Its initial focus was internal controls — resulting in the 1992 COSO Internal Control Integrated Framework, which became the de facto standard for internal controls worldwide and was later enshrined in the Sarbanes-Oxley Act of 2002.
+COSO's origins matter for understanding why the framework looks the way it does. The Treadway Commission was established in 1985 in response to a wave of financial fraud and reporting failures in the United States.[^ch2-13] Its initial focus was internal controls — resulting in the 1992 COSO Internal Control Integrated Framework,[^ch2-14] which became the de facto standard for internal controls worldwide and was later enshrined in the Sarbanes-Oxley Act of 2002.[^ch2-15]
 
 The ERM framework evolved from this internal controls heritage, expanding the scope from controls over financial reporting to enterprise-wide risk management. This lineage explains two features of COSO ERM that are particularly relevant to risk identification in banks:
 
@@ -154,9 +154,9 @@ In practice, I have found this model to be one of the most effective tools for i
 
 ## BCBS Corporate Governance Principles: The Banking Mandate
 
-The Basel Committee on Banking Supervision published its Corporate Governance Principles for Banks in 2015, establishing expectations for the governance of risk management in banking institutions specifically. Where ISO 31000 and COSO ERM are sector-agnostic, the BCBS principles speak directly to banks and their supervisors.
+The Basel Committee on Banking Supervision published its Corporate Governance Principles for Banks in 2015,[^ch2-16] establishing expectations for the governance of risk management in banking institutions specifically. Where ISO 31000 and COSO ERM are sector-agnostic, the BCBS principles speak directly to banks and their supervisors.
 
-**Principle 7** is the provision most directly relevant to risk identification. It states that risk should be identified, monitored, and controlled on an ongoing bank-wide and individual entity basis, and that the sophistication of the bank's risk management and internal control infrastructure should keep pace with changes to the bank's risk profile, the external risk landscape, and industry practice.
+**Principle 7** is the provision most directly relevant to risk identification. It states that risk should be identified, monitored, and controlled on an ongoing bank-wide and individual entity basis, and that the sophistication of the bank's risk management and internal control infrastructure should keep pace with changes to the bank's risk profile, the external risk landscape, and industry practice.[^ch2-17]
 
 Several elements of Principle 7 have direct implications for how a bank designs its risk identification process:
 
@@ -170,7 +170,7 @@ Several elements of Principle 7 have direct implications for how a bank designs 
 
 The BCBS principles also emphasise the importance of the **risk management function's independence** from the business lines it oversees. For risk identification, this creates a structural requirement: the people conducting the identification must have the authority and independence to identify risks that the business might prefer to ignore. This is the regulatory basis for the governance structures described in Chapter 3.
 
-Beyond Principle 7, the BCBS principles reference several other provisions relevant to risk identification. Principle 1 on the Board's overall responsibilities includes the duty to approve risk management strategies. Principle 8 on risk communication requires that information about the bank's risk profile be conveyed to the Board in a timely, accurate, and understandable manner. Principle 9 on compliance requires identification of compliance risks. Together, these principles create a comprehensive regulatory expectation for risk identification that goes well beyond what most banks currently deliver.
+Beyond Principle 7, the BCBS principles reference several other provisions relevant to risk identification. Principle 1 on the Board's overall responsibilities includes the duty to approve risk management strategies.[^ch2-18] Principle 8 on risk communication requires that information about the bank's risk profile be conveyed to the Board in a timely, accurate, and understandable manner. Principle 9 on compliance requires identification of compliance risks.[^ch2-19] Together, these principles create a comprehensive regulatory expectation for risk identification that goes well beyond what most banks currently deliver.
 
 ---
 
@@ -217,4 +217,44 @@ That is what the remaining chapters of this book deliver: the practitioner's met
 ---
 
 *The standards tell you what needs to exist. But a process without clear ownership is a process that will fail — regardless of how well it maps to ISO 31000. In the next chapter, we examine governance: who owns the risk identification process, who participates in it, who has authority to challenge the business, and how findings reach the Board without being filtered by the people who generated the risk.*
+
+---
+
+[^ch2-1]: International Organization for Standardization, *ISO 31000:2009 — Risk Management: Principles and Guidelines*, first published November 2009; revised as *ISO 31000:2018 — Risk Management: Guidelines*, February 2018.
+
+[^ch2-2]: ISO 31000:2009, Clause 3, enumerated eleven principles labelled (a) through (k). The 2018 revision consolidated these into eight principles (Clause 4). The principle descriptions and letter references in this chapter follow the 2009 edition's enumeration.
+
+[^ch2-3]: International Organization for Standardization, *ISO 31000:2009 — Risk Management: Principles and Guidelines*, Clause 4 ("Framework"), Sections 4.2–4.6. Note: The 2018 revision restructured the framework clause as Clause 5 with sub-clauses 5.2 (Leadership and commitment), 5.3 (Integration), 5.4 (Design), 5.5 (Implementation), 5.6 (Evaluation), and 5.7 (Improvement).
+
+[^ch2-4]: International Organization for Standardization, *ISO 31000:2009 — Risk Management: Principles and Guidelines*, Clause 5 ("Process"), Sections 5.2–5.6. The 2018 revision retains this process structure in Clause 6 with the same sub-elements.
+
+[^ch2-5]: International Organization for Standardization, *ISO 31000:2009 — Risk Management: Principles and Guidelines*, Section 5.4.2 ("Risk Identification"). See also *ISO 31000:2018*, Clause 6.4.2.
+
+[^ch2-6]: International Organization for Standardization, *ISO 31000:2009 — Risk Management: Principles and Guidelines*, Section 5.4.2. The requirement to examine "knock-on effects" and "cascade and cumulative effects" appears in the risk identification provisions.
+
+[^ch2-7]: International Organization for Standardization, *IEC/ISO 31010:2009 — Risk Management: Risk Assessment Techniques*, first published December 2009; revised as *IEC 31010:2019 — Risk Management: Risk Assessment Techniques*, June 2019.
+
+[^ch2-8]: International Organization for Standardization, *IEC 31010:2019 — Risk Management: Risk Assessment Techniques*, Annex A, Table A.1. The table maps techniques against the stages of risk assessment (identification, analysis, evaluation) with applicability ratings.
+
+[^ch2-9]: International Organization for Standardization, *IEC 31010:2019 — Risk Management: Risk Assessment Techniques*, Section 6.2 ("Selecting risk assessment techniques").
+
+[^ch2-10]: International Organization for Standardization, *IEC 31010:2019 — Risk Management: Risk Assessment Techniques*, Section 5.2 ("Risk identification"). The requirement for recording information sources, assumptions, and limitations applies to the outputs of the identification stage.
+
+[^ch2-11]: Committee of Sponsoring Organizations of the Treadway Commission (COSO), *Enterprise Risk Management — Integrated Framework*, September 2004. Developed by PricewaterhouseCoopers LLP under COSO's direction.
+
+[^ch2-12]: Committee of Sponsoring Organizations of the Treadway Commission (COSO), *Enterprise Risk Management — Integrating with Strategy and Performance*, June 2017. The 2017 update introduced five interrelated components and twenty supporting principles.
+
+[^ch2-13]: The National Commission on Fraudulent Financial Reporting (the "Treadway Commission") was established in 1985 as a joint initiative of five professional accounting and finance organisations: the American Institute of Certified Public Accountants (AICPA), the American Accounting Association (AAA), the Financial Executives Institute (FEI), the Institute of Internal Auditors (IIA), and the National Association of Accountants (now IMA). It issued its final report in October 1987.
+
+[^ch2-14]: Committee of Sponsoring Organizations of the Treadway Commission (COSO), *Internal Control — Integrated Framework*, 1992. Updated in May 2013 as the *Internal Control — Integrated Framework (2013 edition)*.
+
+[^ch2-15]: The Sarbanes-Oxley Act of 2002 (Pub.L. 107–204, 116 Stat. 745), enacted 30 July 2002. Section 404 requires management to assess the effectiveness of internal controls over financial reporting, with the 1992 COSO Internal Control framework becoming the most widely used evaluation framework for compliance.
+
+[^ch2-16]: Basel Committee on Banking Supervision, *Corporate Governance Principles for Banks*, BCBS 328, July 2015.
+
+[^ch2-17]: Basel Committee on Banking Supervision, *Corporate Governance Principles for Banks*, BCBS 328, July 2015, Principle 7 ("Risk management"), paragraphs 107–122.
+
+[^ch2-18]: Basel Committee on Banking Supervision, *Corporate Governance Principles for Banks*, BCBS 328, July 2015, Principle 1 ("Board's overall responsibilities"), paragraphs 23–43.
+
+[^ch2-19]: Basel Committee on Banking Supervision, *Corporate Governance Principles for Banks*, BCBS 328, July 2015, Principle 8 ("Risk communication"), paragraphs 123–128; Principle 9 ("Compliance"), paragraphs 129–138.
 

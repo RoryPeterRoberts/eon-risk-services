@@ -6,7 +6,7 @@ My first risk identification workshop at Credit Suisse, in late 2016, followed a
 
 The most senior person in the room spoke first. He identified three risks. They were the same three risks that had appeared at the top of the previous year's risk register: regulatory change, market volatility, and credit deterioration. The next person agreed with all three and added a fourth. The person after that agreed with all four. Within thirty minutes, the room had produced a list of eight risks, each essentially a restatement of the existing register, and the facilitator was already moving to the assessment phase.
 
-No one had mentioned counterparty concentration in prime brokerage. No one had raised the question of whether the bank's exposure to leveraged family offices was adequately visible. No one had asked what would happen if a single client defaulted across multiple desks simultaneously. Four years later, Archegos Capital Management would demonstrate exactly why those questions mattered — at a cost of $5.5 billion to Credit Suisse alone.
+No one had mentioned counterparty concentration in prime brokerage. No one had raised the question of whether the bank's exposure to leveraged family offices was adequately visible. No one had asked what would happen if a single client defaulted across multiple desks simultaneously. Four years later, Archegos Capital Management would demonstrate exactly why those questions mattered — at a cost of $5.5 billion to Credit Suisse alone.[^ch6-1]
 
 That workshop was not unusual. It was typical. And it was worse than useless — it was actively dangerous, because it created a documented record showing that senior management had "identified" the institution's risks, when in reality the process had done nothing more than confirm existing assumptions. The risk register looked comprehensive. The governance box was ticked. And the bank remained blind to the exposures that would eventually destroy it.
 
@@ -14,7 +14,7 @@ I walked out of that workshop knowing that the entire approach had to be redesig
 
 ## Why Brainstorming Fails
 
-The risk identification literature, and much of industry practice, defaults to brainstorming as the primary workshop technique. ISO 31010 includes brainstorming in its catalogue of thirty-one risk assessment techniques, describing it as suitable for the identification stage. On paper, it should work: assemble knowledgeable people, ask them to generate ideas, capture the output.
+The risk identification literature, and much of industry practice, defaults to brainstorming as the primary workshop technique. ISO 31010 includes brainstorming in its catalogue of thirty-one risk assessment techniques, describing it as suitable for the identification stage.[^ch6-2] On paper, it should work: assemble knowledgeable people, ask them to generate ideas, capture the output.
 
 In practice, brainstorming produces predictable pathologies when applied to risk identification in a banking context. The academic literature on group decision-making has documented these for decades, but the risk management profession has been slow to absorb the implications.
 
@@ -34,7 +34,7 @@ This is the problem that the **Structured What-If Technique** was designed to so
 
 Before describing the top-down techniques in detail, it is important to understand why the methodology requires two parallel identification tracks — top-down and bottom-up — and why neither alone is sufficient.
 
-ISO 31000 Section 5.2 establishes communication and consultation as a continuous parallel activity across all phases of risk management. The standard requires that multiple perspectives are sought, that differing perceptions are captured rather than averaged away, and that the risk identification process draws on the knowledge of people at every level of the organisation.
+ISO 31000 Section 5.2 establishes communication and consultation as a continuous parallel activity across all phases of risk management.[^ch6-3] The standard requires that multiple perspectives are sought, that differing perceptions are captured rather than averaged away, and that the risk identification process draws on the knowledge of people at every level of the organisation.
 
 Top-down identification — the subject of this chapter — captures risks that are visible from the strategic vantage point of senior management. These are the risks that arise from the institution's overall business model, its competitive position, the macroeconomic environment, its interconnectedness with counterparties and markets, and its exposure to emerging trends. Senior leaders see these risks because they sit at the intersection of strategy, regulation, and market dynamics.
 
@@ -96,7 +96,7 @@ Total duration: approximately four hours. This is not a meeting that can be comp
 
 ## SWIFT: The Structured What-If Technique
 
-**SWIFT** — the Structured What-If Technique — is described in ISO 31010 (Section B.7) as a systematic method for identifying risks using a set of prepared guide words applied to each element of the system under examination. Originally developed for the process safety industry, SWIFT has proven highly effective for banking risk identification because it imposes structure on the questioning process without constraining the scope of what can be identified.
+**SWIFT** — the Structured What-If Technique — is described in ISO 31010 (Section B.7) as a systematic method for identifying risks using a set of prepared guide words applied to each element of the system under examination.[^ch6-4] Originally developed for the process safety industry, SWIFT has proven highly effective for banking risk identification because it imposes structure on the questioning process without constraining the scope of what can be identified.
 
 The key difference between SWIFT and unstructured brainstorming is that SWIFT uses **prepared prompts** applied systematically. The facilitator does not ask "what are the risks?" — a question that invites recall bias and authority anchoring. Instead, the facilitator works through a structured set of guide words, applying each one to specific elements of the institution's operations, strategy, and environment.
 
@@ -152,7 +152,7 @@ ISO 31010 includes scenario analysis as a technique applicable to both the ident
 
 The Phase 1 PESTLE assessment produces a set of external factors that could affect the institution. Scenario analysis takes these factors and constructs plausible combinations — not to quantify their impact (that is the assessment function of Phase 3, covered in Chapter 9) but to ask: "Under this scenario, what risks would crystallise that we have not yet identified?"
 
-The CCAR framework, as implemented through Fed SR 15-18, provides the most rigorous regulatory application of this approach. CCAR requires institutions to develop firm-specific stress scenarios that target their particular vulnerabilities. As the Fed has increasingly emphasised, this requires risk identification that is much more granular than generic categories — institutions must identify specific risk events, their drivers, and the transmission mechanisms through which they affect the balance sheet.
+The CCAR framework, as implemented through Fed SR 15-18, provides the most rigorous regulatory application of this approach.[^ch6-5] CCAR requires institutions to develop firm-specific stress scenarios that target their particular vulnerabilities. As the Fed has increasingly emphasised, this requires risk identification that is much more granular than generic categories — institutions must identify specific risk events, their drivers, and the transmission mechanisms through which they affect the balance sheet.
 
 The workshop facilitator uses scenario prompts to drive this identification:
 
@@ -172,9 +172,9 @@ The multivoting output is preliminary. The detailed four-dimensional assessment 
 
 ## The Archegos Failure: What a SWIFT Workshop Would Have Asked
 
-On 26 March 2021, Archegos Capital Management — a family office run by Bill Hwang — collapsed, triggering approximately $10 billion in net losses across its prime brokers as an estimated $20 billion in concentrated positions were unwound. Credit Suisse absorbed $5.5 billion of those losses, a blow that contributed materially to the institution's eventual demise.
+On 26 March 2021, Archegos Capital Management — a family office run by Bill Hwang — collapsed, triggering approximately $10 billion in net losses across its prime brokers as an estimated $20 billion in concentrated positions were unwound.[^ch6-6] Credit Suisse absorbed $5.5 billion of those losses, a blow that contributed materially to the institution's eventual demise.[^ch6-7]
 
-The mechanism was straightforward. Hwang used total return swaps to build massive concentrated positions in a handful of stocks, leveraged at five to eight times, across multiple prime brokers. No single prime broker had visibility into his total exposure. Each bank assessed its bilateral exposure to Archegos as manageable. None asked the question that mattered: what is this client's aggregate position across all brokers?
+The mechanism was straightforward. Hwang used total return swaps to build massive concentrated positions in a handful of stocks, leveraged at five to eight times, across multiple prime brokers.[^ch6-8] No single prime broker had visibility into his total exposure. Each bank assessed its bilateral exposure to Archegos as manageable. None asked the question that mattered: what is this client's aggregate position across all brokers?
 
 The risk identification failure was not a failure of information — it was a failure of questioning methodology. The information existed within each institution. Margin calls were rising. Position sizes were growing. Concentration in single names was visible on each desk's books. But the workshop process — to the extent one existed — did not include prompts designed to surface this type of cross-counterparty, cross-institution concentration risk.
 
@@ -183,7 +183,7 @@ Consider what a SWIFT workshop would have asked:
 - **"What if our largest family office client has equivalent or larger positions with every other prime broker?"** — this prompt, applied to the prime brokerage business, would have immediately raised the question of aggregate leverage visibility.
 - **"Where are the gaps between what our prime brokerage desk sees and what other banks' prime brokerage desks see?"** — the gap analysis guide word would have surfaced the information asymmetry.
 - **"What are we assuming about the risk of concentrated leverage in family offices that might not be true?"** — the assumption-challenge prompt would have exposed the belief that bilateral exposure management was sufficient.
-- **"What has changed in the family office space since last year that could create new risks?"** — the evolution prompt would have flagged the growth in total return swap usage to avoid 13F disclosure requirements.
+- **"What has changed in the family office space since last year that could create new risks?"** — the evolution prompt would have flagged the growth in total return swap usage to avoid 13F disclosure requirements.[^ch6-9]
 
 The independent pre-workshop assessment would have added another layer. If the head of prime brokerage, the head of market risk, and the CRO each independently identified their top risks before the workshop, the facilitator would have had visibility into whether anyone had flagged concentrated family office leverage — and, critically, whether the absence of that risk from any participant's list was itself a signal.
 
@@ -195,7 +195,7 @@ None of these questions are difficult. None require information that was unavail
 
 SWIFT workshops are effective for identifying risks within the current strategic and operational landscape. They are less effective for a specific category of risk: emerging risks where no historical data exists, where the risk may not yet fit within the established taxonomy, and where the conventional wisdom of the institution may be actively wrong.
 
-For these risks, the methodology uses the **Delphi Method** — a structured, multi-round, anonymous expert consultation process described in ISO 31010 (Section B.4).
+For these risks, the methodology uses the **Delphi Method** — a structured, multi-round, anonymous expert consultation process described in ISO 31010 (Section B.4).[^ch6-10]
 
 ### How Delphi Works
 
@@ -231,21 +231,21 @@ The Delphi output feeds into two downstream processes: the risk inventory (for r
 
 ## Wirecard: When the Identification Ecosystem Inverts
 
-The Wirecard fraud, which finally collapsed in June 2020 with €1.9 billion in fabricated cash balances, provides the most extreme illustration of why the Delphi Method's inclusion of external experts is not optional but essential.
+The Wirecard fraud, which finally collapsed in June 2020 with €1.9 billion in fabricated cash balances,[^ch6-11] provides the most extreme illustration of why the Delphi Method's inclusion of external experts is not optional but essential.
 
 Wirecard's internal risk identification processes were captured by the fraud itself. The company fabricated revenues from third-party acquiring partners in Asia, inflated cash balances at Philippine trustee banks, and sustained the deception for years through deliberate intimidation of anyone who questioned the accounts.
 
-The extraordinary feature of the Wirecard case was not merely that internal identification failed — it was that the external identification ecosystem was actively inverted. Short-sellers and investigative journalists at the Financial Times identified the fraud through forensic analysis of publicly available data. They raised specific, documented concerns about fabricated revenues and phantom bank balances. The German financial regulator, BaFin, responded not by investigating Wirecard but by filing criminal complaints against the journalists. The regulator defended the fraudster and prosecuted those who identified the risk.
+The extraordinary feature of the Wirecard case was not merely that internal identification failed — it was that the external identification ecosystem was actively inverted. Short-sellers and investigative journalists at the Financial Times identified the fraud through forensic analysis of publicly available data. They raised specific, documented concerns about fabricated revenues and phantom bank balances. The German financial regulator, BaFin, responded not by investigating Wirecard but by filing criminal complaints against the journalists.[^ch6-12] The regulator defended the fraudster and prosecuted those who identified the risk.
 
 This is the scenario that the Delphi Method is designed to address — not in its extreme form, but in its underlying dynamic. In every institution, there are risks that the internal consensus is actively wrong about. Risks where the prevailing view is not merely incomplete but inverted — where the institution believes it is safe precisely in the area where it is most exposed. Traditional workshops, conducted entirely with internal participants who share the institutional consensus, cannot surface these risks. The consensus itself is the obstacle.
 
-A Delphi panel that included external participants — analysts with no institutional loyalty, academics with no career risk, consultants with cross-industry perspective — would have introduced the dissenting view into the process. The short-sellers' analysis of Wirecard's third-party revenue was available from 2015. The FT's investigative reporting began in 2019. An external Delphi panellist with access to this analysis would have submitted it anonymously, and the aggregation process would have ensured it reached decision-makers without the political dynamics that allowed Wirecard's management to suppress it through legal threats and regulatory capture.
+A Delphi panel that included external participants — analysts with no institutional loyalty, academics with no career risk, consultants with cross-industry perspective — would have introduced the dissenting view into the process. The short-sellers' analysis of Wirecard's third-party revenue was available from 2015.[^ch6-13] The FT's investigative reporting began in 2019.[^ch6-14] An external Delphi panellist with access to this analysis would have submitted it anonymously, and the aggregation process would have ensured it reached decision-makers without the political dynamics that allowed Wirecard's management to suppress it through legal threats and regulatory capture.
 
 **What was missing:** A structured mechanism for incorporating external expert perspectives into the risk identification process, protected by anonymity and institutional independence. The Delphi Method, with external panellists and anonymous submission, would have surfaced the dissenting analysis that internal processes were structurally incapable of producing because the fraud had captured the identification function itself.
 
 ## Connecting Top-Down Identification to the CCAR Framework
 
-For US banking institutions subject to the Federal Reserve's Comprehensive Capital Analysis and Review, top-down identification has a specific regulatory dimension. Fed SR 15-18 requires that institutions maintain a **Material Risk Inventory** that is updated quarterly — not annually — through a process of active re-identification.
+For US banking institutions subject to the Federal Reserve's Comprehensive Capital Analysis and Review, top-down identification has a specific regulatory dimension. Fed SR 15-18 requires that institutions maintain a **Material Risk Inventory** that is updated quarterly — not annually — through a process of active re-identification.[^ch6-15]
 
 The connection between SWIFT workshops and CCAR is direct. The Fed expects institutions to identify risks that may appear only under stress, to understand how scenarios that break historical patterns would affect the balance sheet, and to demonstrate that the risk identification process is forward-looking rather than backward-looking. SWIFT's scenario-based prompts — "what if wholesale funding markets close?", "what would happen if credit spreads widened beyond historical precedent?" — are precisely the questioning methodology that produces the identification outputs CCAR requires.
 
@@ -276,3 +276,35 @@ These risks — granular, operational, and often invisible to anyone who does no
 The methodology addresses this through the second identification track: bottom-up identification using standardised templates, Risk and Control Self-Assessments, and specialist sub-processes for specific risk types. Neither track alone captures the full picture. The top-down track identifies the twenty risks that could destroy the institution. The bottom-up track identifies the two hundred risks that collectively define the institution's operational risk profile. The reconciliation between them — the subject of Chapter 8 — is where the methodology produces its enterprise portfolio view.
 
 The next chapter describes the bottom-up track: how standardised templates capture granular risks across every business unit, how RCSA and specialist sub-processes feed into the central inventory, and how the Risk Identification Lead ensures that nothing falls through the gaps between specialist functions and the enterprise process.
+
+---
+
+[^ch6-1]: Credit Suisse Group, *Report of the Special Committee of the Board of Directors on the Supply Chain Finance Funds Matter and Related Matters* (prepared by Paul, Weiss, Rifkind, Wharton & Garrison LLP), 29 July 2021. The report documented the $5.5 billion loss from the Archegos default.
+
+[^ch6-2]: ISO 31010:2019, *Risk management — Risk assessment techniques*, International Organization for Standardization. Table A.1 lists 31 techniques and their applicability to the identification, analysis, and evaluation stages.
+
+[^ch6-3]: ISO 31000:2018, *Risk management — Guidelines*, International Organization for Standardization, Section 5.2 ("Communication and consultation").
+
+[^ch6-4]: ISO 31010:2019, *Risk management — Risk assessment techniques*, International Organization for Standardization, Annex B.7 ("Structured 'What if?' Technique (SWIFT)").
+
+[^ch6-5]: Board of Governors of the Federal Reserve System, *SR 15-18: Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms*, 18 December 2015.
+
+[^ch6-6]: Multiple prime brokers disclosed Archegos-related losses in Q1 2021 earnings: Nomura (~$2.9 billion), Morgan Stanley (~$911 million), and others. Aggregate net losses across counterparties were widely reported as approximately $10 billion. See also: U.S. Securities and Exchange Commission, *SEC Charges Archegos Capital Management and its Founder Bill Hwang*, 27 April 2022.
+
+[^ch6-7]: Credit Suisse Group, *Report of the Special Committee of the Board of Directors* (Paul, Weiss), 29 July 2021, p. 4. The report confirmed the $5.5 billion charge from the Archegos default.
+
+[^ch6-8]: Credit Suisse Group, *Report of the Special Committee of the Board of Directors* (Paul, Weiss), 29 July 2021, pp. 10-15. The report detailed Hwang's use of total return swaps and the leverage ratios across prime brokerage counterparties.
+
+[^ch6-9]: Total return swaps were not reportable under SEC Form 13F at the time of the Archegos collapse. The SEC subsequently adopted amendments to Form PF (effective 2023) and proposed amendments to Regulation 13D-G and Form 13F to address this disclosure gap. See SEC Release No. 34-93784 (proposed rule), 15 February 2022.
+
+[^ch6-10]: ISO 31010:2019, *Risk management — Risk assessment techniques*, International Organization for Standardization, Annex B.4 ("Delphi technique").
+
+[^ch6-11]: Wirecard AG filed for insolvency on 25 June 2020 after disclosing that EUR 1.9 billion in cash balances reported in its accounts "probably did not exist." See: *Wirecard AG — Insolvency filing*, Amtsgericht Munich, 25 June 2020; EY Wirecard audit disclaimer, 18 June 2020.
+
+[^ch6-12]: BaFin filed a criminal complaint against *Financial Times* journalists with the Stuttgart public prosecutor's office in February 2019, alleging market manipulation. BaFin also imposed a two-month short-selling ban on Wirecard shares (18 February to 18 April 2019). See: German Parliamentary Inquiry Committee on Wirecard (*Wirecard-Untersuchungsausschuss*), Bundestag, 2021.
+
+[^ch6-13]: Zatarra Research published a short-seller report on Wirecard in February 2016 alleging fraud in the company's Asian operations. Earlier concerns were raised by short sellers as early as 2008 and 2015.
+
+[^ch6-14]: Dan McCrum, *Financial Times*, "House of Wirecard" series, beginning January 2019. McCrum's investigative reporting into Wirecard's third-party acquiring business in Asia ran from early 2019 through the company's collapse in June 2020.
+
+[^ch6-15]: Board of Governors of the Federal Reserve System, *SR 15-18: Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms*, 18 December 2015. The letter requires firms to maintain a comprehensive firm-wide risk identification process that is forward-looking and updated at least quarterly.
