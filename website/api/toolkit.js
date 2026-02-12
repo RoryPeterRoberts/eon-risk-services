@@ -50,11 +50,12 @@ module.exports = async function handler(req, res) {
     // 2. Send toolkit download email to user (with signed download tokens for gated files)
     const bookToken = generateToken(data.email, 'book');
     const templatesToken = generateToken(data.email, 'templates');
+    const croToken = generateToken(data.email, 'cro-overview');
     await resend.emails.send({
       from: FROM_EMAIL,
       to: data.email,
       subject: 'Your Risk Identification Toolkit',
-      html: toolkitEmailHtml(data.name, bookToken, templatesToken)
+      html: toolkitEmailHtml(data.name, bookToken, templatesToken, croToken)
     });
 
     // 3. Send notification to Rory
@@ -76,7 +77,7 @@ module.exports = async function handler(req, res) {
 
 // --- Email Templates ---
 
-function toolkitEmailHtml(name, bookToken, templatesToken) {
+function toolkitEmailHtml(name, bookToken, templatesToken, croToken) {
   const firstName = name.split(' ')[0];
   return `
 <!DOCTYPE html>
@@ -102,11 +103,16 @@ function toolkitEmailHtml(name, bookToken, templatesToken) {
         <tr>
           <td style="padding:40px;">
             <p style="margin:0 0 16px; color:#2C2C2C; font-size:16px; line-height:1.6;">Hi ${firstName},</p>
-            <p style="margin:0 0 24px; color:#5A5A5A; font-size:15px; line-height:1.7;">Thank you for downloading the Risk Identification Toolkit. Here are your four resources, built from 20 years of practice and 179 documented bank failures.</p>
+            <p style="margin:0 0 24px; color:#5A5A5A; font-size:15px; line-height:1.7;">Thank you for downloading the Risk Identification Toolkit. Here are your five resources, built from 20 years of practice and 179 documented bank failures.</p>
             <p style="margin:0 0 24px; color:#8A8A8A; font-size:13px; line-height:1.5;">Your download links are personal and valid for 7 days. If they expire, just request a new toolkit from the website.</p>
 
             <!-- Download Buttons -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+              <tr><td style="padding:8px 0;">
+                <a href="${SITE_URL}/api/download?token=${croToken}" style="display:block; padding:16px 24px; background:#1B2A4A; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
+                  CRO Executive Overview (PDF)
+                </a>
+              </td></tr>
               <tr><td style="padding:8px 0;">
                 <a href="${SITE_URL}/api/download?token=${bookToken}" style="display:block; padding:16px 24px; background:#2A7F7F; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
                   Download the Book (PDF)
@@ -133,7 +139,8 @@ function toolkitEmailHtml(name, bookToken, templatesToken) {
             <div style="background:#F8F7F4; border-radius:8px; padding:24px; margin-bottom:24px;">
               <h3 style="margin:0 0 12px; color:#1B2A4A; font-size:16px; font-weight:600;">What to do next</h3>
               <ol style="margin:0; padding-left:20px; color:#5A5A5A; font-size:14px; line-height:1.8;">
-                <li>Start with the book to understand the full methodology</li>
+                <li>Start with the CRO Executive Overview for a 9-page briefing</li>
+                <li>Read the full book for the complete methodology</li>
                 <li>Use the template pack to build your artifacts</li>
                 <li>Deploy the Copilot agent for AI-assisted implementation</li>
                 <li><a href="${SITE_URL}/assessment.html" style="color:#2A7F7F; text-decoration:underline;">Score your current process</a> to identify gaps</li>

@@ -17,6 +17,11 @@ const GATED_FILES = {
     path: 'Risk_Identification_Template_Pack.xlsx',
     contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     filename: 'Risk_Identification_Template_Pack.xlsx'
+  },
+  'cro-overview': {
+    path: 'CRO_Executive_Overview.pdf',
+    contentType: 'application/pdf',
+    filename: 'CRO_Executive_Overview.pdf'
   }
 };
 
