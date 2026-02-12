@@ -531,8 +531,7 @@ class Assessment {
         <h3>What To Do About Your Gaps</h3>
         <p class="text-light" style="margin-bottom: 24px;">Depending on where you are, here's the best next step:</p>
         <div class="btn-group" style="justify-content: center;">
-          <a href="book.html" class="btn btn-outline">Get the Book</a>
-          <a href="course.html" class="btn btn-primary">Take the Course</a>
+          <a href="toolkit.html" class="btn btn-primary">Get the Free Toolkit</a>
           <a href="consulting.html" class="btn btn-gold">Talk to Rory</a>
         </div>
       </div>

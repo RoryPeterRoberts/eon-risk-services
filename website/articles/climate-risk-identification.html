@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Risk Identification: It's Not a Standalone Category &mdash; EON Risk Services</title>
+  <meta name="description" content="Why treating climate risk as a separate risk type misses the point. How to map climate through transmission channels into your existing risk taxonomy.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Industry</p>
+      <h1>Climate Risk Identification: It's Not a Standalone Category</h1>
+      <p class="lead">Climate risk doesn't sit beside credit risk and market risk. It transmits through them. Getting the taxonomy wrong means your identification process is structurally blind.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <h2>The Register That Existed in Parallel</h2>
+
+    <p>At a European G-SIB where I built the risk identification process, we ran our first Delphi panel in 2016. Among the emerging risks the panel flagged &mdash; independently, anonymously, without groupthink &mdash; were physical risk to real estate collateral from changing flood patterns, transition risk from carbon policy shifts hitting the energy lending book, and stranded asset risk from accelerating renewable adoption. These were identified years before any European regulator mandated climate risk assessment.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a></p>
+
+    <p>By the time the ECB published its Guide on Climate-Related and Environmental Risks in November 2020, many banks had responded to the regulatory signal by creating something I'd seen before: a separate climate risk register. A standalone document, maintained by a sustainability team, disconnected from the main risk inventory, unlinked to ICAAP stress scenarios, invisible to the quarterly re-identification cycle.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a></p>
+
+    <p>The intention was good. The execution was structurally flawed. And the flaw is the same one that has tripped up risk identification for decades: if you treat a risk driver as a standalone category instead of mapping how it transmits through existing risk types, you create a silo that looks like coverage but delivers gaps.</p>
+
+    <h2>The Problem: Silos Disguised as Coverage</h2>
+
+    <p>The instinct to create a standalone climate risk category is understandable. Regulators are asking about it. Board members want to see it. The TCFD framework has its own disclosure template. It feels like it deserves its own box on the taxonomy.</p>
+
+    <p>But climate risk does not behave like credit risk or market risk. It doesn't generate its own loss events. It generates loss events <em>through</em> credit risk, market risk, operational risk, liquidity risk, and reputational risk. A severe flood doesn't appear in your loss database as "climate risk." It appears as impaired collateral on a commercial real estate loan (credit risk), as a business interruption claim from a corporate borrower (credit risk again), as a supply chain disruption affecting a manufacturing client (operational risk for them, credit risk for you), and as investor criticism of your coastal lending concentration (reputational risk).</p>
+
+    <p>When you treat climate as standalone, three things go wrong. First, <strong>double-counting</strong>: the same flood-driven credit impairment gets recorded in both the climate register and the credit risk register, making aggregate exposure figures unreliable. Second, <strong>gaps</strong>: the climate register captures what the sustainability team knows about, but misses climate transmission channels that only credit analysts or market risk specialists would recognise. Third, <strong>integration failure</strong>: the standalone register doesn't connect to the ICAAP, doesn't feed stress scenarios, and doesn't appear in Board risk reporting &mdash; because it sits outside the architecture that links the main risk inventory to capital planning.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a></p>
+
+    <p>The result is compliance theatre. The bank can tell the regulator it has a climate risk register. It cannot demonstrate that climate risks are systematically identified, assessed, and integrated into capital planning through the same rigorous process applied to every other material risk.</p>
+
+    <h2>What the Regulators Actually Want</h2>
+
+    <h3>The Transmission Channel Consensus</h3>
+
+    <p>Read the regulatory guidance carefully and a consistent message emerges. The ECB, EBA, PRA, BCBS, and the NGFS all point in the same direction: climate risk should be mapped through transmission channels into existing risk categories, not treated as a parallel taxonomy.</p>
+
+    <p>The ECB Guide on Climate-Related and Environmental Risks (2020) expects banks to assess how climate drivers &mdash; both physical and transition &mdash; transmit into their existing risk categories. The EBA's Report on Management and Supervision of ESG Risks (2021) reinforces this with specific guidance on mapping ESG factors through credit, market, operational, and reputational risk.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a> The BCBS Principles for the Effective Management and Supervision of Climate-Related Financial Risks (2022) are explicit: climate risk should be incorporated into existing risk management frameworks, not bolted on as an afterthought.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a></p>
+
+    <p>The NGFS (Network for Greening the Financial System) has developed the most detailed transmission channel framework, mapping exactly how physical risk (acute and chronic) and transition risk (policy, technology, market, reputation) flow through to financial risk categories. This is not abstract theory. It is the analytical backbone that regulators expect to see in your risk identification methodology.</p>
+
+    <p>Even the Fed's 2023 Climate Scenario Analysis pilot integrated climate into existing risk categories rather than creating a new one. Climate was the driver. Credit risk, market risk, and operational risk were the manifestations. The scenario analysis asked: how do these climate pathways affect exposures we already know how to measure?</p>
+
+    <h3>The Taxonomy Paradox</h3>
+
+    <p>This creates a genuine design challenge for risk taxonomy. On one hand, if climate doesn't appear as a named category in the taxonomy, the institution is structurally incapable of identifying it. The taxonomy defines the universe of what can be found &mdash; and what isn't in the taxonomy can't be systematically assessed. On the other hand, if climate appears as a standalone category parallel to credit and market risk, it creates the silo problems described above.</p>
+
+    <p>The resolution is to include climate as a named category in the taxonomy <em>for the purpose of ensuring completeness</em> &mdash; to satisfy the MECE (Mutually Exclusive, Collectively Exhaustive) requirement &mdash; while conducting the actual identification and assessment work through the transmission channels that map climate drivers to existing risk types.<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a> The category exists to ensure nothing falls through the cracks. The identification work happens where the risk actually manifests: in credit, market, operational, and liquidity.</p>
+
+    <p>This is not a semantic distinction. It determines where the identification expertise sits (in business-line risk teams, not only in sustainability), how the risk flows to capital planning (through existing ICAAP pathways, not a parallel reporting line), and how the Board receives the information (integrated into the main risk inventory, not in a separate sustainability report they may or may not read).</p>
+
+    <h3>A Pattern We've Seen Before</h3>
+
+    <p>Climate risk is not the first risk type to go through this evolution. Conduct risk followed exactly the same path. Before the PPI scandal cost the UK banking industry over GBP 50 billion, conduct risk didn't exist as a taxonomy category in most banks. It manifested through product risk, legal risk, and reputational risk &mdash; but because no one named it, no one systematically identified it.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a></p>
+
+    <p>Cyber risk followed the same trajectory. It was buried inside "IT risk" or "operational risk &mdash; systems" until a series of high-profile breaches and regulatory interventions forced it into the taxonomy as a named category. The institutions that had already been mapping cyber transmission channels through their operational risk framework were years ahead of those that scrambled to build a standalone cyber risk register from scratch.</p>
+
+    <p>In each case, the risk existed long before the taxonomy recognised it. And in each case, the institutions that added the category early &mdash; because their horizon scanning or Delphi processes identified the emerging threat &mdash; were better positioned than those that waited for regulatory mandate or industry loss events.</p>
+
+    <h2>What Good Looks Like: The Transmission Channel Map</h2>
+
+    <p>The methodology for getting climate risk identification right has six components, and none of them require you to build a standalone climate risk function.</p>
+
+    <p><strong>First, define the six transmission channels.</strong> Physical risk splits into acute (discrete events like floods, storms, wildfires) and chronic (long-term shifts like sea-level rise, water stress, temperature change). Transition risk splits into policy (carbon pricing, emissions regulations), technology (disruption of carbon-intensive business models), market (shifting investor and consumer preferences), and reputation (perceived inaction on climate commitments). Each channel maps to specific L1 risk categories in your existing taxonomy.</p>
+
+    <p><strong>Second, use the interaction matrix.</strong> Climate is a classic propagation node &mdash; its crystallisation cascades across multiple risk types simultaneously. Physical risk (acute) triggers operational risk through property damage and business disruption. Physical risk (chronic) amplifies credit risk through gradual collateral value decline. Transition risk (policy) triggers market risk through stranded asset repricing. The interaction matrix makes these chains visible and auditable &mdash; turning practitioner intuition into documented methodology that a regulator can examine.<a class="footnote-ref" href="#fn-8" id="ref-8">[8]</a></p>
+
+    <p><strong>Third, embed climate prompts in your existing identification tools.</strong> SWIFT workshops should include guide words like: "What has changed in climate regulation since last quarter that could affect our lending book?" and "What are we assuming about the long-term value of our commercial real estate collateral that might not be true under a 2-degree warming scenario?" The Delphi panel should explicitly canvass climate-related emerging risks. The quarterly PESTLE refresh should include environmental events as a standing assessment dimension.</p>
+
+    <p><strong>Fourth, extend the time horizon.</strong> Climate risks must be assessed across three horizons: short-term (1&ndash;3 years), medium-term (3&ndash;10 years), and long-term (10&ndash;30 years). The long-term horizon exceeds normal business planning cycles but matters today, because a bank with significant coastal real estate exposure faces minimal short-term physical risk but material long-term risk &mdash; and that long-term risk affects the credit quality of the portfolio now, because it affects the residual value of the collateral over the life of the loan.</p>
+
+    <p><strong>Fifth, use concentration analysis to surface hidden climate exposure.</strong> A portfolio that appears diversified across geographies and sectors may have hidden climate concentration if many of those exposures share a common climate vulnerability &mdash; coastal property across multiple countries, or multiple sectors dependent on carbon-intensive supply chains. The most dangerous concentrations are those disguised by apparent diversification.<a class="footnote-ref" href="#fn-9" id="ref-9">[9]</a></p>
+
+    <p><strong>Sixth, ensure integration.</strong> Climate risks identified through the transmission channel framework must appear in the central risk inventory, feed through to risk appetite statements, link to ICAAP/CCAR stress scenarios, and reach the Board through the same reporting architecture as every other material risk. At one institution I worked with, the risk inventory contained thirty-seven material risks while the ICAAP addressed twelve. The gap was structural, not deliberate. Climate risk widens that gap unless you build the integration from the start.</p>
+
+    <h2>What To Do Monday Morning</h2>
+
+    <ol>
+      <li><strong>Audit your current climate risk taxonomy placement.</strong> Open your risk taxonomy and check: is climate risk a standalone L1 category with its own separate register, or does it map through transmission channels into your existing risk types? If it's standalone with no transmission mapping, you have a silo. If it's nowhere in the taxonomy at all, you have a gap. Either way, fix it.</li>
+      <li><strong>Build a transmission channel map.</strong> Create a simple matrix: six climate transmission channels (rows) against your existing L1 risk categories (columns). For each cell, document whether a transmission pathway exists for your institution's specific business model and geographic footprint. This exercise takes half a day and immediately reveals where climate risk is entering your portfolio.</li>
+      <li><strong>Add climate prompts to your next SWIFT workshop.</strong> Don't run a separate "climate risk workshop." Instead, add two climate-specific guide words to your next regular risk identification session: "What climate-related regulatory changes could affect this business line in the next 12 months?" and "What physical climate events could impair our collateral or disrupt our clients' operations?" This integrates climate into the existing process rather than creating a parallel one.</li>
+      <li><strong>Check the integration pipeline.</strong> Trace any climate risks currently identified in your institution and ask: do they appear in the central risk inventory? Are they linked to ICAAP/ILAAP scenarios? Do they reach the Board through standard risk reporting? If the answer to any of these is no, the identification exists but the integration doesn't &mdash; which means, for capital planning purposes, the identification might as well not exist.<a class="footnote-ref" href="#fn-10" id="ref-10">[10]</a></li>
+      <li><strong>Include climate in your quarterly re-identification cycle.</strong> The quarterly PESTLE refresh should explicitly include environmental and climate developments. New carbon pricing announcements, extreme weather events affecting portfolio geographies, peer institution climate-related losses &mdash; all of these are event-driven triggers that should prompt re-identification, not just re-assessment of risks you already know about.</li>
+    </ol>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">The Delphi Method's role in identifying emerging risks before regulatory mandates is documented in the EON methodology. ISO 31010:2019, <em>Risk Assessment Techniques</em>, Annex B.4 describes the Delphi technique for structured expert elicitation.</li>
+      <li id="fn-2">European Central Bank, <em>Guide on Climate-Related and Environmental Risks: Supervisory Expectations Relating to Risk Management and Disclosure</em>, November 2020. Sets expectations for how banks should integrate climate risk into existing risk management frameworks.</li>
+      <li id="fn-3">Prudential Regulation Authority, Supervisory Statement SS31/15, <em>The Internal Capital Adequacy Assessment Process (ICAAP) and the Supervisory Review and Evaluation Process (SREP)</em>, updated December 2020. Climate risks identified must flow through to ICAAP stress scenarios via the same capital planning pathways as all other material risks.</li>
+      <li id="fn-4">European Banking Authority, <em>Report on Management and Supervision of ESG Risks for Credit Institutions and Investment Firms</em>, EBA/REP/2021/18, 23 June 2021. Provides specific guidance on mapping ESG risk factors through existing prudential risk categories.</li>
+      <li id="fn-5">Basel Committee on Banking Supervision, <em>Principles for the Effective Management and Supervision of Climate-Related Financial Risks</em>, June 2022. Principle 4 requires banks to incorporate climate-related financial risks into their existing risk management frameworks.</li>
+      <li id="fn-6">The MECE (Mutually Exclusive, Collectively Exhaustive) principle for risk taxonomy design is a foundational requirement in ISO 31000:2018 and COSO ERM (2017). A taxonomy gap means the institution is structurally incapable of identifying the missing risk type.</li>
+      <li id="fn-7">The PPI scandal cost the UK banking industry over GBP 50 billion in redress, with Lloyds Banking Group alone paying GBP 22 billion. Conduct risk was largely invisible in bank taxonomies before these losses materialised. See FCA, <em>Payment Protection Insurance Complaints</em>, aggregate data 2011&ndash;2019.</li>
+      <li id="fn-8">The risk interaction matrix methodology maps directional trigger, amplification, and correlation relationships between all material risks. See BCBS, <em>Corporate Governance Principles for Banks</em> (BCBS 328), July 2015, Principle 7, which requires firm-wide risk identification including interaction effects.</li>
+      <li id="fn-9">BCBS, <em>Principles for Effective Risk Data Aggregation and Risk Reporting</em> (BCBS 239), January 2013. Requires banks to aggregate risk data across the enterprise, making hidden concentrations visible &mdash; including concentrations that emerge only when climate is used as the analytical lens.</li>
+      <li id="fn-10">Board of Governors of the Federal Reserve System, SR 15-18 / CA 15-14, <em>Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms</em>, 18 December 2015. The Material Risk Inventory must be comprehensive and updated quarterly, with direct linkage to stress scenario design and capital estimation.</li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>Get the tools to fix this</h3>
+      <p>The free risk identification toolkit includes transmission channel mapping templates, the interaction matrix framework, and AI prompts to build the climate integration process described in this article.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../toolkit.html" class="btn btn-primary btn-lg">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

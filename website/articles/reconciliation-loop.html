@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Reconciliation Loop: Where Risk Identification Dies &mdash; EON Risk Services</title>
+  <meta name="description" content="Most banks do top-down or bottom-up risk identification but skip the reconciliation between them. That gap is where the most dangerous risks hide.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Methodology</p>
+      <h1>The Reconciliation Loop: Where Risk Identification Dies</h1>
+      <p class="lead">Most banks run top-down and bottom-up risk identification as separate exercises. The step that connects them &mdash; and finds the risks that neither track can see alone &mdash; is the one almost everyone skips.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <h2>Two Lists and a Question No One Could Answer</h2>
+
+    <p>In early 2017, I sat in a conference room at a European G-SIB with two printouts on the table. On the left, the output of our first top-down workshop &mdash; just over twenty risks identified by the CRO, business unit heads, and senior risk officers. On the right, the consolidated bottom-up submissions from every business unit &mdash; nearly two hundred risks documented using standardised templates.</p>
+
+    <p>The top-down list included a risk we had labelled "cross-counterparty concentration in prime brokerage services." I cross-referenced it against the bottom-up submissions. Not a single business unit had included it. The equity financing desk had reported counterparty credit risk. The derivatives desk had reported market risk. The securities lending desk had reported operational risk in collateral management. Each submission was complete and accurate within its scope. But the aggregate, cross-product exposure to a common set of counterparties existed between business units, not within them.</p>
+
+    <p>I asked the question that reconciliation is designed to answer: <strong>who owns this risk?</strong> No one. That gap &mdash; the space between what leadership sees from altitude and what business units see from the ground &mdash; is where risk identification goes to die.</p>
+
+    <h2>The Problem: Compilation Masquerading as Reconciliation</h2>
+
+    <p>Most banks have two identification tracks. A top-down process &mdash; typically a workshop or CRO-led discussion &mdash; captures strategic and emerging risks visible from the executive vantage point. A bottom-up process &mdash; RCSAs, risk registers, specialist assessments &mdash; captures the granular, operational risks visible to the people closest to the business.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a> Both tracks are necessary. Neither alone is sufficient.</p>
+
+    <p>The top-down track cannot see the trader who has found a way to circumvent a position limit, the operations process with a reconciliation gap, or the customer complaint pattern signalling an emerging conduct risk. The bottom-up track cannot see macroeconomic regime shifts, cross-business-unit concentrations, or strategic risks arising from the institution's competitive position. The value of dual-track identification lives in the space between them.</p>
+
+    <p>Yet what passes for reconciliation at most institutions is <strong>compilation</strong>. Someone in the risk function takes both lists, removes obvious duplicates based on risk name, merges them into a single spreadsheet, and sends the result to the CRO. The top-down risks sit at the top of the page. The bottom-up risks fill the remainder. The document is called a "reconciled risk inventory." It is nothing of the sort.</p>
+
+    <p>Compilation tells you what two tracks have produced. Reconciliation tells you what neither track has found. The difference is the analytical work between receiving the two outputs and producing an enterprise view &mdash; the gap analysis, the escalation decisions, the ownership assignments, the challenge sessions, and the iterative refinement that converts two lists into a single, coherent picture of institutional risk.</p>
+
+    <p>At a UK-regulated international banking group in 2023, I examined the reconciliation documentation from the prior cycle. It consisted of a merged spreadsheet with colour-coding to indicate source: blue for top-down, green for bottom-up, yellow for both. No gap analysis. No escalation decisions documented. No evidence of challenge sessions. No enterprise portfolio view. The institution had two identification tracks. It did not have reconciliation.</p>
+
+    <h2>The Evidence: What Happens Without the Loop</h2>
+
+    <h3>Archegos: The Risk That Lived Between Desks</h3>
+
+    <p>In March 2021, the collapse of Archegos Capital Management cost Credit Suisse $5.5 billion.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a> The total losses across all affected prime brokers approached $10 billion. The mechanism was straightforward. Bill Hwang used total return swaps to build massive concentrated positions in a handful of stocks, leveraged at five to eight times, across multiple prime brokers. No single prime broker had visibility into his total exposure. Each bank assessed its bilateral exposure as manageable. None asked the question that mattered: what is this client's aggregate position across all brokers?</p>
+
+    <p>Within each institution, the same structural blindness applied. The prime brokerage desk monitored its own exposure. The derivatives desk monitored its own book. Each desk's bottom-up risk assessment was internally sound. But the cross-counterparty, cross-product concentration was invisible to any individual unit's assessment. It was a reconciliation failure &mdash; the kind of risk that exists between business units, not within them, and that only a structured comparison of top-down and bottom-up views could have surfaced.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a></p>
+
+    <h3>Citigroup: $45 Billion in Correlated Exposures No One Assembled</h3>
+
+    <p>Before the 2008 financial crisis, Citigroup's business divisions each maintained their own risk reporting and their own view of the exposures they held. Each operated within its own risk limits. Each produced its own bottom-up risk submission. And each was, by its own internal standards, within acceptable parameters.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a></p>
+
+    <p>But no enterprise view connected these exposures into a single picture. The CDO warehouse positions on the balance sheet. The liquidity puts to the SIVs off the balance sheet. The mortgage origination pipeline feeding the same CDO structures. The commercial paper funding model that would collapse if investor confidence faltered. These were not four independent risks. They were four manifestations of a single underlying exposure: Citigroup's total position in US residential mortgage credit quality, viewed across on-balance-sheet, off-balance-sheet, direct, and contingent channels.</p>
+
+    <p>When the subprime crisis struck, all the SIV liquidity puts triggered simultaneously. Citigroup brought more than $49 billion in SIV assets back onto its balance sheet. The institution required a $45 billion TARP bailout and a US government equity stake to survive.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a> A structured reconciliation process would have forced the question: what is our total exposure &mdash; direct, indirect, contingent, on-balance-sheet and off &mdash; to a decline in US residential mortgage credit quality? No one asked.</p>
+
+    <h3>HSH Nordbank: False Diversification</h3>
+
+    <p>HSH Nordbank was the world's largest shipping lender before the 2008 crisis, with an approximately EUR 30 billion shipping loan portfolio. It had also built a substantial portfolio of US subprime structured products. The two exposures were treated as diversified &mdash; shipping finance and structured credit occupied different taxonomy categories, different desks, different geographies. The risk assessments for each were internally sound.</p>
+
+    <p>But both exposures were correlated to global economic activity. The same crisis that impaired CDO valuations also collapsed global trade volumes, which collapsed shipping rates, which impaired the shipping loan book. Losses materialised simultaneously across what the institution had believed were diversified portfolios. HSH Nordbank required a EUR 10 billion state guarantee.<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a> The diversification assumption itself was a risk &mdash; one that only an enterprise-level analysis, looking across the full portfolio under stress conditions, could have identified and challenged.</p>
+
+    <h2>What Good Looks Like: The Five Steps</h2>
+
+    <p>Genuine reconciliation is not a single meeting or a merged spreadsheet. It is a structured, iterative process with five distinct steps.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a></p>
+
+    <p><strong>Step 1: Gap analysis.</strong> Map every top-down risk to the common taxonomy and search for corresponding entries in the bottom-up submissions. Where no match exists, categorise the gap. A top-down risk with no bottom-up owner might be a genuinely enterprise-level risk that no single business unit can see &mdash; cross-counterparty concentration, systemic infrastructure dependency, macroeconomic regime change. Or it might be a bottom-up identification failure where the business unit rolled forward last year's register without genuine re-identification. The distinction matters.</p>
+
+    <p><strong>Step 2: Escalation.</strong> Bottom-up risks of strategic significance must be elevated to the principal risk list. A single cloud provider outage might appear manageable when reported by one business unit. But when you discover that five critical functions across three business units depend on the same provider, the risk transforms from a local operational concern into a systemic enterprise dependency. Escalation makes that transformation visible.</p>
+
+    <p><strong>Step 3: Assignment.</strong> Top-down risks with no business unit owner must be assigned to named individuals &mdash; not committees, not functions. No business unit head wants to own a risk they did not identify. This is one of the most politically sensitive moments in the entire process, and the Risk Identification Lead must have a clear governance mandate to assign based on analytical judgement, not organisational willingness.</p>
+
+    <p><strong>Step 4: Challenge.</strong> Structured challenge sessions between senior management and business unit risk teams test the completeness of both tracks. These are not consensus-building exercises. A business unit head who dismisses a top-down risk as theoretical discovers that their own bottom-up submission contains the evidence for it. A senior risk officer who championed a risk in the workshop learns that the bottom-up data shows effective controls already in place. The challenge sessions are where analysis displaces opinion and where the reconciled inventory earns its credibility.<a class="footnote-ref" href="#fn-8" id="ref-8">[8]</a></p>
+
+    <p><strong>Step 5: Iteration.</strong> The cycle repeats until both tracks are aligned and coverage is comprehensive. A typical annual cycle requires two to three iterations. Quarterly re-identification cycles, being more focused on changes and emerging risks, typically require one to two. Each iteration narrows the gap. The first identifies the major disagreements. The second resolves the majority through evidence. The third addresses residuals that require CRO judgement.</p>
+
+    <p>The output is not a merged list. It is an <strong>enterprise portfolio view</strong> &mdash; an analysis of common exposures, simultaneous crystallisation scenarios, aggregate position against risk appetite, and correlation under stress. A risk inventory that contains two hundred individually assessed risks without an analysis of which ones would activate simultaneously is not a portfolio view. It is a catalogue.</p>
+
+    <p>One critical signal: <strong>a clean reconciliation with no gaps should be treated with suspicion, not satisfaction.</strong> If the top-down workshop identifies exactly what the bottom-up process produces, either the workshop wasn't challenging enough or the bottom-up wasn't granular enough. The gaps are the signal, not the noise.</p>
+
+    <h2>What To Do Monday Morning</h2>
+
+    <ol>
+      <li><strong>Pull your last reconciliation output and read it critically.</strong> Is it a merged spreadsheet with colour-coding, or does it contain a documented gap analysis with investigation notes, escalation decisions, and ownership assignments? If it is the former, you do not have reconciliation. You have compilation. Name the problem before you can fix it.</li>
+      <li><strong>Map every top-down material risk to a bottom-up owner.</strong> Take your current principal risk list and, for each risk, identify which business unit's bottom-up submission covers it. Where there is no match, you have found a risk with no operational owner. These unowned risks are the ones most likely to materialise unmanaged.</li>
+      <li><strong>Run one cross-business-unit aggregation.</strong> Pick a single common driver &mdash; interest rate movements, a key technology platform, a major counterparty &mdash; and trace every business unit's exposure to it. Add the exposures together. Compare the aggregate to your stated risk appetite. If the sum exceeds the appetite while each unit is within its own limit, you have demonstrated exactly why reconciliation matters.</li>
+      <li><strong>Schedule a challenge session, not a review meeting.</strong> Invite the top-down workshop participants and the bottom-up risk owners into the same room. Present the gaps. Require evidence for every "effective" control rating. Ask why the top-down list contains risks the bottom-up doesn't and vice versa. Disagreement is the point &mdash; risks where senior participants genuinely disagree are disproportionately the ones the institution most needs to understand.<a class="footnote-ref" href="#fn-9" id="ref-9">[9]</a></li>
+      <li><strong>Document the process, not just the output.</strong> Regulators do not just want to see the reconciled risk inventory. They want to see <em>how</em> it was produced &mdash; the gap analysis methodology, the escalation criteria, the challenge session minutes, the iteration history. The risk identification template pack includes a pre-built reconciliation matrix for exactly this purpose.<a class="footnote-ref" href="#fn-10" id="ref-10">[10]</a></li>
+    </ol>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">ISO 31010:2019, <em>Risk Assessment Techniques</em>, International Organization for Standardization. Table A.1 catalogues 31 techniques; top-down techniques include SWIFT (Annex B.7), Delphi (Annex B.4), and scenario analysis. Bottom-up techniques include checklists (Section 6.3.2), FMEA, and RCSA.</li>
+      <li id="fn-2">Credit Suisse Group Special Committee of the Board of Directors, <em>Report on Archegos Capital Management</em> (Paul, Weiss, Rifkind, Wharton &amp; Garrison LLP, 29 July 2021). Total losses of $5.5 billion; total return swap positions concentrated in a handful of equities across multiple prime brokerage desks.</li>
+      <li id="fn-3">SEC, <em>Charges Archegos Capital Management and its Founder Bill Hwang</em> (27 April 2022). Subsequent amendments to Form PF and Regulation 13D-G addressed the disclosure gap that allowed Archegos to build concentrated positions invisible to individual counterparties.</li>
+      <li id="fn-4">Financial Crisis Inquiry Commission (FCIC), <em>The Financial Crisis Inquiry Report</em> (Washington, DC: U.S. Government Printing Office, January 2011), pp. 298&ndash;303. Details Citigroup's divisional structure, SIV liquidity puts, and the absence of an enterprise-wide view of mortgage credit exposure.</li>
+      <li id="fn-5">U.S. Department of the Treasury, <em>Troubled Asset Relief Program (TARP): Monthly Reports to Congress</em> (2008&ndash;2009). Citigroup received $45 billion in TARP capital injection and a $301 billion loss-sharing arrangement backed by the U.S. government.</li>
+      <li id="fn-6">European Commission, State Aid Decision SA.29338, <em>HSH Nordbank: Restructuring Aid</em> (20 September 2011). EUR 10 billion guarantee provided by the states of Hamburg and Schleswig-Holstein.</li>
+      <li id="fn-7">BCBS, <em>Principles for Sound Management of Operational Risk</em> (2011, revised 2021), Principle 7: requires banks to identify and assess operational risk inherent in all material products, activities, processes, and systems through multiple approaches, supporting the need for reconciliation between identification tracks.</li>
+      <li id="fn-8">ISO 31000:2018, <em>Risk Management &mdash; Guidelines</em>, Section 5.2 on communication and consultation: requires that multiple perspectives be sought and considered in establishing context and assessing risk, providing the standards basis for structured challenge sessions.</li>
+      <li id="fn-9">COSO, <em>Enterprise Risk Management &mdash; Integrating with Strategy and Performance</em> (2017). The framework explicitly addresses the need for multiple perspectives in risk identification and the integration of risk views across business units and functions.</li>
+      <li id="fn-10">Fed SR 15-18, <em>Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms</em> (18 December 2015). Requires a Material Risk Inventory updated quarterly and forward-looking risk identification, establishing the regulatory expectation for documented reconciliation processes.</li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>Get the tools to fix this</h3>
+      <p>The free risk identification toolkit includes a pre-built reconciliation matrix, gap analysis templates, and the frameworks to build the process described in this article.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../toolkit.html" class="btn btn-primary btn-lg">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

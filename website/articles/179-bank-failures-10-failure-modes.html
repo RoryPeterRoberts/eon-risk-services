@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>179 Bank Failures &mdash; The 10 Failure Modes That Explain Almost All of Them &mdash; EON Risk Services</title>
+  <meta name="description" content="An analysis of 179 bank loss events across 30 countries and six decades reveals 10 recurring failure modes — from concentration blindness to complacency — responsible for $2.3 trillion in aggregate losses.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    /* Article-specific styles */
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .failure-mode { margin-bottom: 24px; }
+    .failure-mode__name { font-family: var(--font-heading); font-size: 1.05rem; color: var(--navy); margin-bottom: 4px; }
+    .failure-mode__detail { color: var(--text); line-height: 1.8; font-size: 1.05rem; margin-bottom: 0; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Case Study</p>
+      <h1>179 Bank Failures &mdash; The 10 Failure Modes That Explain Almost All of Them</h1>
+      <p class="lead">Concentration blindness. Model overreliance. Governance bypass. The same failure modes have been destroying banks for six decades. $2.3 trillion in aggregate losses says the industry still hasn't learned.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>16 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <p>In March 2023, Silicon Valley Bank collapsed in approximately 36 hours. It was the third-largest bank failure in American history: $209 billion in assets, gone. The post-mortem revealed something that should trouble every risk professional. Interest rate risk had been on SVB's risk register for years. The $91 billion held-to-maturity portfolio was visible to anyone who read the balance sheet. Unrealised losses of $15.2 billion &mdash; nearly equal to the bank's $16 billion in total equity &mdash; had been building for over a year. The CRO position sat vacant for eight months during the sharpest monetary policy tightening cycle in a generation.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a></p>
+
+    <p>The risk was identified. It was documented. It was on the register. And it still killed the bank.</p>
+
+    <p>SVB is not an outlier. It is the pattern. I have spent two decades studying how banks fail, and I have compiled an Industry Loss Database of 179 major bank loss events spanning 30 countries and six decades. The aggregate losses exceed $2.3 trillion. The database covers everything from the S&amp;L crisis through the GFC to SVB and Credit Suisse. And the single most important finding is this: the vast majority of these failures are not failures of risk measurement, hedging, or capital modelling. They are failures of risk identification &mdash; the process that is supposed to discover what risks exist, assess whether they are existential, and connect that assessment to governance action.</p>
+
+    <p>The same 10 failure modes recur with remarkable consistency across decades, geographies, and institution types. Each generation of bankers discovers them in new asset classes.</p>
+
+    <h2>The 10 Failure Modes</h2>
+
+    <p>Not all failure modes are equal. The first five &mdash; what I call the lethal five &mdash; appear in the overwhelming majority of the largest failures. The remaining five are amplifiers: they rarely destroy a bank alone, but they make everything worse when combined with the first five.</p>
+
+    <h3>The Lethal Five</h3>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">1. Concentration Blindness</p>
+      <p class="failure-mode__detail">The failure to identify or act on dangerous concentrations in asset classes, counterparties, funding sources, or business models. Present in 60&ndash;70% of the largest failures in the database. This is the single most common precursor to catastrophic bank failure. SVB had $91 billion concentrated in long-duration securities. Anglo Irish Bank had extreme concentration in commercial real estate lending to a small number of developers &mdash; costing Irish taxpayers &euro;29.3 billion.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a> Credit Suisse had $20 billion in single-counterparty exposure to Archegos, a family office using total return swaps at 5&ndash;8x leverage &mdash; resulting in a $5.5 billion loss.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a> Bankia merged seven Spanish savings banks, each with property concentration, and treated the merger as diversification. It was not. It was a larger concentration. The bailout cost &euro;22.4 billion. Northern Rock funded 75% of its balance sheet through wholesale markets &mdash; a funding concentration that caused the first UK bank run in 150 years when those markets froze.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a> In every case, the concentration was visible in the data. In no case did the risk identification process surface it as existential.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">2. Model Overreliance</p>
+      <p class="failure-mode__detail">Excessive dependence on quantitative models &mdash; VaR, credit ratings, stress tests &mdash; that systematically underestimate tail risk, creating false confidence that displaces qualitative judgement. LTCM's models estimated $35 million in daily VaR. Its actual single-day loss was $553 million &mdash; more than 15 times the model output &mdash; because the models assumed stable correlations that collapsed during the Russian crisis.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a> UBS took $37.4 billion in write-downs on structured credit positions where the risk function relied on the same models as the front office, treating super-senior CDO tranches rated AAA as effectively risk-free. AIG wrote $527 billion in credit default swaps priced using models that did not contemplate a national housing decline &mdash; the subsequent bailout exceeded $180 billion.<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a> When the model becomes the risk identification process, the institution loses the ability to identify risks the model cannot see.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">3. Governance Bypass</p>
+      <p class="failure-mode__detail">The circumvention, weakening, or overriding of risk governance structures by commercial interests or senior management. At JPMorgan, the Chief Investment Office was exempted from standard VaR limits. When the VaR model showed breaches, the model was changed &mdash; not the position. Loss: $6.2 billion.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a> At Barings, internal audit identified that Nick Leeson controlled both trading and settlement in Singapore. Management did not act. Loss: GBP 827 million. At Credit Suisse, risk managers sought to impose additional margin on Archegos in February 2021 &mdash; one month before default. They were prevented from doing so because dynamic margining was deemed against the client relationship's commercial interests. At Lehman Brothers, the CRO was marginalised for raising concerns about leverage, and Repo 105 transactions were used to temporarily remove $50 billion from the balance sheet at quarter-end. The largest bankruptcy in US history followed: $639 billion in assets.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">4. Liquidity Illusion</p>
+      <p class="failure-mode__detail">The assumption that assets can be liquidated, funding can be rolled, and markets will remain functional &mdash; when liquidity is in fact a fair-weather phenomenon. Northern Rock, Hypo Real Estate (&euro;102 billion in German government guarantees), Dexia (failed twice, 2008 and 2011), the Icelandic banks (combined assets 10x GDP, all three failed in one week), Bear Stearns (collapsed in days as counterparties pulled funding) &mdash; all built business models predicated on continuous access to wholesale markets. SVB demonstrated a twenty-first-century variant: $42 billion in deposits withdrawn in a single day, the largest bank run in history, driven by social media and mobile banking at a speed no liquidity stress test had contemplated.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">5. Complacency and Normalisation of Deviance</p>
+      <p class="failure-mode__detail">The gradual acceptance of deteriorating conditions as normal, because no losses have occurred recently. This is the enabling condition behind nearly every catastrophic failure. SVB's HTM portfolio grew from manageable to $91 billion without triggering governance intervention &mdash; each quarter the risk was present, documented, and not acted upon. Countrywide Financial loosened its underwriting standards incrementally throughout the early 2000s. Each year of rising house prices validated the strategy. Each loosening step was marginal. The cumulative result: over $40 billion in losses for Bank of America after acquisition. At HBOS, Peter Cummings's corporate banking division generated strong returns year after year. When Paul Moore raised concerns in 2004&ndash;2005, the business was profitable. His warnings were dismissed as alarmist. He was fired. Losses exceeded GBP 10 billion.<a class="footnote-ref" href="#fn-8" id="ref-8">[8]</a></p>
+    </div>
+
+    <h3>The Five Amplifiers</h3>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">6. Cultural Suppression</p>
+      <p class="failure-mode__detail">An organisational culture that discourages escalation. Wells Fargo fired 5,300 employees for sales integrity violations but treated each as an individual HR event rather than a systemic risk signal. Employees who reported through the ethics hotline were terminated. The Federal Reserve imposed an asset cap that remained in force for seven years. Cost: $7&ndash;8 billion in fines and settlements. At Wirecard, BaFin filed criminal complaints against the Financial Times journalists who reported on the &euro;1.9 billion fraud &mdash; the regulator attacked the whistleblowers rather than investigate the company.<a class="footnote-ref" href="#fn-9" id="ref-9">[9]</a></p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">7. Correlation Surprise</p>
+      <p class="failure-mode__detail">Hidden correlations between apparently independent risks that emerge only in stress. HSH Nordbank held &euro;30 billion in shipping loans alongside subprime exposure, believing they were diversified. Both collapsed simultaneously during the GFC because the same macroeconomic shock drove both asset classes. Cost: &euro;10 billion in state guarantees plus &euro;3 billion in capital. LTCM's convergence trades assumed low correlations that spiked to near 1.0 during the Russian crisis. During the GFC, 63 events in the database &mdash; approximately $1.5 trillion in losses &mdash; were connected by the same correlation surprise: housing, structured credit, wholesale funding, and counterparty risk all became correlated simultaneously.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">8. Regulatory Arbitrage Failure</p>
+      <p class="failure-mode__detail">Structuring activities to avoid regulatory requirements while leaving the economic risk unchanged. Lehman's Repo 105 transactions moved $50 billion off the balance sheet at quarter-end under a UK GAAP classification that treated them as sales rather than financing. Citigroup's structured investment vehicles held $49 billion in assets off-balance-sheet with no regulatory capital &mdash; until the commercial paper markets froze and Citigroup absorbed the assets, suddenly needing capital it did not have. AIG classified its credit default swaps as insurance-like products, avoiding derivative margin and capital rules. When the collateral calls came, there were no reserves.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">9. Operational Risk Underestimation</p>
+      <p class="failure-mode__detail">Treating operational failures &mdash; fraud, IT breakdowns, control gaps &mdash; as low-probability events. Soci&eacute;t&eacute; G&eacute;n&eacute;rale's Jerome Kerviel accumulated &euro;50 billion in hidden positions while 107 risk alerts went uninvestigated. Loss: &euro;4.9 billion. Knight Capital lost $440 million in 45 minutes from a software deployment error that activated dormant code &mdash; a firm with $365 million in equity, effectively destroyed before anyone understood what had happened. Punjab National Bank lost $2 billion over seven years through 13,000 fraudulent SWIFT messages because the messaging system was never integrated with the core banking system.</p>
+    </div>
+
+    <div class="failure-mode">
+      <p class="failure-mode__name">10. Emerging Risk Blindness</p>
+      <p class="failure-mode__detail">The failure to identify risks outside the institution's historical experience. Wirecard &mdash; a fintech with a banking licence and payment-processing structures in Asia that no regulator fully understood &mdash; fabricated &euro;1.9 billion in cash balances while short-sellers flagged concerns for five years. Equifax's 147-million-record data breach exploited a known Apache Struts vulnerability that went unpatched for months &mdash; total cost: $1.38 billion. SVB's collapse was driven partly by the emerging risk of social-media-accelerated bank runs, a phenomenon no traditional liquidity stress test had modelled.</p>
+    </div>
+
+    <h2>The Interaction Problem: Why Failures Are Always Multi-Modal</h2>
+
+    <p>Almost no catastrophic failure involves a single failure mode. The most devastating cases involve three to five modes operating simultaneously, and their interaction is multiplicative, not additive. Governance bypass enables concentration to grow unchecked. Model overreliance prevents anyone from seeing it. Complacency ensures no one questions it. And when the stress comes, correlation surprise and liquidity illusion ensure that everything collapses at once.</p>
+
+    <p>Lehman Brothers combined model overreliance (internal models showed adequate capital), governance bypass (the CRO was marginalised, Repo 105 was concealed from the Board), and regulatory arbitrage (off-balance-sheet structuring disguised true leverage). SVB combined concentration blindness (a $91 billion HTM portfolio), complacency (the risk was on the register for years without action), and liquidity illusion ($42 billion withdrawn in a single day). LTCM combined model overreliance ($35 million VaR versus $553 million actual loss), correlation surprise (all convergence trades collapsed simultaneously), and liquidity illusion (positions could not be unwound because every similar fund was unwinding at the same time).<a class="footnote-ref" href="#fn-10" id="ref-10">[10]</a></p>
+
+    <p>This multi-modal pattern has a structural implication: addressing any single failure mode in isolation is insufficient. A bank can have excellent concentration monitoring and still fail if governance bypass allows the concentration limits to be overridden. It can have strong governance and still fail if model overreliance means no one identifies the risk that needs governing.</p>
+
+    <h2>The 15-Year Cycle</h2>
+
+    <p>The database reveals a recurring cycle of approximately 15 years: crisis, regulatory reform, a period of stability that breeds complacency, and then the same failure modes reappearing in new asset classes. The S&amp;L crisis of the 1980s produced Basel I. LTCM and the Asian crisis in 1997&ndash;1998 drove the development of Basel II. The GFC in 2007&ndash;2009 produced Basel III and Dodd-Frank. SVB and Credit Suisse in 2023 have driven Basel III.1 and CRR III reforms. Each time, concentration blindness and complacency repeat &mdash; only the asset class changes. Interest rate risk in the 1980s. Convergence trades in the 1990s. Structured credit in the 2000s. Long-duration government securities and concentrated deposits in the 2020s.</p>
+
+    <p>The implication is clear: the regulatory response after each crisis addresses the <em>specific</em> risk that materialised, not the <em>structural</em> failure in the identification process that allowed it to go unaddressed. The failure modes persist because the process that should catch them is never fundamentally rebuilt.</p>
+
+    <h2>What Good Looks Like</h2>
+
+    <p>The EON methodology's six-phase process was designed specifically to address these 10 failure modes &mdash; not individually, but as an integrated system.</p>
+
+    <p><strong>Phase 1 &mdash; Foundation Setting</strong> forces a forward-looking environmental scan using PESTLE analysis, countering emerging risk blindness and complacency. It requires explicit mapping of the institution's structural vulnerabilities &mdash; funding model, business model concentration, counterparty dependencies &mdash; before a single risk is identified.</p>
+
+    <p><strong>Phase 2 &mdash; Dual-Track Identification</strong> runs top-down workshops (where senior management identifies strategic risks) and bottom-up templates (where business units identify operational risks) simultaneously, then mandates a reconciliation between the two. That reconciliation is where concentration blindness and cultural suppression are caught &mdash; in the gap between what the top sees and what the front line reports. The Delphi method ensures anonymous assessment, preventing groupthink.</p>
+
+    <p><strong>Phase 3 &mdash; Assessment</strong> uses four-dimensional scoring (impact, likelihood, vulnerability, speed of onset) with mandatory data quality ratings on every score. This directly counters model overreliance by forcing acknowledgement of where assessments rest on thin data. An interaction matrix identifies hidden correlations between risks &mdash; the structural defence against correlation surprise.</p>
+
+    <p><strong>Phases 4 through 6</strong> address the governance and freshness problems. Phase 5 integrates identification directly into ICAAP, ILAAP, Board reporting, and strategic planning &mdash; ensuring that identification findings cannot be disconnected from capital, liquidity, and governance decisions. Phase 6 mandates quarterly re-identification with event-driven triggers, preventing the staleness and drift that allowed SVB's risk register to become a compliance artefact while unrealised losses consumed its equity.</p>
+
+    <h2>What To Do Monday Morning</h2>
+
+    <ol>
+      <li><strong>Map your top 10 risks against the 10 failure modes.</strong> For each risk on your register, ask: which failure modes could cause this risk to be missed, underestimated, or ignored? If any of the 10 modes are not represented in your analysis, you have a blind spot.</li>
+      <li><strong>Test for hidden concentration.</strong> Aggregate your exposures across silos &mdash; by counterparty, sector, geography, and funding source. Concentration that is invisible within individual business lines often becomes visible only at the enterprise level. If your risk identification process does not aggregate, it cannot see the concentrations that kill banks.</li>
+      <li><strong>Ask the hard question about your register.</strong> For every risk rated medium or above: is this risk on the register because we genuinely assess it each quarter, or because it has always been there? If nothing material on your register has changed in 12 months, something is wrong. The risk landscape has changed. Your register has not.</li>
+      <li><strong>Run a correlation stress test.</strong> Take your top three risks and ask: what happens if all three materialise simultaneously? What are the transmission channels between them? If your stress testing treats each risk independently, you are not testing for the scenario that has actually destroyed banks.</li>
+      <li><strong>Check your governance response time.</strong> Pull the last three material findings from your risk identification process and trace each one: when was it identified, who received it, what action was taken, how long did it take? If any finding was softened, deferred, or absorbed without action between identification and the Board, you have a governance bypass vulnerability &mdash; the single most common enabler of catastrophic loss.</li>
+    </ol>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">Federal Reserve, "Review of the Federal Reserve's Supervision and Regulation of Silicon Valley Bank," April 2023. SVB 2022 10-K: $15.2 billion unrealised losses against $16.0 billion shareholders' equity. CRO vacancy April 2022 to January 2023. <a href="https://www.federalreserve.gov/publications/review-of-the-federal-reserves-supervision-and-regulation-of-silicon-valley-bank.htm" target="_blank" rel="noopener">federalreserve.gov</a></li>
+      <li id="fn-2">Nyberg, P., "Misjudging Risk: Causes of the Systemic Banking Crisis in Ireland," Report of the Commission of Investigation into the Banking Sector in Ireland, March 2011. Anglo Irish Bank: &euro;29.3 billion in taxpayer costs; &euro;87 million in concealed loans to chairman.</li>
+      <li id="fn-3">Paul, Weiss, Rifkind, Wharton &amp; Garrison LLP, "Report of the Special Committee of the Board of Directors of Credit Suisse Group AG" (Archegos), 29 July 2021. $20 billion single-counterparty exposure; $5.5 billion loss. <a href="https://www.sec.gov/Archives/edgar/data/1159510/000137036821000064/a210729-ex992.htm" target="_blank" rel="noopener">sec.gov</a></li>
+      <li id="fn-4">House of Commons Treasury Committee, "The Run on the Rock," Fifth Report of Session 2007&ndash;08 (HC 56). Northern Rock: 75% wholesale funded; first UK bank run since Overend, Gurney &amp; Co. in 1866.</li>
+      <li id="fn-5">Lowenstein, R., "When Genius Failed: The Rise and Fall of Long-Term Capital Management," Random House, 2000. LTCM: $125 billion portfolio, $35 million daily VaR estimate, $553 million single-day loss, $3.6 billion NY Fed&ndash;organised bailout.</li>
+      <li id="fn-6">Congressional Oversight Panel, "The AIG Rescue, Its Impact on Markets, and the Government's Exit Strategy," June 2010. AIG Financial Products: $527 billion CDS notional; initial $85 billion Fed bailout; total government support exceeding $180 billion.</li>
+      <li id="fn-7">US Senate Permanent Subcommittee on Investigations, "JPMorgan Chase Whale Trades: A Case History of Derivatives Risks and Abuses," 15 March 2013. CIO: $6.2 billion in losses; VaR model changed to reduce reported risk by 50%. <a href="https://www.hsgac.senate.gov/wp-content/uploads/imo/media/doc/REPORT%20-%20JPMorgan%20Chase%20Whale%20Trades%20(4-12-13).pdf" target="_blank" rel="noopener">senate.gov (PDF)</a></li>
+      <li id="fn-8">House of Commons Treasury Committee, "Banking Crisis: Reforming Corporate Governance and Pay in the City," Ninth Report of Session 2008&ndash;09 (HC 519), 15 May 2009. Paul Moore testimony, Q1604&ndash;Q1672. FSA, "The Failure of HBOS plc," November 2015.</li>
+      <li id="fn-9">Wirecard: BaFin short-selling ban February 2019; criminal complaint against Financial Times journalist Dan McCrum. EY Special Audit (KPMG), April 2020. &euro;1.9 billion in fabricated cash. German Parliamentary inquiry, 2020&ndash;2021.</li>
+      <li id="fn-10">The multi-modal failure analysis draws on the EON Industry Loss Database (ILD), which classifies each of the 179 events by risk type, COSO objective, failure mode(s), primary cause, loss amount, and geography. The ILD methodology is described in Roberts, R., "Bank Risk Identification: The Complete Methodology," 2025.</li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>How many of these failure modes does your process address?</h3>
+      <p>The 10 failure modes are predictable. The question is whether your risk identification process is designed to catch them. Start with a 10-minute self-assessment, then get the complete methodology and template pack.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../assessment.html" class="btn btn-primary">Score Your Process <span class="btn-icon">&rarr;</span></a>
+        <a href="../toolkit.html" class="btn btn-outline">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

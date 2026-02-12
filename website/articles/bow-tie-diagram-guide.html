@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a Bow-Tie Diagram Actually Tells You &mdash; EON Risk Services</title>
+  <meta name="description" content="Most bow-tie diagrams are either too simplistic or too complex. The useful ones tell you three things: what can go wrong, what stops it, and what happens if it doesn't.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Methodology</p>
+      <h1>What a Bow-Tie Diagram Actually Tells You</h1>
+      <p class="lead">Most bow-tie implementations are either decorative or unusable. The ones that work tell you exactly three things &mdash; and they change how your Board understands risk.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <h2>The Cascade No One Mapped</h2>
+
+    <p>Lehman Brothers did not fail because of credit risk. It did not fail because of liquidity risk, or market risk, or operational risk. It failed because all of them crystallised simultaneously, each amplifying the others in a chain reaction that no individual risk assessment had captured.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a></p>
+
+    <p>The mortgage-backed securities were in the credit risk inventory. Leverage was monitored. Liquidity was reported. Counterparty exposure was tracked. But each was assessed individually, in its own silo, using its own models, reported to its own committee. No one had mapped the causal chains between them. The result was $639 billion in assets at bankruptcy filing, a 30:1 leverage ratio, and the largest bankruptcy in American history.</p>
+
+    <p>The information was available. What was missing was the methodology to connect it. That is what a bow-tie diagram is for.</p>
+
+    <h2>The Problem with Most Bow-Ties</h2>
+
+    <p>If you have worked in risk management for more than a year, you have probably seen a bow-tie diagram. Causes on the left, a risk event in the centre, consequences on the right, with some controls drawn as vertical bars across the pathways. ISO 31010 catalogues bow-tie analysis as a standard risk assessment technique.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a> It is taught in every risk management certification. And in most banks, it is either not used at all or used badly.</p>
+
+    <p>The failures fall into two categories.</p>
+
+    <p><strong>Too simplistic.</strong> The bow-tie is drawn at a desk by a risk analyst who has never spoken to the people who actually manage the risk. The causes are generic &mdash; "market downturn," "system failure," "human error." The controls are listed as present. Their effectiveness is assumed. The diagram looks professional, gets filed, and tells the Board nothing it didn't already know. This is compliance theatre with better graphics.</p>
+
+    <p><strong>Too complex.</strong> The bow-tie attempts to capture every possible cause, every control, every consequence for a broadly defined risk. The result is a wall-sized diagram that no one reads, no one updates, and no Board member can interpret in the five minutes they have before the next agenda item. It becomes wallpaper.</p>
+
+    <p>Both failures share the same root cause: the bow-tie is treated as a documentation exercise rather than an analytical tool. The question is not whether the diagram looks complete. The question is whether it tells you something you didn't already know about how the risk works.</p>
+
+    <h2>The Three Things a Useful Bow-Tie Shows</h2>
+
+    <p>A well-constructed bow-tie answers three questions for the reader &mdash; whether that reader is a risk practitioner designing controls or a Board member reviewing the institution's principal risk report:</p>
+
+    <ul>
+      <li><strong>What could cause this?</strong> The specific causal pathways, not categories.</li>
+      <li><strong>What is supposed to stop it &mdash; and what could make those stops fail?</strong> The controls <em>and</em> their vulnerabilities.</li>
+      <li><strong>If it happens, what are the consequences &mdash; and what limits the damage?</strong> The full range of impacts and recovery mechanisms.</li>
+    </ul>
+
+    <p>That second point &mdash; what could make the controls fail &mdash; is what separates a useful bow-tie from a decorative one. It is called the <strong>escalation factor layer</strong>, and most implementations either omit it entirely or treat it as an afterthought.</p>
+
+    <h3>Escalation factors: the layer that matters most</h3>
+
+    <p>A credit limit is a preventive barrier. But if the limit can be overridden by a single individual without independent approval, that override authority is an escalation factor. A collateral requirement is a preventive barrier. But if the collateral is correlated with the underlying exposure &mdash; as it was in many pre-2008 structured products &mdash; that correlation is an escalation factor.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a></p>
+
+    <p>Escalation factors force the institution to examine not just whether controls exist, but whether the conditions under which those controls would fail have been identified and addressed. Without this layer, a bow-tie is simply a risk-and-control register in a different shape.</p>
+
+    <h3>What Lehman's bow-tie would have revealed</h3>
+
+    <p>Consider what a bow-tie analysis of Lehman's credit concentration risk would have made visible. On the left side, the causes: mortgage market deterioration, mark-to-market accounting requirements on illiquid positions, a leverage ratio creating a thin capital buffer. The preventive barriers: position limits, VaR monitoring, stress testing, capital adequacy reporting.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a></p>
+
+    <p>Now the escalation factors. Repo 105 transactions were temporarily removing $50 billion in assets from the balance sheet at each quarter-end &mdash; a mechanism that actively undermined the capital adequacy barrier by concealing the true leverage ratio. The escalation control &mdash; independent verification of reported leverage &mdash; was absent.</p>
+
+    <p>On the right side, the consequences would cascade across every dimension: financial (direct losses on $85 billion in RMBS), regulatory (capital adequacy breach, supervisory intervention), reputational (counterparty confidence collapse), and operational (inability to roll short-term funding). The mitigating barriers &mdash; access to Federal Reserve facilities, potential acquisition by a stronger institution &mdash; would have been assessed as uncertain at best.</p>
+
+    <p>The bow-tie would have made visible what individual risk assessments concealed: the causal chain from credit concentration through leverage to liquidity to institutional collapse was not a remote scenario. It was a mapped pathway with identified control gaps. None of this required information that was unavailable. The positions were known. The leverage was reported. The Repo 105 transactions were documented. What was missing was the systematic methodology to connect these individually known facts into a coherent picture.</p>
+
+    <h3>AIG: what the right side reveals</h3>
+
+    <p>The left side of a bow-tie maps causes and prevention. The right side maps what happens when prevention fails. AIG's credit default swap portfolio illustrates why the right side matters as much as the left.</p>
+
+    <p>AIG knew it was selling CDS. The counterparties were documented. The notional exposure was calculable. The failure was single-dimensional assessment: one score, calibrated to benign historical data, producing a near-zero risk rating for what turned out to be the largest risk event in insurance history.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a></p>
+
+    <p>A bow-tie built with a four-dimensional consequence framework &mdash; financial, regulatory, reputational, and operational impacts &mdash; would have shown a different picture. The regulatory dimension alone (collateral call triggers upon ratings downgrade, potential government intervention) would have scored at least Major. The reputational dimension would have scored Extreme. The controls against a systemic CDS crystallisation scenario were effectively non-existent: no hedging programme, no collateral reserve adequate for a mass downgrade, no pre-positioned liquidity for collateral calls at scale. And the speed-of-onset was immediate &mdash; triggered by ratings action, not by actual defaults.</p>
+
+    <p>The $85 billion Federal Reserve bailout that followed was not a failure of risk identification. It was a failure of risk architecture &mdash; no one had mapped the full consequence chain through all four dimensions. A bow-tie would have forced that mapping.</p>
+
+    <h2>What Good Looks Like</h2>
+
+    <p>A bow-tie is not for every risk. It is resource-intensive. Each diagram requires facilitated sessions with risk owners, control owners, and relevant specialists. You do not build one from a desk. The methodology requires bow-ties for the institution's <strong>five to ten most critical risks</strong> &mdash; typically those identified as propagation nodes in the risk interaction matrix or that received extreme ratings on any assessment dimension.<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a></p>
+
+    <h3>Build from facilitated sessions, not desk analysis</h3>
+
+    <p>The content of a bow-tie comes from the people who understand the risk: traders, operations managers, technology specialists, compliance officers, and risk analysts. The Risk Identification Lead facilitates, using structured prompts that mirror the SWIFT methodology &mdash; systematic coverage, challenge encouraged, dissent drawn out.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a></p>
+
+    <p>This matters because the most valuable contributions often come from the quietest participants. When a risk is identified, the facilitator should ask: Who disagrees? What am I missing? What is the alternative view? Managing dominant voices and drawing out dissent is the craft that separates a process that works from one that merely exists on paper.</p>
+
+    <h3>Define the risk event precisely</h3>
+
+    <p>The risk event sits at the centre of the diagram. It must be defined precisely &mdash; not "credit risk" but "counterparty default on OTC derivative portfolio exceeding $500 million net exposure." Precision matters because the causes and consequences change depending on how the event is specified. A vaguely defined centre produces vague causes, vague controls, and a diagram that communicates nothing useful.</p>
+
+    <h3>Map four-dimensional consequences</h3>
+
+    <p>On the right side, every consequence should be assessed across four dimensions: financial, regulatory, reputational, and customer/operational. This prevents the single-dimensional scoring failure seen at AIG and elsewhere. A major counterparty default has regulatory consequences (reporting obligations, supervisory attention, potential enforcement action), reputational consequences (market confidence, counterparty willingness to trade), and operational consequences (service disruption if the counterparty provides critical services) &mdash; not just a loss figure.</p>
+
+    <h3>Keep them alive</h3>
+
+    <p>Bow-tie diagrams for the top risks must be maintained as living documents, with barriers and escalation factors reassessed as controls change. The risk profile for each material risk references the bow-tie, recording the date of the most recent review, the key findings, and any barrier weaknesses identified. A bow-tie drawn once and filed is worth less than no bow-tie at all, because it creates false confidence that causal analysis has been done.<a class="footnote-ref" href="#fn-8" id="ref-8">[8]</a></p>
+
+    <h2>Why the Board Needs This</h2>
+
+    <p>A heatmap plots individual risks as points on a two-dimensional grid. It does not show how controls fail. It does not show cascade pathways. It does not show whether the institution's assessment of a risk is based on ten years of loss data or one person's guess in a workshop.</p>
+
+    <p>A bow-tie serves a dual purpose. For risk practitioners, it provides the granular causal analysis that informs control design and testing. For the Board, it provides a visual summary that communicates the full risk architecture of a critical risk in a single page. A Board member looking at a well-constructed bow-tie can immediately see what could cause the risk event, what is supposed to prevent it, what could make those preventive controls fail, what happens if prevention fails, and what limits the damage.</p>
+
+    <p>That is more information than any heatmap has ever communicated. And it is the information the Board actually needs to challenge whether the institution's controls are adequate &mdash; which is, after all, what governance requires.<a class="footnote-ref" href="#fn-9" id="ref-9">[9]</a></p>
+
+    <h2>What To Do Monday Morning</h2>
+
+    <ol>
+      <li><strong>Pick one risk.</strong> Choose the single risk your institution worries about most. Not the full inventory &mdash; one risk. Build the first bow-tie for that risk as a pilot. The Lehman and AIG examples above give you the structure.</li>
+      <li><strong>Define the centre precisely.</strong> Write the risk event as a specific scenario, not a category. "Counterparty default on OTC derivatives exceeding $500m net exposure" works. "Credit risk" does not. If you cannot define the centre in one sentence, the scope is too broad.</li>
+      <li><strong>Facilitate, don't delegate.</strong> Convene a two-hour session with the risk owner, the relevant control owners, and at least one dissenting voice &mdash; someone who sees the risk differently. Do not assign the bow-tie to an analyst working alone at a desk. The value is in the conversation, not the diagram.</li>
+      <li><strong>Insist on escalation factors.</strong> For every preventive barrier on the left side, ask: under what conditions does this control fail? If the answer is "it doesn't fail," you have not asked the right people. Every control has failure conditions. A credit limit fails when overrides are permitted. Collateral fails when it is correlated with the exposure. VaR fails when the model assumptions no longer hold. Map these explicitly.</li>
+      <li><strong>Present it to the Board.</strong> Take the completed bow-tie for your most critical risk and present it alongside your existing heatmap. Ask Board members which format tells them more about the risk. The answer will make the case for you.</li>
+    </ol>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">Valukas, A., <em>Report of the Examiner, In re Lehman Brothers Holdings Inc.</em>, U.S. Bankruptcy Court, Southern District of New York, March 2010. Volumes 1 and 3 detail the interconnection of credit, leverage, and liquidity risks and the Repo 105 programme.</li>
+      <li id="fn-2">ISO 31010:2019, <em>Risk management &mdash; Risk assessment techniques</em>, Section B.21 (Bow tie analysis), pp. 81&ndash;84.</li>
+      <li id="fn-3">Financial Crisis Inquiry Commission, <em>The Financial Crisis Inquiry Report</em>, January 2011. Extensively documents collateral correlation failures across structured products and the breakdown of preventive controls at multiple institutions.</li>
+      <li id="fn-4">Lehman Brothers held $85 billion in RMBS and a $111 billion total real estate portfolio at a 30:1 leverage ratio, with Repo 105 transactions temporarily removing $50 billion in assets from the balance sheet at each quarter-end. See Valukas Report, Volume 3.</li>
+      <li id="fn-5">AIG Financial Products had written credit default swaps with a notional value exceeding $500 billion. The $85 billion Federal Reserve bailout followed ratings downgrades that triggered collateral calls the firm could not meet. See FCIC Report, Chapter 19.</li>
+      <li id="fn-6">ISO 31000:2018, <em>Risk management &mdash; Guidelines</em>, Section 6.4.3: requires consideration of "knock-on effects of particular consequences, including cascade and cumulative effects" &mdash; the analytical work that bow-tie diagrams formalise.</li>
+      <li id="fn-7">ISO 31010:2019, Annex B.7 (SWIFT &mdash; Structured What-If Technique). SWIFT provides the facilitated questioning methodology that feeds bow-tie construction.</li>
+      <li id="fn-8">ISO 31010:2019, Section 4.7 (Documentation): requires that risk assessment outputs be maintained and updated as context changes, with the basis for assessments transparently recorded.</li>
+      <li id="fn-9">BCBS, <em>Corporate Governance Principles for Banks</em> (BCBS 328), July 2015, Principle 7: the Board must receive sufficient information to understand the bank's risk profile, including risk identification outputs, and must be able to challenge management's risk assessments.</li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>Get the tools to fix this</h3>
+      <p>The free risk identification toolkit includes a bow-tie template, the four-dimensional assessment framework, and the facilitation prompts to run the workshops described in this article.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../toolkit.html" class="btn btn-primary btn-lg">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

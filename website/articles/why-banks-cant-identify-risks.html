@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Most Banks Can't Identify Their Own Risks — EON Risk Services</title>
+  <meta name="description" content="Most banks confuse maintaining a risk register with risk identification. Here's why that distinction matters, what regulators think about it, and how to fix it.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    /* Article-specific styles */
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Methodology</p>
+      <h1>Why Most Banks Can't Identify Their Own Risks</h1>
+      <p class="lead">The gap between owning a risk register and running a risk identification process is where most institutional failures begin.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <p>In 2023, Silicon Valley Bank collapsed with $209 billion in assets. Interest rate risk was on their risk register. It had been there for years. The bank had an Asset Liability Management committee, complex interest rate models, and regular reporting to senior management.</p>
+
+    <p>None of it mattered. SVB failed because no one had identified the specific, compounding interaction between two concentrated vulnerabilities: a massive portfolio of long-duration fixed-rate securities and an overwhelmingly uninsured deposit base clustered within a single, networked industry.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a> The bank assessed interest rate risk in isolation. It assessed liquidity risk in isolation. It never identified the lethal transmission channel connecting the two.</p>
+
+    <p>This was not a failure of risk management. It was a failure of risk identification. And it is the single most common, most consequential, and most misunderstood weakness in the global banking system.</p>
+
+    <h2>The Problem: Registers Without Discovery</h2>
+
+    <p>Most banks do not have a risk identification process. They have a risk register maintenance process. These are fundamentally different activities, and the difference is not semantic.</p>
+
+    <p>In practice, the annual risk identification exercise at most institutions goes like this: the second line of defence distributes last year's risk register. Business leaders are asked to "refresh" the entries. They adjust a few probability and impact scores, archive a handful of obsolete operational risks, and return the document. The board reviews it. The regulator sees it. Everyone calls this "risk identification."</p>
+
+    <p>But nothing was actually identified. The entire exercise is an act of <strong>risk assessment</strong> applied to a static universe of known, historical variables. Identification &mdash; the act of discovering what risks exist, acknowledging the unknown, mapping emerging threats before they materialise &mdash; never happened.</p>
+
+    <p>ISO 31000:2018 draws a strict line between the two.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a> Risk Identification (Clause 6.4.2) requires divergent, investigative thinking: finding, understanding, and describing risks. Risk Analysis (Clause 6.4.3) uses convergent, analytical thinking: determining the likelihood and impact of those specific events. If you skip the first, the second operates on an incomplete data set. You are building sophisticated models to predict the trajectory of risks you already know about, while remaining blind to the ones that will actually hurt you.</p>
+
+    <p>This is the <strong>inherited risk register pathology</strong>. The register was built from scratch once &mdash; during a GRC system implementation or a regulatory remediation &mdash; and has never been fundamentally rebuilt since. It persists through bureaucratic inertia, cognitive anchoring, and the simple reality that no one wants to start from a blank page when a 200-row spreadsheet already exists.</p>
+
+    <h2>The Evidence</h2>
+
+    <h3>What the regulators are finding</h3>
+
+    <p>Global supervisors have been saying this for years, with increasing urgency and decreasing patience.</p>
+
+    <p>The ECB's 2024 SREP aggregate results issued qualitative measures across 97 European banks. The findings are damning. Credit risk deficiencies accounted for 29% of all measures, with the ECB calling out failures in early warning systems &mdash; fundamentally a risk identification problem, not a measurement one. Internal governance failures represented another 23%. And within the capital adequacy category, 15% of all new supervisory measures targeted specifically the methodologies banks use to discover risk.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a></p>
+
+    <p>The 2025 SREP results confirmed these are systemic, not isolated. A full 20% of new qualitative measures in 2025 targeted Risk Data Aggregation and Risk Reporting (RDARR) deficiencies.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a> The ECB has explicitly stated its intention to escalate enforcement if these issues persist. You cannot identify a risk concentration if the concentration is scattered across incompatible data systems.</p>
+
+    <p>In the UK, the PRA has been equally direct. In its 2024-2025 supervisory priorities, the regulator observed that many firms incorrectly conclude that climate-related risk is not material &mdash; but this conclusion is based on never having properly identified, mapped, or sized the exposures in the first place.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a> The risk was not assessed as immaterial. It was never identified at all.</p>
+
+    <p>In the US, the OCC has moved beyond warnings to punitive consent orders. When Capital One suffered a massive data breach in 2019, the resulting $80 million civil money penalty was imposed not because the bank lacked firewalls, but because internal audit had failed to identify control weaknesses and gaps in the cloud operating environment.<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a> The OCC's Heightened Standards (12 C.F.R. Part 30, Appendix D) now mandate that front-line business units take absolute accountability for identifying the risks they generate &mdash; specifically to prevent the structural failure where the first line assumes risk identification is solely the second line's job.</p>
+
+    <h3>The data aggregation bottleneck</h3>
+
+    <p>Underpinning all of this is a brute-force mechanical problem: most banks cannot aggregate their own risk data. BCBS 239, the Basel Committee's principles for effective risk data aggregation, was published in 2013 in direct response to the financial crisis &mdash; when global banks discovered they could not calculate their total exposure to individual counterparties because data was trapped in silos.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a></p>
+
+    <p>More than a decade later, the 2023 BIS progress report found that out of 31 global systemically important banks, <strong>only two</strong> were fully compliant.<a class="footnote-ref" href="#fn-8" id="ref-8">[8]</a> The rest are still running on fragmented IT landscapes, legacy systems, and manual processes. A bank that cannot aggregate its data cannot identify its concentrations. The inherited risk register becomes a psychological coping mechanism for institutions whose data architecture is too primitive to support genuine risk discovery.</p>
+
+    <h3>Unidentified versus ignored: two different diseases</h3>
+
+    <p>It matters a great deal whether a failure occurred because a risk was genuinely unidentified or because it was identified and ignored. The medicine for each is completely different.</p>
+
+    <p>Credit Suisse's $5.5 billion Archegos loss in 2021 is frequently cited as a risk identification failure. It was not. The Paul, Weiss independent report was categorical: the risks were identified and conspicuous.<a class="footnote-ref" href="#fn-9" id="ref-9">[9]</a> The systems showed extreme single-issuer concentrations. The top five issuers represented three to seven days of total market trading volume. The identification phase worked. What failed was management's willingness to act on it &mdash; a culture of success bias and relationship override that allowed a profitable client to operate outside normal risk parameters.</p>
+
+    <p>SVB is the opposite case. The interaction between its duration-heavy securities portfolio and its concentrated, uninsured, digitally-connected deposit base was never conceptualised as a risk scenario. No one modelled what happens when mark-to-market losses trigger a Twitter-fuelled run by a homogeneous depositor base with the ability to move billions in hours. The risk was not on the register because the identification process never asked the right questions.</p>
+
+    <p>Greensill Capital represents a third variant: risk hidden behind product complexity. Partner banks assessed Greensill's supply chain finance exposures as low-risk, short-term trade receivables. Their identification processes never pierced the structure to discover the underlying reality &mdash; unsecured, long-term working capital to concentrated, risky entities, masked by securitisation vehicles and trade credit insurance wrappers.<a class="footnote-ref" href="#fn-10" id="ref-10">[10]</a> When the insurance was withdrawn, the true credit risk materialised instantly.</p>
+
+    <p>Three failures. Three different identification breakdowns: a missing transmission channel, a cultural override of known information, and a complexity veil that was never penetrated. A static, inherited risk register would have caught none of them.</p>
+
+    <h2>What Good Looks Like</h2>
+
+    <p>If identification is to function as a genuine discovery discipline rather than an administrative exercise, three structural changes are required.</p>
+
+    <p><strong>First, decouple identification from assessment procedurally.</strong> This is the single most important change. When you sit down to facilitate a risk identification workshop, participants must be forbidden from discussing probability, impact, or velocity. The moment someone says "that's a low-likelihood event," discovery stops. The cognitive mode shifts from divergent exploration to convergent analysis. The sole output of the identification session is a comprehensive inventory of vulnerabilities &mdash; including the implausible, the uncomfortable, and the novel. Assessment comes later, in a separate session, with separate tools.</p>
+
+    <p><strong>Second, mandate periodic blank-slate discovery.</strong> The Fed's SR 15-18 requires firms subject to Category I standards to evaluate their material risks at least quarterly &mdash; not merely re-assess existing scores, but actively re-identify.<a class="footnote-ref" href="#fn-3" id="ref-3b">[3]</a> At least annually, business leaders should be asked to articulate the risks inherent in their current operations from a blank page. No inherited register. No anchoring. Instead, prompt them with forward-looking questions: What new third parties are we dependent on that we were not a year ago? What macroeconomic assumption is our current profitability entirely dependent upon? What happens if it breaks? The EON methodology's dual-track identification process &mdash; top-down SWIFT workshops combined with bottom-up specialist sub-processes, followed by mandatory reconciliation &mdash; is built specifically for this purpose.</p>
+
+    <p><strong>Third, use reverse stress testing as an identification tool.</strong> Traditional scenario analysis tests known risks against hypothetical shocks. Reverse stress testing starts from the outcome &mdash; institutional failure or severe capital depletion &mdash; and works backward to discover what chain of events could cause it. This forces the institution to find hidden correlations, networked vulnerabilities, and undocumented transmission channels that a forward-looking exercise would never surface. SVB's failure mode would have been discoverable through a well-designed reverse stress test.</p>
+
+    <h2>What To Do Monday Morning</h2>
+
+    <ol>
+      <li><strong>Pull out your risk register and ask one question: when was the last time a genuinely new risk was added?</strong> Not a re-categorised version of an existing risk. Not a score change. A new risk that was not on the register a year ago. If you cannot point to one, you do not have an identification process. You have a maintenance process.</li>
+      <li><strong>Run your next risk workshop with assessment banned.</strong> No likelihood scores, no impact matrices, no heatmap colours. Spend the full session listing everything that could go wrong, including scenarios that feel implausible. Write every one down. Assess them in a separate session the following week.</li>
+      <li><strong>Commission a single reverse stress test.</strong> Pick one outcome &mdash; say, a 40% drawdown in CET1 capital within 90 days &mdash; and ask a small team to work backward from there. What combination of events could cause it? What are the transmission channels? Compare the risks they surface against your current register. The gaps will tell you where your identification process is blind.</li>
+      <li><strong>Check your data architecture against the register.</strong> For every material risk on your register, ask: could we aggregate our total exposure to this risk across all business lines within 24 hours? If the answer is no, you have a BCBS 239 problem that is masking an identification problem.</li>
+      <li><strong>Ask your front line who owns risk identification.</strong> If the answer is "the risk function," you have a structural gap. The OCC's Heightened Standards exist precisely because front-line units must own the identification of risks they generate. If your first line thinks this is someone else's job, the risks they create will never make it onto the register.</li>
+    </ol>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">FDIC, "Three Financial Crises and Lessons for the Future" (2025). <a href="https://www.fdic.gov/news/speeches/2025/three-financial-crises-and-lessons-future" target="_blank" rel="noopener">fdic.gov</a></li>
+      <li id="fn-2">ISO 31000:2018, Risk Management &mdash; Guidelines, Clauses 6.4.2&ndash;6.4.4. See also PECB white paper: <a href="https://pecb.com/en/whitepaper/iso-310002018-risk-management-guidelines" target="_blank" rel="noopener">pecb.com</a></li>
+      <li id="fn-3">European Central Bank Banking Supervision, "Aggregated results of the 2024 SREP" (2024). <a href="https://www.bankingsupervision.europa.eu/activities/srep/2024/html/ssm.srep202412_aggregatedresults2024.en.html" target="_blank" rel="noopener">bankingsupervision.europa.eu</a></li>
+      <li id="fn-4">European Central Bank Banking Supervision, "Aggregated results of the 2025 SREP" (2025). <a href="https://www.bankingsupervision.europa.eu/activities/srep/2025/html/ssm.srep202511_aggregatedresults2025.en.html" target="_blank" rel="noopener">bankingsupervision.europa.eu</a></li>
+      <li id="fn-5">Bank of England PRA, CP10/25 &mdash; "Enhancing banks' and insurers' approaches to managing climate-related risks" (2025). <a href="https://www.bankofengland.co.uk/prudential-regulation/publication/2025/april/enhancing-banks-and-insurers-approaches-to-managing-climate-related-risks-consultation-paper" target="_blank" rel="noopener">bankofengland.co.uk</a></li>
+      <li id="fn-6">OCC, Cease and Desist Order against Capital One, EA 2020-037 (2020). <a href="https://www.occ.gov/static/enforcement-actions/ea2020-037.pdf" target="_blank" rel="noopener">occ.gov</a></li>
+      <li id="fn-7">Basel Committee on Banking Supervision, "Principles for effective risk data aggregation and risk reporting" (BCBS 239), BIS (2013). <a href="https://www.bis.org/publ/bcbs_nl36.htm" target="_blank" rel="noopener">bis.org</a></li>
+      <li id="fn-8">BIS, "Progress in adopting the Principles for effective risk data aggregation and risk reporting" (February 2024). See Deloitte analysis: <a href="https://www.deloitte.com/us/en/services/consulting/blogs/bis-assessment-bcbs-239-principle-compliance.html" target="_blank" rel="noopener">deloitte.com</a></li>
+      <li id="fn-9">Paul, Weiss, Rifkind, Wharton &amp; Garrison LLP, Independent Report on Archegos Capital Management, filed with the SEC (2021). <a href="https://www.sec.gov/Archives/edgar/data/1159510/000137036821000064/a210729-ex992.htm" target="_blank" rel="noopener">sec.gov</a></li>
+      <li id="fn-10">MDPI Systems, "Operational Risk Assessment of Commercial Banks' Supply Chain Finance" (2025). <a href="https://www.mdpi.com/2079-8954/13/2/76" target="_blank" rel="noopener">mdpi.com</a></li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>How does your process measure up?</h3>
+      <p>Take the free 10-minute self-assessment to find your gaps, then download the toolkit to close them.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../assessment.html" class="btn btn-primary">Score Your Process <span class="btn-icon">&rarr;</span></a>
+        <a href="../toolkit.html" class="btn btn-outline">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

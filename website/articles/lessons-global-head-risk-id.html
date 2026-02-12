@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Was Global Head of Risk Identification &mdash; Here's What I Learned &mdash; EON Risk Services</title>
+  <meta name="description" content="What it's actually like to build a risk identification function from scratch at a global bank. The silence, the politics, the copy-paste registers, and the lessons.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon-180.png">
+  <style>
+    .article-header { padding: 80px 0 48px; background: var(--navy); color: var(--white); margin-top: var(--nav-height); }
+    .article-header .eyebrow { color: var(--gold-light); }
+    .article-header h1 { color: var(--white); font-size: 2.25rem; max-width: 800px; }
+    .article-header .lead { color: rgba(255,255,255,0.7); max-width: 640px; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-top: 24px; font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .article-meta__divider { width: 1px; height: 16px; background: rgba(255,255,255,0.2); }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+    .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--navy); margin: 32px 0 12px; }
+    .article-body p { color: var(--text); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
+    .article-body blockquote {
+      border-left: 3px solid var(--gold);
+      margin: 32px 0;
+      padding: 16px 24px;
+      background: var(--offwhite);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .article-body blockquote p { color: var(--text-light); font-style: italic; margin-bottom: 0; }
+    .article-body ol, .article-body ul { margin: 0 0 20px 24px; color: var(--text); line-height: 1.8; font-size: 1.05rem; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--navy); }
+    .article-body .footnote-ref { font-size: 0.75rem; vertical-align: super; color: var(--teal); text-decoration: none; font-weight: 600; }
+    .article-body .footnote-ref:hover { text-decoration: underline; }
+
+    .article-footnotes { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; border-top: 1px solid var(--border-light); padding-top: 32px; }
+    .article-footnotes h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .article-footnotes ol { margin-left: 20px; font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .article-footnotes li { margin-bottom: 8px; }
+    .article-footnotes a { color: var(--teal); word-break: break-all; }
+
+    .article-cta { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; text-align: center; }
+    .article-cta__box {
+      background: var(--offwhite);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .article-cta__box h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 12px; }
+    .article-cta__box p { color: var(--text-light); margin-bottom: 24px; }
+
+    .article-nav { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-nav__back { font-size: 0.9rem; font-weight: 600; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <img src="../img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="../about.html" class="nav__link">About</a>
+        <a href="../methodology.html" class="nav__link">Methodology</a>
+        <a href="../toolkit.html" class="nav__link">Toolkit</a>
+        <a href="../consulting.html" class="nav__link">Consulting</a>
+        <a href="../insights.html" class="nav__link nav__link--active">Insights</a>
+        <a href="../contact.html" class="nav__link">Contact</a>
+        <a href="../assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <p class="eyebrow">Case Study</p>
+      <h1>I Was Global Head of Risk Identification &mdash; Here's What I Learned</h1>
+      <p class="lead">What it's actually like to build a risk identification function from scratch at a global bank. The wins, the resistance, and the lessons no textbook covers.</p>
+      <div class="article-meta">
+        <span>Rory Roberts, FRM</span>
+        <div class="article-meta__divider"></div>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <h2>The Silence</h2>
+
+    <p>In 2016, I was appointed Global Head of Risk Identification at a European G-SIB. A trillion-dollar balance sheet. Operations in more than fifty countries. Supervised by regulators on three continents. On my first day, I asked what I thought was a straightforward question: <em>how does this institution currently identify its risks?</em></p>
+
+    <p>The answer was silence.</p>
+
+    <p>Not hostile silence. Confused silence. The kind that suggests the question itself doesn't make sense. After a long pause, someone mentioned the ICAAP. Someone else mentioned operational risk event reporting. A third person brought up model risk governance. All of these were real processes, and none of them answered the question.</p>
+
+    <p>The institution had systems for measuring risks, reporting risks, and managing risks. What it did not have was a process for <strong>identifying</strong> them. No documented methodology. No structured approach. No way to answer the question that every regulator eventually asks: <em>how do you know this is the right list?</em></p>
+
+    <p>That silence told me everything I needed to know about the job ahead.</p>
+
+    <h2>The First Thing That Broke</h2>
+
+    <p>Before you can identify risks, you have to agree on what they're called. This sounds trivial. It is not.</p>
+
+    <p>In my first month, I convened a meeting to reconcile the risk registers across business units. What I expected was a straightforward alignment exercise. What I got was a two-hour argument about vocabulary. Treasury called it "funding liquidity risk." Corporate Banking called it "refinancing risk." The Markets division called it "rollover risk." They were describing the same exposure &mdash; the risk that the bank couldn't renew its short-term funding &mdash; but because they used different language, they managed it in different ways, reported it to different committees, and assessed it against different thresholds.</p>
+
+    <p>Building a common risk taxonomy was the first operational priority. Not because it was the most intellectually interesting problem &mdash; it wasn't &mdash; but because nothing else works without it. You cannot reconcile what you cannot compare. You cannot aggregate what you cannot name consistently.<a class="footnote-ref" href="#fn-1" id="ref-1">[1]</a></p>
+
+    <h2>The Workshop That Failed</h2>
+
+    <p>My first risk identification workshop, in late 2016, followed a pattern I'd later recognise as universal.</p>
+
+    <p>I had prepared carefully. I'd studied SWIFT and Delphi.<a class="footnote-ref" href="#fn-2" id="ref-2">[2]</a> I'd designed a structured agenda, sent pre-reading materials two weeks in advance, booked a room with whiteboards and flip charts. I arrived confident that the session would produce a rigorous, comprehensive list of material risks.</p>
+
+    <p>It did not.</p>
+
+    <p>What it produced was a list of risks the participants were already comfortable discussing. Credit risk. Market risk. Operational risk. Liquidity risk. The categories were familiar. The descriptions were generic. The conversation was polite, structured, and shallow.</p>
+
+    <p>No one mentioned business model risk. No one mentioned strategic risk. No one mentioned counterparty concentration in prime brokerage. No one mentioned the risk that the institution's funded pension schemes might become materially underfunded. These were not hypothetical risks. They were real, they were material, and within five years, several of them would crystallise with severe consequences.</p>
+
+    <p>But they weren't identified in that workshop. Because the format &mdash; despite being based on a recognised technique &mdash; did not overcome the political, cultural, and cognitive barriers that prevent uncomfortable risks from being named.</p>
+
+    <p>I walked out knowing the entire approach had to be redesigned. The methodology that eventually worked &mdash; structured techniques, independent pre-workshop assessments, straw man seeding, rotating facilitation &mdash; was built from that failure. Not from a textbook. From a room full of senior bankers who spent two hours telling me what I already knew.</p>
+
+    <h2>Two Printouts and a Question No One Could Answer</h2>
+
+    <p>In early 2017, I sat in a conference room with two printouts on the table. One was the top-down material risk inventory &mdash; approximately twenty risks identified through workshops with senior management. The other was the consolidated bottom-up register &mdash; nearly two hundred risks submitted by business units, functions, and legal entities across the group.</p>
+
+    <p>My task was to reconcile them.</p>
+
+    <p>What I found was not alignment. It was incoherence. Of the twenty top-down material risks, twelve had no corresponding entry in the bottom-up register. Of the nearly two hundred bottom-up risks, forty-seven weren't covered by any top-down category. And when I tried to map the remainder, I found different definitions, different rating scales, different ownership structures, and different control frameworks for what were, in substance, the same exposures.</p>
+
+    <p>I asked the question that reconciliation is designed to answer: <strong>who owns this risk?</strong></p>
+
+    <p>No one.</p>
+
+    <p>This is where most banks' risk identification processes die. They do top-down <em>or</em> bottom-up. Almost none iterate between the two. And the gap between those two lists &mdash; the risks that exist in one view but not the other &mdash; is precisely where the failures hide.<a class="footnote-ref" href="#fn-3" id="ref-3">[3]</a></p>
+
+    <p>Four years later, in March 2021, the collapse of Archegos Capital Management would cost Credit Suisse $5.5 billion.<a class="footnote-ref" href="#fn-4" id="ref-4">[4]</a> The risk that materialised was precisely the kind of cross-counterparty, cross-product concentration that reconciliation is designed to surface. A single client had built leveraged equity derivative positions across multiple prime brokerage desks. Each desk monitored its own exposure. No one was monitoring the aggregate. It was a bottom-up risk invisible from the top, and a top-down risk invisible from the bottom.</p>
+
+    <h2>The Copy-Paste Register and the Colour-Coded Spreadsheet</h2>
+
+    <p>Several months into the role, I received the first round of bottom-up risk assessments from the business units. The templates had been designed carefully. The deadlines had been set with input from the first line. The submissions came in on time.</p>
+
+    <p>I opened the first one &mdash; a major trading division &mdash; and compared it against the prior year's submission.</p>
+
+    <p>It was identical. Not similar. <strong>Identical.</strong> Same risks. Same descriptions. Same ratings. The only thing that had changed was the date.</p>
+
+    <p>Of the twelve submissions I reviewed that day, nine were either unchanged from the prior year or contained only cosmetic updates. This is what compliance theatre looks like in risk identification. The process runs. The templates get filled. The deadlines get met. And the output tells the institution nothing it didn't already know &mdash; because no one is actually asking what has changed.<a class="footnote-ref" href="#fn-5" id="ref-5">[5]</a></p>
+
+    <p>Years later, when I arrived at a second institution &mdash; a UK-regulated international banking group &mdash; I found the inverse problem. The reconciliation documentation from the prior cycle was a merged spreadsheet with colour-coding but no analysis. Risks from the top-down list were highlighted in blue. Bottom-up in green. Both in yellow. There was no narrative explaining what the colours meant. No analysis of why twelve top-down risks had no bottom-up owner. No record of whether anyone had investigated the gaps.</p>
+
+    <p>The spreadsheet wasn't documentation. It was evidence that someone had completed a task.</p>
+
+    <h2>What the Politics Actually Look Like</h2>
+
+    <p>Let me be direct about something no textbook will tell you.</p>
+
+    <p>Standards will not tell you how to run a workshop with twenty senior bankers who do not want to be there. They will not tell you what to do when a business unit head tells you, in front of the Chief Risk Officer, that the risk you've identified doesn't exist. They will not tell you how to explain to a board member why risk identification cannot be reduced to a dashboard with three traffic lights.</p>
+
+    <p>I learned this through practice. No course prepared me for the moment when a business unit head told me, in front of twelve colleagues, that a risk I'd identified was not real. The risk was documented in the operational loss database. It had materialised twice in the prior three years. The issue wasn't technical. The issue was that naming the risk implied controls had failed, which implied someone was accountable, which made the conversation uncomfortable.</p>
+
+    <p>I didn't argue. I asked a question: <em>"If this risk doesn't exist, how do we explain the three events in the loss database that correspond exactly to the scenario I described?"</em></p>
+
+    <p>Pause. Someone else offered: "Those were operational errors, not risks."</p>
+
+    <p>I asked: "What's the difference?"</p>
+
+    <p>No one answered. The risk stayed in the inventory.</p>
+
+    <p>Risk identification is as much a political exercise as a technical one. The most important risks are often the ones the institution doesn't want to hear. If your process isn't designed to surface those risks &mdash; and your governance structures aren't designed to protect the people who name them &mdash; then you don't have a risk identification process. You have a confirmation exercise.</p>
+
+    <h2>What I'd Do Differently &mdash; and What You Can Do Monday Morning</h2>
+
+    <p>After building this process twice and studying 179 bank failures,<a class="footnote-ref" href="#fn-6" id="ref-6">[6]</a> here's what I know:</p>
+
+    <ol>
+      <li><strong>Start with the taxonomy.</strong> Before you identify a single risk, get every business unit in a room and agree on what the risk categories are called. This will be the most tedious and most important meeting you run all year. If you skip it, every downstream process &mdash; workshops, reconciliation, reporting &mdash; will produce noise instead of signal.</li>
+      <li><strong>Collect independent assessments before every workshop.</strong> Ask each participant to submit their top five risks before the session. Anonymise them. Present them as the starting point. This breaks groupthink and creates permission to name the uncomfortable risks. The straw man seeding technique alone transformed the quality of my workshops more than any other single change.</li>
+      <li><strong>Reconcile top-down and bottom-up every single cycle.</strong> Put the two lists side by side. Find the gaps. Investigate every one. The risks that appear in only one list are the risks most likely to materialise unmanaged. If you're only doing top-down or only doing bottom-up, you have half a process.</li>
+      <li><strong>Return bad submissions.</strong> When a business unit sends you the same risk register as last year with a new date, send it back with questions. Not corrections &mdash; questions. "Has nothing changed in your risk environment in twelve months? If so, explain why." The quality of bottom-up identification improves dramatically once people understand that copy-paste will be challenged.</li>
+      <li><strong>Build for the regulator you'll meet in three years, not the one you met last year.</strong> Every regulator I've worked with &mdash; PRA, FINMA, the Fed &mdash; eventually asks the same question: <em>walk me through your risk identification methodology.</em> If you can answer that question with a documented, repeatable process, the rest of the conversation is manageable. If you can't, nothing else matters.</li>
+    </ol>
+
+    <h2>The Hard Truth</h2>
+
+    <p>Building the process is the easy part.</p>
+
+    <p>Sustaining it &mdash; protecting it from commercial pressure, from political interference, from the institutional tendency to hear only the risks it's comfortable hearing &mdash; that's the hard part. And that's the part no methodology can solve on its own. It requires governance structures that protect the process from the business. It requires a CRO who will defend uncomfortable findings. It requires a board that wants to hear bad news before the regulator delivers it.</p>
+
+    <p>The methodology I've spent twenty years building works. But it works only when the institution allows it to work. I've seen what happens when it doesn't. I was pricing mortgage-backed securities at a German mortgage bank in 2007 when the world discovered what poor risk identification looks like.<a class="footnote-ref" href="#fn-7" id="ref-7">[7]</a> I've studied 179 cases of banks that failed for the same reason.</p>
+
+    <p>The risk was always there. Someone usually knew. The question is whether the institution had a process that forced them to say it out loud &mdash; and a governance structure that forced someone to listen.</p>
+
+  </article>
+
+  <!-- Footnotes -->
+  <section class="article-footnotes">
+    <h3>Sources &amp; References</h3>
+    <ol>
+      <li id="fn-1">ISO 31000:2018, <em>Risk Management &mdash; Guidelines</em>, Section 6.4.2 on establishing context and common risk criteria before identification begins.</li>
+      <li id="fn-2">ISO 31010:2019, <em>Risk Assessment Techniques</em>. SWIFT (Structured What-If Technique) is described in Annex B.8; Delphi Method in Annex B.5.</li>
+      <li id="fn-3">BCBS, <em>Principles for Sound Management of Operational Risk</em> (2011, revised 2021), Principle 7: requires banks to identify and assess operational risk inherent in all material products, activities, processes, and systems through both top-down and bottom-up approaches.</li>
+      <li id="fn-4">Credit Suisse Group Special Committee of the Board of Directors, <em>Report on Archegos Capital Management</em>, July 2021. Total losses of $5.5 billion attributed to failures in risk identification, escalation, and governance override.</li>
+      <li id="fn-5">Federal Reserve Board, SR 15-18, <em>Federal Reserve Supervisory Assessment of Capital Planning and Positions for LISCC Firms and Large and Complex Firms</em>. Requires quarterly risk re-identification &mdash; not merely re-assessment of existing risks &mdash; as part of ongoing capital adequacy processes.</li>
+      <li id="fn-6">The Industry Loss Database referenced throughout is a proprietary dataset of 179 major bank failures from the 1970s to present, representing approximately $2.3 trillion in aggregate losses across 30+ countries. Available in the free EON Risk Services toolkit.</li>
+      <li id="fn-7">Hypo Real Estate required a &euro;102 billion German government guarantee in 2008 and was nationalised in 2009. The proximate cause was a liquidity crisis; the underlying cause was concentration in acquired risks the institution could not adequately model or fund.</li>
+    </ol>
+  </section>
+
+  <!-- CTA -->
+  <section class="article-cta">
+    <div class="article-cta__box">
+      <h3>Need help building this?</h3>
+      <p>The free toolkit gives you the methodology, templates, and AI prompts. If you need someone who has built this at the enterprise level &mdash; and knows where the political landmines are &mdash; let's talk.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="../consulting.html" class="btn btn-primary">Talk to Us <span class="btn-icon">&rarr;</span></a>
+        <a href="../toolkit.html" class="btn btn-outline">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Insights -->
+  <section class="article-nav">
+    <a href="../insights.html" class="article-nav__back">&larr; Back to all insights</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="../about.html" class="footer__link">About</a>
+          <a href="../methodology.html" class="footer__link">Methodology</a>
+          <a href="../toolkit.html" class="footer__link">Toolkit</a>
+          <a href="../consulting.html" class="footer__link">Consulting</a>
+          <a href="../insights.html" class="footer__link">Insights</a>
+          <a href="../contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../privacy.html" class="footer__link">Privacy</a>
+          <a href="../terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
