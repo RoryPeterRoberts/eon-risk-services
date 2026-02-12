@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementation Playbook — How to Build and Run Risk Identification | EON Risk Services</title>
+  <meta name="description" content="Step-by-step operational playbooks for implementing risk identification from scratch, running the annual cycle, and executing quarterly re-identification. Team sizes, timelines, deliverables.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  <style>
+    /* Playbook-specific styles */
+    .playbook-nav { background: var(--white); border-bottom: 1px solid var(--border-light); padding: 16px 0; position: sticky; top: var(--nav-height); z-index: 100; }
+    .playbook-nav__inner { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .playbook-nav__label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-right: 8px; }
+    .playbook-nav__link { padding: 8px 16px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; color: var(--text-light); border: 1px solid var(--border); transition: all var(--transition); }
+    .playbook-nav__link:hover { border-color: var(--teal); color: var(--teal); }
+    .playbook-nav__link--active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+    .playbook-nav__link--active:hover { color: var(--white); }
+
+    .playbook-section { scroll-margin-top: calc(var(--nav-height) + 60px); }
+
+    .plan-header { padding: 64px 0 48px; border-bottom: 3px solid var(--gold); margin-bottom: 48px; }
+    .plan-header__eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+    .plan-header__title { font-family: var(--font-heading); font-size: 2rem; color: var(--navy); margin-bottom: 12px; }
+    .plan-header__desc { color: var(--text-light); font-size: 1.05rem; max-width: 700px; }
+
+    .plan-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px; }
+    .plan-meta__item { text-align: center; padding: 24px 16px; background: var(--offwhite); border-radius: var(--radius-lg); }
+    .plan-meta__value { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--navy); }
+    .plan-meta__label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+    .team-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+    .team-table th { text-align: left; padding: 12px 16px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); border-bottom: 2px solid var(--navy); }
+    .team-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-light); font-size: 0.95rem; vertical-align: top; }
+    .team-table td:first-child { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    .team-table tr:last-child td { border-bottom: none; }
+
+    .phase-block { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-light); }
+    .phase-block:last-child { border-bottom: none; }
+    .phase-block__header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .phase-block__num { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); color: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; flex-shrink: 0; }
+    .phase-block__title { font-family: var(--font-heading); font-size: 1.35rem; color: var(--navy); }
+    .phase-block__timing { font-size: 0.85rem; color: var(--teal); font-weight: 600; }
+    .phase-block__desc { color: var(--text-light); margin-bottom: 24px; max-width: 700px; }
+
+    .task-list { list-style: none; margin-bottom: 24px; }
+    .task-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-light); font-size: 0.95rem; }
+    .task-list li:last-child { border-bottom: none; }
+    .task-list__check { flex-shrink: 0; width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 4px; margin-top: 1px; }
+    .task-list__text { flex: 1; color: var(--text); }
+    .task-list__ref { flex-shrink: 0; font-size: 0.8rem; font-weight: 600; color: var(--teal); background: var(--teal-light); padding: 2px 10px; border-radius: 100px; white-space: nowrap; }
+
+    .deliverable-box { background: var(--offwhite); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 24px; margin-top: 16px; }
+    .deliverable-box__title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); margin-bottom: 12px; }
+    .deliverable-box ul { list-style: none; }
+    .deliverable-box li { padding: 4px 0; padding-left: 20px; position: relative; font-size: 0.9rem; color: var(--text-light); }
+    .deliverable-box li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    .gate-box { background: var(--navy); color: var(--white); border-radius: var(--radius-lg); padding: 24px 32px; margin: 32px 0; display: flex; align-items: center; gap: 20px; }
+    .gate-box__icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; }
+    .gate-box__text { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+    .gate-box__text strong { color: var(--gold-light); }
+
+    .tip-box { background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 20px; margin: 16px 0; font-size: 0.9rem; color: var(--text); }
+    .tip-box strong { color: var(--teal-dark); }
+
+    .week-label { display: inline-block; font-size: 0.75rem; font-weight: 700; color: var(--white); background: var(--teal); padding: 2px 10px; border-radius: 100px; margin-right: 8px; }
+
+    @media (max-width: 768px) {
+      .plan-meta { grid-template-columns: repeat(2, 1fr); }
+      .phase-block__header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .gate-box { flex-direction: column; text-align: center; }
+      .task-list li { flex-direction: column; gap: 4px; }
+      .task-list__ref { align-self: flex-start; }
+      .team-table { font-size: 0.85rem; }
+      .team-table td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="about.html" class="nav__link">About</a>
+        <a href="methodology.html" class="nav__link">Methodology</a>
+        <a href="toolkit.html" class="nav__link">Toolkit</a>
+        <a href="playbook.html" class="nav__link nav__link--active">Playbook</a>
+        <a href="consulting.html" class="nav__link">Consulting</a>
+        <a href="insights.html" class="nav__link">Insights</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Implementation Playbook</p>
+      <h1>How to Actually Do This</h1>
+      <p class="lead">Three step-by-step operational plans: building risk identification from scratch, running the annual cycle, and executing quarterly re-identification. Week by week, role by role, deliverable by deliverable.</p>
+    </div>
+  </section>
+
+  <!-- Sticky Nav -->
+  <div class="playbook-nav">
+    <div class="container">
+      <div class="playbook-nav__inner">
+        <span class="playbook-nav__label">Jump to:</span>
+        <a href="#first-time" class="playbook-nav__link playbook-nav__link--active" data-target="first-time">First-Time Build</a>
+        <a href="#annual" class="playbook-nav__link" data-target="annual">Annual Cycle</a>
+        <a href="#quarterly" class="playbook-nav__link" data-target="quarterly">Quarterly Refresh</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PLAN 1: FIRST-TIME IMPLEMENTATION
+       ============================================================ -->
+  <section class="section section--white playbook-section" id="first-time">
+    <div class="container">
+
+      <div class="plan-header">
+        <p class="plan-header__eyebrow" style="color: var(--teal);">Plan 1 of 3</p>
+        <h2 class="plan-header__title">First-Time Implementation</h2>
+        <p class="plan-header__desc">You've been appointed to build a bank-wide risk identification process where none exists (or where the current process is a compliance exercise that satisfies nobody). This is the project plan.</p>
+      </div>
+
+      <!-- Meta stats -->
+      <div class="plan-meta">
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">30</div>
+          <div class="plan-meta__label">Weeks end-to-end</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">2-3</div>
+          <div class="plan-meta__label">Full-time staff</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">6-10</div>
+          <div class="plan-meta__label">Part-time BU coordinators</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">6</div>
+          <div class="plan-meta__label">Phases with decision gates</div>
+        </div>
+      </div>
+
+      <!-- Team Structure -->
+      <h3>Team Structure</h3>
+      <p style="color: var(--text-light); margin-bottom: 24px;">You don't need a large team. You need a small, senior team with direct access to the CRO and authority to convene business unit heads.</p>
+
+      <table class="team-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Commitment</th>
+            <th>Who</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Executive Sponsor</td>
+            <td>2-3 hrs/week</td>
+            <td>CRO or Deputy CRO</td>
+            <td>Removes blockers, signs off on methodology decisions, presents to Board</td>
+          </tr>
+          <tr>
+            <td>Risk Identification Lead</td>
+            <td>Full-time</td>
+            <td>New hire or senior internal appointment</td>
+            <td>Owns the process end-to-end. Designs, builds, facilitates, reports</td>
+          </tr>
+          <tr>
+            <td>Methodology Analyst</td>
+            <td>Full-time (Weeks 1-20)</td>
+            <td>From risk analytics or 2nd line</td>
+            <td>Taxonomy design, scoring calibration, data analysis, template building</td>
+          </tr>
+          <tr>
+            <td>BU Risk Coordinators</td>
+            <td>1-2 days/week during active phase</td>
+            <td>One per major business unit (6-10 people)</td>
+            <td>Complete bottom-up templates, attend workshops, own BU-level risk content</td>
+          </tr>
+          <tr>
+            <td>Regulatory Liaison</td>
+            <td>1 day/week</td>
+            <td>From compliance or regulatory affairs</td>
+            <td>Regulatory mapping, traceability, ensures alignment with supervisory expectations</td>
+          </tr>
+          <tr>
+            <td>GRC / Data Support</td>
+            <td>2 days/week</td>
+            <td>From risk technology or operational risk</td>
+            <td>Tooling, data extraction, GRC platform configuration (if applicable)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>Practical note:</strong> At a mid-tier bank (assets under $50B / &pound;40B), the Risk Identification Lead often doubles as the Methodology Analyst. At a G-SIB, these are separate roles. The BU Risk Coordinators are not new hires &mdash; they're existing risk managers in each business unit who take on this responsibility as part of the annual cycle.
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">1</div>
+          <div>
+            <div class="phase-block__title">Foundation Setting</div>
+            <div class="phase-block__timing">Weeks 1-6</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">Before you identify a single risk, you need the architecture: governance mandate, taxonomy, regulatory mapping, risk criteria, and context assessment. Skip this and everything downstream is built on sand.</p>
+
+        <h4><span class="week-label">Weeks 1-2</span> Governance and Mandate</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Draft the Risk Identification Policy (scope, roles, frequency, reporting lines)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Secure CRO sign-off and Board Risk Committee awareness paper</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Define the RACI: who owns identification, who contributes, who approves, who audits</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Identify BU Risk Coordinators and brief them on their role</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Agree on the annual calendar (when each phase runs, tied to ICAAP/ILAAP/Board cycle)</div></li>
+        </ul>
+
+        <h4><span class="week-label">Weeks 3-4</span> Risk Taxonomy and Regulatory Mapping</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the three-level taxonomy (L1 categories, L2 sub-categories, L3 granular risks)</div><span class="task-list__ref">Tab 1</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Map taxonomy to regulatory categories across all relevant jurisdictions</div><span class="task-list__ref">Tab 2</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Cross-reference against industry loss databases (ORX, SAS OpRisk, internal loss data)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Validate taxonomy with CRO and business unit heads (circulate for comment)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Map COSO objectives to each L1/L2 category</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 5</span> External and Internal Context</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Conduct PESTLE analysis (Political, Economic, Social, Technological, Legal, Environmental)</div><span class="task-list__ref">Tab 3</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Assess internal environment across the seven COSO ERM elements</div><span class="task-list__ref">Tab 4</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Review recent regulatory examination findings and internal audit reports</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Compile a "straw man" risk list (initial universe seeded from taxonomy + context + loss data)</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 6</span> Risk Criteria and Scoring Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Define five-level impact scales: Financial, Regulatory, Reputational, Customer/Operational</div><span class="task-list__ref">Tab 5</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Define likelihood scale (1-5) anchored to frequency or probability</div><span class="task-list__ref">Tab 5</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Define vulnerability and speed-of-onset scales</div><span class="task-list__ref">Tab 5</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Calibrate CET1 impact anchors (institution-specific)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Get CRO sign-off on scoring methodology</div></li>
+        </ul>
+
+        <div class="deliverable-box">
+          <div class="deliverable-box__title">Phase 1 Deliverables</div>
+          <ul>
+            <li>Approved Risk Identification Policy document</li>
+            <li>Three-level risk taxonomy with regulatory mapping (Tabs 1-2)</li>
+            <li>PESTLE and internal environment assessments (Tabs 3-4)</li>
+            <li>Calibrated risk criteria and scoring methodology (Tab 5)</li>
+            <li>Straw man risk list for workshop seeding</li>
+            <li>Annual calendar agreed with CRO</li>
+          </ul>
+        </div>
+
+        <div class="gate-box">
+          <div class="gate-box__icon">G</div>
+          <div class="gate-box__text"><strong>Decision Gate 1:</strong> CRO reviews foundation outputs and confirms the taxonomy, criteria, and scoring methodology before proceeding to process design. If the taxonomy doesn't fit the institution's business model, everything downstream will need rework.</div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">2</div>
+          <div>
+            <div class="phase-block__title">Process Design</div>
+            <div class="phase-block__timing">Weeks 7-10</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">Design the mechanics of how identification will actually work: the workshop format, the bottom-up template, the reconciliation process, and the assessment workflow.</p>
+
+        <h4><span class="week-label">Week 7</span> Top-Down Workshop Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the SWIFT workshop structure (opening, independent review, systematic walk-through, prioritisation, emerging risks, close)</div><span class="task-list__ref">Tab 6</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Build the SWIFT Prompt Matrix with institution-specific guide words per L1 category</div><span class="task-list__ref">Tab 7</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Draft the participant list (CRO, business unit heads, CFO, COO, Head of Compliance, CTO)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the pre-workshop independent assessment form</div><span class="task-list__ref">Tab 9</span></li>
+        </ul>
+
+        <h4><span class="week-label">Week 8</span> Bottom-Up Template Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Finalise the standardised 11-field bottom-up template</div><span class="task-list__ref">Tab 8</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Add worked examples (2-3 per template) so BU coordinators understand the expected quality</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Map the 10 specialist sub-processes (RCSA, Conduct, Cyber, AML, Third-Party, Model Risk, etc.) and identify who feeds each</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Create a submission timeline and quality checklist for BU coordinators</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 9</span> Reconciliation and Assessment Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the reconciliation process: how top-down and bottom-up outputs are compared</div><span class="task-list__ref">Tab 10</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Define gap types (blind spot, scope gap, assessment gap) and resolution process</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the four-dimensional scoring worksheet with formulas</div><span class="task-list__ref">Tab 11</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the risk interaction matrix structure</div><span class="task-list__ref">Tab 12</span></li>
+        </ul>
+
+        <h4><span class="week-label">Week 10</span> Documentation and Reporting Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the 14-field risk inventory record</div><span class="task-list__ref">Tab 15</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the one-page risk profile template</div><span class="task-list__ref">Tab 16</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the principal risk report format for the Board Risk Committee</div><span class="task-list__ref">Tab 18</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Document the entire end-to-end process in a methodology document (for audit trail and training)</div></li>
+        </ul>
+
+        <div class="deliverable-box">
+          <div class="deliverable-box__title">Phase 2 Deliverables</div>
+          <ul>
+            <li>Workshop agenda, SWIFT prompt matrix, participant list, and logistics</li>
+            <li>Bottom-up template with worked examples and submission guide</li>
+            <li>Reconciliation process design with gap taxonomy</li>
+            <li>Scoring, interaction, and reporting templates ready for pilot</li>
+            <li>End-to-end methodology document</li>
+          </ul>
+        </div>
+
+        <div class="gate-box">
+          <div class="gate-box__icon">G</div>
+          <div class="gate-box__text"><strong>Decision Gate 2:</strong> CRO and BU Risk Coordinators review the templates and process design. BU coordinators must confirm the bottom-up template is feasible given their data availability. This is where you learn if the process is too ambitious or too light.</div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">3</div>
+          <div>
+            <div class="phase-block__title">Pilot</div>
+            <div class="phase-block__timing">Weeks 11-16</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">Run the full process with one or two business units before rolling out bank-wide. The pilot will expose every assumption that doesn't survive contact with reality.</p>
+
+        <h4><span class="week-label">Weeks 11-12</span> Pilot Bottom-Up</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Select 1-2 pilot business units (choose one complex, one simpler)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Brief pilot BU coordinators on the template and expectations</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Pilot BUs complete bottom-up templates</div><span class="task-list__ref">Tab 8</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Review submissions: are risk definitions clear? Are controls specific? Is data quality assessed honestly?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Document what worked, what confused people, what needs to change</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 13</span> Pilot Workshop</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute pre-workshop independent assessments to pilot participants (7-10 days before)</div><span class="task-list__ref">Tab 9</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run a half-day SWIFT workshop with the pilot group</div><span class="task-list__ref">Tabs 6-7</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Test the facilitation approach: does the SWIFT format generate genuine new risks or just confirm existing ones?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Record workshop outputs and facilitator observations</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 14</span> Pilot Reconciliation</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Compare pilot workshop output (top-down) against pilot BU submissions (bottom-up)</div><span class="task-list__ref">Tab 10</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Identify gaps: risks found top-down but missing bottom-up, and vice versa</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Test the gap resolution process: does it work? How long does it take?</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 15</span> Pilot Scoring and Assessment</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Score pilot risks using four-dimensional methodology</div><span class="task-list__ref">Tab 11</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Test the interaction matrix with pilot risks</div><span class="task-list__ref">Tab 12</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run a bow-tie analysis on one material pilot risk</div><span class="task-list__ref">Tab 13</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Assess scoring calibration: are scores differentiating meaningfully, or is everything clustered at 3?</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 16</span> Pilot Review and Refinement</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Conduct lessons-learned session with all pilot participants</div><span class="task-list__ref">Tab 29</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Revise templates, scoring criteria, and process flow based on pilot findings</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update methodology document with changes</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Prepare CRO briefing on pilot results and recommended adjustments</div></li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>Don't skip the pilot.</strong> Every institution that has rolled out risk identification without piloting has had to re-do the first cycle. Common pilot discoveries: the bottom-up template has too many fields (or too few), the SWIFT guide words don't map to the institution's business mix, the scoring criteria produce clustered scores that don't differentiate, and the reconciliation process takes three times longer than expected.
+        </div>
+
+        <div class="gate-box">
+          <div class="gate-box__icon">G</div>
+          <div class="gate-box__text"><strong>Decision Gate 3:</strong> CRO reviews pilot results. Key question: does the process produce meaningfully different output from the existing risk register? If it just confirms what everyone already knew, the methodology needs sharpening before full roll-out.</div>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">4</div>
+          <div>
+            <div class="phase-block__title">Full Roll-Out</div>
+            <div class="phase-block__timing">Weeks 17-22</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">Now run the full process across all business units. This is the first complete risk identification cycle.</p>
+
+        <h4><span class="week-label">Week 17</span> Launch</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Brief all BU Risk Coordinators (workshop + written guide + worked examples)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute bottom-up templates to all business units with deadline</div><span class="task-list__ref">Tab 8</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute pre-workshop independent assessments to senior management</div><span class="task-list__ref">Tab 9</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Activate specialist sub-process inputs (RCSA, cyber, conduct, AML, model risk, third-party)</div></li>
+        </ul>
+
+        <h4><span class="week-label">Weeks 18-19</span> Bottom-Up Collection and Quality Review</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">BUs complete and submit bottom-up templates</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Risk ID team reviews each submission for quality (definitions clear? controls specific? data quality honest?)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Challenge sessions with BU coordinators who submit weak content (this will happen)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Collect and integrate specialist sub-process outputs</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 20</span> Top-Down SWIFT Workshop</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute data pack (PESTLE summary, straw man, pre-workshop assessment aggregation)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run full SWIFT workshop (half day with senior management)</div><span class="task-list__ref">Tabs 6-7</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Include Delphi panel for emerging risks (or run as separate session)</div><span class="task-list__ref">Tab 21</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Document all identified risks, prioritisation votes, and emerging risk assessments</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 21</span> Reconciliation</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Map top-down outputs against bottom-up submissions</div><span class="task-list__ref">Tab 10</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Identify and classify all gaps (blind spots, scope gaps, assessment gaps)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run gap resolution meetings with relevant BU heads</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Build the enterprise portfolio view (aggregate exposure across all BUs)</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 22</span> Assessment</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Score all identified risks: inherent (4 dimensions) and residual (with control effectiveness)</div><span class="task-list__ref">Tab 11</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Build the risk interaction matrix (T/A/C relationships between material risks)</div><span class="task-list__ref">Tab 12</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run concentration analysis: single-name, sector, geographic</div><span class="task-list__ref">Tab 14</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Complete bow-tie analysis for the 5-10 most material risks</div><span class="task-list__ref">Tab 13</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Log all disagreements in the disagreement log (do not suppress minority views)</div><span class="task-list__ref">Tab 23</span></li>
+        </ul>
+
+        <div class="gate-box">
+          <div class="gate-box__icon">G</div>
+          <div class="gate-box__text"><strong>Decision Gate 4:</strong> CRO reviews the full risk identification output. Key questions: are there any material risks missing? Does the scoring differentiate meaningfully? Were any gaps escalated that the institution has never discussed before? If the answer to the third question is "no," the reconciliation process may not be working.</div>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">5</div>
+          <div>
+            <div class="phase-block__title">Documentation and Integration</div>
+            <div class="phase-block__timing">Weeks 23-26</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">Turn the identification output into the living documents that connect to capital planning, Board reporting, and regulatory submissions.</p>
+
+        <h4><span class="week-label">Week 23</span> Risk Inventory and Profiles</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Populate the 14-field risk inventory for every identified risk</div><span class="task-list__ref">Tab 15</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Create one-page risk profiles for all material risks (typically 15-25 risks)</div><span class="task-list__ref">Tab 16</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Assign risk owners and confirm they accept ownership</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 24</span> KRIs and Monitoring</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Define 2-3 KRIs per material risk with green/amber/red thresholds</div><span class="task-list__ref">Tab 17</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Map material risks to stress scenarios (ICAAP, ILAAP, CCAR, recovery plan)</div><span class="task-list__ref">Tab 19</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Document assumptions and register them for challenge</div><span class="task-list__ref">Tab 22</span></li>
+        </ul>
+
+        <h4><span class="week-label">Week 25</span> Board Reporting</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Produce the first Principal Risk Report for the Board Risk Committee</div><span class="task-list__ref">Tab 18</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Include: material risks, scores, trends, appetite status, KRI alerts, key changes</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">CRO presents to Board Risk Committee</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 26</span> Regulatory Integration</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Complete the regulatory vs economic risk gap analysis</div><span class="task-list__ref">Tab 20</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Feed material risk list into ICAAP/ILAAP scenario design</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Confirm regulatory traceability (every methodology phase maps to applicable requirements)</div><span class="task-list__ref">Tab 28</span></li>
+        </ul>
+
+        <div class="deliverable-box">
+          <div class="deliverable-box__title">Phase 5 Deliverables</div>
+          <ul>
+            <li>Complete risk inventory with all identified risks (Tab 15)</li>
+            <li>Risk profiles for all material risks (Tab 16)</li>
+            <li>KRI dashboard with live thresholds (Tab 17)</li>
+            <li>First Board Risk Committee report (Tab 18)</li>
+            <li>Stress scenario mapping for ICAAP/ILAAP (Tab 19)</li>
+            <li>Regulatory vs economic gap analysis (Tab 20)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">6</div>
+          <div>
+            <div class="phase-block__title">Embed and Sustain</div>
+            <div class="phase-block__timing">Weeks 27-30</div>
+          </div>
+        </div>
+        <p class="phase-block__desc">The process exists. Now make it survive the next reorganisation, budget cut, and CRO departure. This phase turns a project into a permanent capability.</p>
+
+        <h4><span class="week-label">Week 27</span> Training Programme</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the five-level training programme (Board, CRO function, BU leads, front-line, new joiners)</div><span class="task-list__ref">Tab 26</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Deliver initial training to BU Risk Coordinators</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Create training materials that survive staff turnover (methodology guide, template instructions, worked examples)</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 28</span> Audit and Assurance</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the seven-area internal audit programme</div><span class="task-list__ref">Tab 27</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Brief Internal Audit on the methodology (they need to understand it to audit it)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Schedule the first independent audit of the risk identification process</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 29</span> Ongoing Cycle Design</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Define the event-driven trigger framework (six categories of events that force re-identification)</div><span class="task-list__ref">Tab 24</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Set baseline process KPIs (completion rates, timeliness, scoring consistency)</div><span class="task-list__ref">Tab 25</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Design the quarterly re-identification cycle (see Plan 3 below)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Schedule next annual full cycle in the corporate calendar</div></li>
+        </ul>
+
+        <h4><span class="week-label">Week 30</span> Lessons Learned and Close</h4>
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Conduct full lessons-learned review across all phases</div><span class="task-list__ref">Tab 29</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Publish the "Year 1" report to the CRO summarising the process, findings, and recommendations</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Transition from "project" to "business as usual" operating model</div></li>
+        </ul>
+
+        <div class="gate-box">
+          <div class="gate-box__icon">G</div>
+          <div class="gate-box__text"><strong>Decision Gate 6:</strong> CRO and Board Risk Committee confirm the risk identification process is established and meets regulatory expectations. The process transitions from project status to BAU. The Risk Identification Lead's role becomes permanent (if it wasn't already).</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PLAN 2: ANNUAL FULL CYCLE
+       ============================================================ -->
+  <section class="section section--offwhite playbook-section" id="annual">
+    <div class="container">
+
+      <div class="plan-header">
+        <p class="plan-header__eyebrow" style="color: var(--teal);">Plan 2 of 3</p>
+        <h2 class="plan-header__title">Annual Full Cycle</h2>
+        <p class="plan-header__desc">The process is built. This is the playbook for running the complete annual risk identification cycle &mdash; typically in Q4 to feed into ICAAP/ILAAP and annual planning in Q1.</p>
+      </div>
+
+      <div class="plan-meta">
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">12</div>
+          <div class="plan-meta__label">Weeks per cycle</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">1-2</div>
+          <div class="plan-meta__label">Full-time staff</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">6-10</div>
+          <div class="plan-meta__label">Part-time BU coordinators</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">1</div>
+          <div class="plan-meta__label">Half-day workshop</div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <strong>Timing:</strong> Most banks run the annual cycle in Q4 (October&ndash;December) so that output feeds into ICAAP/ILAAP drafting in January and Board approval by March. If your regulatory cycle is different, adjust accordingly &mdash; the key constraint is that risk identification output must be available before capital planning begins.
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">1</div>
+          <div>
+            <div class="phase-block__title">Preparation</div>
+            <div class="phase-block__timing">Weeks 1-2</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh the PESTLE analysis: what has changed in the external environment since last cycle?</div><span class="task-list__ref">Tab 3</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh internal environment assessment: org changes, strategy shifts, new products, M&amp;A</div><span class="task-list__ref">Tab 4</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Review and update taxonomy if needed (new risk categories from regulatory change or new business lines)</div><span class="task-list__ref">Tab 1</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update the straw man risk list with last year's inventory + any new risks from quarterly cycles</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute pre-workshop independent assessments to senior management (allow 7-10 days)</div><span class="task-list__ref">Tab 9</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Distribute bottom-up templates to BU coordinators with deadline and updated worked examples</div><span class="task-list__ref">Tab 8</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Review prior year's lessons learned and process KPIs &mdash; apply improvements to this cycle</div><span class="task-list__ref">Tabs 25, 29</span></li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">2</div>
+          <div>
+            <div class="phase-block__title">Bottom-Up Collection</div>
+            <div class="phase-block__timing">Weeks 3-5</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">BU coordinators complete standardised bottom-up templates (11 fields per risk)</div><span class="task-list__ref">Tab 8</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Collect specialist sub-process inputs: RCSA, conduct risk, cyber/ICT, AML/CFT, third-party, model risk</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Risk ID team reviews each submission for quality: Are definitions specific enough to act on? Are controls named, not vague? Is data quality honestly assessed?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Challenge sessions with BUs that submit weak or copy-paste content from last year</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Track completion rates and chase late submissions (process KPI)</div><span class="task-list__ref">Tab 25</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>Quality test:</strong> If a BU's submission looks identical to last year's, it probably is. Require each BU to explicitly confirm what has changed and identify at least one new or materially changed risk. If nothing has changed in a year, the BU isn't looking hard enough.
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">3</div>
+          <div>
+            <div class="phase-block__title">Top-Down Workshop</div>
+            <div class="phase-block__timing">Weeks 6-7</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Prepare workshop data pack: PESTLE summary, internal environment changes, aggregated pre-workshop assessments, straw man risk list</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run half-day SWIFT workshop (typically 3-4 hours with senior management)</div><span class="task-list__ref">Tabs 6-7</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Facilitate systematic walk-through of each L1 category using SWIFT guide words</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run multivoting prioritisation to rank top-down risks by perceived materiality</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run Delphi panel for emerging risks (3-5 year horizon) &mdash; can be same session or separate</div><span class="task-list__ref">Tab 21</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Document all workshop outputs, including minority views and disagreements</div><span class="task-list__ref">Tab 23</span></li>
+        </ul>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">4</div>
+          <div>
+            <div class="phase-block__title">Reconciliation</div>
+            <div class="phase-block__timing">Weeks 8-9</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Map top-down workshop outputs against bottom-up BU submissions: which risks appear in both? Which appear in only one?</div><span class="task-list__ref">Tab 10</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Classify every gap: blind spot (missed entirely), scope gap (narrow definition), assessment gap (different severity view)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run gap resolution meetings with relevant BU heads &mdash; every gap needs an owner and a resolution</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Build the enterprise portfolio view: do BU-level risks aggregate into something the institution hasn't priced?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update assumption register with any challenged assumptions</div><span class="task-list__ref">Tab 22</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>This is where the methodology earns its keep.</strong> The reconciliation step is the single most valuable part of the process. If your top-down and bottom-up views agree perfectly, something is wrong &mdash; either the workshop wasn't challenging enough or the BUs tailored their submissions to match expectations. Real reconciliation should surface 3-10 genuine gaps per cycle.
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">5</div>
+          <div>
+            <div class="phase-block__title">Assessment</div>
+            <div class="phase-block__timing">Week 10</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Score all identified risks: four dimensions (Impact, Likelihood, Vulnerability, Speed of Onset), inherent and residual</div><span class="task-list__ref">Tab 11</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update risk interaction matrix (T=Trigger, A=Amplifier, C=Correlated) for all material risks</div><span class="task-list__ref">Tab 12</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Run concentration analysis: single-name, sector, geographic exposures against limits</div><span class="task-list__ref">Tab 14</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh bow-tie analysis for the 5-10 most material risks</div><span class="task-list__ref">Tab 13</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Assess data quality / confidence rating on every risk score</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Determine materiality classification for each risk</div></li>
+        </ul>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">6</div>
+          <div>
+            <div class="phase-block__title">Documentation, Reporting, and Integration</div>
+            <div class="phase-block__timing">Weeks 11-12</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Update the risk inventory (add new risks, remove retired risks, refresh all 14 fields)</div><span class="task-list__ref">Tab 15</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update risk profiles for all material or changed risks</div><span class="task-list__ref">Tab 16</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh KRI dashboard (new KRIs, updated thresholds, current values)</div><span class="task-list__ref">Tab 17</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Produce the annual Principal Risk Report for Board Risk Committee</div><span class="task-list__ref">Tab 18</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update stress scenario mapping (link inventory to ICAAP/ILAAP/CCAR scenarios)</div><span class="task-list__ref">Tab 19</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update regulatory vs economic gap analysis</div><span class="task-list__ref">Tab 20</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Confirm regulatory traceability (all requirements mapped to process steps)</div><span class="task-list__ref">Tab 28</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Conduct lessons-learned review and update process KPIs</div><span class="task-list__ref">Tabs 25, 29</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">CRO presents to Board Risk Committee</div></li>
+        </ul>
+
+        <div class="deliverable-box">
+          <div class="deliverable-box__title">Annual Cycle Output Package</div>
+          <ul>
+            <li>Updated risk inventory (complete, 14 fields per risk)</li>
+            <li>Risk profiles for all material risks</li>
+            <li>KRI dashboard with current status</li>
+            <li>Principal Risk Report for the Board</li>
+            <li>Stress scenario mapping (feeds into ICAAP/ILAAP)</li>
+            <li>Emerging risk register (3-5 year horizon)</li>
+            <li>Reconciliation gap analysis report</li>
+            <li>Regulatory vs economic gap analysis</li>
+            <li>Lessons learned and process KPIs</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PLAN 3: QUARTERLY RE-IDENTIFICATION
+       ============================================================ -->
+  <section class="section section--white playbook-section" id="quarterly">
+    <div class="container">
+
+      <div class="plan-header">
+        <p class="plan-header__eyebrow" style="color: var(--teal);">Plan 3 of 3</p>
+        <h2 class="plan-header__title">Quarterly Re-Identification</h2>
+        <p class="plan-header__desc">Not a full cycle &mdash; a targeted check: what has changed? Are there new risks? Have existing risks materially shifted? This is what the Fed means by "quarterly re-identification" in SR 15-18, and what the PRA expects in their ongoing risk assessment requirements.</p>
+      </div>
+
+      <div class="plan-meta">
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">10</div>
+          <div class="plan-meta__label">Working days</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">1</div>
+          <div class="plan-meta__label">Full-time staff</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">6-10</div>
+          <div class="plan-meta__label">BU coordinators (1 hour each)</div>
+        </div>
+        <div class="plan-meta__item">
+          <div class="plan-meta__value">4</div>
+          <div class="plan-meta__label">Times per year</div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <strong>Critical distinction:</strong> Quarterly re-identification is not just refreshing scores on the existing risk list. It asks: are there <em>new</em> risks that weren't there three months ago? Have any risks <em>changed in nature</em>, not just severity? This is the difference between re-assessment (updating numbers) and re-identification (asking whether the list itself is still right). Most banks do the former. Regulators expect the latter.
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">1</div>
+          <div>
+            <div class="phase-block__title">Trigger Review</div>
+            <div class="phase-block__timing">Days 1-3</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Review all six event-driven trigger categories: has anything fired since last quarter?</div><span class="task-list__ref">Tab 24</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Market dislocation:</strong> Any significant market events? Rate shocks, credit spread widening, equity drawdowns, commodity spikes?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Regulatory change:</strong> New regulations, supervisory statements, enforcement actions, or examination findings?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Peer event:</strong> Did a comparable institution suffer a material loss? (If yes, could it happen here?)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Internal incident:</strong> Material operational losses, near-misses, audit findings, or compliance breaches?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Strategic change:</strong> New products, markets, M&amp;A, major outsourcing, or reorganisation?</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text"><strong>Emerging risk signal:</strong> Has any emerging risk moved closer to materialisation?</div><span class="task-list__ref">Tab 21</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Review KRI dashboard: any amber or red breaches?</div><span class="task-list__ref">Tab 17</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Quick pulse check with BU Risk Coordinators: "Anything new or materially changed?" (email or 15-minute call)</div></li>
+        </ul>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">2</div>
+          <div>
+            <div class="phase-block__title">Targeted Update</div>
+            <div class="phase-block__timing">Days 4-7</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Add any newly identified risks to the inventory (full 14-field record)</div><span class="task-list__ref">Tab 15</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Re-score any risks where context has materially changed (four dimensions)</div><span class="task-list__ref">Tab 11</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update risk interaction matrix if new interactions have emerged</div><span class="task-list__ref">Tab 12</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh concentration analysis if portfolio composition has shifted</div><span class="task-list__ref">Tab 14</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update emerging risk register: horizon changes, new signals, upgraded/downgraded risks</div><span class="task-list__ref">Tab 21</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Challenge any assumptions that have been tested by events</div><span class="task-list__ref">Tab 22</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Retire any risks that are no longer relevant (document why)</div></li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>Light-touch is fine.</strong> In a quiet quarter with no trigger events, the quarterly review might take 3-4 days and result in minor score adjustments and no new risks. That's acceptable &mdash; the value is in the discipline of checking, not in the volume of changes. But if Q3 2025 had a peer bank failure and a regulatory change, the quarterly should be more thorough.
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-block">
+        <div class="phase-block__header">
+          <div class="phase-block__num">3</div>
+          <div>
+            <div class="phase-block__title">Reporting</div>
+            <div class="phase-block__timing">Days 8-10</div>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li><div class="task-list__check"></div><div class="task-list__text">Update the Principal Risk Report (changes-only format: new risks, changed scores, changed trends)</div><span class="task-list__ref">Tab 18</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Flag any new or upgraded material risks to the Board Risk Committee (interim paper if needed)</div></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update risk profiles for any risks that changed materially</div><span class="task-list__ref">Tab 16</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Refresh KRI dashboard with current quarter values and trend arrows</div><span class="task-list__ref">Tab 17</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Log any assumption challenges or disagreements</div><span class="task-list__ref">Tabs 22-23</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">Update process KPIs for the quarter</div><span class="task-list__ref">Tab 25</span></li>
+          <li><div class="task-list__check"></div><div class="task-list__text">File quarterly review documentation (audit trail)</div></li>
+        </ul>
+
+        <div class="deliverable-box">
+          <div class="deliverable-box__title">Quarterly Output</div>
+          <ul>
+            <li>Updated risk inventory (changes highlighted)</li>
+            <li>Quarterly principal risk report (changes-only format)</li>
+            <li>Updated KRI dashboard</li>
+            <li>Updated emerging risk register</li>
+            <li>Trigger review documentation (audit trail)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Annual Calendar -->
+  <section class="section section--navy">
+    <div class="container">
+      <p class="eyebrow">Putting It All Together</p>
+      <h2 class="text-center">The Annual Calendar</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.65);">Once implemented, the risk identification process runs on a predictable annual rhythm with quarterly checkpoints.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px;">
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 24px;">
+          <p style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Q1 (Jan&ndash;Mar)</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 8px;"><strong style="color: var(--white);">Quarterly review</strong></p>
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Post-annual cycle check. Feed risk output into ICAAP/ILAAP drafts. Board approves annual risk report. Internal audit begins.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 24px;">
+          <p style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Q2 (Apr&ndash;Jun)</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 8px;"><strong style="color: var(--white);">Quarterly review</strong></p>
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Mid-year trigger review. Internal audit findings received. Training delivery. Process improvement actions from lessons learned.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 24px;">
+          <p style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Q3 (Jul&ndash;Sep)</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 8px;"><strong style="color: var(--white);">Quarterly review + preparation</strong></p>
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">Q3 trigger review. Begin preparing for annual cycle: update PESTLE, refresh taxonomy, schedule workshop, brief BU coordinators.</p>
+        </div>
+        <div style="background: rgba(197,165,90,0.12); border: 1px solid rgba(197,165,90,0.3); border-radius: var(--radius-lg); padding: 24px;">
+          <p style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Q4 (Oct&ndash;Dec)</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 8px;"><strong style="color: var(--gold-light);">Full annual cycle</strong></p>
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem;">12-week full cycle: bottom-up collection, SWIFT workshop, reconciliation, assessment, documentation, Board reporting. Feeds Q1 ICAAP/ILAAP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to build the process?</h2>
+      <p>Download the complete toolkit &mdash; the book, templates, AI prompts, and Copilot agent. Everything referenced in these playbooks.</p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="toolkit.html" class="btn btn-white btn-lg">Get the Free Toolkit <span class="btn-icon">&rarr;</span></a>
+        <a href="consulting.html" class="btn btn-secondary btn-lg">Need Help Implementing? <span class="btn-icon">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
+          <p class="footer__tagline">Dublin, Ireland</p>
+        </div>
+        <div class="footer__links">
+          <a href="about.html" class="footer__link">About</a>
+          <a href="methodology.html" class="footer__link">Methodology</a>
+          <a href="toolkit.html" class="footer__link">Toolkit</a>
+          <a href="playbook.html" class="footer__link">Playbook</a>
+          <a href="consulting.html" class="footer__link">Consulting</a>
+          <a href="insights.html" class="footer__link">Insights</a>
+          <a href="contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="privacy.html" class="footer__link">Privacy</a>
+          <a href="terms.html" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Playbook nav active state
+    (function() {
+      const navLinks = document.querySelectorAll('.playbook-nav__link');
+      const sections = document.querySelectorAll('.playbook-section');
+
+      function updateActiveNav() {
+        let current = '';
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 200) current = section.id;
+        });
+        navLinks.forEach(link => {
+          link.classList.toggle('playbook-nav__link--active', link.dataset.target === current);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav);
+      updateActiveNav();
+    })();
+  </script>
+</body>
+</html>
