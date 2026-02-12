@@ -101,7 +101,7 @@ The standard makes another point that practitioners consistently overlook. Secti
 
 ## COSO ERM: The Enterprise Lens
 
-The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004. Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
+The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004, and updated it in 2017 as *Enterprise Risk Management — Integrating with Strategy and Performance*. The 2017 update reorganised the framework around five components and twenty principles, with greater emphasis on strategy and performance integration. This book references the 2004 framework's eight-component structure because it remains the version most widely embedded in banking practice and regulatory expectations, particularly the three-dimensional cube model used as a completeness check in Chapter 4. Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
 
 ### Origins and Context
 

@@ -79,7 +79,7 @@ The risk identification outputs existed. Internal reports documented deteriorati
 
 The integration failure was not that risk identification did not occur. It was that the identification outputs were severed from the processes where they should have had consequences — capital allocation, strategic planning, Board governance. A material risk identified and documented but excluded from the capital assessment is functionally equivalent to a risk that was never identified at all.
 
-WaMu was seized by the Office of Thrift Supervision in September 2008 — the largest bank failure in United States history. Its banking operations were sold to JPMorgan Chase for $1.9 billion, a fraction of the institution's former value.
+WaMu was seized by the Office of Thrift Supervision on 25 September 2008 — the largest bank failure in United States history. Its banking operations were sold to JPMorgan Chase for $1.9 billion, a fraction of the institution's former value.
 
 **What was missing:** An integration framework requiring that every material risk in the inventory maps to a capital scenario, with governance mechanisms preventing management from overriding the connection between identification and capital. The methodology's integration of the inventory with capital planning through mandatory scenario linkage, data-quality-informed conservatism, and Board-level reporting of unlinked material risks would have made WaMu's selective blindness structurally impossible.
 

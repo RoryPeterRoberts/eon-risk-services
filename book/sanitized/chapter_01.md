@@ -60,7 +60,7 @@ The most common failure mode in the database. Institutions fail to identify that
 
 Institutions place excessive trust in quantitative models — Value at Risk, credit ratings, internal models — that fail to capture tail risks, correlation breakdowns, or regime changes. The model becomes a substitute for judgement rather than an input to it.
 
-**The pattern:** Long-Term Capital Management's Nobel Prize-winning founders built a $125 billion portfolio on models calibrated to normal market conditions. When the Russian crisis caused correlations to spike across all markets simultaneously, the models were useless. LTCM's VaR told them their maximum daily loss was $35 million. They lost $553 million in a single day.
+**The pattern:** Long-Term Capital Management's Nobel Prize-winning founders built a $125 billion portfolio on models calibrated to normal market conditions. When the Russian crisis caused correlations to spike across all markets simultaneously, the models were useless. LTCM's value-at-risk model told them their maximum expected daily loss was $35 million. On 21 August 1998, they lost $553 million in a single day.
 
 Merrill Lynch, Citigroup, and Bear Stearns all treated AAA credit ratings on CDO tranches as definitive assessments of risk, substituting an external agency's opinion for independent risk analysis. When the ratings proved wrong, the losses were catastrophic.
 
@@ -88,7 +88,7 @@ At Citigroup, off-balance-sheet SIV exposures were excluded from the bank's risk
 
 The institutional culture discourages challenge, dissent, or escalation of risk concerns. People who identify risks are treated as obstacles to the business rather than as performing an essential function.
 
-**The pattern:** At Wells Fargo, 3.5 million unauthorised accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. In multiple post-crisis conduct failures, the risk culture consistently allowed commercial considerations to override risk management.
+**The pattern:** At Wells Fargo, an estimated 3.5 million potentially unauthorised accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. In multiple post-crisis conduct failures, the risk culture consistently allowed commercial considerations to override risk management.
 
 **What was missing:** A risk identification process that includes anonymous reporting channels, formal protection for risk identifiers, and Board-level visibility into whether the risk culture enables or suppresses the identification of uncomfortable truths.
 

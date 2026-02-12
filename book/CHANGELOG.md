@@ -120,3 +120,30 @@ All factual corrections to the manuscript, organized by verification round.
 - Standards/terminology: 4 (ISO editions, Three Lines Model)
 - Wording/attribution: 5 (unauthorised accounts, settlement attributions)
 - Outdated figures: 3 (PPI amounts updated to scheme completion)
+
+---
+
+## Round 4 — Publishability audit corrections (5 corrections)
+
+Corrections arising from professional publishability and factual-accuracy audit.
+
+### Chapter 1
+| # | Before | After | Reason |
+|---|--------|-------|--------|
+| 1 | "3.5 million unauthorised accounts" | "an estimated 3.5 million potentially unauthorised accounts" | Wells Fargo's own remediation update uses "potentially unauthorised"; more defensible phrasing |
+| 2 | "LTCM's VaR told them their maximum daily loss was $35 million. They lost $553 million in a single day." | "LTCM's value-at-risk model told them their maximum expected daily loss was $35 million. On 21 August 1998, they lost $553 million in a single day." | Date precision; clarify the $35m was model-based VaR |
+
+### Chapter 2
+| # | Before | After | Reason |
+|---|--------|-------|--------|
+| 3 | COSO ERM introduced only as "published...in 2004" with no mention of 2017 update | Added: 2017 update acknowledged; rationale for using 2004 eight-component structure explained | Edition hygiene — readers and reviewers expect current edition awareness |
+
+### Chapter 3
+| # | Before | After | Reason |
+|---|--------|-------|--------|
+| 4 | "3.5 million unauthorised accounts, a $3 billion settlement, an asset cap imposed by the Federal Reserve" | "an estimated 3.5 million potentially unauthorised accounts, a $3 billion DOJ settlement, an asset-growth restriction imposed by the Federal Reserve in 2018 (not lifted until 2025)" | Defensible wording; DOJ attribution; dates for asset cap imposition and removal |
+
+### Chapter 12
+| # | Before | After | Reason |
+|---|--------|-------|--------|
+| 5 | "seized by the Office of Thrift Supervision in September 2008" | "seized by the Office of Thrift Supervision on 25 September 2008" | Date precision per FDIC records |
