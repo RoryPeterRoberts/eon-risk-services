@@ -16,8 +16,8 @@ reference/Procedures/*
 book backup/
 
 # Root-level screenshots
-*.png
-*.odt
+/*.png
+/*.odt
 
 # Website build artifacts
 website/node_modules/
