@@ -230,7 +230,7 @@ The standards examined in the previous chapter provide the architecture. The gov
 
 [^ch3-9]: United States Department of Justice, "Wells Fargo Agrees to Pay $3 Billion to Resolve Criminal and Civil Investigations into Sales Practices Involving the Opening of Millions of Accounts without Customer Authorization," press release 20-146, 21 February 2020.
 
-[^ch3-10]: Board of Governors of the Federal Reserve System, enforcement action against Wells Fargo & Company, Cease and Desist Order and $1.8 billion asset cap, 2 February 2018 (Docket Nos. 18-007-B-HC, 18-007-CMP-HC). The asset cap was lifted on 11 September 2024 per Federal Reserve press release.
+[^ch3-10]: Board of Governors of the Federal Reserve System, enforcement action against Wells Fargo & Company, Cease and Desist Order and $1.8 billion asset cap, 2 February 2018 (Docket Nos. 18-007-B-HC, 18-007-CMP-HC). The asset cap was lifted on 3 June 2025 per Federal Reserve press release (enforcement20250603a).
 
 [^ch3-11]: New York State Department of Financial Services, Consent Order under New York Banking Law §44, *In the Matter of Standard Chartered Bank*, 6 August 2012 ($340 million settlement); U.S. Department of Justice and the Manhattan District Attorney's Office, Deferred Prosecution Agreement with Standard Chartered, 10 December 2012 ($327 million, bringing the combined total to $667 million). The $250 billion transaction figure is cited in the NYDFS order.
 
