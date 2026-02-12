@@ -1,5 +1,8 @@
 # Generated artifacts (regenerable)
 book/output/
+!book/output/copilot-agent/
+!book/output/Copilot_Prompt_Library.md
+!book/output/Risk_Identification_Template_Pack.xlsx
 book/__pycache__/
 
 # Large reference files (not authored content)
