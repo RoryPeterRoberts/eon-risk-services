@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_gated/
+
+Sitemap: https://eonriskservices.com/sitemap.xml

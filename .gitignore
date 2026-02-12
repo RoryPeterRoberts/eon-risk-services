@@ -25,3 +25,5 @@ website/.env.local
 
 # Claude session data
 .claude/
+.vercel
+.env*.local

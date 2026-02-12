@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core Pages -->
+  <url><loc>https://eonriskservices.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://eonriskservices.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/methodology</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://eonriskservices.com/toolkit</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://eonriskservices.com/consulting</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/insights</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://eonriskservices.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://eonriskservices.com/assessment</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/book</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/course</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Insight Articles -->
+  <url><loc>https://eonriskservices.com/articles/why-banks-cant-identify-risks</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/what-regulators-always-find-missing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/risk-heatmap-lying</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/lessons-global-head-risk-id</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/reconciliation-loop</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/bow-tie-diagram-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/quarterly-re-identification-fed</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/climate-risk-identification</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/governance-bypass-killing-banks</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/179-bank-failures-10-failure-modes</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/concentration-blindness-repeats</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://eonriskservices.com/articles/wirecard-greensill-emerging-risk-blindness</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Public Toolkit Resources (SEO-discoverable) -->
+  <url><loc>https://eonriskservices.com/downloads/Copilot_Prompt_Library.md</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://eonriskservices.com/downloads/copilot-agent/deployment_guide.md</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://eonriskservices.com/downloads/copilot-agent/system_prompt.md</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://eonriskservices.com/downloads/copilot-agent/knowledge_base.md</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://eonriskservices.com/downloads/copilot-agent/topic_map.md</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+</urlset>

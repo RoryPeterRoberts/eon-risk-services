@@ -2,6 +2,7 @@ const { supabase } = require('./_lib/supabase');
 const { resend } = require('./_lib/resend');
 const { rateLimit } = require('./_lib/rate-limit');
 const { validateToolkit } = require('./_lib/validate');
+const { generateToken } = require('./download');
 
 const SITE_URL = process.env.SITE_URL || 'https://eonriskservices.com';
 const FROM_EMAIL = 'Rory Roberts <rory@eonriskservices.com>';
@@ -46,12 +47,14 @@ module.exports = async function handler(req, res) {
       // Continue anyway — email delivery is more important than logging
     }
 
-    // 2. Send toolkit download email to user
+    // 2. Send toolkit download email to user (with signed download tokens for gated files)
+    const bookToken = generateToken(data.email, 'book');
+    const templatesToken = generateToken(data.email, 'templates');
     await resend.emails.send({
       from: FROM_EMAIL,
       to: data.email,
       subject: 'Your Risk Identification Toolkit',
-      html: toolkitEmailHtml(data.name)
+      html: toolkitEmailHtml(data.name, bookToken, templatesToken)
     });
 
     // 3. Send notification to Rory
@@ -73,7 +76,7 @@ module.exports = async function handler(req, res) {
 
 // --- Email Templates ---
 
-function toolkitEmailHtml(name) {
+function toolkitEmailHtml(name, bookToken, templatesToken) {
   const firstName = name.split(' ')[0];
   return `
 <!DOCTYPE html>
@@ -100,16 +103,17 @@ function toolkitEmailHtml(name) {
           <td style="padding:40px;">
             <p style="margin:0 0 16px; color:#2C2C2C; font-size:16px; line-height:1.6;">Hi ${firstName},</p>
             <p style="margin:0 0 24px; color:#5A5A5A; font-size:15px; line-height:1.7;">Thank you for downloading the Risk Identification Toolkit. Here are your four resources, built from 20 years of practice and 179 documented bank failures.</p>
+            <p style="margin:0 0 24px; color:#8A8A8A; font-size:13px; line-height:1.5;">Your download links are personal and valid for 7 days. If they expire, just request a new toolkit from the website.</p>
 
             <!-- Download Buttons -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
               <tr><td style="padding:8px 0;">
-                <a href="${SITE_URL}/downloads/Bank_Risk_Identification.pdf" style="display:block; padding:16px 24px; background:#2A7F7F; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
+                <a href="${SITE_URL}/api/download?token=${bookToken}" style="display:block; padding:16px 24px; background:#2A7F7F; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
                   Download the Book (PDF)
                 </a>
               </td></tr>
               <tr><td style="padding:8px 0;">
-                <a href="${SITE_URL}/downloads/Risk_Identification_Template_Pack.xlsx" style="display:block; padding:16px 24px; background:#2A7F7F; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
+                <a href="${SITE_URL}/api/download?token=${templatesToken}" style="display:block; padding:16px 24px; background:#2A7F7F; color:#FFFFFF; text-decoration:none; border-radius:6px; font-size:15px; font-weight:600; text-align:center;">
                   Download the Template Pack (Excel)
                 </a>
               </td></tr>
