@@ -2,18 +2,29 @@
 
 ## Changes Made
 
-| # | Original | Sanitized | Context |
-|---|----------|-----------|---------|
-| 1 | "at Credit Suisse when the CRO" | "at a European G-SIB when the CRO" | Author's employment experience |
-| 2 | "at Credit Suisse when I received" | "at a European G-SIB when I received" | Author's employment experience |
+| # | Original | Sanitized | Context | Location |
+|---|---|---|---|---|
+| 1 | "at Credit Suisse when the CRO required" | "at a European G-SIB when the CRO required" | Context A — employer reference in description of building the CCAR-linked quarterly process | Quarterly Re-Identification section, paragraph 2 |
+| 2 | "I encountered at Credit Suisse when I received bottom-up submissions" | "I encountered at Institution A when I received bottom-up submissions" | Context A — employer reference in description of receiving stale bottom-up submissions | Annual Full Re-Identification section, paragraph 3 |
 
-## Statistics
-- Total institution references found: 2
-- Anonymized (Context A): 2
-- Preserved (Context B): 0
-- Metrics anonymized: 0
+## Preservation Decisions
+
+All institution names in this chapter are public case study references (Context B) and were preserved:
+
+- **Silicon Valley Bank** — public failure ($209B assets, March 2023 collapse) — PRESERVED
+- **Washington Mutual** — public failure (2008) — PRESERVED
+- **Signature Bank** — public failure ($110B assets, March 2023 collapse) — PRESERVED
+- **Commonwealth Bank of Australia** — public case (AUD 700M AUSTRAC fine) — PRESERVED
+- **National Australia Bank** — public case (AUSTRAC proceedings 2020) — PRESERVED
+- **TerraUSD / Celsius Network / FTX** — public failures (2022) — PRESERVED
+- **Bankia** — public failure (referenced via Chapter 12) — PRESERVED
+
+## Footnotes
+
+All 17 footnotes [^ch13-1] through [^ch13-17] preserved exactly as written. No footnotes reference employer institutions.
 
 ## Notes
-- All public case studies (SVB, Signature Bank, NAB, CBA) preserved as-is
-- All regulatory framework references preserved
-- No metrics requiring anonymization in this chapter
+
+- Only two anonymization changes required in this chapter. Both are first-person employer references to Credit Suisse.
+- Change #1 uses "a European G-SIB" as this is the first employer-context mention in the chapter.
+- Change #2 uses "Institution A" as this is a back-reference to an experience already described in Chapter 7.

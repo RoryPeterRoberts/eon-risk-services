@@ -4,17 +4,17 @@
 
 ## The Question No One Can Answer
 
-Early in my career as a risk identification practitioner, I encountered what should have been a simple question at a major financial institution: *How does the institution currently identify its risks?*
+In 2016, I was appointed Global Head of Risk Identification at a European G-SIB. My mandate was to build a bank-wide risk identification process from scratch — one that could withstand regulatory scrutiny from the PRA, FINMA, the Fed, and every other supervisor with jurisdiction over a global systemically important bank.
+
+On my first day, I asked what I thought was a simple question: *How does this institution currently identify its risks?*
 
 The answer was silence. Not hostile silence — confused silence. People looked at each other. Someone mentioned the risk register. Someone else pointed to the annual ICAAP process. A third person described a workshop they had run two years ago. But no one could describe a coherent, end-to-end process for how the bank identified, catalogued, and validated the risks it was exposed to. There was no methodology. No documented process. No named owner. No audit trail showing how the risk register had been built or why certain risks were on it and others were not.
 
 This institution was, at the time, one of the largest banks in the world. And it could not explain how it identified its risks.
 
-I wish I could say this was unusual. It was not. Across multiple institutions and conversations with CROs, risk leads, and consultants throughout the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
+I wish I could say this was unusual. It was not. When I moved to a UK-regulated international banking group in 2023 as Risk Identification Lead in the Enterprise Risk Management department, the situation was better — there were elements of a process — but the same fundamental gaps existed. When I speak to CROs, risk leads, and consultants across the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
 
 This book exists because, after 20 years of doing this work at six institutions, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
-
-Risk identification is as much a political exercise as a technical one. Building the process is only half the challenge — sustaining it requires institutional commitment that can withstand commercial pressure and organisational resistance.
 
 This is that methodology.
 
@@ -34,7 +34,7 @@ This is the gap. Banks have invested billions in measuring and managing risks, b
 
 ## What the Evidence Shows
 
-To understand how serious this gap is, I studied every major bank failure I could find — from the savings and loan crisis of the 1980s through the Global Financial Crisis, the post-crisis conduct era, and into the 2020s. I built a database of 179 bank loss events, covering institutions across 30 countries and six decades, with aggregate losses exceeding $2.3 trillion.
+To understand how serious this gap is, I studied every major bank failure I could find — from the savings and loan crisis of the 1980s through the Global Financial Crisis, the post-crisis conduct era, and into the 2020s. I built a database of 179 bank loss events, covering institutions across 30 countries and six decades, with aggregate losses exceeding $2.3 trillion.[^ch1-1]
 
 For each entry, I asked the same question: *Was the risk identifiable before the loss materialised?*
 
@@ -60,7 +60,7 @@ The most common failure mode in the database. Institutions fail to identify that
 
 Institutions place excessive trust in quantitative models — Value at Risk, credit ratings, internal models — that fail to capture tail risks, correlation breakdowns, or regime changes. The model becomes a substitute for judgement rather than an input to it.
 
-**The pattern:** Long-Term Capital Management's Nobel Prize-winning founders built a $125 billion portfolio on models calibrated to normal market conditions. When the Russian crisis caused correlations to spike across all markets simultaneously, the models were useless. LTCM's value-at-risk model told them their maximum expected daily loss was $35 million. On 21 August 1998, they lost $553 million in a single day.
+**The pattern:** Long-Term Capital Management's Nobel Prize-winning founders built a $125 billion portfolio on models calibrated to normal market conditions. When the Russian crisis caused correlations to spike across all markets simultaneously, the models were useless. LTCM's value-at-risk model told them their maximum expected daily loss was $35 million. On 21 August 1998, they lost $553 million in a single day.[^ch1-2]
 
 Merrill Lynch, Citigroup, and Bear Stearns all treated AAA credit ratings on CDO tranches as definitive assessments of risk, substituting an external agency's opinion for independent risk analysis. When the ratings proved wrong, the losses were catastrophic.
 
@@ -70,7 +70,7 @@ Merrill Lynch, Citigroup, and Bear Stearns all treated AAA credit ratings on CDO
 
 Risk identification frameworks exist on paper but are circumvented by dominant individuals, commercial pressure, or cultural inertia. Risks are identified at the working level but never reach the people who can act on them — or they reach those people and are ignored.
 
-**The pattern:** At Barings, internal audit identified the segregation-of-duties violation in Nick Leeson's Singapore operation. Management did not act. At Standard Chartered, the compliance function identified the sanctions risk in the Iranian business. Senior management overruled the concerns because the business was commercially important. At Lehman Brothers, the Chief Risk Officer raised increasingly urgent warnings about leverage and mortgage exposure. She was first marginalised and then replaced.
+**The pattern:** At Barings, internal audit identified the segregation-of-duties violation in Nick Leeson's Singapore operation. Management did not act.[^ch1-3] At Standard Chartered, the compliance function identified the sanctions risk in the Iranian business. Senior management overruled the concerns because the business was commercially important. At Lehman Brothers, the Chief Risk Officer raised increasingly urgent warnings about leverage and mortgage exposure. She was first marginalised and then replaced.
 
 **What was missing:** A governance structure with clear escalation paths, where risk identification findings cannot be unilaterally overruled by the business, and where the Board receives risk information that has not been filtered through the very management responsible for generating the risk.
 
@@ -78,7 +78,7 @@ Risk identification frameworks exist on paper but are circumvented by dominant i
 
 Risk identification is conducted within individual business lines or risk types without aggregation across the enterprise. Each silo sees its own piece of the picture but no one assembles the whole.
 
-**The pattern:** At JPMorgan, the Chief Investment Office's "London Whale" trades were classified as hedging rather than proprietary trading. Because of this classification, the CIO was exempted from the bank's trading risk limits and VaR monitoring. The organisational silo determined the level of risk oversight, and the hedge designation was never independently challenged.
+**The pattern:** At JPMorgan, the Chief Investment Office's "London Whale" trades were classified as hedging rather than proprietary trading. Because of this classification, the CIO was exempted from the bank's trading risk limits and VaR monitoring. The organisational silo determined the level of risk oversight, and the hedge designation was never independently challenged.[^ch1-4]
 
 At Citigroup, off-balance-sheet SIV exposures were excluded from the bank's risk aggregation framework because the liquidity puts were considered remote contingencies. No one asked what would happen if *all* the contingent exposures crystallised simultaneously.
 
@@ -88,7 +88,7 @@ At Citigroup, off-balance-sheet SIV exposures were excluded from the bank's risk
 
 The institutional culture discourages challenge, dissent, or escalation of risk concerns. People who identify risks are treated as obstacles to the business rather than as performing an essential function.
 
-**The pattern:** At Wells Fargo, an estimated 3.5 million potentially unauthorised accounts were opened to meet cross-selling targets. Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. In multiple post-crisis conduct failures, the risk culture consistently allowed commercial considerations to override risk management.
+**The pattern:** At Wells Fargo, an estimated 3.5 million potentially unauthorised accounts were opened to meet cross-selling targets.[^ch1-5] Whistleblower complaints were filed — and treated as HR issues, not risk events. The sales culture was so dominant that the risk function could not challenge it. At Lehman Brothers, internal critics of the leverage strategy were marginalised. At Credit Suisse, the risk culture that allowed Archegos to accumulate $20 billion in exposure through total return swaps[^ch1-6] was described by regulators as one where commercial considerations consistently overrode risk management.
 
 **What was missing:** A risk identification process that includes anonymous reporting channels, formal protection for risk identifiers, and Board-level visibility into whether the risk culture enables or suppresses the identification of uncomfortable truths.
 
@@ -104,7 +104,7 @@ Institutions fail to identify new risk types that fall outside their existing ta
 
 Weak internal controls allow fraud, unauthorised trading, or accounting manipulation to go undetected for extended periods. The risk identification process assumes a functioning control environment that does not actually exist.
 
-**The pattern:** At Enron, shareholders lost $74 billion in value after accounting fraud — concealed through off-balance-sheet special purpose entities — was exposed. At WorldCom, $180 billion in shareholder value was destroyed by systematic capitalisation of operating expenses. At Wirecard, €1.9 billion in cash balances simply did not exist. In each case, the basic controls that should have prevented or detected the fraud — reconciliations, segregation of duties, independent verification — were absent or overridden.
+**The pattern:** At Enron, shareholders lost $74 billion in value after accounting fraud — concealed through off-balance-sheet special purpose entities — was exposed.[^ch1-7] At WorldCom, $180 billion in shareholder value was destroyed by systematic capitalisation of operating expenses.[^ch1-8] At Wirecard, €1.9 billion in cash balances simply did not exist.[^ch1-9] In each case, the basic controls that should have prevented or detected the fraud — reconciliations, segregation of duties, independent verification — were absent or overridden.
 
 **What was missing:** A risk identification process that includes assessment of the internal control environment as a precondition — recognising that if the control environment is compromised, all other risk assessments built on top of it are unreliable.
 
@@ -112,7 +112,7 @@ Weak internal controls allow fraud, unauthorised trading, or accounting manipula
 
 Key risk information is held by the front office, individual traders, or senior management and is not shared with the risk function or the Board. The people who need the information to identify risks do not have it.
 
-**The pattern:** At Bear Stearns, the collapse of two hedge funds in June 2007 was treated as an isolated subsidiary event rather than identified as an early warning signal of the same concentration risk in the parent bank's own balance sheet. At Lehman, the Repo 105 programme — used to temporarily remove assets from the balance sheet at reporting dates — was known to a small group of executives but not to the risk function or the Board in a way that allowed them to assess its implications.
+**The pattern:** At Bear Stearns, the collapse of two hedge funds in June 2007 was treated as an isolated subsidiary event rather than identified as an early warning signal of the same concentration risk in the parent bank's own balance sheet.[^ch1-10] At Lehman, the Repo 105 programme — used to temporarily remove assets from the balance sheet at reporting dates — was known to a small group of executives but not to the risk function or the Board in a way that allowed them to assess its implications.[^ch1-11]
 
 **What was missing:** A risk identification process that actively seeks out information from across the institution rather than waiting for it to be volunteered. Bottom-up templates that require front-line disclosure. Top-down workshops that include people with direct operational knowledge, not just senior management.
 
@@ -167,10 +167,34 @@ The book is organised around a six-phase process:
 
 Before diving into the phases, the next chapter establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
 
-The methodology is comprehensive. It is detailed. And it has been developed through decades of practice across multiple institutions — building, refining, and learning from what works and what does not when risk identification processes confront institutional resistance.
+The methodology is comprehensive. It is detailed. And it works. I have built it twice — at two globally significant institutions — and refined it through years of practice, regulatory challenge, and the kind of learning that only comes from doing it wrong before you learn to do it right.
 
 The banks that failed did not lack smart people. They lacked a process. This book gives you the process.
 
 ---
 
 *In the next chapter, we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*
+
+---
+
+[^ch1-1]: Industry Loss Database, EON Risk Services. See Appendix A: Industry Loss Database Methodology for inclusion criteria, data sources, loss definitions, and the full event list.
+
+[^ch1-2]: Lowenstein, R. *When Genius Failed: The Rise and Fall of Long-Term Capital Management*. Random House, 2000. The $125 billion balance sheet figure and $35 million VaR estimate are from Lowenstein and from the President's Working Group on Financial Markets, *Hedge Funds, Leverage, and the Lessons of Long-Term Capital Management*, April 1999. The $553 million single-day loss on 21 August 1998 is from the same source.
+
+[^ch1-3]: Board of Banking Supervision, Bank of England, *Report of the Board of Banking Supervision Inquiry into the Circumstances of the Collapse of Barings*, HC 673, July 1995. Internal audit had identified the lack of segregation between Leeson's trading and settlement functions in 1994.
+
+[^ch1-4]: US Senate Permanent Subcommittee on Investigations, *JPMorgan Chase Whale Trades: A Case History of Derivatives Risks and Abuses*, 15 March 2013. The CIO was exempted from the bank's standard trading risk limits and VaR monitoring framework.
+
+[^ch1-5]: Wells Fargo, independent directors' Sales Practices Investigation Report, April 2017; CFPB Consent Order No. 2016-CFPB-0015, 8 September 2016. The figure of 3.5 million accounts is from Wells Fargo's own expanded remediation analysis.
+
+[^ch1-6]: Credit Suisse Group, *Report on Archegos Capital Management*, prepared by Paul, Weiss, Rifkind, Wharton & Garrison LLP, 29 July 2021. The $20 billion figure refers to Archegos's concentrated equity positions unwound during March 2021.
+
+[^ch1-7]: Enron Corp., SEC filings; US Senate Permanent Subcommittee on Investigations, *The Role of the Board of Directors in Enron's Collapse*, 8 July 2002. The $74 billion figure represents the peak-to-trough decline in Enron's market capitalisation.
+
+[^ch1-8]: US Securities and Exchange Commission, Litigation Release No. 17588, 26 June 2002; SEC v. WorldCom Inc. The $180 billion figure represents the destruction of shareholder value following disclosure of the accounting fraud.
+
+[^ch1-9]: EY Special Audit of Wirecard AG, 2020; Wirecard AG insolvency filing, Amtsgericht München, 25 June 2020. The €1.9 billion referred to cash balances that Wirecard claimed were held in trustee accounts in the Philippines but which could not be verified.
+
+[^ch1-10]: Financial Crisis Inquiry Commission, *The Financial Crisis Inquiry Report*, January 2011, pp. 238-242. The Bear Stearns High-Grade Structured Credit Fund and Enhanced Leverage Fund collapsed in June-July 2007.
+
+[^ch1-11]: Report of the Examiner in the Chapter 11 proceedings of Lehman Brothers Holdings Inc., Anton R. Valukas, Examiner, 11 March 2010. The Repo 105 programme is examined in Sections III.A.4 and III.A.5 of the Examiner's report.
