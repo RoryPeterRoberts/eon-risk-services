@@ -3,7 +3,11 @@ book/output/
 book/__pycache__/
 
 # Large reference files (not authored content)
-reference/
+reference/*
+!reference/Procedures/
+reference/Procedures/*
+!reference/Procedures/build_loss_database.py
+!reference/Procedures/enrichment_data.py
 
 # Manual backup (superseded by git)
 book backup/
