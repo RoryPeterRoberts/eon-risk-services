@@ -1,0 +1,10 @@
+{
+  "name": "eon-risk-services",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EON Risk Services website with serverless API",
+  "dependencies": {
+    "resend": "^4.0.0",
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}

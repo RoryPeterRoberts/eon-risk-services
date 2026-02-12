@@ -96,22 +96,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* --- Simple form handling (contact form) --- */
+  /* --- Contact form --- */
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
-      btn.textContent = 'Sent — Thank you';
+      btn.textContent = 'Sending...';
       btn.disabled = true;
       btn.style.opacity = '0.7';
-      setTimeout(() => {
-        btn.textContent = originalText;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            organisation: document.getElementById('organisation').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+          })
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Failed to send');
+        }
+
+        btn.textContent = 'Sent — Thank you';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          contactForm.reset();
+        }, 3000);
+
+      } catch (err) {
+        btn.textContent = 'Error — Try Again';
         btn.disabled = false;
         btn.style.opacity = '1';
-        contactForm.reset();
-      }, 3000);
+        setTimeout(() => { btn.textContent = originalText; }, 3000);
+      }
+    });
+  }
+
+  /* --- Toolkit form --- */
+  const toolkitForm = document.getElementById('toolkit-form');
+  if (toolkitForm) {
+    toolkitForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = toolkitForm.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      try {
+        const res = await fetch('/api/toolkit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('tk-name').value,
+            email: document.getElementById('tk-email').value,
+            organisation: document.getElementById('tk-org').value,
+            role: document.getElementById('tk-role').value
+          })
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Failed to send');
+        }
+
+        // Show success state
+        toolkitForm.style.display = 'none';
+        document.getElementById('toolkit-success').style.display = 'block';
+
+      } catch (err) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        // Show inline error
+        let errEl = toolkitForm.querySelector('.toolkit-form__error');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'toolkit-form__error';
+          errEl.style.cssText = 'color:#C0392B; font-size:0.9rem; margin-top:12px; text-align:center;';
+          btn.parentNode.insertBefore(errEl, btn.nextSibling);
+        }
+        errEl.textContent = err.message || 'Something went wrong. Please try again.';
+      }
     });
   }
 });

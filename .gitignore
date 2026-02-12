@@ -19,5 +19,9 @@ book backup/
 *.png
 *.odt
 
+# Website build artifacts
+website/node_modules/
+website/.env.local
+
 # Claude session data
 .claude/
