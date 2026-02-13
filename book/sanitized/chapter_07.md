@@ -1,12 +1,12 @@
 # Chapter 7: Bottom-Up Identification: Templates, RCSA, and Specialist Processes
 
-## The Risk Assessment That Had Not Changed in Three Years
+## The Risk Assessment That Has Not Changed in Three Years
 
-In early 2017, several months into my role as Global Head of Risk Identification at a European G-SIB, I received the first round of bottom-up risk assessments from the business units. I had designed a standardised template, distributed it with detailed guidance, and given the business units eight weeks to complete their submissions. The results arrived on schedule. I opened the first one — a major trading division — and compared it against the prior year's submission that I had retrieved from the archives.
+The first round of bottom-up risk assessments arrives from the business units. A standardised template was distributed with detailed guidance. Eight weeks were allowed for completion. The submissions arrive on schedule. The first one — from a major trading division — is compared against the prior year's submission retrieved from the archives.
 
-It was identical. Not similar. Identical. The same risks, in the same order, with the same scores, the same control descriptions, the same owner names — one of whom had left the firm six months earlier. The dates had been updated. Nothing else had.
+It is identical. Not similar. Identical. The same risks, in the same order, with the same scores, the same control descriptions, the same owner names — one of whom left the firm six months earlier. The dates have been updated. Nothing else has.
 
-I checked a second submission. Same pattern. A third. Same. The business units had treated the bottom-up risk identification exercise as an administrative burden — a form to be completed and returned, not an analytical process to be performed. They had taken last year's spreadsheet, changed the date in the header, and sent it back.
+The second submission follows the same pattern. The third is no different. The business units have treated the bottom-up risk identification exercise as an administrative burden — a form to be completed and returned, not an analytical process to be performed. They took last year's spreadsheet, changed the date in the header, and sent it back.
 
 This is **compliance theatre**: the appearance of risk identification without the substance. And it is the single most common failure mode in bottom-up processes. The template exists. The governance requires its completion. The business unit complies. But no one actually identifies anything.
 
@@ -40,11 +40,11 @@ The template captures eleven fields:
 
 Three of these fields deserve particular attention because they are where most bottom-up submissions fail.
 
-**Underlying Drivers** — both direct and indirect — force the business unit to think about causation, not just classification. A risk definition that says "operational loss from technology failure" is a taxonomy label, not an identification. The driver fields require the assessor to specify *what* could fail, *why* it might fail, and *what conditions* would make failure more likely. This is where identification actually happens. When I reviewed the Institution A submissions, the risk definitions were adequate. The driver fields were empty or contained single-word entries. The business units had classified their risks but had not identified them.
+**Underlying Drivers** — both direct and indirect — force the business unit to think about causation, not just classification. A risk definition that says "operational loss from technology failure" is a taxonomy label, not an identification. The driver fields require the assessor to specify *what* could fail, *why* it might fail, and *what conditions* would make failure more likely. This is where identification actually happens. In practice, risk definitions are often adequate while driver fields are empty or contain single-word entries. The business units have classified their risks but have not identified them.
 
 **Current Controls** must specify the control type — preventive, detective, or corrective — and an honest assessment of effectiveness. The natural tendency is to list controls as "effective" because admitting a control weakness feels like admitting a management failure. The template must explicitly require an effectiveness rating with supporting evidence, not just a binary effective/ineffective judgement. A control that exists on paper but is routinely overridden, bypassed, or under-resourced is not an effective control. The assessment must reflect operational reality, not design intent.
 
-**Data Quality Rating** is the field most likely to be overlooked and most important for downstream assessment. A risk scored as "high impact, low likelihood" based on expert judgement alone carries fundamentally different information from the same score based on ten years of loss data. The four-level rating (High, Medium, Low, Very Low) creates transparency about the evidential basis for each assessment. Chapter 9 (Assessment — Scoring, Multi-Dimensional Impact, and Data Quality) will describe how this rating feeds into the four-dimensional assessment framework. For now, the critical point is that the rating must be assigned honestly. In my experience, business units default to "Medium" for everything. The Risk Identification Lead must challenge this — a risk with no quantitative data and no historical precedent is not "Medium" quality. It is "Low" or "Very Low," and that information matters.
+**Data Quality Rating** is the field most likely to be overlooked and most important for downstream assessment. A risk scored as "high impact, low likelihood" based on expert judgement alone carries fundamentally different information from the same score based on ten years of loss data. The four-level rating (High, Medium, Low, Very Low) creates transparency about the evidential basis for each assessment. Chapter 9 (Assessment — Scoring, Multi-Dimensional Impact, and Data Quality) will describe how this rating feeds into the four-dimensional assessment framework. For now, the critical point is that the rating must be assigned honestly. In practice, business units default to "Medium" for everything. The Risk Identification Lead must challenge this — a risk with no quantitative data and no historical precedent is not "Medium" quality. It is "Low" or "Very Low," and that information matters.
 
 ---
 
@@ -231,7 +231,7 @@ The difference between a bottom-up process that works and one that produces comp
 
 **Third, the output must be challenged.** The Risk Identification Lead reviews every submission against three tests: Has the risk list changed since the last cycle? If not, why not — has genuinely nothing changed, or has the assessor simply rolled forward? Are the driver fields populated with specific, analytical content, or with generic descriptions? Are the control effectiveness ratings supported by evidence, or by assumption?
 
-When I redesigned the bottom-up process at Institution A, I introduced a requirement that every business unit must identify at least three *new* risks or *materially changed* risks each annual cycle. Not because three is a magic number, but because the external environment, the business model, the regulatory landscape, and the technology infrastructure all change continuously. An honest assessment will always find something new. If it does not, the assessor has not looked.
+The methodology requires that every business unit identify at least three *new* risks or *materially changed* risks each annual cycle. Not because three is a magic number, but because the external environment, the business model, the regulatory landscape, and the technology infrastructure all change continuously. An honest assessment will always find something new. If it does not, the assessor has not looked.
 
 ---
 

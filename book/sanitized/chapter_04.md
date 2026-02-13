@@ -1,18 +1,18 @@
 # Chapter 4: The Risk Taxonomy
 
-## The Meeting Where Nobody Agreed
+## The Meeting Where Nobody Agrees
 
-In my first month as Global Head of Risk Identification at Institution A, I convened a meeting to reconcile the risk registers across business units. What I expected was a straightforward alignment exercise. What I got was a two-hour argument about what things were called.
+Picture a meeting convened to reconcile risk registers across business units. What should be a straightforward alignment exercise becomes a two-hour argument about what things are called.
 
-The investment bank classified certain derivative exposures as market risk. The risk function classified the same exposures as counterparty credit risk. Treasury called a subset of them liquidity risk. Each was correct within its own framework. None was wrong. But when I tried to aggregate these into an enterprise view — to answer the basic question of "what are the top risks facing this institution?" — the numbers did not add up. The same underlying exposure appeared in three different categories in three different registers, counted three different ways.
+The investment bank classifies certain derivative exposures as market risk. The risk function classifies the same exposures as counterparty credit risk. Treasury calls a subset of them liquidity risk. Each is correct within its own framework. None is wrong. But when anyone tries to aggregate these into an enterprise view — to answer the basic question of "what are the top risks facing this institution?" — the numbers do not add up. The same underlying exposure appears in three different categories in three different registers, counted three different ways.
 
-This was not an analytical failure. It was a language failure. The institution did not have a common vocabulary for risk.
+This is not an analytical failure. It is a language failure. The institution does not have a common vocabulary for risk.
 
-The problem extended beyond classification. When I asked business units to assess their risks against standardised criteria, the responses were incomparable because each unit had built its own taxonomy. The investment bank had nearly fifty risk categories. The universal bank had just over twenty. Private banking had around thirty. Some categories overlapped. Others had no equivalent in other divisions. "Conduct risk" existed in one division's taxonomy and was entirely absent from another's — not because the division faced no conduct risk, but because nobody had thought to include it.
+The problem extends beyond classification. When business units assess their risks against standardised criteria, the responses are incomparable because each unit has built its own taxonomy. One division may have nearly fifty risk categories. Another just over twenty. A third around thirty. Some categories overlap. Others have no equivalent in other divisions. "Conduct risk" exists in one division's taxonomy and is entirely absent from another's — not because the division faces no conduct risk, but because nobody thought to include it.
 
-Without a common taxonomy, reconciliation between top-down and bottom-up identification was impossible. Without reconciliation, the enterprise portfolio view was meaningless. Without an enterprise view, the Board was receiving a collection of divisional reports rather than a coherent picture of institutional risk. The entire methodology — from identification through to capital planning — depended on something that did not yet exist: a shared language.
+Without a common taxonomy, reconciliation between top-down and bottom-up identification is impossible. Without reconciliation, the enterprise portfolio view is meaningless. Without an enterprise view, the Board receives a collection of divisional reports rather than a coherent picture of institutional risk. The entire methodology — from identification through to capital planning — depends on something that does not yet exist: a shared language.
 
-Building that language was the first operational priority. Before we could identify risks, we had to agree on what we meant by them.
+Building that language is the first operational priority. Before an institution can identify risks, it must agree on what it means by them.
 
 ## Why Taxonomy Matters
 
@@ -146,7 +146,7 @@ This mapping is not optional. It is the mechanism by which the institution demon
 
 As established in Chapter 2 (The Foundations: Standards and Frameworks), the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**.[^ch4-7] Every risk in the taxonomy should be assessable against at least one of these categories.
 
-At Institution A, we used the COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — as a completeness check against the taxonomy. We mapped every L2 risk category against the four objective categories and looked for empty cells. If a risk category had no plausible impact on any objective category, it was probably misclassified. If an objective category had no risks mapped to it for a particular entity, we had probably missed something.
+The COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — serves as a completeness check against the taxonomy. Mapping every L2 risk category against the four objective categories and looking for empty cells reveals gaps. If a risk category has no plausible impact on any objective category, it is probably misclassified. If an objective category has no risks mapped to it for a particular entity, something has probably been missed.
 
 The exercise sounds mechanical but it surfaces real gaps. Most banks' taxonomies are heavily weighted toward Strategic and Operations risks. Reporting risk — the risk that financial and non-financial reporting is unreliable — is often underdeveloped. Compliance risk, in many institutions, consists of a single L2 entry ("regulatory compliance") with no further granularity. The COSO mapping forces the taxonomy to be genuinely comprehensive across all four dimensions.
 

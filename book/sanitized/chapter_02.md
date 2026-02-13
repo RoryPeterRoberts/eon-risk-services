@@ -4,11 +4,11 @@
 
 ## The First Question Every Regulator Asks
 
-In every regulatory examination I have sat through — PRA, FINMA, the Fed, the EBA — the conversation about risk identification follows the same pattern. The supervisor opens a copy of the institution's risk identification process document, turns to the first page, and asks a deceptively simple question: *What standards is this process built on?*
+In regulatory examinations — PRA, FINMA, the Fed, the EBA — the conversation about risk identification follows the same pattern. The supervisor opens a copy of the institution's risk identification process document, turns to the first page, and asks a deceptively simple question: *What standards is this process built on?*
 
 The question is not academic. It is a test. The regulator is establishing whether the institution's process is grounded in internationally recognised standards or whether someone has invented something from scratch — and whether the people responsible for the process understand the difference.
 
-At Institution A, when I built the risk identification process in 2016, one of the first things I had to establish was the standards architecture. Not because I thought ISO 31000 or COSO ERM would tell me exactly how to identify risks in a global investment bank — they would not — but because every regulator with jurisdiction over the bank would assess our process against those standards. If our methodology could not trace its key design decisions back to specific provisions of ISO 31000, ISO 31010, and COSO ERM, we would fail the first supervisory test before anyone even looked at the content.
+When building a risk identification process at any G-SIB, one of the first things to establish is the standards architecture. Not because ISO 31000 or COSO ERM will explain exactly how to identify risks in a global investment bank — they will not — but because every regulator with jurisdiction over the bank will assess the process against those standards. If the methodology cannot trace its key design decisions back to specific provisions of ISO 31000, ISO 31010, and COSO ERM, it will fail the first supervisory test before anyone even looks at the content.
 
 This chapter examines the four standards and frameworks that provide the foundation for the methodology in this book: **ISO 31000** (Risk Management: Principles and Guidelines), **ISO 31010** (Risk Management: Risk Assessment Techniques), the **COSO Enterprise Risk Management Integrated Framework**, and the **BCBS Corporate Governance Principles**. These are not interchangeable. Each serves a different purpose. Together, they form the standards architecture that every bank risk identification process must be built on.
 
@@ -148,7 +148,7 @@ COSO ERM defines eight interrelated components that together constitute an effec
 
 COSO ERM's distinctive contribution is the three-dimensional model — often represented as a cube — that maps the eight components against the four objective categories against the organisational entity levels (subsidiary, division, business unit, entity). This three-dimensional view forces a critical question: *Have we identified risks across all components, all objective categories, and all organisational levels?*
 
-In practice, I have found this model to be one of the most effective tools for identifying gaps in risk identification coverage. When I built the process at Institution A, we used the COSO cube as a completeness check. We mapped every identified risk against the matrix and looked for empty cells — combinations of component, objective, and entity where no risks had been identified. The empty cells were not proof that no risks existed in those spaces. They were proof that we had not looked. And when we looked, we invariably found risks that the standard workshop-and-brainstorm approach had missed.
+In practice, this model is one of the most effective tools for identifying gaps in risk identification coverage. Using the COSO cube as a completeness check means mapping every identified risk against the matrix and looking for empty cells — combinations of component, objective, and entity where no risks have been identified. The empty cells are not proof that no risks exist in those spaces. They are proof that nobody has looked. And when someone looks, they invariably find risks that the standard workshop-and-brainstorm approach missed.
 
 ---
 
@@ -208,7 +208,7 @@ Let me be direct about something the standards will not tell you. They will not 
 
 Standards provide the architecture. They do not provide the craft.
 
-At a major European insurer, where I spent five years as Solvency II Project Manager before moving to the dealing floor, I watched the implementation of standards-based risk frameworks across dozens of entities. The institutions that succeeded were not the ones with the most comprehensive standards mapping. They were the ones that understood the standards well enough to know where the standards ended and where practitioner judgement began.
+The implementation of Solvency II across European insurers demonstrated this clearly. The institutions that succeeded were not the ones with the most comprehensive standards mapping. They were the ones that understood the standards well enough to know where the standards ended and where practitioner judgement began.
 
 The same is true here. ISO 31000, ISO 31010, COSO ERM, and the BCBS principles give you the architecture, the techniques, the enterprise lens, and the regulatory mandate. They tell you what a good process looks like in structural terms. But turning that structure into a working process that actually identifies the risks that matter — that requires governance, methodology, and the kind of operational detail that no standard can provide.
 

@@ -14,9 +14,9 @@ Technology is a cross-cutting enabler. It is not a seventh phase.
 
 ## Why Technology Comes After Methodology, Not Before
 
-Chapter 11 (Documentation: The Living Risk Inventory) established a principle that bears repeating here: the inventory structure must be designed independently of the technology that will host it. Define the fourteen fields, the risk profiles, the audit trail requirements, the governance protocols — then select the technology. This sequence is not arbitrary. It prevents a failure I have seen repeatedly: institutions that purchase a GRC platform, configure it according to the vendor's default taxonomy and workflow, and then declare that they have a risk identification process.
+Chapter 11 (Documentation: The Living Risk Inventory) established a principle that bears repeating here: the inventory structure must be designed independently of the technology that will host it. Define the fourteen fields, the risk profiles, the audit trail requirements, the governance protocols — then select the technology. This sequence is not arbitrary. It prevents a common failure: institutions purchase a GRC platform, configure it according to the vendor's default taxonomy and workflow, and then declare that they have a risk identification process.
 
-They do not. They have a technology platform. The process — the workshops, the templates, the reconciliation, the challenge sessions, the enterprise portfolio view — must exist as a methodology before technology can enhance it. At a European G-SIB, I built the initial risk inventory in a spreadsheet. It was not elegant. It had no referential integrity, no network queries, no role-based access control. But it captured the methodology accurately, and it allowed us to refine the process through three complete cycles before we specified technology requirements. By the time we engaged with GRC platform vendors, we knew exactly what we needed the technology to do, because we had done it manually first.
+They do not. They have a technology platform. The process — the workshops, the templates, the reconciliation, the challenge sessions, the enterprise portfolio view — must exist as a methodology before technology can enhance it. The right approach is to build the initial risk inventory in a spreadsheet. It will not be elegant. It will have no referential integrity, no network queries, no role-based access control. But it captures the methodology accurately and allows the institution to refine the process through two or three complete cycles before specifying technology requirements. By the time the institution engages with GRC platform vendors, it knows exactly what it needs the technology to do, because it has done it manually first.
 
 The institutions that get this wrong — and there are many — buy the platform first. They configure it for risk assessment, not risk identification. They populate it with whatever risk categories the vendor's template provides. And they discover, two years and several million dollars later, that they have an expensive repository with no process to fill it.
 
@@ -125,7 +125,7 @@ The Equifax breach of 2017 illustrates what happens when data management is trea
 
 At some point in an institution's risk identification maturity journey, spreadsheets become inadequate. That point arrives earlier than most institutions recognise.
 
-Chapter 11 described the experience at the first institution: the initial risk inventory was built in a spreadsheet. This was the right decision at the time — the process was new, the methodology was being refined, and the cost of configuring a technology platform before the process was stable would have been prohibitive. But spreadsheets have structural limitations that become acute as the methodology scales:
+As Chapter 11 described, the initial risk inventory is typically built in a spreadsheet. This is the right decision at the start — the process is new, the methodology is being refined, and the cost of configuring a technology platform before the process is stable would be prohibitive. But spreadsheets have structural limitations that become acute as the methodology scales:
 
 - **No referential integrity.** A risk owner's name in the inventory is a text string, not a link to an organisational structure. When that person changes role, the spreadsheet does not flag orphaned risks.
 - **No network queries.** The risk interaction analysis from Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration) requires mapping relationships between risks — triggers, amplifiers, correlations. A spreadsheet cannot represent or query a network.
@@ -205,7 +205,7 @@ For institutions that have not yet integrated technology into their risk identif
 
 ## What Technology Does Not Replace
 
-Throughout this chapter, I have been careful to distinguish between what technology can do and what it cannot. This distinction matters because the most dangerous outcome of technology investment in risk identification is not failure — it is misplaced confidence.
+Throughout this chapter, the distinction between what technology can do and what it cannot has been deliberate. This distinction matters because the most dangerous outcome of technology investment in risk identification is not failure — it is misplaced confidence.
 
 Technology does not replace the SWIFT workshop. No algorithm can replicate the moment when a structured prompt causes a senior executive to consider a risk they had not previously articulated. Technology does not replace the Delphi panel. No ML model trained on historical data can identify a risk that has never occurred — that requires human imagination constrained by structured methodology. Technology does not replace the reconciliation process. No automated system can navigate the political dynamics of assigning risk ownership between business units or challenging a CRO's assessment of materiality.
 

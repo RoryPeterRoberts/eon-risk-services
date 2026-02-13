@@ -112,7 +112,7 @@ Six elements are assessed:
 
 **Information systems and data flows.** How risk information is captured, aggregated, and reported. If the institution cannot produce a consolidated view of its exposures across business units and legal entities within a reasonable timeframe, that data infrastructure gap is a material risk. BCBS 239 (Principles for effective risk data aggregation and risk reporting)[^ch5-15] provides the regulatory benchmark against which this assessment should be measured.
 
-**Risk appetite statement.** The Board-approved qualitative and quantitative appetite metrics. The risk appetite statement is the standard against which identified risks will ultimately be measured. It must exist, it must be specific, and it must be operational — meaning it must contain metrics that can actually be monitored and breached. I have encountered institutions where the risk appetite statement was a single paragraph of aspirational language that provided no practical constraint on risk-taking. That is not a risk appetite. It is a mission statement with the word "risk" in it.
+**Risk appetite statement.** The Board-approved qualitative and quantitative appetite metrics. The risk appetite statement is the standard against which identified risks will ultimately be measured. It must exist, it must be specific, and it must be operational — meaning it must contain metrics that can actually be monitored and breached. At many institutions, the risk appetite statement is a single paragraph of aspirational language that provides no practical constraint on risk-taking. That is not a risk appetite. It is a mission statement with the word "risk" in it.
 
 ## The Internal Environment Assessment: Where Risk Culture Lives
 
@@ -233,7 +233,7 @@ The straw man is powerful precisely because it is used correctly. Used incorrect
 - The facilitator emphasises at the start of every workshop that the straw man is meant to be torn apart — participants are expected to add, remove, modify, and challenge every item
 - The final output must reflect the workshop's collective judgement, not the straw man
 
-At a European G-SIB, I learned this lesson in the first cycle. When the straw man was presented as "the proposed risk list" rather than "the starting point for discussion", participants deferred to it. When it was presented as "here is what the evidence shows — now tell me what is wrong with it", the workshops produced genuine challenge, debate, and identification of risks the straw man had missed. The framing matters as much as the content.
+Framing matters as much as content. When the straw man is presented as "the proposed risk list," participants defer to it. When it is presented as "here is what the evidence shows — now tell me what is wrong with it," workshops produce genuine challenge, debate, and identification of risks the straw man missed.
 
 ## How Hypo Real Estate Could Have Been Different
 

@@ -1,16 +1,16 @@
 # Chapter 6: Top-Down Identification: Workshops, SWIFT, and Delphi
 
-## The Workshop Where Everyone Agreed
+## The Workshop Where Everyone Agrees
 
-My first risk identification workshop at a European G-SIB, in late 2016, followed a pattern I would come to recognise as universal. Twelve senior people sat around a conference table. The facilitator — a well-meaning colleague from the risk function — opened with a question: "What are the key risks facing our business?"
+The scene is universal. Twelve senior people sit around a conference table. The facilitator — a well-meaning colleague from the risk function — opens with a question: "What are the key risks facing our business?"
 
-The most senior person in the room spoke first. He identified three risks. They were the same three risks that had appeared at the top of the previous year's risk register: regulatory change, market volatility, and credit deterioration. The next person agreed with all three and added a fourth. The person after that agreed with all four. Within thirty minutes, the room had produced a list of eight risks, each essentially a restatement of the existing register, and the facilitator was already moving to the assessment phase.
+The most senior person in the room speaks first. He identifies three risks. They are the same three risks that appeared at the top of the previous year's risk register: regulatory change, market volatility, and credit deterioration. The next person agrees with all three and adds a fourth. The person after that agrees with all four. Within thirty minutes, the room has produced a list of eight risks, each essentially a restatement of the existing register, and the facilitator is already moving to the assessment phase.
 
-No one had mentioned counterparty concentration in prime brokerage. No one had raised the question of whether the bank's exposure to leveraged family offices was adequately visible. No one had asked what would happen if a single client defaulted across multiple desks simultaneously. Four years later, Archegos Capital Management would demonstrate exactly why those questions mattered — at a cost of $5.5 billion to the institution.[^ch6-1]
+No one mentions counterparty concentration in prime brokerage. No one raises the question of whether the bank's exposure to leveraged family offices is adequately visible. No one asks what would happen if a single client defaulted across multiple desks simultaneously. At Credit Suisse, Archegos Capital Management would eventually demonstrate exactly why those questions mattered — at a cost of $5.5 billion.[^ch6-1]
 
-That workshop was not unusual. It was typical. And it was worse than useless — it was actively dangerous, because it created a documented record showing that senior management had "identified" the institution's risks, when in reality the process had done nothing more than confirm existing assumptions. The risk register looked comprehensive. The governance box was ticked. And the bank remained blind to the exposures that would eventually destroy it.
+This kind of workshop is not unusual. It is typical. And it is worse than useless — it is actively dangerous, because it creates a documented record showing that senior management has "identified" the institution's risks, when in reality the process has done nothing more than confirm existing assumptions. The risk register looks comprehensive. The governance box is ticked. And the bank remains blind to the exposures that could destroy it.
 
-I walked out of that workshop knowing that the entire approach had to be redesigned. Traditional brainstorming, applied to risk identification in a hierarchical institution, does not identify risks. It identifies consensus. And consensus, in risk management, is the enemy.
+Traditional brainstorming, applied to risk identification in a hierarchical institution, does not identify risks. It identifies consensus. And consensus, in risk management, is the enemy.
 
 ## Why Brainstorming Fails
 
@@ -42,7 +42,7 @@ Bottom-up identification — the subject of Chapter 7 (Bottom-Up Identification:
 
 As Oliver Wyman observed in their analysis of risk identification practices, the use of parallel top-down and bottom-up processes provides a higher likelihood of identifying an organisation's full suite of risks than either process in isolation. The top-down process captures strategic and emerging risks; the bottom-up process achieves comprehensive, granular coverage. The reconciliation between them — which Chapter 8 (Reconciliation and the Enterprise Portfolio View) will address — is where the methodology creates its most distinctive value.
 
-The straw man risk list, prepared by the Risk Identification Lead during Phase 1, bridges both tracks. It is circulated to workshop participants in advance, providing an evidence-based starting point that prevents blank-page syndrome while being explicitly designed to be challenged, modified, and torn apart. As I learned at Institution A, the framing of this document matters enormously — present it as a "proposed risk list" and participants defer to it; present it as a document to be dismantled and they engage critically.
+The straw man risk list, prepared by the Risk Identification Lead during Phase 1, bridges both tracks. It is circulated to workshop participants in advance, providing an evidence-based starting point that prevents blank-page syndrome while being explicitly designed to be challenged, modified, and torn apart. The framing of this document matters enormously — present it as a "proposed risk list" and participants defer to it; present it as a document to be dismantled and they engage critically.
 
 ## Designing the Top-Down Workshop
 
@@ -144,7 +144,7 @@ The Risk Identification Lead, who facilitates these workshops, requires a specif
 
 **Protecting the process from political interference.** The most difficult facilitation challenge occurs when a senior participant attempts to remove a risk from the list or downgrade its significance for reasons that are political rather than analytical. The facilitator must ensure that the risk remains documented, the challenge is recorded, and the final decision reflects genuine analytical judgement rather than political pressure. This requires the structural independence described in Chapter 3 (Governance: Who Owns What) — the Risk Identification Lead must have the mandate and the protection to maintain the integrity of the output.
 
-I learned these skills through practice, not training. No course prepared me for the moment at Institution A when a business unit head told me, in front of twelve colleagues, that a risk I had identified did not exist. The risk existed. It appeared in the final inventory. But the political skill required to navigate that moment — to document the disagreement, to seek supporting evidence from other participants, to escalate through the governance structure when necessary — is the craft that distinguishes a process that works from a process that merely exists on paper.
+These skills are learned through practice, not training. No course prepares a facilitator for the moment when a business unit head declares, in front of twelve colleagues, that a risk does not exist. The risk may well exist — and may appear in the final inventory. But the political skill required to navigate that moment — to document the disagreement, to seek supporting evidence from other participants, to escalate through the governance structure when necessary — is the craft that distinguishes a process that works from a process that merely exists on paper.
 
 ## Scenario Analysis as an Identification Technique
 
@@ -251,7 +251,7 @@ The connection between SWIFT workshops and CCAR is direct. The Fed expects insti
 
 The quarterly re-identification cycle established in Chapter 3 means that SWIFT workshops are not annual events. The full annual workshop covers all domains comprehensively. Quarterly workshops are more focused — targeting areas where the risk landscape has changed, where new risks have emerged, or where prior identifications need to be revisited in light of new information. The straw man for quarterly workshops draws on the prior quarter's inventory, updated PESTLE factors, and any event-driven triggers that have occurred since the last cycle.
 
-This integration between the identification methodology and the CCAR framework is not incidental. When I built the risk identification process at Institution A, one of the first requirements from the CRO was that the process had to feed directly into the CCAR submission. The Material Risk Inventory produced by the methodology — through SWIFT workshops, Delphi consultations, and the bottom-up processes described in Chapter 7 — became the foundation for scenario design and stress testing. Risk identification was not a standalone exercise. It was the front end of the capital planning process.
+This integration between the identification methodology and the CCAR framework is not incidental. At institutions subject to CCAR, the risk identification process must feed directly into the submission. The Material Risk Inventory produced by the methodology — through SWIFT workshops, Delphi consultations, and the bottom-up processes described in Chapter 7 — becomes the foundation for scenario design and stress testing. Risk identification is not a standalone exercise. It is the front end of the capital planning process.
 
 ## Top-Down Outputs
 

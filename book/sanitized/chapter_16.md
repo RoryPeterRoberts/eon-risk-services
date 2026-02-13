@@ -4,7 +4,7 @@
 
 Two point three trillion dollars. That is the aggregate cost of the 179 bank failures, frauds, and near-collapses in the industry loss database that underpins this book. Spanning six decades, thirty-five countries, and every major risk category in the taxonomy, this database represents the most comprehensive collection of risk identification failures ever assembled for a single methodology.[^ch16-1]
 
-I built this database not as an academic exercise but as a forensic tool. For each of the 179 entries, I asked the same question I posed in Chapter 1 (Why Banks Fail at Risk Identification): *Was the risk identifiable before the loss materialised?* The answer, in every case, was yes. Not with the benefit of hindsight. Not with information that only became available after the fact. The risks were identifiable at the time, with the information available at the time, using techniques available at the time. What was missing was the process.
+This database was built not as an academic exercise but as a forensic tool. For each of the 179 entries, the same question posed in Chapter 1 was applied: *Was the risk identifiable before the loss materialised?* The answer, in every case, was yes. Not with the benefit of hindsight. Not with information that only became available after the fact. The risks were identifiable at the time, with the information available at the time, using techniques available at the time. What was missing was the process.
 
 Chapter 15 (The Regulatory Landscape) described the sixteen regulatory frameworks that mandate risk identification across jurisdictions. Those regulations tell institutions what they must do. This chapter presents the evidence that tells them why.
 
@@ -114,7 +114,7 @@ The methodology is built on three foundations: standards, regulation, and eviden
 
 Every institution in this database had talented risk professionals. Many had sophisticated measurement systems, advanced models, and comprehensive regulatory reporting. What they did not have was a systematic, end-to-end process for identifying the risks they were exposed to before those risks destroyed value, reputations, and — in too many cases — the institution itself.
 
-The methodology described in this book exists because the evidence demands it. I have built it twice — at two globally significant institutions — and studied the failures that demonstrate why it is necessary. The process is comprehensive. It is detailed. And when implemented with the governance, rigour, and institutional commitment it requires, it works.
+The methodology described in this book exists because the evidence demands it. The process is comprehensive. It is detailed. And when implemented with the governance, rigour, and institutional commitment it requires, it works.
 
 The evidence is clear. The methodology is available. The only remaining question is whether the institution has the will to implement it.
 
