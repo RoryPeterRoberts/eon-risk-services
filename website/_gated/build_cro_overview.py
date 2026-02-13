@@ -822,14 +822,9 @@ def build_html():
     </ul>
     <p><strong>eonriskservices.com/consulting</strong></p>
 
-    <div class="cta-box">
-        <h3>Ready to Start?</h3>
-        <p>Download the toolkit, score your process, or contact us directly.</p>
-        <span class="url">eonriskservices.com/toolkit</span>
-        <span class="url">eonriskservices.com/assessment</span>
-    </div>
+    <hr class="gold-divider">
 
-    <div style="margin-top: 20pt; text-align: center; font-size: 9pt; color: {TEXT_MUTED};">
+    <div style="margin-top: 16pt; text-align: center; font-size: 9pt; color: {TEXT_MUTED};">
         <p><strong style="color: {NAVY};">EON Risk Services Ltd</strong><br>
         Dublin, Ireland<br>
         rory@eonriskservices.com &nbsp;&bull;&nbsp; eonriskservices.com<br>
