@@ -772,7 +772,7 @@ def build_html():
     </div>
 
     <div class="toolkit-card">
-        <div class="toolkit-card-title">Template Pack (Excel, 30 tabs)</div>
+        <div class="toolkit-card-title">Template Pack (Excel, 31 tabs)</div>
         <div class="toolkit-card-text">Every artifact from the methodology: risk taxonomy, PESTLE assessment, SWIFT prompt matrix, bottom-up template, scoring worksheets, interaction matrix, bow-tie template, KRI dashboard, Board report template, and 20 more. Pre-built with formulas, dropdowns, conditional formatting, and worked examples.</div>
     </div>
 
@@ -803,7 +803,7 @@ def build_html():
     <hr class="gold-divider">
 
     <h3>2. Download the Toolkit</h3>
-    <p>Get the complete methodology: the book, the 30-tab template pack, the AI prompt library, and the Copilot agent definition. Enter your email and receive immediate access.</p>
+    <p>Get the complete methodology: the book, the 31-tab template pack, the AI prompt library, and the Copilot agent definition. Enter your email and receive immediate access.</p>
     <p><strong>eonriskservices.com/toolkit</strong></p>
 
     <hr class="gold-divider">
