@@ -30,7 +30,7 @@ ISO 31000 establishes eleven principles that risk management should satisfy.[^ch
 - **Explicitly addresses uncertainty** (Principle d) — Risk identification must deal with what is uncertain, not merely catalogue what is already known. This is the principle that demands horizon scanning and emerging risk identification.
 - **Is systematic, structured and timely** (Principle e) — Ad hoc identification is not compliant. The process must be repeatable, documented, and executed on a defined schedule.
 - **Is based on the best available information** (Principle f) — This principle requires that risk identification draws on multiple information sources — internal data, external intelligence, expert judgement, historical evidence — not just management opinion.
-- **Takes human and cultural factors into account** (Principle h) — This is the principle that requires a risk identification process to assess whether the institutional culture enables or suppresses the identification of risks. It is the standards basis for addressing the Cultural Suppression failure mode described in Chapter 1.
+- **Takes human and cultural factors into account** (Principle h) — This is the principle that requires a risk identification process to assess whether the institutional culture enables or suppresses the identification of risks. It is the standards basis for addressing the Cultural Suppression failure mode described in Chapter 1 (Why Banks Fail at Risk Identification).
 - **Is dynamic, iterative and responsive to change** (Principle j) — Risk identification is not a one-time activity. The standard requires a process that responds to changes in the internal and external environment — which means event-driven updates, not just scheduled cycles.
 
 These principles are not aspirational. When a regulator examines your risk identification process, they are checking — consciously or not — whether these principles are reflected in the design. A process that runs once a year (violating Principle j), uses only top-down workshops (violating Principle f), and produces outputs that no one acts on (violating Principle c) will fail regulatory scrutiny, even if the content of the risk register looks reasonable.
@@ -55,7 +55,7 @@ The process layer is where risk identification lives. ISO 31000, Clause 5 define
 
 Section 5.4.2 — Risk Identification — is the provision most directly relevant to this book. The standard requires that the organisation identify sources of risk, areas of impacts, events and their causes, and their potential consequences. It specifies that the aim is to generate a comprehensive list of risks based on those events that might create, enhance, prevent, degrade, accelerate, or delay the achievement of objectives. It requires that risks be identified whether or not their source is under the control of the organisation, and emphasises the importance of identifying risks associated with not pursuing an opportunity.[^ch2-5]
 
-The standard also makes a critical point that practitioners often miss: risk identification should include examination of the knock-on effects of particular consequences, including cascade and cumulative effects.[^ch2-6] This is the standards basis for the risk interaction analysis covered in Chapter 10 of this book — the requirement to look beyond individual risks to their interconnections.
+The standard also makes a critical point that practitioners often miss: risk identification should include examination of the knock-on effects of particular consequences, including cascade and cumulative effects.[^ch2-6] This is the standards basis for the risk interaction analysis covered in Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration) of this book — the requirement to look beyond individual risks to their interconnections.
 
 Two additional elements of the process layer matter enormously for risk identification:
 
@@ -81,15 +81,15 @@ For risk identification specifically, the techniques rated as strongly applicabl
 
 | Technique | What It Does | Where It Appears in This Methodology |
 |---|---|---|
-| **Brainstorming** | Stimulates creative thinking in a group to generate a comprehensive list of risks | Phase 2 workshops (Ch 6), with structured modifications |
-| **Structured interviews** | Systematic questioning of individuals with relevant knowledge | Phase 2 bottom-up templates (Ch 7) |
-| **Delphi technique** | Iterative anonymous expert consultation to achieve convergence on emerging risks | Phase 2 top-down emerging risk identification (Ch 6) |
-| **Checklists** | Systematic review against a predefined list of risk categories | Phase 1 starting universe construction (Ch 5) |
-| **SWIFT (Structured What If Technique)** | Systematic examination of deviations from normal operations using "what if" prompts | Phase 2 top-down workshops (Ch 6) |
-| **HAZOP** | Systematic examination of process deviations using guide words | Adapted for operational risk identification (Ch 7) |
-| **Scenario analysis** | Construction of plausible future scenarios to identify risks | Phase 3 assessment and Phase 2 emerging risks (Ch 6, Ch 9) |
-| **Bow-tie analysis** | Visual mapping of causes, controls, and consequences for a specific risk event | Phase 3 risk interaction analysis (Ch 10) |
-| **Fault tree analysis** | Top-down logical decomposition of how a risk event can occur | Phase 3 detailed analysis of material risks (Ch 10) |
+| **Brainstorming** | Stimulates creative thinking in a group to generate a comprehensive list of risks | Phase 2 workshops (Ch 6 (Top-Down Identification: Workshops, SWIFT, and Delphi)), with structured modifications |
+| **Structured interviews** | Systematic questioning of individuals with relevant knowledge | Phase 2 bottom-up templates (Ch 7 (Bottom-Up Identification: Templates, RCSA, and Specialist Processes)) |
+| **Delphi technique** | Iterative anonymous expert consultation to achieve convergence on emerging risks | Phase 2 top-down emerging risk identification (Ch 6 (Top-Down Identification: Workshops, SWIFT, and Delphi)) |
+| **Checklists** | Systematic review against a predefined list of risk categories | Phase 1 starting universe construction (Ch 5 (Setting the Context: External, Internal, and Risk Culture)) |
+| **SWIFT (Structured What If Technique)** | Systematic examination of deviations from normal operations using "what if" prompts | Phase 2 top-down workshops (Ch 6 (Top-Down Identification: Workshops, SWIFT, and Delphi)) |
+| **HAZOP** | Systematic examination of process deviations using guide words | Adapted for operational risk identification (Ch 7 (Bottom-Up Identification: Templates, RCSA, and Specialist Processes)) |
+| **Scenario analysis** | Construction of plausible future scenarios to identify risks | Phase 3 assessment and Phase 2 emerging risks (Ch 6 (Top-Down Identification: Workshops, SWIFT, and Delphi), Ch 9 (Assessment — Scoring, Multi-Dimensional Impact, and Data Quality)) |
+| **Bow-tie analysis** | Visual mapping of causes, controls, and consequences for a specific risk event | Phase 3 risk interaction analysis (Ch 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration)) |
+| **Fault tree analysis** | Top-down logical decomposition of how a risk event can occur | Phase 3 detailed analysis of material risks (Ch 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration)) |
 
 The standard also provides guidance on technique selection. Section 6.2 identifies three factors that should drive the choice: the availability of resources and expertise, the nature and degree of uncertainty, and the complexity of the situation.[^ch2-9] In practice, this means that a bank risk identification process cannot rely on a single technique. Brainstorming alone will not identify emerging risks — it amplifies groupthink. Checklists alone will not identify novel risks — they only find what is already on the list. Scenario analysis alone will not identify operational risks in individual business units — it operates at too high a level.
 
@@ -101,7 +101,7 @@ The standard makes another point that practitioners consistently overlook. Secti
 
 ## COSO ERM: The Enterprise Lens
 
-The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004,[^ch2-11] and updated it in 2017 as *Enterprise Risk Management — Integrating with Strategy and Performance*.[^ch2-12] The 2017 update reorganised the framework around five components and twenty principles, with greater emphasis on strategy and performance integration. This book references the 2004 framework's eight-component structure because it remains the version most widely embedded in banking practice and regulatory expectations, particularly the three-dimensional cube model used as a completeness check in Chapter 4. Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
+The Committee of Sponsoring Organizations of the Treadway Commission — known as COSO — published its Enterprise Risk Management Integrated Framework in 2004,[^ch2-11] and updated it in 2017 as *Enterprise Risk Management — Integrating with Strategy and Performance*.[^ch2-12] The 2017 update reorganised the framework around five components and twenty principles, with greater emphasis on strategy and performance integration. This book references the 2004 framework's eight-component structure because it remains the version most widely embedded in banking practice and regulatory expectations, particularly the three-dimensional cube model used as a completeness check in Chapter 4 (The Risk Taxonomy). Where ISO 31000 provides a generic risk management architecture, COSO ERM provides something specific and valuable for banking: a framework that explicitly links risk management to organisational objectives.
 
 ### Origins and Context
 
@@ -160,7 +160,7 @@ The Basel Committee on Banking Supervision published its Corporate Governance Pr
 
 Several elements of Principle 7 have direct implications for how a bank designs its risk identification process:
 
-**Bank-wide identification.** The BCBS principles require risk identification to cover the entire institution — not just individual business lines or risk types. This is the regulatory mandate for the enterprise portfolio view described in Chapter 8 of this book, and the reason the methodology requires reconciliation across top-down and bottom-up identification tracks.
+**Bank-wide identification.** The BCBS principles require risk identification to cover the entire institution — not just individual business lines or risk types. This is the regulatory mandate for the enterprise portfolio view described in Chapter 8 (Reconciliation and the Enterprise Portfolio View) of this book, and the reason the methodology requires reconciliation across top-down and bottom-up identification tracks.
 
 **Ongoing identification.** The word "ongoing" is significant. The BCBS does not envision risk identification as an annual exercise. It expects a continuous process — which in practice means a combination of scheduled cycles (annual full identification, quarterly re-identification) and event-driven updates. This is the regulatory basis for Phase 6 of the methodology.
 
@@ -168,7 +168,7 @@ Several elements of Principle 7 have direct implications for how a bank designs 
 
 **Board responsibility.** The BCBS principles place ultimate responsibility for risk management with the Board of Directors, including responsibility for approving the risk appetite framework and ensuring that the bank's risk management function has adequate resources and authority. For risk identification, this means the Board must receive risk identification outputs and must be satisfied that the process is comprehensive.
 
-The BCBS principles also emphasise the importance of the **risk management function's independence** from the business lines it oversees. For risk identification, this creates a structural requirement: the people conducting the identification must have the authority and independence to identify risks that the business might prefer to ignore. This is the regulatory basis for the governance structures described in Chapter 3.
+The BCBS principles also emphasise the importance of the **risk management function's independence** from the business lines it oversees. For risk identification, this creates a structural requirement: the people conducting the identification must have the authority and independence to identify risks that the business might prefer to ignore. This is the regulatory basis for the governance structures described in Chapter 3 (Governance: Who Owns What).
 
 Beyond Principle 7, the BCBS principles reference several other provisions relevant to risk identification. Principle 1 on the Board's overall responsibilities includes the duty to approve risk management strategies.[^ch2-18] Principle 8 on risk communication requires that information about the bank's risk profile be conveyed to the Board in a timely, accurate, and understandable manner. Principle 9 on compliance requires identification of compliance risks.[^ch2-19] Together, these principles create a comprehensive regulatory expectation for risk identification that goes well beyond what most banks currently deliver.
 
@@ -216,7 +216,7 @@ That is what the remaining chapters of this book deliver: the practitioner's met
 
 ---
 
-*The standards tell you what needs to exist. But a process without clear ownership is a process that will fail — regardless of how well it maps to ISO 31000. In the next chapter, we examine governance: who owns the risk identification process, who participates in it, who has authority to challenge the business, and how findings reach the Board without being filtered by the people who generated the risk.*
+*The standards tell you what needs to exist. But a process without clear ownership is a process that will fail — regardless of how well it maps to ISO 31000. In Chapter 3 (Governance: Who Owns What), we examine governance: who owns the risk identification process, who participates in it, who has authority to challenge the business, and how findings reach the Board without being filtered by the people who generated the risk.*
 
 ---
 

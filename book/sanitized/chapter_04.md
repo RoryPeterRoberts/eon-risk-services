@@ -144,7 +144,7 @@ This mapping is not optional. It is the mechanism by which the institution demon
 
 ### Use COSO Objective Categories as a Completeness Check
 
-As established in Chapter 2, the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**.[^ch4-7] Every risk in the taxonomy should be assessable against at least one of these categories.
+As established in Chapter 2 (The Foundations: Standards and Frameworks), the COSO ERM framework defines four objective categories against which risks must be identified: **Strategic**, **Operations**, **Reporting**, and **Compliance**.[^ch4-7] Every risk in the taxonomy should be assessable against at least one of these categories.
 
 At Institution A, we used the COSO three-dimensional model — the cube of eight components, four objectives, and entity levels — as a completeness check against the taxonomy. We mapped every L2 risk category against the four objective categories and looked for empty cells. If a risk category had no plausible impact on any objective category, it was probably misclassified. If an objective category had no risks mapped to it for a particular entity, we had probably missed something.
 
@@ -168,7 +168,7 @@ This has practical implications. When a business unit is reorganised, the taxono
 
 ## ISO Guide 73 and Definitional Consistency
 
-Chapter 2 established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**[^ch4-8], which provides standardised definitions for risk management terms.
+Chapter 2 (The Foundations: Standards and Frameworks) established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**[^ch4-8], which provides standardised definitions for risk management terms.
 
 Definitional consistency matters because taxonomy is fundamentally about shared meaning. If "credit risk" means one thing to the credit risk function and something slightly different to the operational risk function, the taxonomy fails its purpose even if the category names are identical.
 
@@ -196,7 +196,7 @@ This mapping must be active, not aspirational. It must be maintained as regulati
 
 A taxonomy is not a static document. It is a living structure that must evolve as the institution's risk landscape changes.
 
-The governance arrangements for taxonomy maintenance are established in the governance framework from Chapter 3:
+The governance arrangements for taxonomy maintenance are established in the governance framework from Chapter 3 (Governance: Who Owns What):
 
 - **Annual review and approval** by the Board Risk Committee. The full taxonomy is reviewed at least annually as part of the annual full re-identification cycle. The Board does not need to approve every L3 entry, but it must approve the L1 structure and any material changes to L2.
 - **CRO amendment authority.** The CRO can propose amendments to the taxonomy at any time — this is essential for responding to emerging risks that cannot wait for the annual cycle. If a new risk type emerges (as conduct risk did, or as climate risk did more recently), the CRO must be able to add it to the taxonomy promptly so that identification processes can begin capturing it.
@@ -241,11 +241,11 @@ Run this test against the industry loss database. Run it against your own instit
 
 The taxonomy is not perfect and never will be. Risk is dynamic, and any static classification will eventually lag behind reality. The question is not whether the taxonomy has gaps — it always will — but whether the institution has a process for finding and closing them before those gaps produce losses.
 
-That process is taxonomy maintenance, supported by evidence from loss data, intelligence from horizon scanning, and governance that allows the CRO to act without waiting for the annual cycle. The Board approves the structure. The CRO maintains it. The Risk Identification Lead uses it. Internal Audit tests it. The entire governance framework described in the previous chapter exists in part to ensure that this foundation — the common language — remains sound.
+That process is taxonomy maintenance, supported by evidence from loss data, intelligence from horizon scanning, and governance that allows the CRO to act without waiting for the annual cycle. The Board approves the structure. The CRO maintains it. The Risk Identification Lead uses it. Internal Audit tests it. The entire governance framework described in Chapter 3 (Governance: Who Owns What) exists in part to ensure that this foundation — the common language — remains sound.
 
 The taxonomy is where the methodology begins. Without it, risk identification is a conversation where no one is speaking the same language. With it, every participant — from Board to front line — can identify, classify, and communicate risk in a way that aggregates into an enterprise view.
 
-In the next chapter, we turn to what that enterprise view requires before identification can begin: the systematic assessment of the external environment, the internal context, and the risk culture that will either enable or undermine every step that follows.
+In Chapter 5 (Setting the Context: External, Internal, and Risk Culture), we turn to what that enterprise view requires before identification can begin: the systematic assessment of the external environment, the internal context, and the risk culture that will either enable or undermine every step that follows.
 
 ---
 

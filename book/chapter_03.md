@@ -116,7 +116,7 @@ Front-line employees are the earliest sensors in the risk identification system.
 - Protection from retaliation for raising risk concerns
 - Training on what constitutes a risk observation and how to report it
 
-This last point connects directly to the Cultural Suppression failure mode identified in Chapter 1. At Wells Fargo, front-line employees knew that the aggressive cross-selling targets were driving fraudulent account openings. Many raised complaints. But the governance structure treated these as HR matters — employee dissatisfaction — rather than risk signals. The complaints were absorbed by the system, not escalated through it. The result was an estimated 3.5 million potentially unauthorised accounts,[^ch3-8] a $3 billion DOJ settlement,[^ch3-9] an asset-growth restriction imposed by the Federal Reserve in 2018 (not lifted until 2025),[^ch3-10] and the resignation of the CEO.
+This last point connects directly to the Cultural Suppression failure mode identified in Chapter 1 (Why Banks Fail at Risk Identification). At Wells Fargo, front-line employees knew that the aggressive cross-selling targets were driving fraudulent account openings. Many raised complaints. But the governance structure treated these as HR matters — employee dissatisfaction — rather than risk signals. The complaints were absorbed by the system, not escalated through it. The result was an estimated 3.5 million potentially unauthorised accounts,[^ch3-8] a $3 billion DOJ settlement,[^ch3-9] an asset-growth restriction imposed by the Federal Reserve in 2018 (not lifted until 2025),[^ch3-10] and the resignation of the CEO.
 
 The methodology addresses this by requiring dedicated risk reporting channels for front-line employees that feed directly into the risk identification process, not into the HR function. Anonymous reporting must be available. And the Board Risk Committee must receive periodic reporting on the volume and nature of front-line risk observations, so that it has visibility into whether the institution's culture is enabling or suppressing the identification of risks from below.
 
@@ -148,7 +148,7 @@ The methodology addresses this through multiple reinforcing mechanisms: the CRO'
 
 The most critical governance question in risk identification is not "who identifies the risks?" It is "how do the findings reach the people who can act on them — without being filtered by the people who generated them?"
 
-Chapter 1 identified Governance Bypass as one of the ten recurring failure modes in bank failures. The pattern is consistent: a risk is identified somewhere in the organisation, but by the time it reaches the Board — if it reaches the Board at all — it has been softened, contextualised, reframed, or buried in an appendix. The Board receives a sanitised version of reality. It makes decisions based on incomplete information. The risk crystallises.
+Chapter 1 (Why Banks Fail at Risk Identification) identified Governance Bypass as one of the ten recurring failure modes in bank failures. The pattern is consistent: a risk is identified somewhere in the organisation, but by the time it reaches the Board — if it reaches the Board at all — it has been softened, contextualised, reframed, or buried in an appendix. The Board receives a sanitised version of reality. It makes decisions based on incomplete information. The risk crystallises.
 
 The methodology requires a structured escalation framework with the following elements:
 
@@ -208,7 +208,7 @@ The governance arrangements in this chapter are designed to withstand these pres
 
 But governance is not self-executing. It requires institutional commitment — from the Board, from the CRO, and from every participant in the process — to maintain these protections even when they are inconvenient. Especially when they are inconvenient.
 
-The standards examined in the previous chapter provide the architecture. The governance arrangements in this chapter provide the structural integrity. In the next chapter, we turn to the risk taxonomy — the common language that ensures every participant in the process, from the Board to the front line, is identifying and classifying risks in the same way.
+The standards examined in Chapter 2 (The Foundations: Standards and Frameworks) provide the architecture. The governance arrangements in this chapter provide the structural integrity. In Chapter 4 (The Risk Taxonomy), we turn to the risk taxonomy — the common language that ensures every participant in the process, from the Board to the front line, is identifying and classifying risks in the same way.
 
 ---
 

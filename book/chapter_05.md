@@ -33,9 +33,9 @@ Each of these is a documented output. Each requires specific inputs and produces
 
 ## External Context: The PESTLE Framework
 
-The external context assessment follows the **PESTLE framework** — Political, Economic, Social, Technological, Legal, Environmental — adapted specifically for banking. This is one of the **checklist** techniques catalogued in ISO 31010[^ch5-7] (as mapped in Chapter 2). Used properly, PESTLE ensures that the assessment covers all relevant dimensions of the external environment systematically rather than relying on whatever happens to be in the news.
+The external context assessment follows the **PESTLE framework** — Political, Economic, Social, Technological, Legal, Environmental — adapted specifically for banking. This is one of the **checklist** techniques catalogued in ISO 31010[^ch5-7] (as mapped in Chapter 2 (The Foundations: Standards and Frameworks)). Used properly, PESTLE ensures that the assessment covers all relevant dimensions of the external environment systematically rather than relying on whatever happens to be in the news.
 
-Each dimension is assessed for its relevance to the institution's specific business model, geographic footprint, and risk profile. The findings must be mappable to the risk taxonomy established in Chapter 4 — a PESTLE finding that cannot be connected to a taxonomy node is either an indication that the taxonomy is incomplete or that the finding is not relevant to this institution.
+Each dimension is assessed for its relevance to the institution's specific business model, geographic footprint, and risk profile. The findings must be mappable to the risk taxonomy established in Chapter 4 (The Risk Taxonomy) — a PESTLE finding that cannot be connected to a taxonomy node is either an indication that the taxonomy is incomplete or that the finding is not relevant to this institution.
 
 ### Political and Geopolitical Environment
 
@@ -106,7 +106,7 @@ Six elements are assessed:
 
 **Organisational structure.** The current business unit map, legal entity structure, geographic footprint, and reporting lines. Structure creates risk: complex multi-entity structures across jurisdictions create information asymmetry, regulatory arbitrage opportunities, and consolidation challenges. The organisational structure also determines where risk identification has gaps — a business unit that does not participate in the enterprise process is a business unit whose risks are not visible at the group level.
 
-**Governance.** Board composition and engagement, committee structures, and delegation of authority. The governance framework established in Chapter 3 provides the structural architecture. The internal context assessment evaluates whether that architecture is functioning — whether the Board is substantively engaged, whether committees have the information and expertise to challenge, whether delegated authorities are being exercised within their limits.
+**Governance.** Board composition and engagement, committee structures, and delegation of authority. The governance framework established in Chapter 3 (Governance: Who Owns What) provides the structural architecture. The internal context assessment evaluates whether that architecture is functioning — whether the Board is substantively engaged, whether committees have the information and expertise to challenge, whether delegated authorities are being exercised within their limits.
 
 **Capabilities and resources.** Skills, expertise, technology, data quality, and risk management capacity. An institution that lacks the analytical capability to model complex structured products should not be holding them. If it does, the capabilities gap is itself a risk that must be identified. The methodology requires honest assessment of whether the institution has the resources to identify and manage the risks it has taken on.
 
@@ -118,7 +118,7 @@ Six elements are assessed:
 
 The previous two assessments — external and internal context — are analytical exercises. They involve gathering data, mapping it, and documenting findings. The internal environment assessment is different. It requires the institution to look in the mirror and answer honestly whether its culture, values, and organisational conditions will support or undermine the risk identification process.
 
-This is the assessment that Chapter 1 promised when it described the Control Environment Failure mode — institutions where the fundamental organisational conditions for effective risk management were absent. COSO ERM places the **Internal Environment** as the first of its eight components[^ch5-16] because everything else rests on it. If the internal environment is weak, no amount of process design will produce reliable risk identification.
+This is the assessment that Chapter 1 (Why Banks Fail at Risk Identification) promised when it described the Control Environment Failure mode — institutions where the fundamental organisational conditions for effective risk management were absent. COSO ERM places the **Internal Environment** as the first of its eight components[^ch5-16] because everything else rests on it. If the internal environment is weak, no amount of process design will produce reliable risk identification.
 
 The assessment evaluates seven elements drawn from the COSO ERM framework:
 
@@ -150,7 +150,7 @@ Anglo Irish was nationalised in 2009.[^ch5-18] The taxpayer cost was €29.3 bil
 
 ### The Annual Refresh
 
-The internal environment assessment is not a one-time exercise. As established in Chapter 3, the annual full re-identification cycle includes a refresh of the internal environment assessment. Culture changes — sometimes deliberately, sometimes through drift. An institution that had a strong risk culture three years ago may have weakened through leadership changes, acquisition integration, strategic pivots, or simple attrition. The annual refresh ensures that the foundation on which the identification process rests is re-evaluated, not assumed.
+The internal environment assessment is not a one-time exercise. As established in Chapter 3 (Governance: Who Owns What), the annual full re-identification cycle includes a refresh of the internal environment assessment. Culture changes — sometimes deliberately, sometimes through drift. An institution that had a strong risk culture three years ago may have weakened through leadership changes, acquisition integration, strategic pivots, or simple attrition. The annual refresh ensures that the foundation on which the identification process rests is re-evaluated, not assumed.
 
 Material weaknesses identified in the internal environment assessment must be documented as findings and escalated to the CRO and Board Risk Committee. A weak internal environment can compromise the entire risk identification process regardless of how well-designed the methodology is. If the assessment reveals that individuals cannot report risk concerns safely, that incentive structures penalise risk identification, or that the Board is not substantively engaged — these are not background observations. They are material risks to the process itself.
 
@@ -168,11 +168,11 @@ Risk criteria comprise five components:
 
 **Risk appetite boundaries.** The levels of risk the institution is willing to accept, defined by risk category and mapped to the taxonomy. Appetite boundaries must be specific and measurable. A statement that the institution has "low appetite for operational risk" provides no practical constraint. A statement that the institution will not accept more than a specified value of operational risk losses in any quarter, measured against a defined threshold, provides a boundary that can be monitored and breached.
 
-**Aggregation rules.** How individual risk scores combine to form enterprise-level views. Aggregation is not simple addition — a bank with ten moderate risks may face a different aggregate exposure than a bank with one extreme risk, depending on correlations and concentrations. The aggregation rules must be defined before identification begins so that the enterprise portfolio view produced in Phase 2 (Chapter 8) rests on a consistent methodology.
+**Aggregation rules.** How individual risk scores combine to form enterprise-level views. Aggregation is not simple addition — a bank with ten moderate risks may face a different aggregate exposure than a bank with one extreme risk, depending on correlations and concentrations. The aggregation rules must be defined before identification begins so that the enterprise portfolio view produced in Phase 2 (Chapter 8 (Reconciliation and the Enterprise Portfolio View)) rests on a consistent methodology.
 
 Risk criteria must be approved by the CRO and endorsed by the Board Risk Committee before the identification cycle begins. They are reviewed annually and recalibrated as needed. The criteria are not static — when the institution's risk profile changes, when market conditions shift, or when regulatory expectations evolve, the criteria may need updating. But they must exist as a defined, documented baseline before the first workshop is convened or the first assessment template is distributed.
 
-The detailed scoring methodology — including the four-dimensional assessment framework and the data quality overlay — is covered in Chapter 9. Here, the requirement is that the criteria are defined and agreed as part of Foundation Setting, before identification begins.
+The detailed scoring methodology — including the four-dimensional assessment framework and the data quality overlay — is covered in Chapter 9 (Assessment — Scoring, Multi-Dimensional Impact, and Data Quality). Here, the requirement is that the criteria are defined and agreed as part of Foundation Setting, before identification begins.
 
 ## Building the Starting Universe
 
@@ -182,13 +182,13 @@ The methodology eliminates this problem by building the **starting universe** �
 
 ### Regulatory Categories
 
-Every risk type required by applicable regulatory frameworks must be included. The regulatory mapping table introduced in Chapter 4 provides the source. If a regulator expects the institution to identify and assess a particular risk type — whether credit concentration, model risk, step-in risk, or climate risk — it must appear in the starting universe regardless of whether current management believes it is material.
+Every risk type required by applicable regulatory frameworks must be included. The regulatory mapping table introduced in Chapter 4 (The Risk Taxonomy) provides the source. If a regulator expects the institution to identify and assess a particular risk type — whether credit concentration, model risk, step-in risk, or climate risk — it must appear in the starting universe regardless of whether current management believes it is material.
 
 This is not compliance for its own sake. Regulatory categories represent the collective supervisory judgement of what has gone wrong across the industry. When the Basel Committee includes conduct risk in its supervisory expectations, or the ECB mandates climate risk identification, these additions reflect actual losses at actual institutions. Ignoring regulatory categories is ignoring evidence.
 
 ### Industry Loss Data
 
-The 179-event industry loss database described in Chapter 1 provides empirical evidence of what has gone wrong and at what scale. The database covers failures across 30 countries over six decades, with aggregate losses exceeding $2.3 trillion. Each event is classified by risk type, root cause, and risk identification failure mode.
+The 179-event industry loss database described in Chapter 1 (Why Banks Fail at Risk Identification) provides empirical evidence of what has gone wrong and at what scale. The database covers failures across 30 countries over six decades, with aggregate losses exceeding $2.3 trillion. Each event is classified by risk type, root cause, and risk identification failure mode.
 
 The starting universe includes a mapping of industry loss events to the institution's risk taxonomy. For each L1 and L2 taxonomy category, the question is: have there been material industry losses in this category? If yes, this category receives enhanced attention in the identification cycle. The industry loss data provides an evidence-based antidote to the institutional tendency to assume that risks which have not materialised internally are not relevant.
 
@@ -212,7 +212,7 @@ The starting universe is not the risk inventory. It is the evidence base from wh
 
 The starting universe provides the evidence. The straw man risk list translates that evidence into a working document that frames the Phase 2 workshops.
 
-Before top-down workshops are convened, the **Risk Identification Lead** prepares the straw man — a preliminary, deliberately incomplete list of potential principal risks drawn from the starting universe, the prior-year risk inventory, and the current PESTLE and internal context assessments. The list is organised by **L1 and L2 taxonomy classification**, ensuring it uses the common language established in Chapter 4.
+Before top-down workshops are convened, the **Risk Identification Lead** prepares the straw man — a preliminary, deliberately incomplete list of potential principal risks drawn from the starting universe, the prior-year risk inventory, and the current PESTLE and internal context assessments. The list is organised by **L1 and L2 taxonomy classification**, ensuring it uses the common language established in Chapter 4 (The Risk Taxonomy).
 
 ### Purpose
 
@@ -261,7 +261,7 @@ The foundation is not neutral. It shapes everything that follows. An external co
 
 This is why Foundation Setting is a formal phase, not a planning step. It has defined inputs, documented outputs, quality standards, and governance requirements. The CRO approves the risk criteria. The Board Risk Committee endorses them. The internal environment assessment findings are escalated if they reveal material weaknesses. The PESTLE assessment is dated, authored, and retained for audit.
 
-With the foundation set and the straw man prepared, the actual identification begins. In the next chapter, we turn to the dual-track approach — the top-down workshops using SWIFT and Delphi techniques that bring senior management's strategic perspective to bear on the risk landscape, combined with the bottom-up analysis that captures what only the people closest to the business can see. Neither track alone is sufficient. Together, they produce the comprehensive identification that the standards require and that the evidence shows banks consistently fail to achieve on their own.
+With the foundation set and the straw man prepared, the actual identification begins. In Chapter 6 (Top-Down Identification: Workshops, SWIFT, and Delphi), we turn to the dual-track approach — the top-down workshops using SWIFT and Delphi techniques that bring senior management's strategic perspective to bear on the risk landscape, combined with the bottom-up analysis that captures what only the people closest to the business can see. Neither track alone is sufficient. Together, they produce the comprehensive identification that the standards require and that the evidence shows banks consistently fail to achieve on their own.
 
 ---
 

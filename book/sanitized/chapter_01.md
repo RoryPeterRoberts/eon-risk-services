@@ -165,7 +165,7 @@ The book is organised around a six-phase process:
 - **Phase 5: Integration** — linking identification outputs to capital planning, strategic planning, and Board reporting
 - **Phase 6: Ongoing Cycle** — quarterly re-identification, event-driven updates, and internal audit assurance
 
-Before diving into the phases, the next chapter establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
+Before diving into the phases, Chapter 2 (The Foundations: Standards and Frameworks) establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
 
 The methodology is comprehensive. It is detailed. And it works. I have built it twice — at two globally significant institutions — and refined it through years of practice, regulatory challenge, and the kind of learning that only comes from doing it wrong before you learn to do it right.
 
@@ -173,7 +173,7 @@ The banks that failed did not lack smart people. They lacked a process. This boo
 
 ---
 
-*In the next chapter, we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*
+*In Chapter 2 (The Foundations: Standards and Frameworks), we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*
 
 ---
 
