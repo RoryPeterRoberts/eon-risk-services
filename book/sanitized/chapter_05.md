@@ -2,17 +2,15 @@
 
 ## The Bank That Didn't See the Crisis Coming
 
-In October 2007, I joined a German mortgage bank as a Financial Risk Manager. My job was to price CDOs and mortgage-backed securities — the products that were, at that very moment, beginning to destroy the global financial system.
+In 2007, Hypo Real Estate completed the acquisition of Depfa Bank, an Irish-domiciled public-sector lender with a balance sheet of approximately €400 billion.[^ch5-1] Depfa's business model was straightforward: lend long to governments and public-sector entities, fund short through the wholesale interbank market. The credit quality of the assets was excellent. The yields were thin but reliable. And the maturity mismatch between the assets and the funding was catastrophic.
 
-Hypo Real Estate had just completed the acquisition of Depfa Bank, an Irish-domiciled public-sector lender with a balance sheet of approximately €400 billion.[^ch5-1] Depfa's business model was straightforward: lend long to governments and public-sector entities, fund short through the wholesale interbank market. The credit quality of the assets was excellent. The yields were thin but reliable. And the maturity mismatch between the assets and the funding was catastrophic.
-
-By the time I arrived, the external environment had already changed in ways that made Depfa's business model existentially fragile. BNP Paribas had suspended three funds exposed to US subprime in August 2007.[^ch5-2] Northern Rock had experienced the first British bank run since 1866 in September.[^ch5-3] Interbank lending rates were spiking. Central banks were injecting emergency liquidity. The wholesale funding markets on which Depfa depended for its survival were under unprecedented stress.
+By autumn 2007, the external environment had already changed in ways that made Depfa's business model existentially fragile. BNP Paribas had suspended three funds exposed to US subprime in August.[^ch5-2] Northern Rock had experienced the first British bank run since 1866 in September.[^ch5-3] Interbank lending rates were spiking. Central banks were injecting emergency liquidity. The wholesale funding markets on which Depfa depended for its survival were under unprecedented stress.
 
 None of this was secret. It was on the front page of the Financial Times every day. The question is not whether this information was available. The question is whether it was systematically assessed as part of Hypo Real Estate's risk identification process and mapped to the specific vulnerabilities in its own business model.
 
 It was not. Within twelve months, Hypo Real Estate required a €102 billion German government guarantee[^ch5-4] — one of the largest financial sector bailouts in European history. The bank was nationalised in 2009[^ch5-5] and its assets wound down through a bad bank. The Depfa acquisition, which was supposed to diversify and strengthen the group, destroyed it.
 
-I was there. I watched it happen from the inside. And the experience convinced me that the most technically sophisticated risk measurement in the world is worthless if the foundation — the systematic assessment of the environment in which those risks exist — is absent.
+The Hypo Real Estate collapse illustrates a brutal truth: the most technically sophisticated risk measurement in the world is worthless if the foundation — the systematic assessment of the environment in which those risks exist — is absent.
 
 This chapter is about that foundation. Phase 1 of the methodology — **Foundation Setting** — establishes the context in which identification takes place. It requires the institution to formally assess its external environment, its internal context, the quality of its risk culture, the criteria against which risks will be judged, and the evidence base from which identification will begin. Everything that follows in Phases 2 through 6 depends on this work being done properly.
 

@@ -4,17 +4,17 @@
 
 ## The Question No One Can Answer
 
-In 2016, I was appointed Global Head of Risk Identification at a European G-SIB. My mandate was to build a bank-wide risk identification process from scratch — one that could withstand regulatory scrutiny from the PRA, FINMA, the Fed, and every other supervisor with jurisdiction over a global systemically important bank.
+Ask any bank how it identifies its risks.
 
-On my first day, I asked what I thought was a simple question: *How does this institution currently identify its risks?*
+Not how it *measures* them — most banks can answer that question in exhaustive detail. Not how it *manages* them — there are frameworks, committees, and reporting lines for that. Not how it *reports* them — regulatory reporting is well-resourced and closely supervised.
 
-The answer was silence. Not hostile silence — confused silence. People looked at each other. Someone mentioned the risk register. Someone else pointed to the annual ICAAP process. A third person described a workshop they had run two years ago. But no one could describe a coherent, end-to-end process for how the bank identified, catalogued, and validated the risks it was exposed to. There was no methodology. No documented process. No named owner. No audit trail showing how the risk register had been built or why certain risks were on it and others were not.
+How it *identifies* them. How it determines, in the first place, what risks the institution is exposed to.
 
-This institution was, at the time, one of the largest banks in the world. And it could not explain how it identified its risks.
+The answer, in almost every case, is the same uncomfortable silence. Someone mentions the risk register. Someone else points to the ICAAP process. A third person describes a workshop held a year or two ago. But no one can describe a coherent, end-to-end process for how the institution identifies, catalogues, and validates its risk exposures. There is no methodology. No documented process. Often no named owner. No audit trail showing how the risk register was built or why certain risks appear on it and others do not.
 
-I wish I could say this was unusual. It was not. When I moved to a UK-regulated international banking group in 2023 as Risk Identification Lead in the Enterprise Risk Management department, the situation was better — there were elements of a process — but the same fundamental gaps existed. When I speak to CROs, risk leads, and consultants across the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
+This is not a claim about any single institution. It is an industry-wide condition. When CROs, risk leads, and consultants speak candidly, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. The register exists — a spreadsheet, periodically updated, dutifully presented to the Board. But the process that should produce it — the structured, repeatable methodology for determining what the institution is actually exposed to — is absent.
 
-This book exists because, after 20 years in risk management across six institutions, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
+This book exists because, after two decades of risk practice, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
 
 This is that methodology.
 
@@ -167,7 +167,7 @@ The book is organised around a six-phase process:
 
 Before diving into the phases, Chapter 2 (The Foundations: Standards and Frameworks) establishes the standards and frameworks that underpin the entire methodology. After that, we move to governance — because without clear ownership and accountability, even the best-designed process will fail.
 
-The methodology is comprehensive. It is detailed. And it works. I have built it twice — at two globally significant institutions — and refined it through years of practice, regulatory challenge, and the kind of learning that only comes from doing it wrong before you learn to do it right.
+The methodology is comprehensive. It is detailed. And it works. It has been refined through years of practice, regulatory challenge, and the kind of learning that only comes from doing it wrong before you learn to do it right.
 
 The banks that failed did not lack smart people. They lacked a process. This book gives you the process.
 
