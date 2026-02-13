@@ -656,6 +656,48 @@ code {{
     line-height: 1.5;
 }}
 
+/* Inline footnote reference numbers */
+sup[id^="fnref"] {{
+    font-size: 7pt;
+    line-height: 0;
+    vertical-align: super;
+}}
+sup[id^="fnref"] a {{
+    color: {TEAL};
+    text-decoration: none;
+    font-weight: 600;
+}}
+
+/* Footnote section at bottom of each chapter */
+div.footnote {{
+    margin-top: 20pt;
+    padding-top: 12pt;
+    border-top: 1px solid {BORDER};
+    font-size: 8pt;
+    color: {TEXT_LIGHT};
+    line-height: 1.55;
+}}
+div.footnote hr {{
+    display: none;
+}}
+div.footnote ol {{
+    margin: 0;
+    padding-left: 16pt;
+}}
+div.footnote ol li {{
+    margin-bottom: 4pt;
+}}
+div.footnote ol li p {{
+    margin: 0;
+    font-size: 8pt;
+    color: {TEXT_LIGHT};
+    line-height: 1.55;
+}}
+/* Hide back-reference arrows */
+a.footnote-backref {{
+    display: none;
+}}
+
 /* ============================================
    PRINT UTILITIES
    ============================================ */
@@ -789,7 +831,7 @@ def process_chapter_markdown(md_content, chapter_num):
     # Convert to HTML first — let markdown handle ALL formatting
     html = markdown.markdown(
         processed_md,
-        extensions=["tables", "smarty", "attr_list"],
+        extensions=["tables", "smarty", "attr_list", "footnotes"],
         output_format="html5",
     )
 
