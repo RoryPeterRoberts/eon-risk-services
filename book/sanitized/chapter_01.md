@@ -14,7 +14,7 @@ This institution was, at the time, one of the largest banks in the world. And it
 
 I wish I could say this was unusual. It was not. When I moved to a UK-regulated international banking group in 2023 as Risk Identification Lead in the Enterprise Risk Management department, the situation was better — there were elements of a process — but the same fundamental gaps existed. When I speak to CROs, risk leads, and consultants across the industry, the story is almost always the same. Most banks have a risk register. Very few have a risk identification *process*. And the difference between those two things is the difference between surviving a regulatory review and failing one.
 
-This book exists because, after 20 years of doing this work at six institutions, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
+This book exists because, after 20 years in risk management across six institutions, I became convinced of two things. First, that risk identification is the most important and least understood step in the entire risk management cycle. And second, that there was no comprehensive methodology available anywhere — no book, no standard, no framework — that told a practitioner exactly how to build one.
 
 This is that methodology.
 
