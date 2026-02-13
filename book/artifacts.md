@@ -12,7 +12,7 @@ Every deliverable, template, framework, assessment, register, and analytical pro
 | 2 | **Regulatory Mapping Table** | Maps each internal taxonomy node to corresponding categories used by each regulator (PRA, Fed, ECB, etc.) | 4, 13, 15 |
 | 3 | **Starting Universe** | Evidence-based foundation from which identification begins — seeded from regulatory categories, industry loss data, and internal incident history | 4, 5 |
 | 4 | **Straw Man Risk List** | Preliminary, deliberately incomplete list of potential principal risks organised by L1/L2 classification; used to frame workshops | 5, 6, 13 |
-| 5 | **Industry Loss Database** | 179-event database covering bank failures across 30 countries and six decades, totalling $2.3 trillion in aggregate losses | 1, 5, 16 |
+| 5 | **Industry Loss Database** | 179-event database covering bank failures across 35 countries and six decades, totalling $2.3 trillion in aggregate losses | 1, 5, 16 |
 | 6 | **PESTLE Assessment** | Structured assessment of Political, Economic, Social, Technological, Legal, and Environmental factors in the external environment | 4, 5, 13 |
 | 7 | **Climate and ESG Transmission Channels Framework** | Maps climate risks through six transmission channels (physical acute/chronic, transition policy/technology/market/reputational) | 5, 15 |
 | 8 | **Internal Context Assessment** | Assessment of strategic objectives, organisational structure, governance, capabilities, information systems, and risk appetite | 5 |

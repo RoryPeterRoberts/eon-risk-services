@@ -66,7 +66,7 @@ This dimension captures what financial impact alone cannot. Standard Chartered's
 | 4 | Major | International press, sustained coverage, loss of key client relationships |
 | 5 | Extreme | Total loss of market confidence, Board or CEO departure, sustained international coverage |
 
-Reputational impact is the dimension most frequently omitted from assessment frameworks and most frequently decisive in determining whether a risk event threatens institutional survival. Wells Fargo's unauthorised accounts scandal (Chapter 3 (Governance: Who Owns What)) cost $3 billion in direct financial terms[^ch9-6] — large, but manageable for an institution of that size. The reputational destruction — CEO departure, Fed asset cap, sustained Congressional scrutiny, customer attrition — was the existential dimension. A single-dimensional financial assessment would have rated it as serious but manageable. The reputational score places it at the extreme end of the scale.
+Reputational impact is the dimension most frequently omitted from assessment frameworks and most frequently decisive in determining whether a risk event threatens institutional survival. Wells Fargo's unauthorised accounts scandal (Chapter 3) cost $3 billion in direct financial terms[^ch9-6] — large, but manageable for an institution of that size. The reputational destruction — CEO departure, Fed asset cap, sustained Congressional scrutiny, customer attrition — was the existential dimension. A single-dimensional financial assessment would have rated it as serious but manageable. The reputational score places it at the extreme end of the scale.
 
 ### Customer and Operational Impact
 
@@ -78,7 +78,7 @@ Reputational impact is the dimension most frequently omitted from assessment fra
 | 4 | Major | Major service disruption, large-scale customer impact, material complaints |
 | 5 | Extreme | Total service failure, mass customer harm, systemic operational breakdown |
 
-This dimension captures the operational and customer consequences that may precede, accompany, or exist independently of financial loss. The PPI scandal (Chapter 4 (The Risk Taxonomy)) was a customer impact event before it was a financial event — millions of customers were sold unsuitable insurance products over years before the redress programme began. An assessment framework that waited for financial crystallisation would have missed the customer harm dimension entirely.
+This dimension captures the operational and customer consequences that may precede, accompany, or exist independently of financial loss. The PPI scandal (Chapter 4) was a customer impact event before it was a financial event — millions of customers were sold unsuitable insurance products over years before the redress programme began. An assessment framework that waited for financial crystallisation would have missed the customer harm dimension entirely.
 
 ### Applying the Dominant Dimension Rule
 
@@ -100,11 +100,11 @@ The probability ranges provide guidance, not false precision. Expert judgement i
 
 Three common failures in likelihood assessment deserve explicit attention.
 
-**Anchoring to recent experience.** If a risk has not materialised in the assessor's tenure, it defaults to "Rare." This is the complacency failure mode from Chapter 1 (Why Banks Fail at Risk Identification). LTCM's models were calibrated to a period in which correlations between global fixed income markets had remained moderate. The 1998 Russian crisis caused correlations to spike to one across all markets simultaneously[^ch9-7] — an event the models assigned near-zero probability because it had not occurred in the calibration window. The methodology's response to this failure is twofold: the Data Quality Rating (below) forces disclosure of the evidence basis, and the scenario analysis outputs from the top-down workshop (Chapter 6 (Top-Down Identification: Workshops, SWIFT, and Delphi)) provide structured challenge to likelihood assumptions by constructing plausible scenarios that differ from recent experience.
+**Anchoring to recent experience.** If a risk has not materialised in the assessor's tenure, it defaults to "Rare." This is the complacency failure mode from Chapter 1 (Why Banks Fail at Risk Identification). LTCM's models were calibrated to a period in which correlations between global fixed income markets had remained moderate. The 1998 Russian crisis caused correlations to spike to one across all markets simultaneously[^ch9-7] — an event the models assigned near-zero probability because it had not occurred in the calibration window. The methodology's response to this failure is twofold: the Data Quality Rating (below) forces disclosure of the evidence basis, and the scenario analysis outputs from the top-down workshop (Chapter 6) provide structured challenge to likelihood assumptions by constructing plausible scenarios that differ from recent experience.
 
 **Conflating likelihood with perceived controllability.** Assessors rate a risk as unlikely because controls exist. But likelihood in this framework is assessed at the inherent level first — before controls are applied. A risk with high inherent likelihood and strong controls has high inherent risk and (potentially) lower residual risk. Collapsing both into a single "unlikely" rating conceals the degree to which the institution depends on controls that may themselves fail.
 
-**Treating independence as default.** Multiple risks are each rated as individually unlikely, but the scenario in which they crystallise simultaneously is not assessed. Simultaneous crystallisation belongs to the enterprise portfolio view (Chapter 8 (Reconciliation and the Enterprise Portfolio View)) and risk interaction analysis (Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration)), but likelihood assessors must be aware that their individual ratings will be used in aggregate analyses where independence assumptions matter.
+**Treating independence as default.** Multiple risks are each rated as individually unlikely, but the scenario in which they crystallise simultaneously is not assessed. Simultaneous crystallisation belongs to the enterprise portfolio view (Chapter 8) and risk interaction analysis (Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration)), but likelihood assessors must be aware that their individual ratings will be used in aggregate analyses where independence assumptions matter.
 
 ## Vulnerability
 
@@ -157,7 +157,7 @@ Every risk assessment must include a **Data Quality Rating** that discloses the 
 | **Low** | Based primarily on expert judgement with limited or no historical data | Workshops, interviews, peer institution experience |
 | **Very Low** | Speculative — no relevant data, precedent, or experience | Emerging risks, novel exposures, unprecedented scenarios |
 
-Chapter 7 (Bottom-Up Identification: Templates, RCSA, and Specialist Processes) identified the Data Quality Rating as one of the three fields where bottom-up submissions most commonly fail — business units default to "Medium" for everything, avoiding both the uncomfortable admission that evidence is weak and the analytical effort required to justify a "High" rating. The Risk Identification Lead must challenge these defaults. A submission that rates data quality as "Medium" must demonstrate that it has the limited quantitative data and structured expert judgement the definition requires. If the only basis is a single person's opinion, the rating is "Low."
+Chapter 7 identified the Data Quality Rating as one of the three fields where bottom-up submissions most commonly fail — business units default to "Medium" for everything, avoiding both the uncomfortable admission that evidence is weak and the analytical effort required to justify a "High" rating. The Risk Identification Lead must challenge these defaults. A submission that rates data quality as "Medium" must demonstrate that it has the limited quantitative data and structured expert judgement the definition requires. If the only basis is a single person's opinion, the rating is "Low."
 
 ### How Data Quality Affects the Assessment
 
@@ -165,7 +165,7 @@ The Data Quality Rating is not a standalone curiosity reported alongside the sco
 
 **Conservatism adjustment.** Where data quality is Low or Very Low, the methodology applies a conservatism principle: uncertainty about a risk should not reduce the attention it receives. In practice, this means that risks with low data quality are not permitted to carry low impact or likelihood ratings without explicit CRO approval. If the evidence basis is too weak to support a firm assessment, the default assumption is that the risk is more severe than the limited evidence suggests — not less. This directly addresses the AIG pattern, where a risk scored as near-zero was based on historical data that had never included the relevant stress scenario.
 
-**Sensitivity testing.** Risks with Low or Very Low data quality ratings are flagged for sensitivity analysis: how would the overall assessment change if the impact were one level higher? If the likelihood were one level higher? If the sensitivity analysis moves the risk across the materiality threshold, it is treated as potentially material regardless of the base assessment. This is not a quantitative exercise requiring Monte Carlo simulation. It is a structured what-if: the same SWIFT questioning discipline applied in the top-down workshop (Chapter 6 (Top-Down Identification: Workshops, SWIFT, and Delphi)), now applied to individual risk scores.
+**Sensitivity testing.** Risks with Low or Very Low data quality ratings are flagged for sensitivity analysis: how would the overall assessment change if the impact were one level higher? If the likelihood were one level higher? If the sensitivity analysis moves the risk across the materiality threshold, it is treated as potentially material regardless of the base assessment. This is not a quantitative exercise requiring Monte Carlo simulation. It is a structured what-if: the same SWIFT questioning discipline applied in the top-down workshop (Chapter 6), now applied to individual risk scores.
 
 **Board transparency.** The Board Risk Report includes a summary of data quality distribution across the material risk portfolio. If thirty per cent of material risks carry Low or Very Low data quality ratings, the Board needs to know that. It changes how the Board should interpret the risk profile, it identifies where the institution needs to invest in better data, and it prevents the false precision that arises when a risk heatmap presents all risks as if they were assessed with equal confidence.
 
@@ -185,7 +185,7 @@ Each risk is scored twice across all four dimensions.
 
 **Residual risk** is the risk level after accounting for current controls. This is the risk the institution is actually running. The difference between inherent and residual risk reflects the institution's dependence on its control environment — and by implication, the consequence if those controls fail or are circumvented.
 
-Between the two sits **control effectiveness** — an assessment rated 1 to 5 (highly effective to ineffective) that draws on the control information captured in the bottom-up template (Chapter 7 (Bottom-Up Identification: Templates, RCSA, and Specialist Processes)). The control assessment must specify the type of each control (preventive, detective, corrective) and provide evidence for the effectiveness rating.
+Between the two sits **control effectiveness** — an assessment rated 1 to 5 (highly effective to ineffective) that draws on the control information captured in the bottom-up template (Chapter 7). The control assessment must specify the type of each control (preventive, detective, corrective) and provide evidence for the effectiveness rating.
 
 The dual assessment matters for three reasons.
 
@@ -197,7 +197,7 @@ The dual assessment matters for three reasons.
 
 ### The Independent Challenge Requirement
 
-Chapter 1 (Why Banks Fail at Risk Identification) identified Model Overreliance as one of the ten failure modes — the pattern where institutions substitute model outputs for independent analytical judgement, treating quantitative models as facts rather than as one input to assessment. The methodology's response is explicit: **models are an input to assessment, not a substitute for it.**
+Chapter 1 identified Model Overreliance as one of the ten failure modes — the pattern where institutions substitute model outputs for independent analytical judgement, treating quantitative models as facts rather than as one input to assessment. The methodology's response is explicit: **models are an input to assessment, not a substitute for it.**
 
 Where quantitative models inform the risk score — credit risk models, VaR, LGD models, operational risk capital models — the assessment must include an independent challenge of the model's assumptions and limitations. This challenge is documented in the risk inventory alongside the score.
 
@@ -207,7 +207,7 @@ This is not a prohibition on using models. It is a prohibition on using models u
 
 ## Resolving the Disagreement Log
 
-Chapter 6 (Top-Down Identification: Workshops, SWIFT, and Delphi) introduced the disagreement log — a record of materially different views expressed during the top-down workshop that could not be reconciled through discussion. Chapter 6 (Top-Down Identification: Workshops, SWIFT, and Delphi) stated that the assessment phase must resolve these disagreements through evidence, not social dynamics. This is where that resolution occurs.
+Chapter 6 introduced the disagreement log — a record of materially different views expressed during the top-down workshop that could not be reconciled through discussion. Chapter 6 stated that the assessment phase must resolve these disagreements through evidence, not social dynamics. This is where that resolution occurs.
 
 The four-dimensional scoring framework provides the structured basis for resolution. When two senior participants disagree about the severity of a risk, the assessment forces specificity: on which dimension do you disagree? Financial impact? Regulatory consequence? Likelihood? What evidence supports each position? What is the Data Quality Rating applicable to that evidence?
 
@@ -222,10 +222,10 @@ Not all risks require the same level of attention. A bank with two hundred risks
 The process is straightforward:
 
 1. Plot all risks on an **Impact x Likelihood matrix** — the risk heatmap — using the inherent scores and the residual scores separately
-2. Apply the **materiality threshold** defined in Phase 1 (Chapter 5 (Setting the Context: External, Internal, and Risk Culture)) — calibrated to the institution's risk appetite and approved by the CRO
+2. Apply the **materiality threshold** defined in Phase 1 (Chapter 5) — calibrated to the institution's risk appetite and approved by the CRO
 3. Risks above the threshold are classified as **material**
 4. Material risks receive full risk profiles (Chapter 11 (Documentation: The Living Risk Inventory)), dedicated KRIs (Chapter 13 (The Ongoing Cycle: Refresh, Events, and Audit)), and integration into capital and strategic planning (Chapter 12 (Integration: Capital Planning, Strategy, and the Board))
-5. Non-material risks remain in the inventory and are monitored for changes through the ongoing cycle (Chapter 13 (The Ongoing Cycle: Refresh, Events, and Audit))
+5. Non-material risks remain in the inventory and are monitored for changes through the ongoing cycle (Chapter 13)
 
 Typically, 20–60 risks out of the full inventory are classified as material. This range reflects institutional size and complexity — a large universal bank with global operations will have more material risks than a regional commercial bank, because it faces a broader range of risk types at a scale that exceeds materiality thresholds.
 
@@ -233,7 +233,7 @@ The materiality threshold is not a line on a heatmap and nothing more. It incorp
 
 **The dominant dimension.** A risk that scores below threshold on financial impact but above threshold on regulatory impact is material. The four dimensions are assessed independently and the highest determines materiality.
 
-**Aggregation.** Individual risks below threshold may be material when aggregated with related risks. The enterprise portfolio view (Chapter 8 (Reconciliation and the Enterprise Portfolio View)) identifies common exposures and correlated clusters. If three individually sub-material risks share a common driver and would crystallise simultaneously, their aggregate position is assessed against the materiality threshold. This is the mechanism that catches the Citigroup pattern — SIV exposures distributed across divisions, each individually within limits, collectively catastrophic.
+**Aggregation.** Individual risks below threshold may be material when aggregated with related risks. The enterprise portfolio view (Chapter 8) identifies common exposures and correlated clusters. If three individually sub-material risks share a common driver and would crystallise simultaneously, their aggregate position is assessed against the materiality threshold. This is the mechanism that catches the Citigroup pattern — SIV exposures distributed across divisions, each individually within limits, collectively catastrophic.
 
 **Data quality adjustment.** A risk assessed as sub-material based on a Very Low data quality rating — meaning the evidence basis is speculative — is flagged for CRO review rather than automatically excluded from the material risk portfolio. The sensitivity testing described above is specifically designed to prevent risks from falling below the materiality threshold simply because the institution lacks the data to assess them properly.
 
@@ -243,7 +243,7 @@ The risk heatmap — the Impact x Likelihood matrix — is the most widely used 
 
 A heatmap plots individual risks as points on a two-dimensional grid. It does not show vulnerability or speed of onset. It does not show data quality. It does not show inherent-residual gaps. It does not show correlations or common exposures. A heatmap with forty risks evenly distributed across the grid looks reassuring. The same forty risks, annotated with their vulnerability ratings, speed-of-onset scores, data quality ratings, and correlation clusters, may present a fundamentally different picture.
 
-The heatmap is a screening tool. It is the starting point for materiality determination, not the conclusion. Material risks identified through the heatmap proceed to full risk profiling (Chapter 11 (Documentation: The Living Risk Inventory)), risk interaction analysis (Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration)), and integration into capital planning and strategy (Chapter 12 (Integration: Capital Planning, Strategy, and the Board)). The heatmap alone does not tell the Board what it needs to know. It tells the Risk Identification Lead where to direct the deeper analysis that will.
+The heatmap is a screening tool. It is the starting point for materiality determination, not the conclusion. Material risks identified through the heatmap proceed to full risk profiling (Chapter 11), risk interaction analysis (Chapter 10), and integration into capital planning and strategy (Chapter 12). The heatmap alone does not tell the Board what it needs to know. It tells the Risk Identification Lead where to direct the deeper analysis that will.
 
 ## Merrill Lynch and the AAA Assumption
 
@@ -267,7 +267,7 @@ When Phase 3 is complete, every risk in the inventory carries a structured asses
 | **Model Dependency** | Where models inform the score: key assumptions, limitations, independent challenge documented |
 | **Disagreement Record** | Where applicable: minority view, evidence basis, dimensional breakdown |
 
-This record integrates with the standardised risk assessment template fields established in Chapter 7 (Bottom-Up Identification: Templates, RCSA, and Specialist Processes). The taxonomy classification, risk definition, underlying drivers, current controls, risk owner, and emerging risk indicators from the bottom-up process are now supplemented with the structured assessment from Phase 3. Together, they form the basis for the risk inventory that Chapter 11 (Documentation: The Living Risk Inventory) will describe.
+This record integrates with the standardised risk assessment template fields established in Chapter 7. The taxonomy classification, risk definition, underlying drivers, current controls, risk owner, and emerging risk indicators from the bottom-up process are now supplemented with the structured assessment from Phase 3. Together, they form the basis for the risk inventory that Chapter 11 will describe.
 
 ## How This Could Have Changed AIG
 
@@ -281,13 +281,13 @@ Return to the opening case. Apply the methodology to AIG's CDS portfolio as of 2
 
 **Speed of onset.** The collateral call mechanism meant that onset would be Immediate (5) — triggered by ratings action, not by actual defaults.
 
-The four-dimensional assessment produces: Impact 5, Likelihood 1 (disputed — Low data quality), Vulnerability 5, Speed of Onset 5. With Data Quality at Low or Very Low, the conservatism adjustment applies. The sensitivity test moves likelihood to 2, placing the risk firmly in the material category. The risk profile that would follow (Chapter 11 (Documentation: The Living Risk Inventory)) would document the collateral call mechanism, the concentration in mortgage-linked CDOs, and the absence of hedging. The Board would have seen it. The CRO would have been required to explain why the institution was writing $527 billion in notional unhedged protection — including $78 billion in the most toxic multi-sector CDO tranche — on a single risk factor with Extreme impact, Very High vulnerability, Immediate speed of onset, and evidence quality that deserved no confidence.
+The four-dimensional assessment produces: Impact 5, Likelihood 1 (disputed — Low data quality), Vulnerability 5, Speed of Onset 5. With Data Quality at Low or Very Low, the conservatism adjustment applies. The sensitivity test moves likelihood to 2, placing the risk firmly in the material category. The risk profile that would follow (Chapter 11) would document the collateral call mechanism, the concentration in mortgage-linked CDOs, and the absence of hedging. The Board would have seen it. The CRO would have been required to explain why the institution was writing $527 billion in notional unhedged protection — including $78 billion in the most toxic multi-sector CDO tranche — on a single risk factor with Extreme impact, Very High vulnerability, Immediate speed of onset, and evidence quality that deserved no confidence.
 
 The $85 billion bailout was not inevitable. It was the consequence of a single-dimensional assessment methodology applied to a risk that required four.
 
 ## The Bridge to Risk Interaction
 
-Phase 3 has now scored every risk in the inventory on four dimensions, overlaid each score with a data quality rating, separated inherent from residual assessment, and applied a materiality threshold to focus resources. But each risk has been assessed individually. The enterprise portfolio view in Chapter 8 (Reconciliation and the Enterprise Portfolio View) identified correlated clusters and common exposures. The next step is to analyse those interactions systematically — using bow-tie analysis to map causal chains, risk interaction matrices to identify which risks amplify each other, and concentration analysis to determine where the institution's aggregate exposure exceeds what any individual risk score would suggest. That analysis — risk interaction — is the subject of Chapter 10 (Risk Interaction: Bow-Ties, Matrices, and Concentration).
+Phase 3 has now scored every risk in the inventory on four dimensions, overlaid each score with a data quality rating, separated inherent from residual assessment, and applied a materiality threshold to focus resources. But each risk has been assessed individually. The enterprise portfolio view in Chapter 8 identified correlated clusters and common exposures. The next step is to analyse those interactions systematically — using bow-tie analysis to map causal chains, risk interaction matrices to identify which risks amplify each other, and concentration analysis to determine where the institution's aggregate exposure exceeds what any individual risk score would suggest. That analysis — risk interaction — is the subject of Chapter 10.
 
 ---
 

@@ -148,7 +148,7 @@ The methodology addresses this through multiple reinforcing mechanisms: the CRO'
 
 The most critical governance question in risk identification is not "who identifies the risks?" It is "how do the findings reach the people who can act on them — without being filtered by the people who generated them?"
 
-Chapter 1 (Why Banks Fail at Risk Identification) identified Governance Bypass as one of the ten recurring failure modes in bank failures. The pattern is consistent: a risk is identified somewhere in the organisation, but by the time it reaches the Board — if it reaches the Board at all — it has been softened, contextualised, reframed, or buried in an appendix. The Board receives a sanitised version of reality. It makes decisions based on incomplete information. The risk crystallises.
+Chapter 1 identified Governance Bypass as one of the ten recurring failure modes in bank failures. The pattern is consistent: a risk is identified somewhere in the organisation, but by the time it reaches the Board — if it reaches the Board at all — it has been softened, contextualised, reframed, or buried in an appendix. The Board receives a sanitised version of reality. It makes decisions based on incomplete information. The risk crystallises.
 
 The methodology requires a structured escalation framework with the following elements:
 

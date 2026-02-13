@@ -152,7 +152,7 @@ The exercise sounds mechanical but it surfaces real gaps. Most banks' taxonomies
 
 ### Ground the Taxonomy in Evidence
 
-The third input is empirical. The industry loss database — 179 events across 30 countries and six decades — provides a factual record of what has actually gone wrong in banking. Every L2 risk sub-category in the enrichment data represents a risk type that has caused material loss to at least one institution.
+The third input is empirical. The industry loss database — 179 events across 35 countries and six decades — provides a factual record of what has actually gone wrong in banking. Every L2 risk sub-category in the enrichment data represents a risk type that has caused material loss to at least one institution.
 
 This is not about populating the taxonomy with historical events. It is about ensuring that the taxonomy contains every risk type that has demonstrably caused harm. If the loss database contains entries for "mirror-trading money laundering" and your taxonomy has no node that would capture this, the taxonomy is incomplete.
 
@@ -168,7 +168,7 @@ This has practical implications. When a business unit is reorganised, the taxono
 
 ## ISO Guide 73 and Definitional Consistency
 
-Chapter 2 (The Foundations: Standards and Frameworks) established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**[^ch4-8], which provides standardised definitions for risk management terms.
+Chapter 2 established that ISO 31000 deliberately does not specify risk taxonomies — it provides the architecture, not the vocabulary. That vocabulary comes from **ISO Guide 73: Risk Management — Vocabulary**[^ch4-8], which provides standardised definitions for risk management terms.
 
 Definitional consistency matters because taxonomy is fundamentally about shared meaning. If "credit risk" means one thing to the credit risk function and something slightly different to the operational risk function, the taxonomy fails its purpose even if the category names are identical.
 
@@ -241,7 +241,7 @@ Run this test against the industry loss database. Run it against your own instit
 
 The taxonomy is not perfect and never will be. Risk is dynamic, and any static classification will eventually lag behind reality. The question is not whether the taxonomy has gaps — it always will — but whether the institution has a process for finding and closing them before those gaps produce losses.
 
-That process is taxonomy maintenance, supported by evidence from loss data, intelligence from horizon scanning, and governance that allows the CRO to act without waiting for the annual cycle. The Board approves the structure. The CRO maintains it. The Risk Identification Lead uses it. Internal Audit tests it. The entire governance framework described in Chapter 3 (Governance: Who Owns What) exists in part to ensure that this foundation — the common language — remains sound.
+That process is taxonomy maintenance, supported by evidence from loss data, intelligence from horizon scanning, and governance that allows the CRO to act without waiting for the annual cycle. The Board approves the structure. The CRO maintains it. The Risk Identification Lead uses it. Internal Audit tests it. The entire governance framework described in Chapter 3 exists in part to ensure that this foundation — the common language — remains sound.
 
 The taxonomy is where the methodology begins. Without it, risk identification is a conversation where no one is speaking the same language. With it, every participant — from Board to front line — can identify, classify, and communicate risk in a way that aggregates into an enterprise view.
 

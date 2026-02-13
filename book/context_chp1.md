@@ -199,7 +199,7 @@ Tracks which institutions have been used as examples in which chapters, to avoid
 These are specific statements made in written chapters that later chapters must honour:
 
 ### From Chapter 1:
-- "179 bank failures" / "$2.3 trillion" / "30 countries" / "six decades" — these stats must be consistent everywhere
+- "179 bank failures" / "$2.3 trillion" / "35 countries" / "six decades" — these stats must be consistent everywhere
 - "Ten recurring failure modes" — the list is: Concentration Blindness, Model Overreliance, Governance Bypass, Silo Thinking, Cultural Suppression, Emerging Risk Blindness, Control Environment Failure, Information Asymmetry, Regulatory Arbitrage Masking, Complacency
 - "The methodology is built on three foundations: Standards, Regulation, Evidence" — this framing should be referenced in later chapters
 - "16 regulatory frameworks" — must match the actual count in Chapter 15
@@ -699,7 +699,7 @@ These are specific statements made in written chapters that later chapters must 
 - BCBS 239 described as "published 2013, compliance deadline January 2016 for G-SIBs, material gaps persist decade later" — consistent with Ch 14
 - PSMOR near-miss requirement described: "identifying events that did not result in financial loss but exposed a vulnerability"
 - SM&CR Statement of Responsibilities described: defence is proving "reasonable steps" via documented risk identification process
-- Bridge to Ch 16: "Drawing on the industry loss database of 179 bank failures spanning six decades and thirty countries" — Ch 16 must use these exact statistics
+- Bridge to Ch 16: "Drawing on the industry loss database of 179 bank failures spanning six decades and thirty-five countries" — Ch 16 must use these exact statistics
 - Bridge stated: "The regulations tell institutions what they must do. The evidence tells them why."
 - HBOS and RBS mentioned in bridge as motivation for SM&CR — brief, no new detail
 - Ch 15 delivered on Ch 14 bridge promise: "the sixteen frameworks across jurisdictions" — all specifically named frameworks covered (Fed SR 15-18, PRA SS31/15, ECB SREP, EBA Guidelines on ICT risk)
@@ -712,7 +712,7 @@ These are specific statements made in written chapters that later chapters must 
 
 ### From Chapter 16:
 - **No forward references** — this is the final content chapter; no bridge paragraph to next chapter
-- Restated Ch 1 statistics exactly: "179 bank failures" / "$2.3 trillion" / "thirty countries" / "six decades"
+- Restated Ch 1 statistics exactly: "179 bank failures" / "$2.3 trillion" / "thirty-five countries" / "six decades"
 - Restated Ch 1 ten failure modes by name: Concentration Blindness, Model Overreliance, Governance Bypass, Silo Thinking, Cultural Suppression, Emerging Risk Blindness, Control Environment Failure, Information Asymmetry, Regulatory Arbitrage Masking, Complacency
 - Delivered on Ch 15 bridge: "The regulations tell institutions what they must do. The evidence tells them why." — restated verbatim
 - Delivered on Ch 4 Taxonomy Test commitment: applied retrospectively to PPI (no conduct risk in taxonomy), UBS tax evasion (sales and marketing not compliance), Lloyd's (no enterprise-level concentration view) — described as revealing "the structural gap that enabled the loss"
@@ -1965,7 +1965,7 @@ Each mode has: explanation → "The pattern" (real examples) → "What was missi
 
 ### Section 11: "The Bridge"
 - Sixteen frameworks developed in response to bank failures — Basel III from 2008 crisis, DORA from digital disruption recognition, SM&CR from accountability void at HBOS/RBS
-- Ch 16 will examine "179 bank failures spanning six decades and thirty countries" — recurring failure modes and "what a structured risk identification methodology would have caught"
+- Ch 16 will examine "179 bank failures spanning six decades and thirty-five countries" — recurring failure modes and "what a structured risk identification methodology would have caught"
 - "The regulations tell institutions what they must do. The evidence tells them why."
 
 ---
@@ -1976,7 +1976,7 @@ Each mode has: explanation → "The pattern" (real examples) → "What was missi
 **Word count:** ~4,100
 
 ### Section 1: "The $2.3 Trillion Evidence Base"
-- Opens with the aggregate cost: $2.3 trillion across 179 failures, six decades, thirty countries
+- Opens with the aggregate cost: $2.3 trillion across 179 failures, six decades, thirty-five countries
 - Forensic tool framing: for each entry, asked "was the risk identifiable before the loss materialised?" — answer always yes
 - Delivers Ch 15 bridge verbatim: "The regulations tell institutions what they must do. This chapter presents the evidence that tells them why."
 - Database statistics: credit risk 42% / $1.37T (largest by dollar); operational risk 43% / $626B (largest by frequency); conduct risk 7% / $97B

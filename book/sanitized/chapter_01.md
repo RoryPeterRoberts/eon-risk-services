@@ -34,7 +34,7 @@ This is the gap. Banks have invested billions in measuring and managing risks, b
 
 ## What the Evidence Shows
 
-To understand how serious this gap is, I studied every major bank failure I could find — from the savings and loan crisis of the 1980s through the Global Financial Crisis, the post-crisis conduct era, and into the 2020s. I built a database of 179 bank loss events, covering institutions across 30 countries and six decades, with aggregate losses exceeding $2.3 trillion.[^ch1-1]
+To understand how serious this gap is, I studied every major bank failure I could find — from the savings and loan crisis of the 1980s through the Global Financial Crisis, the post-crisis conduct era, and into the 2020s. I built a database of 179 bank loss events, covering institutions across 35 countries and six decades, with aggregate losses exceeding $2.3 trillion.[^ch1-1]
 
 For each entry, I asked the same question: *Was the risk identifiable before the loss materialised?*
 
@@ -173,7 +173,7 @@ The banks that failed did not lack smart people. They lacked a process. This boo
 
 ---
 
-*In Chapter 2 (The Foundations: Standards and Frameworks), we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*
+*In Chapter 2, we examine the international standards and regulatory frameworks that provide the foundation for the methodology — ISO 31000, ISO 31010, COSO ERM, and the BCBS Corporate Governance Principles — and explain how they relate to each other and to the practical work of identifying risks in a bank.*
 
 ---
 

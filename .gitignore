@@ -27,3 +27,15 @@ website/.env.local
 .claude/
 .vercel
 .env*.local
+
+# Sanitization mappings (sensitive — maps real names to anonymized)
+book/.sanitization_private/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Backup directories
+book_backup_*/
+
+# Session logs
+session *.txt

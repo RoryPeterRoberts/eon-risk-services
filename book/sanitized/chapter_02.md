@@ -216,7 +216,7 @@ That is what the remaining chapters of this book deliver: the practitioner's met
 
 ---
 
-*The standards tell you what needs to exist. But a process without clear ownership is a process that will fail — regardless of how well it maps to ISO 31000. In Chapter 3 (Governance: Who Owns What), we examine governance: who owns the risk identification process, who participates in it, who has authority to challenge the business, and how findings reach the Board without being filtered by the people who generated the risk.*
+*The standards tell you what needs to exist. But a process without clear ownership is a process that will fail — regardless of how well it maps to ISO 31000. In Chapter 3, we examine governance: who owns the risk identification process, who participates in it, who has authority to challenge the business, and how findings reach the Board without being filtered by the people who generated the risk.*
 
 ---
 

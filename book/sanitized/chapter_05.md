@@ -150,7 +150,7 @@ Anglo Irish was nationalised in 2009.[^ch5-18] The taxpayer cost was €29.3 bil
 
 ### The Annual Refresh
 
-The internal environment assessment is not a one-time exercise. As established in Chapter 3 (Governance: Who Owns What), the annual full re-identification cycle includes a refresh of the internal environment assessment. Culture changes — sometimes deliberately, sometimes through drift. An institution that had a strong risk culture three years ago may have weakened through leadership changes, acquisition integration, strategic pivots, or simple attrition. The annual refresh ensures that the foundation on which the identification process rests is re-evaluated, not assumed.
+The internal environment assessment is not a one-time exercise. As established in Chapter 3, the annual full re-identification cycle includes a refresh of the internal environment assessment. Culture changes — sometimes deliberately, sometimes through drift. An institution that had a strong risk culture three years ago may have weakened through leadership changes, acquisition integration, strategic pivots, or simple attrition. The annual refresh ensures that the foundation on which the identification process rests is re-evaluated, not assumed.
 
 Material weaknesses identified in the internal environment assessment must be documented as findings and escalated to the CRO and Board Risk Committee. A weak internal environment can compromise the entire risk identification process regardless of how well-designed the methodology is. If the assessment reveals that individuals cannot report risk concerns safely, that incentive structures penalise risk identification, or that the Board is not substantively engaged — these are not background observations. They are material risks to the process itself.
 
@@ -182,13 +182,13 @@ The methodology eliminates this problem by building the **starting universe** �
 
 ### Regulatory Categories
 
-Every risk type required by applicable regulatory frameworks must be included. The regulatory mapping table introduced in Chapter 4 (The Risk Taxonomy) provides the source. If a regulator expects the institution to identify and assess a particular risk type — whether credit concentration, model risk, step-in risk, or climate risk — it must appear in the starting universe regardless of whether current management believes it is material.
+Every risk type required by applicable regulatory frameworks must be included. The regulatory mapping table introduced in Chapter 4 provides the source. If a regulator expects the institution to identify and assess a particular risk type — whether credit concentration, model risk, step-in risk, or climate risk — it must appear in the starting universe regardless of whether current management believes it is material.
 
 This is not compliance for its own sake. Regulatory categories represent the collective supervisory judgement of what has gone wrong across the industry. When the Basel Committee includes conduct risk in its supervisory expectations, or the ECB mandates climate risk identification, these additions reflect actual losses at actual institutions. Ignoring regulatory categories is ignoring evidence.
 
 ### Industry Loss Data
 
-The 179-event industry loss database described in Chapter 1 (Why Banks Fail at Risk Identification) provides empirical evidence of what has gone wrong and at what scale. The database covers failures across 30 countries over six decades, with aggregate losses exceeding $2.3 trillion. Each event is classified by risk type, root cause, and risk identification failure mode.
+The 179-event industry loss database described in Chapter 1 provides empirical evidence of what has gone wrong and at what scale. The database covers failures across 35 countries over six decades, with aggregate losses exceeding $2.3 trillion. Each event is classified by risk type, root cause, and risk identification failure mode.
 
 The starting universe includes a mapping of industry loss events to the institution's risk taxonomy. For each L1 and L2 taxonomy category, the question is: have there been material industry losses in this category? If yes, this category receives enhanced attention in the identification cycle. The industry loss data provides an evidence-based antidote to the institutional tendency to assume that risks which have not materialised internally are not relevant.
 
@@ -212,7 +212,7 @@ The starting universe is not the risk inventory. It is the evidence base from wh
 
 The starting universe provides the evidence. The straw man risk list translates that evidence into a working document that frames the Phase 2 workshops.
 
-Before top-down workshops are convened, the **Risk Identification Lead** prepares the straw man — a preliminary, deliberately incomplete list of potential principal risks drawn from the starting universe, the prior-year risk inventory, and the current PESTLE and internal context assessments. The list is organised by **L1 and L2 taxonomy classification**, ensuring it uses the common language established in Chapter 4 (The Risk Taxonomy).
+Before top-down workshops are convened, the **Risk Identification Lead** prepares the straw man — a preliminary, deliberately incomplete list of potential principal risks drawn from the starting universe, the prior-year risk inventory, and the current PESTLE and internal context assessments. The list is organised by **L1 and L2 taxonomy classification**, ensuring it uses the common language established in Chapter 4.
 
 ### Purpose
 
