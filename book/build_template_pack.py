@@ -112,6 +112,20 @@ def write_instruction(ws, row, text, col=1):
     cell.alignment = WRAP
 
 
+def parse_usd_to_millions(usd_str):
+    """Convert '$85.0B' to 85000.0, '$691M' to 691.0, etc."""
+    s = usd_str.strip().replace(",", "").replace("$", "")
+    try:
+        if s.endswith("B"):
+            return round(float(s[:-1]) * 1000, 1)
+        elif s.endswith("M"):
+            return round(float(s[:-1]), 1)
+        else:
+            return float(s)
+    except (ValueError, IndexError):
+        return 0
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # SHEET BUILDERS
 # ══════════════════════════════════════════════════════════════════════════════
@@ -154,7 +168,8 @@ def build_cover(wb):
         "3. Dropdown validations are provided where the book specifies fixed options.",
         "4. Adapt column widths and add rows as needed for your institution.",
         "5. The Risk Inventory (Tab 15) is the master sheet — other tabs feed into it.",
-        "6. See the book chapter references on each tab for methodology context.",
+        "6. Tab 30 (Industry Loss Database) contains 179 historical bank failures — use it for taxonomy testing and calibration.",
+        "7. See the book chapter references on each tab for methodology context.",
     ]
     for i, text in enumerate(instructions):
         ws.cell(row=19 + i, column=1, value=text).font = BODY_FONT
@@ -1238,6 +1253,79 @@ def build_lessons_learned(wb):
                       fills=[None, None, LIGHT_GOLD_FILL, LIGHT_GOLD_FILL, LIGHT_GOLD_FILL, LIGHT_GOLD_FILL])
 
 
+def build_industry_loss_database(wb):
+    """Build the Industry Loss Database tab from the sanitized appendix."""
+    ws = wb.create_sheet("30. Industry Loss DB")
+    ws.sheet_properties.tabColor = NAVY
+
+    set_col_widths(ws, {
+        "A": 6, "B": 38, "C": 22, "D": 8,
+        "E": 50, "F": 18, "G": 14, "H": 24, "I": 14
+    })
+
+    write_title(ws, 1, "Industry Loss Database (179 Events)",
+                "Book Reference: Chapter 16, Appendix A — Empirical foundation for the methodology")
+    write_instruction(ws, 3,
+        "179 bank and financial institution loss events spanning 35 countries and six decades. "
+        "Use Excel auto-filter to sort and filter by any column. USD ($M) column enables numeric sorting by loss magnitude.")
+
+    headers = ["#", "Institution", "Country", "Year", "Risk Event",
+               "L1 Category", "COSO", "Est. Loss (Original)", "USD ($M)"]
+    write_header_row(ws, 5, headers)
+
+    # Parse events from appendix
+    appendix_path = os.path.join(os.path.dirname(__file__), "sanitized", "appendix_a.md")
+    if not os.path.exists(appendix_path):
+        appendix_path = os.path.join(os.path.dirname(__file__), "appendix_a.md")
+
+    events = []
+    with open(appendix_path, "r", encoding="utf-8") as f:
+        in_event_table = False
+        for line in f:
+            line = line.strip()
+            if line.startswith("| # |"):
+                in_event_table = True
+                continue
+            if in_event_table and line.startswith("|--"):
+                continue
+            if in_event_table and line.startswith("|"):
+                parts = [p.strip() for p in line.split("|")[1:-1]]
+                if len(parts) >= 9 and parts[0].isdigit():
+                    events.append(parts)
+            elif in_event_table and not line.startswith("|"):
+                break
+
+    # Write data rows with alternating shading
+    alt_fill = PatternFill(start_color="F5F5F5", end_color="F5F5F5", fill_type="solid")
+    for i, parts in enumerate(events):
+        row = 6 + i
+        num = int(parts[0])
+        year = int(parts[3])
+        usd_millions = parse_usd_to_millions(parts[8])
+
+        values = [num, parts[1], parts[2], year, parts[4],
+                  parts[5], parts[6], parts[7], usd_millions]
+
+        fill = alt_fill if i % 2 == 1 else None
+        fills = [fill] * 9 if fill else None
+        write_data_row(ws, row, values, fills=fills)
+
+        # Center-align #, Year, USD columns
+        ws.cell(row=row, column=1).alignment = CENTER
+        ws.cell(row=row, column=4).alignment = CENTER
+        ws.cell(row=row, column=9).alignment = CENTER
+        ws.cell(row=row, column=9).number_format = '#,##0'
+
+    # Auto-filter for sorting
+    last_row = 5 + len(events)
+    ws.auto_filter.ref = f"A5:I{last_row}"
+
+    # Freeze header row
+    ws.freeze_panes = "A6"
+
+    return len(events)
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1336,6 +1424,9 @@ def main():
 
     build_lessons_learned(wb)
     print("  ✓ 29. Lessons Learned")
+
+    event_count = build_industry_loss_database(wb)
+    print(f"  ✓ 30. Industry Loss Database ({event_count} events)")
 
     # Save
     output_dir = os.path.join(os.path.dirname(__file__), "output")
