@@ -32,7 +32,7 @@ BORDER = "#E2E0DC"
 
 
 def logo_uri():
-    for name in ["logo-transparent.png", "logo.png"]:
+    for name in ["logo-white.png", "logo-transparent.png", "logo.png"]:
         p = os.path.join(IMG_DIR, name)
         if os.path.exists(p):
             return f"file://{p}"
@@ -122,6 +122,8 @@ a {{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 40mm 35mm;
     page-break-after: always;
     position: relative;
@@ -137,7 +139,10 @@ a {{
 }}
 .cover-logo {{
     width: 140px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 30mm;
+    display: block;
     opacity: 0.9;
 }}
 .cover-eyebrow {{
