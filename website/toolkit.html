@@ -138,6 +138,11 @@
         <h2>Get Free Access</h2>
         <p>Enter your details and we'll send you download links for the complete toolkit. No credit card. No sales calls. Just the resources.</p>
         <form id="toolkit-form" class="toolkit-form__fields">
+          <!-- Honeypot: hidden from real users, bots fill it -->
+          <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+            <label for="tk-website">Website</label>
+            <input type="text" id="tk-website" name="tk-website" tabindex="-1" autocomplete="off">
+          </div>
           <div class="toolkit-form__row">
             <div class="form-group">
               <label class="form-label" for="tk-name">Name</label>

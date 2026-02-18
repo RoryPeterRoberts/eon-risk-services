@@ -17,6 +17,11 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Honeypot — bots fill this field, real users never see it
+  if (req.body.website) {
+    return res.status(200).json({ ok: true });
+  }
+
   // Rate limit
   const { allowed, ip } = rateLimit(req);
   if (!allowed) {
@@ -30,24 +35,36 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // 1. Store lead in Supabase
-    const { error: dbError } = await supabase
+    // 1. Check for duplicate email
+    const { data: existing } = await supabase
       .from('toolkit_leads')
-      .insert({
-        name: data.name,
-        email: data.email,
-        organisation: data.organisation,
-        role: data.role,
-        source: 'toolkit-form',
-        ip_address: ip
-      });
+      .select('id')
+      .eq('email', data.email)
+      .limit(1)
+      .maybeSingle();
 
-    if (dbError) {
-      console.error('Supabase insert error:', dbError);
-      // Continue anyway — email delivery is more important than logging
+    const isNewLead = !existing;
+
+    // 2. Store lead in Supabase (new leads only)
+    if (isNewLead) {
+      const { error: dbError } = await supabase
+        .from('toolkit_leads')
+        .insert({
+          name: data.name,
+          email: data.email,
+          organisation: data.organisation,
+          role: data.role,
+          source: 'toolkit-form',
+          ip_address: ip
+        });
+
+      if (dbError) {
+        console.error('Supabase insert error:', dbError);
+        // Continue anyway — email delivery is more important than logging
+      }
     }
 
-    // 2. Send toolkit download email to user (with signed download tokens for gated files)
+    // 3. Send toolkit download email to user (always — they may have lost their links)
     const bookToken = generateToken(data.email, 'book');
     const templatesToken = generateToken(data.email, 'templates');
     const croToken = generateToken(data.email, 'cro-overview');
@@ -58,14 +75,16 @@ module.exports = async function handler(req, res) {
       html: toolkitEmailHtml(data.name, bookToken, templatesToken, croToken)
     });
 
-    // 3. Send notification to Rory
-    await resend.emails.send({
-      from: FROM_EMAIL,
-      to: 'rory@eonriskservices.com',
-      replyTo: data.email,
-      subject: `Toolkit Download: ${data.name}${data.organisation ? ` (${data.organisation})` : ''}`,
-      html: notificationEmailHtml(data, ip)
-    });
+    // 4. Send notification to Rory (new leads only)
+    if (isNewLead) {
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: 'rory@eonriskservices.com',
+        replyTo: data.email,
+        subject: `Toolkit Download: ${data.name}${data.organisation ? ` (${data.organisation})` : ''}`,
+        html: notificationEmailHtml(data, ip)
+      });
+    }
 
     return res.status(200).json({ ok: true });
 
