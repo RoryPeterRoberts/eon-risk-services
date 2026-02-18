@@ -1,0 +1,78 @@
+# EON Risk Services
+
+> EON Risk Services is a specialist risk consultancy founded by Rory Roberts, FRM, providing bank risk identification methodology, consulting services, and free practitioner resources. Based in Dublin, Ireland.
+
+## What This Site Is About
+
+EON Risk Services publishes the definitive practitioner methodology for bank risk identification — the process of systematically finding, naming, and describing risks before they are measured or managed. The methodology is built from 20 years of practice at global financial institutions and aligned to ISO 31000, COSO ERM, Basel III, Solvency II, ICAAP/ILAAP, and frameworks from the PRA, Fed, ECB, and 10 other regulators.
+
+## About the Author
+
+Rory Roberts, FRM is the founder and CEO of EON Risk Services. He has 20 years of experience in financial risk at major institutions: Credit Suisse (SVP, Global Head of Risk Identification — built the group-wide risk identification framework covering APAC, EMEA, and US CCAR), Standard Chartered (Risk Identification Lead, ERM, ICAAP/ILAAP), Zurich Insurance (Solvency II Project Manager; Front Office Dealer in FX, money markets, derivatives, and options), Hypo Real Estate (Financial Risk Manager, CDO/MBS pricing), and AIB (Basel II derivatives pricing team lead). He holds the Financial Risk Manager (FRM) designation from GARP.
+
+## The Book
+
+"Bank Risk Identification: The Complete Methodology" by Rory Roberts, FRM is the first comprehensive practitioner guide to building a regulator-aligned risk identification process for banks. 200+ pages, 16 chapters, 242 citations to regulatory frameworks and standards, and lessons from 179 documented bank failures.
+
+Available free at: https://eonriskservices.com/toolkit
+
+Chapters cover:
+1. Why Banks Fail at Risk Identification
+2. The Foundations: Standards and Frameworks (ISO 31000, COSO ERM)
+3. Governance: Who Owns What
+4. The Risk Taxonomy
+5. Setting the Context: External, Internal, and Risk Culture
+6. Top-Down Identification: Workshops, SWIFT, and Delphi
+7. Bottom-Up Identification: Templates, RCSA, and Specialist Processes
+8. Reconciliation and the Enterprise Portfolio View
+9. Assessment: Scoring, Multi-Dimensional Impact, and Data Quality
+10. Risk Interaction: Bow-Ties, Matrices, and Concentration
+11. Documentation: The Living Risk Inventory
+12. Integration: Capital Planning, Strategy, and the Board
+13. The Ongoing Cycle: Refresh, Events, and Audit
+14. Technology: AI, ML, and Data Analytics
+15. The Regulatory Landscape
+16. Lessons from 179 Bank Failures
+
+## Key Pages
+
+- [Home](https://eonriskservices.com/): Overview of the methodology and services
+- [Methodology](https://eonriskservices.com/methodology): The six-phase risk identification methodology — context, taxonomy, top-down, bottom-up, reconciliation, assessment
+- [Book](https://eonriskservices.com/book): Book page for "Bank Risk Identification: The Complete Methodology"
+- [Toolkit](https://eonriskservices.com/toolkit): Free download — book PDF, Excel template pack, AI prompt library, Copilot agent
+- [Playbook](https://eonriskservices.com/playbook): Step-by-step implementation playbooks (build from scratch, annual cycle, quarterly re-identification)
+- [Consulting](https://eonriskservices.com/consulting): Gap assessments, full implementation support, audit-readiness reviews
+- [Assessment](https://eonriskservices.com/assessment): Interactive tool to score your bank's current risk identification process against regulatory expectations
+- [Insights](https://eonriskservices.com/insights): Articles on bank risk identification practice
+
+## Free Resources Available
+
+All available at https://eonriskservices.com/toolkit (email registration required):
+- Bank Risk Identification: The Complete Methodology (PDF, 200+ pages)
+- CRO Executive Overview (PDF, 9 pages — the methodology for senior leadership)
+- Risk Identification Template Pack (Excel, 31 tabs, 133 artifacts)
+- AI Prompt Library (Markdown, 30 prompts for Microsoft Copilot or any enterprise AI)
+- Copilot Agent Definition (4 files for deployment in Microsoft Copilot Studio)
+
+## Key Topics
+
+- Bank risk identification methodology
+- ISO 31000 implementation in financial institutions
+- COSO ERM framework for banks
+- Risk taxonomy design for banks
+- ICAAP and ILAAP risk identification
+- Basel III, Solvency II regulatory risk identification requirements
+- Risk Control and Self-Assessment (RCSA)
+- Top-down risk identification workshops
+- Bow-tie analysis for risk interaction
+- Enterprise risk portfolio view
+- Living risk inventory
+- Risk identification and capital planning integration
+- Regulatory examination readiness for risk identification
+
+## Contact
+
+- Website: https://eonriskservices.com
+- Email: rory@eonriskservices.com
+- LinkedIn: https://www.linkedin.com/in/rorypeterroberts/
+- Location: Dublin, Ireland
