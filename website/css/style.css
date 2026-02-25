@@ -1147,3 +1147,180 @@ p:last-child { margin-bottom: 0; }
   .resource-card { flex-direction: column; }
   .toolkit-form__row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   AIaaS Components
+   ============================================================ */
+
+/* --- Sector Cards --- */
+.sector-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+}
+.sector-card:hover { box-shadow: var(--shadow); border-color: var(--border); }
+.sector-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.sector-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.sector-card__list {
+  list-style: none;
+}
+.sector-card__list li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+.sector-card__list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* --- Grant Cards --- */
+.grant-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+}
+.grant-card__label {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.grant-card__amount {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.grant-card__text {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+
+/* --- Service Items (Services page) --- */
+.service-item {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all var(--transition);
+}
+.service-item:hover { box-shadow: var(--shadow); border-color: var(--border); }
+.service-item__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.service-item__text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+.service-item__price {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+/* --- Tier Headers & Badges --- */
+.tier-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.tier-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.tier-badge--green {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+}
+.tier-badge--gold {
+  background: rgba(197,165,90,0.15);
+  color: var(--gold-dark);
+}
+.tier-badge--navy {
+  background: rgba(27,42,74,0.08);
+  color: var(--navy);
+}
+
+/* --- Package Cards (Sectoral packages) --- */
+.package-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+}
+.package-card__sector {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.package-card__price {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.package-card__price span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+.package-card .checklist li {
+  color: rgba(255,255,255,0.8);
+}
+.package-card .checklist li::before {
+  color: var(--gold-light);
+}
+
+/* --- Audit CTA --- */
+.audit-cta {
+  background: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: var(--radius-lg);
+  padding: 48px 32px;
+}
+
+/* --- Service item background on offwhite sections --- */
+.section--offwhite .service-item {
+  background: var(--white);
+}

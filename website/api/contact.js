@@ -2,6 +2,7 @@ const { supabase } = require('./_lib/supabase');
 const { resend } = require('./_lib/resend');
 const { rateLimit } = require('./_lib/rate-limit');
 const { validateContact } = require('./_lib/validate');
+const { verifyTurnstile } = require('./_lib/turnstile');
 
 const SITE_URL = process.env.SITE_URL || 'https://eonriskservices.com';
 const FROM_EMAIL = 'Rory Roberts <rory@eonriskservices.com>';
@@ -16,10 +17,21 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Honeypot — bots fill this field, real users never see it
+  if (req.body.website) {
+    return res.status(200).json({ ok: true });
+  }
+
   // Rate limit
   const { allowed, ip } = rateLimit(req);
   if (!allowed) {
     return res.status(429).json({ error: 'Too many requests. Please try again in a minute.' });
+  }
+
+  // Verify Turnstile CAPTCHA
+  const turnstileOk = await verifyTurnstile(req.body['cf-turnstile-response'], ip);
+  if (!turnstileOk) {
+    return res.status(400).json({ error: 'CAPTCHA verification failed. Please try again.' });
   }
 
   // Validate
@@ -75,9 +87,10 @@ module.exports = async function handler(req, res) {
 function forwardEmailHtml(data, ip) {
   const subjectLabels = {
     general: 'General enquiry',
-    consulting: 'Consulting engagement',
-    toolkit: 'Toolkit or methodology question',
-    speaking: 'Speaking or training request',
+    audit: 'Free digital audit',
+    'ai-services': 'AI services enquiry',
+    'leo-grants': 'LEO grant question',
+    'risk-id': 'Bank risk identification',
     other: 'Other'
   };
   const subjectLabel = subjectLabels[data.subject_category] || data.subject_category || 'General';
@@ -151,23 +164,18 @@ function autoReplyHtml(name) {
             <!-- Links -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
               <tr><td style="padding:8px 0;">
-                <a href="${SITE_URL}/toolkit.html" style="display:block; padding:14px 24px; background:#F8F7F4; color:#1B2A4A; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600; border:1px solid #EEEDEA;">
-                  Risk Identification Toolkit — free book, templates, and AI tools
+                <a href="${SITE_URL}/consulting.html" style="display:block; padding:14px 24px; background:#F8F7F4; color:#1B2A4A; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600; border:1px solid #EEEDEA;">
+                  Our Services — AI solutions scored by complexity, from &euro;500
                 </a>
               </td></tr>
               <tr><td style="padding:8px 0;">
-                <a href="${SITE_URL}/assessment.html" style="display:block; padding:14px 24px; background:#F8F7F4; color:#1B2A4A; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600; border:1px solid #EEEDEA;">
-                  Score Your Process — 5-minute risk identification self-assessment
-                </a>
-              </td></tr>
-              <tr><td style="padding:8px 0;">
-                <a href="${SITE_URL}/insights.html" style="display:block; padding:14px 24px; background:#F8F7F4; color:#1B2A4A; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600; border:1px solid #EEEDEA;">
-                  Insights — articles on risk identification practice
+                <a href="${SITE_URL}/about.html" style="display:block; padding:14px 24px; background:#F8F7F4; color:#1B2A4A; text-decoration:none; border-radius:6px; font-size:14px; font-weight:600; border:1px solid #EEEDEA;">
+                  About — 20 years enterprise experience, now building for SMEs
                 </a>
               </td></tr>
             </table>
 
-            <p style="margin:0; color:#2C2C2C; font-size:15px; line-height:1.6;">Best,<br><strong>Rory Roberts, FRM</strong><br><span style="color:#8A8A8A; font-size:13px;">CEO, EON Risk Services</span></p>
+            <p style="margin:0; color:#2C2C2C; font-size:15px; line-height:1.6;">Best,<br><strong>Rory Roberts</strong><br><span style="color:#8A8A8A; font-size:13px;">Founder, EON Risk Services</span></p>
           </td>
         </tr>
 
@@ -175,7 +183,7 @@ function autoReplyHtml(name) {
         <tr>
           <td style="padding:24px 40px; border-top:1px solid #EEEDEA; text-align:center;">
             <p style="margin:0; color:#8A8A8A; font-size:12px; line-height:1.6;">
-              EON Risk Services Ltd &middot; Dublin, Ireland<br>
+              EON Risk Services Ltd &middot; Wexford, Ireland<br>
               <a href="${SITE_URL}" style="color:#2A7F7F; text-decoration:none;">eonriskservices.com</a>
             </p>
           </td>

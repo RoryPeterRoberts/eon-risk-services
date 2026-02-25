@@ -3,6 +3,7 @@ const { resend } = require('./_lib/resend');
 const { rateLimit } = require('./_lib/rate-limit');
 const { validateToolkit } = require('./_lib/validate');
 const { generateToken } = require('./download');
+const { verifyTurnstile } = require('./_lib/turnstile');
 
 const SITE_URL = process.env.SITE_URL || 'https://eonriskservices.com';
 const FROM_EMAIL = 'Rory Roberts <rory@eonriskservices.com>';
@@ -26,6 +27,12 @@ module.exports = async function handler(req, res) {
   const { allowed, ip } = rateLimit(req);
   if (!allowed) {
     return res.status(429).json({ error: 'Too many requests. Please try again in a minute.' });
+  }
+
+  // Verify Turnstile CAPTCHA
+  const turnstileOk = await verifyTurnstile(req.body['cf-turnstile-response'], ip);
+  if (!turnstileOk) {
+    return res.status(400).json({ error: 'CAPTCHA verification failed. Please try again.' });
   }
 
   // Validate

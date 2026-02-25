@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — EON Risk Services</title>
-  <meta name="description" content="Get in touch with EON Risk Services. Questions about the methodology, consulting engagements, training, or speaking requests.">
+  <meta name="description" content="Get in touch with EON Risk Services. Book a free digital audit, discuss AI solutions for your business, or ask about our services.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -19,14 +20,11 @@
         <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
       </a>
       <div class="nav__links">
+        <a href="consulting.html" class="nav__link">Services</a>
         <a href="about.html" class="nav__link">About</a>
-        <a href="methodology.html" class="nav__link">Methodology</a>
-        <a href="toolkit.html" class="nav__link">Toolkit</a>
-        <a href="playbook.html" class="nav__link">Playbook</a>
-        <a href="consulting.html" class="nav__link">Consulting</a>
-        <a href="insights.html" class="nav__link">Insights</a>
-        <a href="contact.html" class="nav__link nav__link--active">Contact</a>
-        <a href="assessment.html" class="nav__link nav__link--cta">Score Your Process</a>
+        <a href="risk-identification.html" class="nav__link">Risk Identification</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html#audit" class="nav__link nav__link--cta">Free Digital Audit</a>
       </div>
       <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -38,7 +36,22 @@
   <section class="page-header">
     <div class="container">
       <h1>Get in Touch</h1>
-      <p class="lead">Whether you have a question about the methodology, need consulting support, or want to discuss a training engagement.</p>
+      <p class="lead">Whether you want to explore AI for your business, book a digital audit, or just ask a question.</p>
+    </div>
+  </section>
+
+  <!-- Digital Audit CTA -->
+  <section class="section section--offwhite" id="audit">
+    <div class="container">
+      <div class="container-narrow" style="padding: 0; text-align: center;">
+        <div class="audit-cta">
+          <p class="eyebrow">Recommended Starting Point</p>
+          <h2>Book a Free Digital Audit</h2>
+          <p style="font-size: 1.05rem; color: var(--text-light); max-width: 520px; margin: 0 auto 24px;">30 minutes on a call. We'll map your business processes, identify where AI can help most, and score each opportunity by complexity and ROI. No obligation, no jargon.</p>
+          <a href="mailto:rory@eonriskservices.com?subject=Free%20Digital%20Audit%20Request" class="btn btn-primary btn-lg">Request a Digital Audit <span class="btn-icon">&rarr;</span></a>
+          <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">Or fill in the form below and select "Free digital audit" as the subject.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -67,9 +80,10 @@
               <label class="form-label" for="subject">Subject</label>
               <select id="subject" name="subject" class="form-select">
                 <option value="general">General enquiry</option>
-                <option value="consulting">Consulting engagement</option>
-                <option value="toolkit">Toolkit or methodology question</option>
-                <option value="speaking">Speaking or training request</option>
+                <option value="audit">Free digital audit</option>
+                <option value="ai-services">AI services enquiry</option>
+                <option value="leo-grants">LEO grant question</option>
+                <option value="risk-id">Bank risk identification</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -77,6 +91,12 @@
               <label class="form-label" for="message">Message <span style="color: #C0392B;">*</span></label>
               <textarea id="message" name="message" class="form-textarea" required></textarea>
             </div>
+            <!-- Honeypot — hidden from real users, bots fill it -->
+            <div style="position: absolute; left: -9999px;" aria-hidden="true">
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <!-- Cloudflare Turnstile -->
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light" style="margin-bottom: 16px;"></div>
             <button type="submit" class="btn btn-primary">Send Message <span class="btn-icon">&rarr;</span></button>
           </form>
         </div>
@@ -85,9 +105,9 @@
         <div>
           <h3>Contact Details</h3>
           <div style="margin-bottom: 32px;">
-            <p><strong style="color: var(--navy); font-size: 1.1rem;">Rory Roberts, FRM</strong></p>
-            <p class="text-light">CEO, EON Risk Services Ltd</p>
-            <p class="text-light">Dublin, Ireland</p>
+            <p><strong style="color: var(--navy); font-size: 1.1rem;">Rory Roberts</strong></p>
+            <p class="text-light">Founder, EON Risk Services Ltd</p>
+            <p class="text-light">Wexford, Ireland</p>
           </div>
           <div style="margin-bottom: 32px;">
             <p style="margin-bottom: 12px;">
@@ -104,8 +124,8 @@
           <!-- Schedule a Call -->
           <div style="margin-top: 48px; padding: 32px; background: var(--offwhite); border-radius: var(--radius-lg);">
             <h4>Prefer to schedule a call?</h4>
-            <p class="text-light" style="font-size: 0.95rem;">Book a free 30-minute consultation to discuss your bank's risk identification needs.</p>
-            <a href="mailto:rory@eonriskservices.com?subject=Consultation%20Request" class="btn btn-outline btn-sm" style="margin-top: 12px;">Request a Call <span class="btn-icon">&rarr;</span></a>
+            <p class="text-light" style="font-size: 0.95rem;">Book a free 30-minute digital audit to explore how AI can help your business.</p>
+            <a href="mailto:rory@eonriskservices.com?subject=Free%20Digital%20Audit%20Request" class="btn btn-outline btn-sm" style="margin-top: 12px;">Request a Call <span class="btn-icon">&rarr;</span></a>
           </div>
         </div>
 
@@ -119,16 +139,13 @@
       <div class="footer__inner">
         <div>
           <div class="footer__brand">EON Risk Services</div>
-          <p class="footer__tagline">Bank risk identification methodology and consulting</p>
-          <p class="footer__tagline">Dublin, Ireland</p>
+          <p class="footer__tagline">AI-as-a-Service for Irish SMEs</p>
+          <p class="footer__tagline">Wexford, Ireland</p>
         </div>
         <div class="footer__links">
+          <a href="consulting.html" class="footer__link">Services</a>
           <a href="about.html" class="footer__link">About</a>
-          <a href="methodology.html" class="footer__link">Methodology</a>
-          <a href="toolkit.html" class="footer__link">Toolkit</a>
-          <a href="playbook.html" class="footer__link">Playbook</a>
-          <a href="consulting.html" class="footer__link">Consulting</a>
-          <a href="insights.html" class="footer__link">Insights</a>
+          <a href="risk-identification.html" class="footer__link">Risk Identification</a>
           <a href="contact.html" class="footer__link">Contact</a>
         </div>
         <div class="footer__links">

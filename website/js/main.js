@@ -107,6 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
       btn.style.opacity = '0.7';
 
+      // Get Turnstile token
+      const turnstileResponse = document.querySelector('#contact-form [name="cf-turnstile-response"]');
+      if (!turnstileResponse || !turnstileResponse.value) {
+        btn.textContent = 'Please complete the verification';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        setTimeout(() => { btn.textContent = originalText; }, 3000);
+        return;
+      }
+
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
@@ -116,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
             email: document.getElementById('email').value,
             organisation: document.getElementById('organisation').value,
             subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
+            message: document.getElementById('message').value,
+            website: document.getElementById('website') ? document.getElementById('website').value : '',
+            'cf-turnstile-response': turnstileResponse.value
           })
         });
 
@@ -126,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btn.textContent = 'Sent — Thank you';
+        if (typeof turnstile !== 'undefined') turnstile.reset('#contact-form .cf-turnstile');
         setTimeout(() => {
           btn.textContent = originalText;
           btn.disabled = false;
@@ -153,6 +166,23 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
       btn.style.opacity = '0.7';
 
+      // Get Turnstile token
+      const tkTurnstile = document.querySelector('#toolkit-form [name="cf-turnstile-response"]');
+      if (!tkTurnstile || !tkTurnstile.value) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        let errEl = toolkitForm.querySelector('.toolkit-form__error');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'toolkit-form__error';
+          errEl.style.cssText = 'color:#C0392B; font-size:0.9rem; margin-top:12px; text-align:center;';
+          btn.parentNode.insertBefore(errEl, btn.nextSibling);
+        }
+        errEl.textContent = 'Please complete the verification.';
+        return;
+      }
+
       try {
         const res = await fetch('/api/toolkit', {
           method: 'POST',
@@ -162,7 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
             email: document.getElementById('tk-email').value,
             organisation: document.getElementById('tk-org').value,
             role: document.getElementById('tk-role').value,
-            website: document.getElementById('tk-website').value
+            website: document.getElementById('tk-website').value,
+            'cf-turnstile-response': tkTurnstile.value
           })
         });
 
