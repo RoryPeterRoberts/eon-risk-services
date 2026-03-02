@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — BuildMySite</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1B2A4A;
+      --navy-light: #243558;
+      --teal: #2A7F7F;
+      --teal-dark: #1F6363;
+      --gold: #C5A55A;
+      --bg: #F8F7F4;
+      --white: #FFFFFF;
+      --text: #2C2C2C;
+      --text-light: #5A5A5A;
+      --text-muted: #8A8A8A;
+      --border: #E2E0DC;
+      --radius: 8px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Header --- */
+    .header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header__brand {
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header__badge {
+      background: var(--teal);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .header__actions { display: flex; gap: 12px; align-items: center; }
+    .header__btn {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .header__btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* --- Login --- */
+    .login {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login__card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .login__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .login__subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+    .login__input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-align: center;
+      font-family: monospace;
+      letter-spacing: 0.1em;
+    }
+    .login__input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42,127,127,0.12); }
+    .login__btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login__btn:hover { background: var(--teal-dark); }
+    .login__error {
+      color: #C62828;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* --- Main Layout --- */
+    .main { flex: 1; display: none; flex-direction: column; max-height: calc(100vh - 56px); }
+    .main.active { display: flex; }
+
+    /* --- Build History --- */
+    .history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+    .history__empty {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 80px 24px;
+    }
+    .history__empty-icon { font-size: 2rem; margin-bottom: 12px; opacity: 0.3; }
+    .history__empty-text { font-size: 0.95rem; }
+
+    /* --- Build Entry --- */
+    .build-entry {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .build-entry__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .build-entry__prompt {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.95rem;
+      flex: 1;
+      margin-right: 12px;
+    }
+    .build-entry__time {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+    .build-entry__response {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .build-entry__files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .build-entry__file {
+      background: var(--bg);
+      color: var(--text-light);
+      font-size: 0.75rem;
+      font-family: monospace;
+      padding: 3px 10px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+    }
+    .build-entry__file--success { border-color: #A5D6A7; background: #E8F5E9; color: #2E7D32; }
+    .build-entry__file--error { border-color: #EF9A9A; background: #FFEBEE; color: #C62828; }
+    .build-entry__cost {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .build-entry__undo {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .build-entry__undo:hover { border-color: #C62828; color: #C62828; }
+    .build-entry__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* --- Status Badge --- */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+    .status--building { background: #FFF3E0; color: #E65100; }
+    .status--success { background: #E8F5E9; color: #2E7D32; }
+    .status--error { background: #FFEBEE; color: #C62828; }
+    .status__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .status--building .status__dot { animation: pulse 1s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* --- Input Area --- */
+    .input-area {
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      background: var(--white);
+    }
+    .input-area__form {
+      display: flex;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .input-area__field {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      resize: none;
+      min-height: 48px;
+      max-height: 120px;
+      font-family: inherit;
+    }
+    .input-area__field:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42,127,127,0.12); }
+    .input-area__btn {
+      padding: 12px 24px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+      align-self: flex-end;
+    }
+    .input-area__btn:hover { background: var(--teal-dark); }
+    .input-area__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      .history { padding: 16px; }
+      .input-area { padding: 12px 16px; }
+      .input-area__form { flex-direction: column; }
+      .input-area__btn { width: 100%; }
+      .build-entry { padding: 16px; }
+      .build-entry__header { flex-direction: column; gap: 4px; }
+      .login__card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div id="login-screen" class="login">
+    <div class="login__card">
+      <div class="login__title">BuildMySite Admin</div>
+      <div class="login__subtitle">Enter your admin token to manage your website.</div>
+      <input type="password" id="token-input" class="login__input" placeholder="Admin token" autocomplete="current-password">
+      <button type="button" id="login-btn" class="login__btn">Sign In</button>
+      <div id="login-error" class="login__error">Invalid token. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- Main Panel (hidden until authenticated) -->
+  <header class="header" id="main-header" style="display:none">
+    <div class="header__brand">
+      BuildMySite <span class="header__badge">Admin</span>
+    </div>
+    <div class="header__actions">
+      <a href="/" class="header__btn" target="_blank">View Site</a>
+      <button type="button" class="header__btn" id="logout-btn">Sign Out</button>
+    </div>
+  </header>
+
+  <div id="main-panel" class="main">
+    <div class="history" id="history">
+      <div class="history__empty" id="empty-state">
+        <div class="history__empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="history__empty-text">No builds yet. Tell the AI what you'd like to change.</div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <form class="input-area__form" id="build-form">
+        <textarea class="input-area__field" id="build-input" placeholder="What would you like to change?" rows="1"></textarea>
+        <button type="submit" class="input-area__btn" id="build-btn">Build</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- State ---
+    let token = sessionStorage.getItem('admin_token') || '';
+    let buildHistory = JSON.parse(localStorage.getItem('build_history') || '[]');
+
+    const loginScreen = document.getElementById('login-screen');
+    const mainHeader = document.getElementById('main-header');
+    const mainPanel = document.getElementById('main-panel');
+    const tokenInput = document.getElementById('token-input');
+    const loginBtn = document.getElementById('login-btn');
+    const loginError = document.getElementById('login-error');
+    const logoutBtn = document.getElementById('logout-btn');
+    const historyEl = document.getElementById('history');
+    const emptyState = document.getElementById('empty-state');
+    const buildForm = document.getElementById('build-form');
+    const buildInput = document.getElementById('build-input');
+    const buildBtn = document.getElementById('build-btn');
+
+    // --- Auth ---
+    function showMain() {
+      loginScreen.style.display = 'none';
+      mainHeader.style.display = 'flex';
+      mainPanel.classList.add('active');
+      renderHistory();
+      buildInput.focus();
+    }
+
+    function showLogin() {
+      loginScreen.style.display = 'flex';
+      mainHeader.style.display = 'none';
+      mainPanel.classList.remove('active');
+      loginError.style.display = 'none';
+    }
+
+    async function verifyToken(t) {
+      // Verify by making a lightweight agent call
+      try {
+        const r = await fetch('/api/agent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${t}` },
+          body: JSON.stringify({ message: '' })
+        });
+        // 400 means token is valid but message is empty — that's fine
+        // 401 means token is invalid
+        return r.status !== 401;
+      } catch {
+        // Network error — assume token might be valid, let them try
+        return true;
+      }
+    }
+
+    loginBtn.addEventListener('click', async () => {
+      const t = tokenInput.value.trim();
+      if (!t) return;
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Verifying...';
+      const valid = await verifyToken(t);
+      if (valid) {
+        token = t;
+        sessionStorage.setItem('admin_token', token);
+        showMain();
+      } else {
+        loginError.style.display = 'block';
+      }
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Sign In';
+    });
+
+    tokenInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') loginBtn.click();
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      token = '';
+      sessionStorage.removeItem('admin_token');
+      tokenInput.value = '';
+      showLogin();
+    });
+
+    // Auto-login if token exists
+    if (token) {
+      showMain();
+    }
+
+    // --- Build History Rendering ---
+    function formatTime(ts) {
+      const d = new Date(ts);
+      const now = new Date();
+      const diff = now - d;
+      if (diff < 60000) return 'just now';
+      if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+      if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+      return d.toLocaleDateString('en-IE', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderHistory() {
+      // Remove all build entries (keep empty state)
+      historyEl.querySelectorAll('.build-entry').forEach(el => el.remove());
+
+      if (buildHistory.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      // Render newest first
+      for (let i = buildHistory.length - 1; i >= 0; i--) {
+        const entry = buildHistory[i];
+        const el = document.createElement('div');
+        el.className = 'build-entry';
+        el.dataset.index = i;
+
+        const filesHtml = (entry.buildLog || []).map(f => {
+          const cls = f.success ? 'build-entry__file--success' : 'build-entry__file--error';
+          const label = f.tool === 'write_file' ? f.args.path : `${f.tool}: ${f.args.path || ''}`;
+          return `<span class="build-entry__file ${cls}">${label}</span>`;
+        }).join('');
+
+        const costStr = entry.usage?.costUsd ? `$${entry.usage.costUsd.toFixed(4)}` : '';
+        const modelStr = entry.usage?.model || '';
+
+        el.innerHTML = `
+          <div class="build-entry__header">
+            <div class="build-entry__prompt">${escapeHtml(entry.prompt)}</div>
+            <div class="build-entry__time">${formatTime(entry.timestamp)}</div>
+          </div>
+          ${entry.response ? `<div class="build-entry__response">${escapeHtml(entry.response)}</div>` : ''}
+          ${filesHtml ? `<div class="build-entry__files">${filesHtml}</div>` : ''}
+          <div class="build-entry__footer">
+            <span class="build-entry__cost">${[modelStr, costStr].filter(Boolean).join(' — ')}</span>
+            ${entry.buildLog?.length ? `<button type="button" class="build-entry__undo" data-index="${i}">Undo</button>` : ''}
+          </div>
+        `;
+
+        historyEl.appendChild(el);
+      }
+
+      // Scroll to top (newest)
+      historyEl.scrollTop = 0;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // --- Build Submission ---
+    buildForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = buildInput.value.trim();
+      if (!message) return;
+
+      buildBtn.disabled = true;
+      buildBtn.textContent = 'Building...';
+      buildInput.disabled = true;
+
+      // Add a "building" entry
+      const tempEntry = {
+        prompt: message,
+        timestamp: Date.now(),
+        status: 'building'
+      };
+      buildHistory.push(tempEntry);
+      renderHistory();
+
+      try {
+        const r = await fetch('/api/agent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ message })
+        });
+
+        if (r.status === 401) {
+          token = '';
+          sessionStorage.removeItem('admin_token');
+          showLogin();
+          buildHistory.pop();
+          return;
+        }
+
+        const data = await r.json();
+
+        if (!r.ok) {
+          tempEntry.status = 'error';
+          tempEntry.response = data.error || 'Something went wrong.';
+        } else {
+          tempEntry.status = 'success';
+          tempEntry.response = data.text || '';
+          tempEntry.buildLog = data.buildLog || [];
+          tempEntry.usage = data.usage || {};
+        }
+      } catch (err) {
+        tempEntry.status = 'error';
+        tempEntry.response = `Network error: ${err.message}`;
+      }
+
+      localStorage.setItem('build_history', JSON.stringify(buildHistory));
+      renderHistory();
+
+      buildInput.value = '';
+      buildBtn.disabled = false;
+      buildBtn.textContent = 'Build';
+      buildInput.disabled = false;
+      buildInput.focus();
+    });
+
+    // --- Undo ---
+    historyEl.addEventListener('click', async (e) => {
+      const undoBtn = e.target.closest('.build-entry__undo');
+      if (!undoBtn) return;
+
+      const idx = parseInt(undoBtn.dataset.index);
+      const entry = buildHistory[idx];
+      if (!entry?.buildLog) return;
+
+      if (!confirm('Undo this change? This will restore files to their previous versions.')) return;
+
+      undoBtn.disabled = true;
+      undoBtn.textContent = 'Undoing...';
+
+      // Rollback: for each write_file, restore the pre-SHA version
+      // For each delete_file, recreate from pre-SHA
+      let rollbackCount = 0;
+      for (const log of entry.buildLog) {
+        if (!log.success) continue;
+
+        try {
+          if (log.tool === 'write_file' && log.args.path) {
+            // If there was a pre-SHA, the file existed before — we need the content at that SHA
+            // For simplicity, we delete what was written (the user can re-request)
+            // A more sophisticated rollback would fetch the old content via the SHA
+            await fetch('/api/agent', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                message: `Undo: restore ${log.args.path} to its state before the last change. Read the git history and restore the previous version.`
+              })
+            });
+            rollbackCount++;
+          }
+        } catch (err) {
+          console.error('Rollback failed for', log.args.path, err);
+        }
+      }
+
+      // Mark entry as undone
+      entry.undone = true;
+      localStorage.setItem('build_history', JSON.stringify(buildHistory));
+      renderHistory();
+    });
+
+    // --- Auto-resize textarea ---
+    buildInput.addEventListener('input', () => {
+      buildInput.style.height = 'auto';
+      buildInput.style.height = Math.min(buildInput.scrollHeight, 120) + 'px';
+    });
+
+    // --- Submit on Enter (Shift+Enter for newline) ---
+    buildInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        buildForm.dispatchEvent(new Event('submit'));
+      }
+    });
+  </script>
+</body>
+</html>

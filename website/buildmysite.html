@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildMySite — Free AI Website Builder | EON Risk Services</title>
+  <meta name="description" content="Build a professional website in minutes. Free. No code. AI builds it, you own it. Powered by BuildMySite from EON Risk Services.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <style>
+    /* --- Wizard Styles --- */
+    .wizard { padding: calc(var(--nav-height) + 48px) 0 96px; min-height: 100vh; }
+    .wizard__header { text-align: center; margin-bottom: 48px; }
+    .wizard__header h1 { margin-bottom: 12px; }
+
+    /* Steps indicator */
+    .steps { display: flex; justify-content: center; gap: 8px; margin-bottom: 48px; }
+    .steps__item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+      padding: 8px 16px; border-radius: 99px;
+      background: var(--offwhite); border: 1px solid var(--border-light);
+      transition: all 0.3s;
+    }
+    .steps__item--active { color: var(--white); background: var(--teal); border-color: var(--teal); }
+    .steps__item--done { color: var(--teal-dark); background: var(--teal-light); border-color: var(--teal); }
+    .steps__num {
+      width: 24px; height: 24px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;
+      background: rgba(0,0,0,0.08);
+    }
+    .steps__item--active .steps__num { background: rgba(255,255,255,0.25); }
+    .steps__item--done .steps__num { background: var(--teal); color: var(--white); }
+    .steps__connector { width: 32px; height: 2px; background: var(--border); align-self: center; }
+
+    /* Step panels */
+    .step-panel { display: none; max-width: 640px; margin: 0 auto; }
+    .step-panel.active { display: block; }
+    .step-panel__title { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-panel__desc { color: var(--text-light); margin-bottom: 32px; }
+
+    /* Form elements */
+    .field { margin-bottom: 24px; }
+    .field__label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .field__hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+    /* File upload */
+    .file-upload { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .file-upload__input { display: none; }
+    .file-upload__label {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 18px; border: 1px solid var(--border-light);
+      border-radius: 6px; font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; color: var(--teal); background: var(--offwhite);
+      transition: all 0.2s;
+    }
+    .file-upload__label:hover { background: var(--teal); color: white; border-color: var(--teal); }
+    .file-upload__label svg { flex-shrink: 0; }
+    .file-upload__name { font-size: 0.85rem; color: var(--text-muted); }
+    .file-upload__preview { max-height: 60px; max-width: 120px; border-radius: 4px; border: 1px solid var(--border-light); object-fit: contain; }
+    .field__input, .field__select, .field__textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 1rem; font-family: inherit; background: var(--white); color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field__input:focus, .field__select:focus, .field__textarea:focus {
+      outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42,127,127,0.12);
+    }
+    .field__textarea { min-height: 100px; resize: vertical; }
+    .field__input--mono { font-family: monospace; font-size: 0.9rem; letter-spacing: 0.02em; }
+
+    /* Validation badge */
+    .field__status {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.8rem; font-weight: 500; margin-top: 6px;
+    }
+    .field__status--ok { color: #2E7D32; }
+    .field__status--fail { color: #C62828; }
+    .field__status--loading { color: var(--text-muted); }
+    .field__status svg { width: 14px; height: 14px; }
+
+    /* Model selector */
+    .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .model-option {
+      padding: 16px; border: 2px solid var(--border-light); border-radius: var(--radius-lg);
+      cursor: pointer; transition: all 0.2s; background: var(--white);
+    }
+    .model-option:hover { border-color: var(--teal); }
+    .model-option.selected { border-color: var(--teal); background: var(--teal-light); }
+    .model-option__name { font-weight: 600; font-size: 0.95rem; color: var(--navy); }
+    .model-option__provider { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Navigation buttons */
+    .wizard__nav { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-light); }
+    .wizard__nav .btn { min-width: 140px; }
+
+    /* How-to links */
+    .how-to {
+      background: var(--offwhite); border: 1px solid var(--border-light); border-radius: var(--radius);
+      padding: 16px 20px; margin-bottom: 24px;
+    }
+    .how-to__title { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .how-to__steps { list-style: decimal; padding-left: 20px; }
+    .how-to__steps li { font-size: 0.85rem; color: var(--text-light); margin-bottom: 4px; }
+    .how-to__steps a { color: var(--teal); text-decoration: underline; }
+
+    /* Build progress */
+    .build-progress { margin-top: 32px; }
+    .build-step {
+      display: flex; align-items: center; gap: 12px; padding: 12px 0;
+      border-bottom: 1px solid var(--border-light); font-size: 0.9rem;
+    }
+    .build-step__icon { width: 24px; height: 24px; flex-shrink: 0; }
+    .build-step__icon--pending { color: var(--text-muted); }
+    .build-step__icon--running { color: var(--gold); animation: spin 1s linear infinite; }
+    .build-step__icon--done { color: #2E7D32; }
+    .build-step__icon--error { color: #C62828; }
+    .build-step__text { flex: 1; }
+    .build-step__detail { font-size: 0.8rem; color: var(--text-muted); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Result card */
+    .result-card {
+      background: var(--white); border: 2px solid var(--teal); border-radius: var(--radius-lg);
+      padding: 32px; text-align: center; margin-top: 32px;
+    }
+    .result-card__title { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .result-card__url { font-size: 1.1rem; margin-bottom: 24px; }
+    .result-card__url a { color: var(--teal); text-decoration: underline; }
+    .result-card__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .result-card__token {
+      background: var(--offwhite); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px; margin: 16px auto;
+      max-width: 400px; font-family: monospace; font-size: 0.85rem;
+      word-break: break-all;
+    }
+    .result-card__token-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-body); }
+
+    /* Discovery results */
+    .discovery-card {
+      background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+      padding: 24px; margin-bottom: 24px;
+    }
+    .discovery-card__row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .discovery-card__label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); min-width: 80px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .discovery-card__value { font-size: 0.95rem; color: var(--text); flex: 1; }
+
+    /* --- Landing Hero --- */
+    .landing-hero {
+      padding: calc(var(--nav-height) + 80px) 0 80px;
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+    .landing-hero h1 { color: var(--white); margin-bottom: 24px; font-size: clamp(2.2rem, 5vw, 3.5rem); }
+    .landing-hero .eyebrow--gold { color: var(--gold-light); }
+    .landing-hero .lead { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px; font-size: 1.15rem; }
+    .landing-hero .btn-group { justify-content: center; }
+
+    /* --- How It Works --- */
+    .how-it-works { padding: 80px 0; background: var(--offwhite); }
+    .how-it-works h2 { text-align: center; margin-bottom: 48px; }
+    .hiw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto; }
+    .hiw-step { text-align: center; }
+    .hiw-step__num {
+      width: 56px; height: 56px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; margin: 0 auto 20px;
+      font-size: 1.25rem; font-weight: 700;
+      background: var(--teal); color: var(--white);
+    }
+    .hiw-step__title { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .hiw-step__text { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
+
+    /* --- Features --- */
+    .features { padding: 80px 0; }
+    .features h2 { text-align: center; margin-bottom: 16px; }
+    .features .lead { text-align: center; max-width: 560px; margin: 0 auto 48px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .feature {
+      background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+      padding: 28px; transition: box-shadow 0.2s;
+    }
+    .feature:hover { box-shadow: var(--shadow); }
+    .feature__icon { color: var(--teal); margin-bottom: 16px; }
+    .feature__title { font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .feature__text { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+
+    /* --- CTA Banner --- */
+    .cta-banner { padding: 80px 0; background: var(--navy); color: var(--white); text-align: center; }
+    .cta-banner h2 { color: var(--white); margin-bottom: 16px; }
+    .cta-banner .lead { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 32px; }
+    .cta-banner .btn-group { justify-content: center; }
+
+    /* Wizard hidden until started */
+    .wizard--hidden { display: none; }
+    .wizard--visible { display: block; }
+
+    @media (max-width: 768px) {
+      .hiw-grid { grid-template-columns: 1fr; gap: 40px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .landing-hero { padding: calc(var(--nav-height) + 48px) 0 48px; }
+    }
+    /* --- Domain Step --- */
+    .domain-substep__title { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin: 28px 0 8px; }
+    .domain-substep__title:first-child { margin-top: 0; }
+    .domain-substep__desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; line-height: 1.6; }
+
+    .domain-registrars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .registrar-card {
+      display: block; padding: 20px; border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+      background: var(--white); text-decoration: none; color: inherit; transition: all 0.2s;
+    }
+    .registrar-card:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .registrar-card__name { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .registrar-card__best { font-size: 0.8rem; font-weight: 600; color: var(--teal); margin-bottom: 8px; }
+    .registrar-card__desc { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; margin-bottom: 8px; }
+    .registrar-card__price { font-size: 0.8rem; font-weight: 600; color: var(--navy); }
+
+    .dns-tabs { display: flex; gap: 4px; margin-bottom: 0; border-bottom: 2px solid var(--border-light); }
+    .dns-tab {
+      padding: 10px 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+      background: none; border: none; border-bottom: 2px solid transparent;
+      margin-bottom: -2px; cursor: pointer; transition: all 0.2s;
+    }
+    .dns-tab:hover { color: var(--teal); }
+    .dns-tab--active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    .dns-tab-content {
+      background: var(--offwhite); border: 1px solid var(--border-light); border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius); padding: 24px; margin-bottom: 24px;
+    }
+    .dns-instructions h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+    .dns-instructions ol { padding-left: 20px; margin-bottom: 16px; }
+    .dns-instructions li { font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px; line-height: 1.5; }
+    .dns-instructions a { color: var(--teal); text-decoration: underline; }
+
+    .dns-records { margin: 16px 0; }
+    .dns-record {
+      display: grid; grid-template-columns: 80px 120px 1fr; gap: 12px;
+      padding: 10px 14px; background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 8px; font-size: 0.85rem;
+    }
+    .dns-record__label { font-weight: 600; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .dns-record__value { font-family: monospace; font-size: 0.85rem; color: var(--navy); word-break: break-all; }
+
+    .dns-note {
+      background: #FFF8E1; border: 1px solid #FFE082; border-radius: var(--radius);
+      padding: 14px 18px; font-size: 0.85rem; color: #5D4037; margin-bottom: 28px; line-height: 1.5;
+    }
+
+    .domain-status { margin-top: 12px; font-size: 0.85rem; }
+    .domain-status--loading { color: var(--text-muted); }
+    .domain-status--ok { color: #2E7D32; }
+    .domain-status--fail { color: #C62828; }
+    .domain-status--info { color: var(--text-light); }
+
+    .domain-success {
+      text-align: center; padding: 32px; margin-top: 24px;
+      background: #E8F5E9; border: 2px solid #66BB6A; border-radius: var(--radius-lg);
+    }
+    .domain-success__icon { color: #2E7D32; margin-bottom: 12px; }
+    .domain-success__title { font-size: 1.3rem; font-weight: 700; color: #1B5E20; margin-bottom: 8px; }
+    .domain-success__text { font-size: 0.95rem; color: #2E7D32; line-height: 1.6; }
+    .domain-success__text a { color: #1B5E20; text-decoration: underline; font-weight: 600; }
+    .wizard__nav--domain { margin-top: 32px; }
+
+    @media (max-width: 768px) {
+      .domain-registrars { grid-template-columns: 1fr; }
+      .dns-record { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    @media (max-width: 640px) {
+      .steps { flex-wrap: wrap; }
+      .steps__connector { display: none; }
+      .model-grid { grid-template-columns: 1fr; }
+      .wizard__nav { flex-direction: column; gap: 12px; }
+      .wizard__nav .btn { width: 100%; }
+      .dns-tabs { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="consulting.html" class="nav__link">Services</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="risk-identification.html" class="nav__link">Risk Identification</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="buildmysite.html" class="nav__link nav__link--active">BuildMySite</a>
+      </div>
+      <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Landing Hero -->
+  <section class="landing-hero" id="landing">
+    <div class="container">
+      <p class="eyebrow eyebrow--gold">Free AI Website Builder</p>
+      <h1>Your business deserves<br>a website. Build it now.</h1>
+      <p class="lead">Tell us about your business. AI builds a professional website in minutes. You own everything &mdash; the code, the hosting, the domain. Free, forever.</p>
+      <div class="btn-group">
+        <a href="#wizard" class="btn btn-primary btn-lg" id="start-btn">Get Started &mdash; It's Free</a>
+        <a href="contact.html" class="btn btn-secondary btn-lg">Or let us do it for you</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>How it works</h2>
+      <div class="hiw-grid">
+        <div class="hiw-step">
+          <div class="hiw-step__num">1</div>
+          <div class="hiw-step__title">Connect</div>
+          <div class="hiw-step__text">Create free accounts on GitHub and Vercel. Get an AI API key. Paste them in &mdash; takes 5 minutes.</div>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step__num">2</div>
+          <div class="hiw-step__title">Describe</div>
+          <div class="hiw-step__text">Tell us your business name and what you do. AI searches for your details and pre-fills everything.</div>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step__num">3</div>
+          <div class="hiw-step__title">Launch</div>
+          <div class="hiw-step__text">Hit build. AI writes your entire website, deploys it live, and hands you the keys. Done.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>What you get</h2>
+      <p class="lead">A professional website that you fully own and control.</p>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="feature__title">Your code</div>
+          <div class="feature__text">Clean HTML, CSS, and JavaScript in your own GitHub repo. No vendor lock-in. Ever.</div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="feature__title">Your hosting</div>
+          <div class="feature__text">Deployed on Vercel's free tier. Global CDN. SSL included. No monthly fees.</div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="feature__title">Your data</div>
+          <div class="feature__text">Your API keys stay on your infrastructure. We never see or store your credentials.</div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <div class="feature__title">AI admin panel</div>
+          <div class="feature__text">Change anything anytime. Type what you want, AI updates your site. No code needed.</div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="feature__title">Mobile-first</div>
+          <div class="feature__text">Responsive design that looks great on every device. Professional typography and spacing.</div>
+        </div>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="feature__title">Contact form</div>
+          <div class="feature__text">Working contact form built in. Submissions go straight to your email inbox.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to build?</h2>
+      <p class="lead">It takes less time than making a cup of tea. And it's free.</p>
+      <div class="btn-group">
+        <a href="#wizard" class="btn btn-primary btn-lg start-wizard-btn">Start Building</a>
+        <a href="contact.html" class="btn btn-secondary btn-lg">Let us build it for you &mdash; &euro;199</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wizard (hidden until Get Started is clicked) -->
+  <section class="wizard wizard--hidden" id="wizard">
+    <div class="container">
+      <div class="wizard__header">
+        <p class="eyebrow">Free AI Website Builder</p>
+        <h1>Build your website in minutes.</h1>
+        <p class="lead cta-lead">No code. No designer. Tell us about your business and AI builds it live. You own everything.</p>
+      </div>
+
+      <!-- Steps indicator -->
+      <div class="steps" id="steps-indicator">
+        <div class="steps__item steps__item--active" data-step="1">
+          <span class="steps__num">1</span> Connect
+        </div>
+        <div class="steps__connector"></div>
+        <div class="steps__item" data-step="2">
+          <span class="steps__num">2</span> Discover
+        </div>
+        <div class="steps__connector"></div>
+        <div class="steps__item" data-step="3">
+          <span class="steps__num">3</span> Review
+        </div>
+        <div class="steps__connector"></div>
+        <div class="steps__item" data-step="4">
+          <span class="steps__num">4</span> Build
+        </div>
+        <div class="steps__connector"></div>
+        <div class="steps__item" data-step="5">
+          <span class="steps__num">5</span> Domain
+        </div>
+      </div>
+
+      <!-- STEP 1: Connect -->
+      <div class="step-panel active" id="step-1">
+        <h2 class="step-panel__title">Connect your accounts</h2>
+        <p class="step-panel__desc">You'll need three things: a GitHub account (for your code), a Vercel account (for hosting), and an AI API key (the brain).</p>
+
+        <!-- GitHub Token -->
+        <div class="field">
+          <label class="field__label" for="github-token">GitHub Personal Access Token</label>
+          <div class="how-to">
+            <div class="how-to__title">How to get this:</div>
+            <ol class="how-to__steps">
+              <li>Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">GitHub Token Settings</a></li>
+              <li>Click "Generate new token" (Fine-grained)</li>
+              <li>Name it "BuildMySite", set expiration to 90 days</li>
+              <li>Under Repository Access, select "All repositories"</li>
+              <li>Under Permissions, enable: Contents (Read &amp; Write), Metadata (Read)</li>
+              <li>Click "Generate token" and paste it below</li>
+            </ol>
+          </div>
+          <input type="text" id="github-token" class="field__input field__input--mono" placeholder="github_pat_...">
+          <div id="github-status" class="field__status"></div>
+        </div>
+
+        <!-- Vercel Token -->
+        <div class="field">
+          <label class="field__label" for="vercel-token">Vercel Access Token</label>
+          <div class="how-to">
+            <div class="how-to__title">How to get this:</div>
+            <ol class="how-to__steps">
+              <li>Go to <a href="https://vercel.com/account/tokens" target="_blank" rel="noopener">Vercel Token Settings</a></li>
+              <li>Click "Create" and name it "BuildMySite"</li>
+              <li>Set scope to your personal account</li>
+              <li>Copy the token and paste it below</li>
+            </ol>
+          </div>
+          <input type="text" id="vercel-token" class="field__input field__input--mono" placeholder="vercel_...">
+          <div id="vercel-status" class="field__status"></div>
+        </div>
+
+        <!-- AI API Key -->
+        <div class="field">
+          <label class="field__label" for="ai-key">AI API Key</label>
+          <div class="model-grid" id="model-grid">
+            <div class="model-option selected" data-model="claude-sonnet-4-6">
+              <div class="model-option__name">Claude Sonnet 4.6</div>
+              <div class="model-option__provider">Anthropic (Recommended)</div>
+            </div>
+            <div class="model-option" data-model="claude-opus-4-6">
+              <div class="model-option__name">Claude Opus 4.6</div>
+              <div class="model-option__provider">Anthropic (Premium)</div>
+            </div>
+            <div class="model-option" data-model="gpt-5.2">
+              <div class="model-option__name">GPT 5.2</div>
+              <div class="model-option__provider">OpenAI</div>
+            </div>
+            <div class="model-option" data-model="gemini-3.1-pro">
+              <div class="model-option__name">Gemini 3.1 Pro</div>
+              <div class="model-option__provider">Google</div>
+            </div>
+          </div>
+          <input type="text" id="ai-key" class="field__input field__input--mono" placeholder="sk-... or AIza...">
+          <div class="field__hint">Get a key from your chosen provider's dashboard. Your key stays on your infrastructure — never touches our servers.</div>
+          <div id="ai-status" class="field__status"></div>
+        </div>
+
+        <!-- Vercel Blob Token (optional — for image storage) -->
+        <div class="field">
+          <label class="field__label" for="blob-token">Vercel Blob Token <span style="font-weight:400;color:var(--text-muted)">(optional — for logo/image uploads)</span></label>
+          <div class="how-to">
+            <div class="how-to__title">How to get this:</div>
+            <ol class="how-to__steps">
+              <li>Go to <a href="https://vercel.com/dashboard/stores" target="_blank" rel="noopener">Vercel Dashboard &gt; Storage</a></li>
+              <li>Create a new Blob store</li>
+              <li>Copy the read-write token and paste it below</li>
+            </ol>
+          </div>
+          <input type="text" id="blob-token" class="field__input field__input--mono" placeholder="vercel_blob_rw_...">
+          <div class="field__hint">Without this, you can still build a site but images must be added later via the admin panel.</div>
+        </div>
+
+        <!-- Resend API Key (optional) -->
+        <div class="field">
+          <label class="field__label" for="resend-key">Resend API Key <span style="font-weight:400;color:var(--text-muted)">(optional — for contact form emails)</span></label>
+          <div class="how-to">
+            <div class="how-to__title">How to get this:</div>
+            <ol class="how-to__steps">
+              <li>Go to <a href="https://resend.com/api-keys" target="_blank" rel="noopener">resend.com/api-keys</a></li>
+              <li>Sign up (free tier: 100 emails/day)</li>
+              <li>Create an API key and paste it below</li>
+            </ol>
+          </div>
+          <input type="text" id="resend-key" class="field__input field__input--mono" placeholder="re_...">
+          <div class="field__hint">Without this, contact form submissions will be logged but not emailed to you.</div>
+          <div id="resend-status" class="field__status"></div>
+        </div>
+
+        <div class="wizard__nav">
+          <div></div>
+          <button type="button" class="btn btn-primary" id="step1-next" disabled>Validate &amp; Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Discover -->
+      <div class="step-panel" id="step-2">
+        <h2 class="step-panel__title">Tell us about your business</h2>
+        <p class="step-panel__desc">Enter your business name and we'll search for information to pre-fill your website. You can edit everything in the next step.</p>
+
+        <div class="field">
+          <label class="field__label" for="biz-name">Business Name</label>
+          <input type="text" id="biz-name" class="field__input" placeholder="e.g. Murphy's Bakery">
+        </div>
+        <div class="field">
+          <label class="field__label" for="biz-location">Location (optional)</label>
+          <input type="text" id="biz-location" class="field__input" placeholder="e.g. Dublin, Ireland">
+        </div>
+
+        <div class="wizard__nav">
+          <button type="button" class="btn btn-outline" id="step2-back">Back</button>
+          <button type="button" class="btn btn-primary" id="step2-next">Search &amp; Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Review & Enrich -->
+      <div class="step-panel" id="step-3">
+        <h2 class="step-panel__title">Review your details</h2>
+        <p class="step-panel__desc">Edit anything below. The more detail you provide, the better your website will be.</p>
+
+        <div id="discovery-results"></div>
+
+        <div class="field">
+          <label class="field__label" for="review-name">Business Name</label>
+          <input type="text" id="review-name" class="field__input">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-type">Business Type</label>
+          <input type="text" id="review-type" class="field__input" placeholder="e.g. restaurant, plumber, salon">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-description">Description</label>
+          <textarea id="review-description" class="field__textarea" placeholder="What does your business do? What makes it special?"></textarea>
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-email">Contact Email</label>
+          <input type="email" id="review-email" class="field__input" placeholder="hello@yourbusiness.com">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-phone">Phone</label>
+          <input type="tel" id="review-phone" class="field__input" placeholder="+353 1 234 5678">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-address">Address</label>
+          <input type="text" id="review-address" class="field__input" placeholder="123 Main Street, Dublin, Ireland">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-hours">Opening Hours</label>
+          <input type="text" id="review-hours" class="field__input" placeholder="Mon-Fri 9am-5pm, Sat 10am-4pm">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-services">Services / Products</label>
+          <textarea id="review-services" class="field__textarea" placeholder="e.g. Plumbing, Heating, Bathroom Installation&#10;List your main services or products, one per line"></textarea>
+          <div class="field__hint">The AI will use these to build your services section.</div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-tagline">Tagline / Slogan</label>
+          <input type="text" id="review-tagline" class="field__input" placeholder="e.g. Quality plumbing you can trust">
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-tone">Brand Tone</label>
+          <select id="review-tone" class="field__input">
+            <option value="">Choose a tone...</option>
+            <option value="professional">Professional</option>
+            <option value="friendly">Friendly &amp; Warm</option>
+            <option value="bold">Bold &amp; Confident</option>
+            <option value="practical">Practical &amp; Direct</option>
+            <option value="luxury">Luxury &amp; Premium</option>
+          </select>
+          <div class="field__hint">This sets the writing style for your website copy.</div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="review-extra">Anything else?</label>
+          <textarea id="review-extra" class="field__textarea" placeholder="Your story, what you want on the website, special features..."></textarea>
+        </div>
+
+        <!-- Image uploads -->
+        <div class="field">
+          <label class="field__label">Logo <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <div class="file-upload">
+            <input type="file" id="upload-logo" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="file-upload__input">
+            <label for="upload-logo" class="file-upload__label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Choose file
+            </label>
+            <span id="logo-filename" class="file-upload__name">No file chosen</span>
+            <img id="logo-preview" class="file-upload__preview" src="data:," style="display:none" alt="Logo preview">
+          </div>
+          <div class="field__hint">PNG, JPG, WebP, or SVG. Max 5MB.</div>
+        </div>
+        <div class="field">
+          <label class="field__label">Hero / Banner Image <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <div class="file-upload">
+            <input type="file" id="upload-hero" accept="image/png,image/jpeg,image/webp" class="file-upload__input">
+            <label for="upload-hero" class="file-upload__label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Choose file
+            </label>
+            <span id="hero-filename" class="file-upload__name">No file chosen</span>
+            <img id="hero-preview" class="file-upload__preview" src="data:," style="display:none" alt="Hero preview">
+          </div>
+          <div class="field__hint">A wide banner image for the top of your home page. Max 5MB.</div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="review-reponame">Website Name (for the URL)</label>
+          <input type="text" id="review-reponame" class="field__input field__input--mono" placeholder="my-business-website">
+          <div class="field__hint">This becomes your-name.vercel.app and your GitHub repo name.</div>
+        </div>
+
+        <div class="wizard__nav">
+          <button type="button" class="btn btn-outline" id="step3-back">Back</button>
+          <button type="button" class="btn btn-primary btn-lg" id="step3-next">Build My Website</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Build -->
+      <div class="step-panel" id="step-4">
+        <h2 class="step-panel__title">Building your website</h2>
+        <p class="step-panel__desc" id="build-desc">Sit back. The AI is creating your personalised website. This takes 2-5 minutes.</p>
+
+        <div class="build-progress" id="build-progress">
+          <div class="build-step" data-build="github_repo">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">Create GitHub repository</div>
+              <div class="build-step__detail" data-detail="github_repo"></div>
+            </div>
+          </div>
+          <div class="build-step" data-build="push_files">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">Push website files</div>
+              <div class="build-step__detail" data-detail="push_files"></div>
+            </div>
+          </div>
+          <div class="build-step" data-build="vercel_project">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">Create Vercel project</div>
+              <div class="build-step__detail" data-detail="vercel_project"></div>
+            </div>
+          </div>
+          <div class="build-step" data-build="env_vars">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">Configure environment</div>
+              <div class="build-step__detail" data-detail="env_vars"></div>
+            </div>
+          </div>
+          <div class="build-step" data-build="deploy">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">Deploy to Vercel</div>
+              <div class="build-step__detail" data-detail="deploy"></div>
+            </div>
+          </div>
+          <div class="build-step" data-build="ai_build">
+            <div class="build-step__icon build-step__icon--pending">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <div class="build-step__text">AI building your personalised site</div>
+              <div class="build-step__detail" data-detail="ai_build"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result (hidden until complete) -->
+        <div class="result-card" id="result-card" style="display:none">
+          <div class="result-card__title">Your website is live!</div>
+          <div class="result-card__url">
+            <a id="result-url" href="#" target="_blank"></a>
+          </div>
+          <div class="result-card__token-label">Your admin token (save this!):</div>
+          <div class="result-card__token" id="result-token"></div>
+          <div class="result-card__actions">
+            <a id="result-site-link" href="#" target="_blank" class="btn btn-primary">View Your Website</a>
+            <a id="result-admin-link" href="#" target="_blank" class="btn btn-outline">Open Admin Panel</a>
+            <button type="button" class="btn btn-primary" id="result-domain-btn">Connect Your Own Domain</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: Domain -->
+      <div class="step-panel" id="step-5">
+        <h2 class="step-panel__title">Get your own domain</h2>
+        <p class="step-panel__desc">Your site is live at <strong id="domain-current-url"></strong> — that works perfectly. But if you want your own address like <em>mybusiness.ie</em>, follow these steps.</p>
+
+        <!-- Sub-step A: Buy a domain -->
+        <div id="domain-step-buy">
+          <h3 class="domain-substep__title">Step 1: Buy a domain</h3>
+          <p class="domain-substep__desc">A domain costs around &euro;10&ndash;15 per year. Pick one of these registrars, search for your domain, and buy it. Then come back here.</p>
+          <div class="domain-registrars">
+            <a href="https://www.blacknight.com" target="_blank" rel="noopener" class="registrar-card">
+              <div class="registrar-card__name">Blacknight</div>
+              <div class="registrar-card__best">Best for <strong>.ie</strong> domains</div>
+              <div class="registrar-card__desc">Irish company. Best prices for .ie domains. Recommended for Irish businesses.</div>
+              <div class="registrar-card__price">&euro;6&ndash;10/year for .ie</div>
+            </a>
+            <a href="https://www.namecheap.com" target="_blank" rel="noopener" class="registrar-card">
+              <div class="registrar-card__name">Namecheap</div>
+              <div class="registrar-card__best">Best for <strong>.com</strong> domains</div>
+              <div class="registrar-card__desc">Great prices and easy-to-use dashboard. Popular choice worldwide.</div>
+              <div class="registrar-card__price">&euro;8&ndash;12/year for .com</div>
+            </a>
+            <a href="https://www.godaddy.com" target="_blank" rel="noopener" class="registrar-card">
+              <div class="registrar-card__name">GoDaddy</div>
+              <div class="registrar-card__best">Alternative</div>
+              <div class="registrar-card__desc">Well-known registrar. Easy for beginners. Slightly higher prices.</div>
+              <div class="registrar-card__price">&euro;10&ndash;15/year</div>
+            </a>
+          </div>
+
+          <h3 class="domain-substep__title">Step 2: Enter your domain</h3>
+          <p class="domain-substep__desc">Once you've bought a domain, type it below (e.g. mybusiness.ie or mybusiness.com).</p>
+          <div class="field">
+            <label class="field__label" for="custom-domain">Your domain</label>
+            <input type="text" id="custom-domain" class="field__input" placeholder="mybusiness.ie">
+            <div class="field__hint">Enter the domain without www (e.g. mybusiness.ie, not www.mybusiness.ie)</div>
+          </div>
+          <button type="button" class="btn btn-primary" id="connect-domain-btn" disabled>Connect Domain</button>
+          <div id="domain-connect-status" class="domain-status"></div>
+        </div>
+
+        <!-- Sub-step C: DNS Instructions (hidden until domain connected) -->
+        <div id="domain-step-dns" style="display:none">
+          <h3 class="domain-substep__title">Step 3: Update your DNS records</h3>
+          <p class="domain-substep__desc">You've connected <strong id="dns-domain-name"></strong> to your project. Now tell your registrar where to point it. Choose your registrar below for step-by-step instructions.</p>
+
+          <div class="dns-tabs">
+            <button type="button" class="dns-tab dns-tab--active" data-registrar="blacknight">Blacknight</button>
+            <button type="button" class="dns-tab" data-registrar="namecheap">Namecheap</button>
+            <button type="button" class="dns-tab" data-registrar="godaddy">GoDaddy</button>
+          </div>
+
+          <div class="dns-tab-content" id="dns-panel-blacknight">
+            <div class="dns-instructions">
+              <h4>Blacknight DNS Setup</h4>
+              <ol>
+                <li>Log in to <a href="https://cp.blacknight.com" target="_blank" rel="noopener">cp.blacknight.com</a></li>
+                <li>Click <strong>Domains</strong> in the left sidebar</li>
+                <li>Click your domain name, then <strong>DNS</strong></li>
+                <li>Add these two records:</li>
+              </ol>
+              <div class="dns-records" id="dns-records-blacknight"></div>
+              <ol start="5">
+                <li>Save your changes</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="dns-tab-content" id="dns-panel-namecheap" style="display:none">
+            <div class="dns-instructions">
+              <h4>Namecheap DNS Setup</h4>
+              <ol>
+                <li>Log in to <a href="https://www.namecheap.com" target="_blank" rel="noopener">namecheap.com</a></li>
+                <li>Go to <strong>Domain List</strong> and click <strong>Manage</strong> next to your domain</li>
+                <li>Click the <strong>Advanced DNS</strong> tab</li>
+                <li>Under Host Records, add these two records:</li>
+              </ol>
+              <div class="dns-records" id="dns-records-namecheap"></div>
+              <ol start="5">
+                <li>Save all changes</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="dns-tab-content" id="dns-panel-godaddy" style="display:none">
+            <div class="dns-instructions">
+              <h4>GoDaddy DNS Setup</h4>
+              <ol>
+                <li>Log in to <a href="https://www.godaddy.com" target="_blank" rel="noopener">godaddy.com</a></li>
+                <li>Go to <strong>My Products</strong>, find your domain, click <strong>DNS</strong></li>
+                <li>Under DNS Records, add these two records:</li>
+              </ol>
+              <div class="dns-records" id="dns-records-godaddy"></div>
+              <ol start="4">
+                <li>Save your changes</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="dns-note">
+            <strong>Note:</strong> DNS changes can take up to 48 hours to propagate, but usually work within 5&ndash;30 minutes.
+          </div>
+
+          <h3 class="domain-substep__title">Step 4: Verify it works</h3>
+          <p class="domain-substep__desc">Click the button below to check if your DNS has propagated.</p>
+          <button type="button" class="btn btn-primary" id="check-dns-btn">Check DNS</button>
+          <div id="dns-check-status" class="domain-status"></div>
+
+          <!-- Success message (hidden until verified) -->
+          <div id="domain-success" class="domain-success" style="display:none">
+            <div class="domain-success__icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div class="domain-success__title">Your domain is live!</div>
+            <div class="domain-success__text">Your site is now available at <a id="domain-success-url" href="#" target="_blank"></a>. An SSL certificate will be provisioned automatically by Vercel.</div>
+          </div>
+        </div>
+
+        <!-- Skip button -->
+        <div class="wizard__nav wizard__nav--domain">
+          <button type="button" class="btn btn-outline" id="domain-skip-btn">Skip &mdash; I'll use the .vercel.app address for now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <div class="footer__tagline">Enterprise AI. Local Price.</div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 EON Risk Services Ltd. All rights reserved.</span>
+        <div class="footer__bottom-links">
+          <a href="index.html">Home</a>
+          <a href="consulting.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script type="module">
+    // ============================================================
+    // BuildMySite Wizard — Client-Side Logic
+    // ============================================================
+    import { SITE_KIT_FILES } from './js/site-kit-bundle.js';
+    import { validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
+             validateVercelToken, createVercelProject, setVercelEnvVars,
+             validateAIKey, triggerInitialBuild, generateAdminToken,
+             addCustomDomain } from './js/setup.js';
+    import { discoverBusiness } from './js/discover.js';
+
+    // Load the site-kit files into the setup module
+    setSiteKitFiles(SITE_KIT_FILES);
+
+    // --- Wizard Reveal ---
+    function showWizard() {
+      const wizard = document.getElementById('wizard');
+      const landing = document.getElementById('landing');
+      const howItWorks = document.getElementById('how-it-works');
+      const features = document.querySelector('.features');
+      const ctaBanner = document.querySelector('.cta-banner');
+
+      wizard.classList.remove('wizard--hidden');
+      wizard.classList.add('wizard--visible');
+      if (landing) landing.style.display = 'none';
+      if (howItWorks) howItWorks.style.display = 'none';
+      if (features) features.style.display = 'none';
+      if (ctaBanner) ctaBanner.style.display = 'none';
+
+      wizard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Attach to all "start" buttons
+    document.getElementById('start-btn')?.addEventListener('click', (e) => { e.preventDefault(); showWizard(); });
+    document.querySelectorAll('.start-wizard-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.preventDefault(); showWizard(); });
+    });
+
+    // If URL has #wizard, show directly
+    if (window.location.hash === '#wizard') showWizard();
+
+    // --- State ---
+    let currentStep = 1;
+    let validated = { github: false, vercel: false, ai: false };
+    let selectedModel = 'claude-sonnet-4-6';
+    let discoveryData = {};
+    let builtProjectId = null;
+    let builtProjectSlug = null;
+    let builtSiteUrl = null;
+
+    // --- DOM refs ---
+    const steps = document.querySelectorAll('.steps__item');
+    const panels = document.querySelectorAll('.step-panel');
+
+    // --- Step Navigation ---
+    function goToStep(n) {
+      currentStep = n;
+      panels.forEach(p => p.classList.remove('active'));
+      document.getElementById(`step-${n}`).classList.add('active');
+      steps.forEach(s => {
+        const sn = parseInt(s.dataset.step);
+        s.classList.remove('steps__item--active', 'steps__item--done');
+        if (sn === n) s.classList.add('steps__item--active');
+        if (sn < n) s.classList.add('steps__item--done');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- Model Selection ---
+    document.getElementById('model-grid').addEventListener('click', (e) => {
+      const opt = e.target.closest('.model-option');
+      if (!opt) return;
+      document.querySelectorAll('.model-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedModel = opt.dataset.model;
+      validated.ai = false;
+      updateStep1Button();
+      document.getElementById('ai-status').innerHTML = '';
+    });
+
+    // --- Token Validation ---
+    function setStatus(id, state, text) {
+      const el = document.getElementById(id);
+      const icons = {
+        ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>',
+        fail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>',
+        loading: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-5.07l-2.83 2.83M9.76 14.24l-2.83 2.83m0-10.14l2.83 2.83m4.48 4.48l2.83 2.83"/></svg>'
+      };
+      el.className = `field__status field__status--${state}`;
+      el.innerHTML = `${icons[state] || ''} ${text}`;
+    }
+
+    function updateStep1Button() {
+      document.getElementById('step1-next').disabled = !(validated.github && validated.vercel && validated.ai);
+    }
+
+    // Debounced validation
+    let ghTimer, vcTimer, aiTimer;
+
+    document.getElementById('github-token').addEventListener('input', (e) => {
+      clearTimeout(ghTimer);
+      validated.github = false;
+      updateStep1Button();
+      if (!e.target.value.trim()) { document.getElementById('github-status').innerHTML = ''; return; }
+      ghTimer = setTimeout(() => validateGitHub(e.target.value.trim()), 800);
+    });
+
+    document.getElementById('vercel-token').addEventListener('input', (e) => {
+      clearTimeout(vcTimer);
+      validated.vercel = false;
+      updateStep1Button();
+      if (!e.target.value.trim()) { document.getElementById('vercel-status').innerHTML = ''; return; }
+      vcTimer = setTimeout(() => validateVercel(e.target.value.trim()), 800);
+    });
+
+    document.getElementById('ai-key').addEventListener('input', (e) => {
+      clearTimeout(aiTimer);
+      validated.ai = false;
+      updateStep1Button();
+      if (!e.target.value.trim()) { document.getElementById('ai-status').innerHTML = ''; return; }
+      aiTimer = setTimeout(() => validateAI(e.target.value.trim()), 800);
+    });
+
+    async function validateGitHub(token) {
+      setStatus('github-status', 'loading', 'Validating...');
+      const result = await validateGitHubToken(token);
+      if (result.valid) {
+        validated.github = true;
+        setStatus('github-status', 'ok', `Connected as ${result.login}`);
+      } else {
+        setStatus('github-status', 'fail', result.error || 'Invalid token');
+      }
+      updateStep1Button();
+    }
+
+    async function validateVercel(token) {
+      setStatus('vercel-status', 'loading', 'Validating...');
+      const result = await validateVercelToken(token);
+      if (result.valid) {
+        validated.vercel = true;
+        setStatus('vercel-status', 'ok', `Connected as ${result.username || result.name || 'verified'}`);
+      } else {
+        setStatus('vercel-status', 'fail', result.error || 'Invalid token');
+      }
+      updateStep1Button();
+    }
+
+    async function validateAI(key) {
+      setStatus('ai-status', 'loading', 'Validating...');
+      const result = await validateAIKey(key, selectedModel);
+      if (result.valid) {
+        validated.ai = true;
+        setStatus('ai-status', 'ok', `${selectedModel} ready`);
+      } else {
+        setStatus('ai-status', 'fail', result.error || 'Could not validate key');
+      }
+      updateStep1Button();
+    }
+
+    // --- Step 1 → 2 ---
+    document.getElementById('step1-next').addEventListener('click', () => {
+      if (validated.github && validated.vercel && validated.ai) goToStep(2);
+    });
+
+    // --- Step 2: Discover ---
+    document.getElementById('step2-back').addEventListener('click', () => goToStep(1));
+    document.getElementById('step2-next').addEventListener('click', async () => {
+      const name = document.getElementById('biz-name').value.trim();
+      if (!name) { document.getElementById('biz-name').focus(); return; }
+
+      const btn = document.getElementById('step2-next');
+      btn.disabled = true;
+      btn.textContent = 'Searching...';
+
+      const location = document.getElementById('biz-location').value.trim();
+      const aiKey = document.getElementById('ai-key').value.trim();
+
+      try {
+        discoveryData = await discoverBusiness(name, location, aiKey, selectedModel);
+      } catch {
+        discoveryData = { name };
+      }
+
+      // Pre-fill review form
+      document.getElementById('review-name').value = discoveryData.name || name;
+      document.getElementById('review-type').value = discoveryData.type || '';
+      document.getElementById('review-description').value = discoveryData.description || '';
+      document.getElementById('review-email').value = discoveryData.email || '';
+      document.getElementById('review-phone').value = discoveryData.phone || '';
+      document.getElementById('review-address').value = discoveryData.address || '';
+      document.getElementById('review-hours').value = discoveryData.hours || '';
+      document.getElementById('review-services').value = Array.isArray(discoveryData.services) ? discoveryData.services.join('\n') : (discoveryData.services || '');
+      document.getElementById('review-tagline').value = discoveryData.tagline || '';
+      // Match tone from discovery to select option
+      const toneValue = (discoveryData.tone || '').toLowerCase();
+      const toneSelect = document.getElementById('review-tone');
+      if (toneValue.includes('professional')) toneSelect.value = 'professional';
+      else if (toneValue.includes('friendly') || toneValue.includes('warm') || toneValue.includes('welcoming')) toneSelect.value = 'friendly';
+      else if (toneValue.includes('bold') || toneValue.includes('confident')) toneSelect.value = 'bold';
+      else if (toneValue.includes('practical') || toneValue.includes('direct')) toneSelect.value = 'practical';
+      else if (toneValue.includes('luxury') || toneValue.includes('premium')) toneSelect.value = 'luxury';
+      document.getElementById('review-extra').value = '';
+
+      // Generate repo name
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      document.getElementById('review-reponame').value = slug || 'my-website';
+
+      btn.disabled = false;
+      btn.textContent = 'Search & Continue';
+      goToStep(3);
+    });
+
+    // Discovery is handled by the imported discoverBusiness() from discover.js
+
+    // --- File Upload Previews ---
+    let selectedLogo = null;
+    let selectedHero = null;
+
+    document.getElementById('upload-logo').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); e.target.value = ''; return; }
+      selectedLogo = file;
+      document.getElementById('logo-filename').textContent = file.name;
+      const preview = document.getElementById('logo-preview');
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+    });
+
+    document.getElementById('upload-hero').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); e.target.value = ''; return; }
+      selectedHero = file;
+      document.getElementById('hero-filename').textContent = file.name;
+      const preview = document.getElementById('hero-preview');
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+    });
+
+    async function uploadImage(siteUrl, adminToken, file, label) {
+      const response = await fetch(`${siteUrl}/api/upload?filename=${encodeURIComponent(label + '-' + file.name)}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+          'Content-Type': file.type,
+          'X-Filename': label + '-' + file.name,
+        },
+        body: file,
+      });
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || 'Upload failed');
+      }
+      const data = await response.json();
+      return data.url;
+    }
+
+    // --- Step 3: Review ---
+    document.getElementById('step3-back').addEventListener('click', () => goToStep(2));
+    document.getElementById('step3-next').addEventListener('click', () => {
+      const name = document.getElementById('review-name').value.trim();
+      if (!name) { document.getElementById('review-name').focus(); return; }
+      goToStep(4);
+      startBuild();
+    });
+
+    // --- Step 4: Build ---
+    const BUILD_STEPS = ['github_repo', 'push_files', 'vercel_project', 'env_vars', 'deploy', 'ai_build'];
+    const SVG_PENDING = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+    const SVG_RUNNING = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-5.07l-2.83 2.83M9.76 14.24l-2.83 2.83m0-10.14l2.83 2.83m4.48 4.48l2.83 2.83"/></svg>';
+    const SVG_DONE = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+    const SVG_ERROR = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6m0-6l6 6"/></svg>';
+
+    function setBuildStep(step, status, detail) {
+      const row = document.querySelector(`[data-build="${step}"]`);
+      if (!row) return;
+      const icon = row.querySelector('.build-step__icon');
+      icon.className = `build-step__icon build-step__icon--${status}`;
+      const svgs = { pending: SVG_PENDING, running: SVG_RUNNING, done: SVG_DONE, error: SVG_ERROR };
+      icon.innerHTML = svgs[status] || SVG_PENDING;
+      if (detail) {
+        const detailEl = row.querySelector(`[data-detail="${step}"]`);
+        if (detailEl) detailEl.textContent = detail;
+      }
+    }
+
+    async function startBuild() {
+      const githubToken = document.getElementById('github-token').value.trim();
+      const vercelToken = document.getElementById('vercel-token').value.trim();
+      const aiKey = document.getElementById('ai-key').value.trim();
+      const repoName = document.getElementById('review-reponame').value.trim() || 'my-website';
+      const resendKey = document.getElementById('resend-key')?.value?.trim() || '';
+      const blobToken = document.getElementById('blob-token')?.value?.trim() || '';
+
+      const businessInfo = {
+        name: document.getElementById('review-name').value.trim(),
+        type: document.getElementById('review-type').value.trim(),
+        description: document.getElementById('review-description').value.trim(),
+        email: document.getElementById('review-email').value.trim(),
+        phone: document.getElementById('review-phone').value.trim(),
+        address: document.getElementById('review-address').value.trim(),
+        hours: document.getElementById('review-hours').value.trim(),
+        extra: document.getElementById('review-extra').value.trim(),
+        services: document.getElementById('review-services')?.value?.trim() || '',
+        tagline: document.getElementById('review-tagline')?.value?.trim() || '',
+        tone: document.getElementById('review-tone')?.value || '',
+      };
+
+      try {
+        // Step 1: Create GitHub repo
+        setBuildStep('github_repo', 'running', 'Creating repository...');
+        const { repo } = await createGitHubRepo(githubToken, repoName);
+        setBuildStep('github_repo', 'done', repo);
+
+        // Wait for GitHub to initialize
+        await new Promise(r => setTimeout(r, 3000));
+
+        // Step 2: Push site kit files
+        setBuildStep('push_files', 'running', 'Uploading website files...');
+        const { pushed, total } = await pushSiteKit(githubToken, repo, (done, fileTotal, file) => {
+          setBuildStep('push_files', 'running', `${done}/${fileTotal} files`);
+        });
+        setBuildStep('push_files', 'done', `${pushed} files pushed`);
+
+        // Step 3: Create Vercel project
+        setBuildStep('vercel_project', 'running', 'Creating Vercel project...');
+        const projectSlug = repoName.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+        const { projectId } = await createVercelProject(vercelToken, projectSlug, repo);
+        builtProjectId = projectId;
+        builtProjectSlug = projectSlug;
+        setBuildStep('vercel_project', 'done', projectSlug);
+
+        // Step 4: Set env vars
+        setBuildStep('env_vars', 'running', 'Setting environment variables...');
+        const adminToken = generateAdminToken();
+        const envVars = [
+          { key: 'AI_API_KEY', value: aiKey },
+          { key: 'AI_MODEL', value: selectedModel },
+          { key: 'GITHUB_TOKEN', value: githubToken },
+          { key: 'GITHUB_REPO', value: repo },
+          { key: 'GITHUB_BRANCH', value: 'main' },
+          { key: 'ADMIN_TOKEN', value: adminToken },
+          { key: 'CONTACT_EMAIL', value: businessInfo.email },
+        ];
+        if (resendKey) envVars.push({ key: 'RESEND_API_KEY', value: resendKey });
+        if (blobToken) envVars.push({ key: 'BLOB_READ_WRITE_TOKEN', value: blobToken });
+        await setVercelEnvVars(vercelToken, projectId, envVars);
+        setBuildStep('env_vars', 'done', `${envVars.length} variables set`);
+
+        // Step 5: Wait for deployment
+        setBuildStep('deploy', 'running', 'Waiting for Vercel deployment...');
+        const siteUrl = `https://${projectSlug}.vercel.app`;
+        builtSiteUrl = siteUrl;
+        let deployed = false;
+        for (let i = 0; i < 30; i++) {
+          try {
+            await fetch(siteUrl, { method: 'HEAD', mode: 'no-cors' });
+            deployed = true;
+            break;
+          } catch {}
+          await new Promise(r => setTimeout(r, 5000));
+          setBuildStep('deploy', 'running', `Waiting... (${(i + 1) * 5}s)`);
+        }
+        setBuildStep('deploy', deployed ? 'done' : 'error', deployed ? `Live at ${siteUrl}` : 'Deployment may still be in progress');
+
+        // Step 6: Upload images (if any) and trigger AI build
+        setBuildStep('ai_build', 'running', 'AI is building your personalised site...');
+        await new Promise(r => setTimeout(r, 10000));
+
+        // Upload images if provided and Blob token was set
+        if (selectedLogo || selectedHero) {
+          try {
+            if (selectedLogo) {
+              setBuildStep('ai_build', 'running', 'Uploading logo...');
+              businessInfo.logo_url = await uploadImage(siteUrl, adminToken, selectedLogo, 'logo');
+            }
+            if (selectedHero) {
+              setBuildStep('ai_build', 'running', 'Uploading hero image...');
+              businessInfo.hero_url = await uploadImage(siteUrl, adminToken, selectedHero, 'hero');
+            }
+          } catch (imgErr) {
+            console.warn('Image upload failed (non-fatal):', imgErr.message);
+            // Continue without images — AI will build without them
+          }
+          setBuildStep('ai_build', 'running', 'AI is building your personalised site...');
+        }
+
+        try {
+          await triggerInitialBuild(siteUrl, adminToken, businessInfo);
+          setBuildStep('ai_build', 'done', 'Website personalised!');
+        } catch (buildErr) {
+          setBuildStep('ai_build', 'error', buildErr.message || 'Build may need to be re-triggered from admin panel');
+        }
+
+        // Show result
+        document.getElementById('build-desc').textContent = 'Your website has been created!';
+        const resultCard = document.getElementById('result-card');
+        resultCard.style.display = 'block';
+        document.getElementById('result-url').href = siteUrl;
+        document.getElementById('result-url').textContent = siteUrl;
+        document.getElementById('result-token').textContent = adminToken;
+        document.getElementById('result-site-link').href = siteUrl;
+        document.getElementById('result-admin-link').href = `${siteUrl}/admin.html`;
+
+      } catch (err) {
+        for (const s of BUILD_STEPS) {
+          const icon = document.querySelector(`[data-build="${s}"] .build-step__icon`);
+          if (icon && icon.classList.contains('build-step__icon--running')) {
+            setBuildStep(s, 'error', err.message);
+            break;
+          }
+        }
+        document.getElementById('build-desc').textContent = `Something went wrong: ${err.message}. You can retry from the admin panel.`;
+      }
+    }
+
+    // generateAdminToken() is imported from setup.js
+
+    // ============================================================
+    // Step 5: Connect Your Domain
+    // ============================================================
+
+    // Enable Connect Domain button when input has value
+    document.getElementById('custom-domain').addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      document.getElementById('connect-domain-btn').disabled = !val;
+      document.getElementById('domain-connect-status').innerHTML = '';
+    });
+
+    // Connect Domain button
+    document.getElementById('connect-domain-btn').addEventListener('click', async () => {
+      const domain = document.getElementById('custom-domain').value.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/+$/, '');
+      if (!domain) return;
+
+      const vercelToken = document.getElementById('vercel-token').value.trim();
+      if (!vercelToken || !builtProjectId) {
+        setDomainStatus('domain-connect-status', 'fail', 'Missing Vercel token or project. Please complete the build first.');
+        return;
+      }
+
+      const btn = document.getElementById('connect-domain-btn');
+      btn.disabled = true;
+      btn.textContent = 'Connecting...';
+      setDomainStatus('domain-connect-status', 'loading', 'Adding domain to your Vercel project...');
+
+      try {
+        await addCustomDomain(vercelToken, builtProjectId, domain);
+        setDomainStatus('domain-connect-status', 'ok', 'Domain connected to your project.');
+        showDnsInstructions(domain);
+      } catch (e) {
+        if (e.message?.includes('409')) {
+          setDomainStatus('domain-connect-status', 'ok', 'Domain connected to your project.');
+          showDnsInstructions(domain);
+        } else {
+          setDomainStatus('domain-connect-status', 'fail', e.message || 'Failed to add domain. Check the domain name and try again.');
+        }
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Connect Domain';
+    });
+
+    function setDomainStatus(id, state, text) {
+      const el = document.getElementById(id);
+      el.className = `domain-status domain-status--${state}`;
+      el.textContent = text;
+    }
+
+    function showDnsInstructions(domain) {
+      document.getElementById('domain-step-dns').style.display = 'block';
+      document.getElementById('dns-domain-name').textContent = domain;
+
+      // Build DNS record HTML for each registrar panel
+      const recordHtml = `
+        <div class="dns-record">
+          <div><div class="dns-record__label">Type</div><div class="dns-record__value">A</div></div>
+          <div><div class="dns-record__label">Name / Host</div><div class="dns-record__value">@</div></div>
+          <div><div class="dns-record__label">Value / Points to</div><div class="dns-record__value">76.76.21.21</div></div>
+        </div>
+        <div class="dns-record">
+          <div><div class="dns-record__label">Type</div><div class="dns-record__value">CNAME</div></div>
+          <div><div class="dns-record__label">Name / Host</div><div class="dns-record__value">www</div></div>
+          <div><div class="dns-record__label">Value / Points to</div><div class="dns-record__value">cname.vercel-dns.com</div></div>
+        </div>`;
+
+      document.getElementById('dns-records-blacknight').innerHTML = recordHtml;
+      document.getElementById('dns-records-namecheap').innerHTML = recordHtml;
+      document.getElementById('dns-records-godaddy').innerHTML = recordHtml;
+
+      document.getElementById('domain-step-dns').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // DNS tab switching
+    document.querySelectorAll('.dns-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.dns-tab').forEach(t => t.classList.remove('dns-tab--active'));
+        tab.classList.add('dns-tab--active');
+        const registrar = tab.dataset.registrar;
+        document.querySelectorAll('.dns-tab-content').forEach(p => p.style.display = 'none');
+        document.getElementById(`dns-panel-${registrar}`).style.display = 'block';
+      });
+    });
+
+    // Check DNS button
+    let dnsCheckInterval = null;
+    document.getElementById('check-dns-btn').addEventListener('click', () => {
+      const domain = document.getElementById('custom-domain').value.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/+$/, '');
+      if (!domain) return;
+
+      const btn = document.getElementById('check-dns-btn');
+      btn.disabled = true;
+      btn.textContent = 'Checking...';
+      let attempts = 0;
+      const maxAttempts = 6;
+
+      setDomainStatus('dns-check-status', 'loading', 'Checking DNS propagation...');
+
+      if (dnsCheckInterval) clearInterval(dnsCheckInterval);
+
+      function checkOnce() {
+        attempts++;
+        setDomainStatus('dns-check-status', 'loading', `Checking DNS propagation... (attempt ${attempts}/${maxAttempts})`);
+
+        fetch(`https://${domain}`, { method: 'HEAD', mode: 'no-cors' })
+          .then(() => {
+            // no-cors always resolves — we check if it didn't throw a network error
+            clearInterval(dnsCheckInterval);
+            dnsCheckInterval = null;
+            setDomainStatus('dns-check-status', 'ok', 'DNS is resolving. Your domain is working.');
+            btn.disabled = false;
+            btn.textContent = 'Check DNS';
+
+            // Show success
+            const successEl = document.getElementById('domain-success');
+            successEl.style.display = 'block';
+            const successUrl = document.getElementById('domain-success-url');
+            successUrl.href = `https://${domain}`;
+            successUrl.textContent = domain;
+            successEl.scrollIntoView({ behavior: 'smooth' });
+          })
+          .catch(() => {
+            if (attempts >= maxAttempts) {
+              clearInterval(dnsCheckInterval);
+              dnsCheckInterval = null;
+              setDomainStatus('dns-check-status', 'info', 'DNS hasn\'t propagated yet. This is normal — it can take up to 48 hours. Try again later.');
+              btn.disabled = false;
+              btn.textContent = 'Check DNS Again';
+            }
+          });
+      }
+
+      checkOnce();
+      dnsCheckInterval = setInterval(checkOnce, 10000);
+    });
+
+    // "Connect Your Own Domain" button on result card
+    document.getElementById('result-domain-btn').addEventListener('click', () => {
+      document.getElementById('domain-current-url').textContent = builtSiteUrl || `${builtProjectSlug}.vercel.app`;
+      goToStep(5);
+    });
+
+    // Skip button
+    document.getElementById('domain-skip-btn').addEventListener('click', () => {
+      if (builtSiteUrl) {
+        window.open(builtSiteUrl, '_blank');
+      }
+      // Scroll back to top showing build results
+      goToStep(4);
+    });
+  </script>
+</body>
+</html>
