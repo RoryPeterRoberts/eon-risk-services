@@ -250,8 +250,72 @@ export async function validateAIKey(apiKey, model) {
   }
 }
 
-// ---- Trigger Initial Build ----------------------------------
+// ---- Trigger Initial Build (stepped) ------------------------
+// Breaks the build into multiple small requests, each under 60s,
+// so it works on Vercel's hobby plan (60s function timeout).
 
+function buildBusinessBlock(info) {
+  const parts = [];
+  if (info.name)        parts.push(`Business name: ${info.name}`);
+  if (info.description) parts.push(`Description: ${info.description}`);
+  if (info.type)        parts.push(`Type: ${info.type}`);
+  if (info.email)       parts.push(`Email: ${info.email}`);
+  if (info.phone)       parts.push(`Phone: ${info.phone}`);
+  if (info.address)     parts.push(`Address: ${info.address}`);
+  if (info.hours)       parts.push(`Hours: ${info.hours}`);
+  if (info.services)    parts.push(`Services: ${Array.isArray(info.services) ? info.services.join(', ') : info.services}`);
+  if (info.tagline)     parts.push(`Tagline: ${info.tagline}`);
+  return parts.join('\n');
+}
+
+async function agentCall(siteUrl, adminToken, message, businessInfo) {
+  const r = await fetch(`${siteUrl}/api/agent`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${adminToken}`
+    },
+    body: JSON.stringify({ mode: 'modify', message, businessInfo })
+  });
+  if (!r.ok) {
+    const data = await r.json().catch(() => ({}));
+    throw new Error(data.error || `Agent call failed: ${r.status}`);
+  }
+  return r.json();
+}
+
+export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onStep) {
+  const biz = buildBusinessBlock(businessInfo);
+  const steps = [
+    {
+      label: 'Customising design',
+      message: `Read css/style.css to understand the design system. Then write an updated css/style.css that customises the colour scheme for this business. Choose colours that suit the business type. Override --color-primary, --color-accent, --color-highlight in a new :root block at the bottom. Keep all existing classes intact.\n\nBusiness:\n${biz}`
+    },
+    {
+      label: 'Building home page',
+      message: `Build index.html for this business. It must be a complete HTML page with: nav, hero section with business name and tagline, about preview, services preview (use real plausible content), and a CTA section. Link to css/style.css and js/main.js. Use the nav and footer structure from the design system. Write real compelling copy — no placeholder text.\n\nBusiness:\n${biz}`
+    },
+    {
+      label: 'Building contact page',
+      message: `Build contact.html for this business. Complete HTML page with: nav (matching index.html), contact form that POSTs to /api/contact (fields: name, email, phone optional, message), business contact details (address, phone, email, hours if known), and footer. Include the JavaScript that handles form submission via fetch.\n\nBusiness:\n${biz}`
+    },
+    {
+      label: 'Building about page',
+      message: `Build about.html for this business. Complete HTML page with: nav (matching index.html), business story/background, what makes them special, and footer. Write authentic, warm copy that tells this business's story. If you don't have details, write plausible content based on the business type.\n\nBusiness:\n${biz}`
+    },
+  ];
+
+  const results = [];
+  for (let i = 0; i < steps.length; i++) {
+    if (onStep) onStep(i, steps.length, steps[i].label);
+    const result = await agentCall(siteUrl, adminToken, steps[i].message, businessInfo);
+    results.push(result);
+  }
+  if (onStep) onStep(steps.length, steps.length, 'Done');
+  return results;
+}
+
+// Legacy single-call build (for Vercel Pro / longer timeouts)
 export async function triggerInitialBuild(siteUrl, adminToken, businessInfo) {
   const r = await fetch(`${siteUrl}/api/agent`, {
     method: 'POST',

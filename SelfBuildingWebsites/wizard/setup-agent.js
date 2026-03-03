@@ -9,7 +9,7 @@
 import {
   validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
   validateVercelToken, createVercelProject, setVercelEnvVars, triggerVercelDeploy,
-  validateAIKey, triggerInitialBuild, generateAdminToken, addCustomDomain
+  validateAIKey, triggerSteppedBuild, generateAdminToken, addCustomDomain
 } from './setup.js';
 import { discoverBusiness } from './discover.js';
 import { SITE_KIT_FILES } from './site-kit-bundle.js';
@@ -491,7 +491,24 @@ The easiest way: sign up with your GitHub account (one click).`);
     if (this.businessInfo.found === false) {
       this.businessInfo = this.businessInfo || {};
       this.businessInfo.name = this.businessName;
-      this.ui.addMessage('agent', `I couldn't find details online for "${this.businessName}". No worries — we'll work with what you tell me.`);
+      this.ui.addMessage('agent', `I couldn't find details online for "${this.businessName}". You can try again with more detail (e.g. add the town or what you do), or continue and fill in details manually.`);
+      this.ui.addButtons([
+        { label: 'Try again', action: 'retry-discover' },
+        { label: 'Continue without', action: 'skip-discover' },
+      ]);
+      this.ui.onAction = async (action) => {
+        if (action === 'retry-discover') {
+          this.ui.addMessage('agent', 'Tell me the business name again — try adding the location or a short description, like "Red Books Wexford, independent bookshop".');
+          this.ui.setInputVisible(true, 'Business name and details...');
+          this.state = STATES.BIZ_NAME;
+        } else {
+          // Generate repo slug and continue
+          this.repoName = this.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'my-website';
+          this._save();
+          await this.enter(STATES.BIZ_REVIEW);
+        }
+      };
+      return;
     }
 
     // Generate repo slug
@@ -657,21 +674,18 @@ This takes 2-5 minutes. Ready?`);
       // Give Vercel a moment to fully propagate before hitting the API
       await new Promise(r => setTimeout(r, 5000));
 
-      // Step 6: AI build
+      // Step 6: AI builds the site (stepped — one page at a time to stay under 60s)
       this.ui.setBuildStep('ai_build', 'running', 'AI is writing your website...');
       try {
-        await triggerInitialBuild(this.siteUrl, this.adminToken, this.businessInfo);
-        this.ui.setBuildStep('ai_build', 'done', 'Website built!');
+        await triggerSteppedBuild(this.siteUrl, this.adminToken, this.businessInfo, (step, total, label) => {
+          if (step < total) {
+            this.ui.setBuildStep('ai_build', 'running', `${label} (${step + 1}/${total})...`);
+          } else {
+            this.ui.setBuildStep('ai_build', 'done', 'Website built!');
+          }
+        });
       } catch (buildErr) {
-        // Retry once after a longer delay — deployment may need more time
-        this.ui.setBuildStep('ai_build', 'running', 'Retrying build...');
-        await new Promise(r => setTimeout(r, 15000));
-        try {
-          await triggerInitialBuild(this.siteUrl, this.adminToken, this.businessInfo);
-          this.ui.setBuildStep('ai_build', 'done', 'Website built!');
-        } catch (retryErr) {
-          this.ui.setBuildStep('ai_build', 'error', 'Build can be retried from admin panel');
-        }
+        this.ui.setBuildStep('ai_build', 'error', buildErr.message || 'Build can be retried from admin panel');
       }
 
       await this.enter(STATES.BUILD_COMPLETE);
