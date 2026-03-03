@@ -155,10 +155,12 @@ export async function setVercelEnvVars(vercelToken, projectId, envVars) {
 // ---- AI API Key Validation ----------------------------------
 
 const APPROVED_MODELS = {
-  'claude-opus-4-6':   { provider: 'anthropic' },
-  'claude-sonnet-4-6': { provider: 'anthropic' },
-  'gpt-5.2':           { provider: 'openai' },
+  'gemini-2.5-flash':  { provider: 'google' },
+  'gemini-3.0-flash':  { provider: 'google' },
   'gemini-3.1-pro':    { provider: 'google' },
+  'claude-sonnet-4-6': { provider: 'anthropic' },
+  'claude-opus-4-6':   { provider: 'anthropic' },
+  'gpt-5.2':           { provider: 'openai' },
 };
 
 export async function validateAIKey(apiKey, model) {

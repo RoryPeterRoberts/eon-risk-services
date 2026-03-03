@@ -10,6 +10,8 @@ const APPROVED_MODELS = {
   'claude-sonnet-4-6':   { provider: 'anthropic', maxTokens: 8096 },
   'gpt-5.2':             { provider: 'openai',    maxTokens: 16384 },
   'gemini-3.1-pro':      { provider: 'google',    maxTokens: 32768 },
+  'gemini-2.5-flash':    { provider: 'google',    maxTokens: 65536 },
+  'gemini-3.0-flash':    { provider: 'google',    maxTokens: 32768 },
 };
 
 // ---- Cost table (USD per 1M tokens) -------------------------
@@ -18,6 +20,8 @@ const COSTS = {
   'claude-sonnet-4-6': { input:  3.00, output: 15.00 },
   'gpt-5.2':           { input:  3.00, output: 15.00 },
   'gemini-3.1-pro':    { input:  2.00, output: 12.00 },
+  'gemini-2.5-flash':  { input:  0.15, output:  0.60 },
+  'gemini-3.0-flash':  { input:  0.50, output:  3.00 },
 };
 
 function calcCost(model, promptTokens, completionTokens) {
@@ -125,6 +129,77 @@ function makeGitHub(env) {
       );
       const data = await r.json();
       return (data.tree || []).filter(f => f.type === 'blob').map(f => f.path);
+    },
+
+    // Batch commit multiple files in a single commit using Git Trees API
+    async batchCommit(files, message) {
+      // files: [{ path, content }]
+      // 1. Get the current commit SHA for the branch
+      const refR = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/git/ref/heads/${branch}`,
+        { headers }
+      );
+      if (!refR.ok) throw new Error(`Failed to get branch ref: ${refR.status}`);
+      const refData = await refR.json();
+      const baseSha = refData.object.sha;
+
+      // 2. Get the tree SHA from the base commit
+      const commitR = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/git/commits/${baseSha}`,
+        { headers }
+      );
+      if (!commitR.ok) throw new Error(`Failed to get base commit: ${commitR.status}`);
+      const commitData = await commitR.json();
+      const baseTreeSha = commitData.tree.sha;
+
+      // 3. Create blobs for each file
+      const treeEntries = [];
+      for (const file of files) {
+        const blobR = await fetch(
+          `https://api.github.com/repos/${GITHUB_REPO}/git/blobs`,
+          {
+            method: 'POST', headers,
+            body: JSON.stringify({ content: file.content, encoding: 'utf-8' })
+          }
+        );
+        if (!blobR.ok) throw new Error(`Failed to create blob for ${file.path}: ${blobR.status}`);
+        const blobData = await blobR.json();
+        treeEntries.push({ path: file.path, mode: '100644', type: 'blob', sha: blobData.sha });
+      }
+
+      // 4. Create a new tree
+      const treeR = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/git/trees`,
+        {
+          method: 'POST', headers,
+          body: JSON.stringify({ base_tree: baseTreeSha, tree: treeEntries })
+        }
+      );
+      if (!treeR.ok) throw new Error(`Failed to create tree: ${treeR.status}`);
+      const treeData = await treeR.json();
+
+      // 5. Create a new commit
+      const newCommitR = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/git/commits`,
+        {
+          method: 'POST', headers,
+          body: JSON.stringify({ message, tree: treeData.sha, parents: [baseSha] })
+        }
+      );
+      if (!newCommitR.ok) throw new Error(`Failed to create commit: ${newCommitR.status}`);
+      const newCommitData = await newCommitR.json();
+
+      // 6. Update the branch ref
+      const updateR = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/git/refs/heads/${branch}`,
+        {
+          method: 'PATCH', headers,
+          body: JSON.stringify({ sha: newCommitData.sha })
+        }
+      );
+      if (!updateR.ok) throw new Error(`Failed to update branch ref: ${updateR.status}`);
+
+      return { sha: newCommitData.sha, filesCommitted: files.length };
     }
   };
 }
@@ -162,12 +237,18 @@ function isAgentRateLimited(ip) {
 }
 
 // ---- Tool execution -----------------------------------------
-async function executeTool(name, args, env) {
+// pendingWrites collects files during the agent loop; they are batch-committed at the end
+async function executeTool(name, args, env, pendingWrites) {
   const gh = makeGitHub(env);
 
   switch (name) {
     case 'read_file': {
       validatePath(args.path);
+      // Check pending writes first (agent may read a file it just wrote)
+      const pending = pendingWrites.find(f => f.path === args.path);
+      if (pending) {
+        return { path: args.path, content: pending.content, size: pending.content.length, source: 'pending' };
+      }
       const file = await gh.get(args.path);
       const content = Buffer.from(file.content, 'base64').toString('utf-8');
       return { path: args.path, content, size: content.length };
@@ -198,13 +279,15 @@ async function executeTool(name, args, env) {
         warnings.push('HTML file is missing root element');
       }
 
-      // Get existing SHA if file exists (for updates)
-      let sha = null;
-      try { const f = await gh.get(args.path); sha = f.sha; } catch {}
+      // Stage the file for batch commit (replaces any previous pending write to same path)
+      const existingIdx = pendingWrites.findIndex(f => f.path === args.path);
+      if (existingIdx >= 0) {
+        pendingWrites[existingIdx] = { path: args.path, content };
+      } else {
+        pendingWrites.push({ path: args.path, content });
+      }
 
-      await gh.put(args.path, content, args.commit_message, sha);
-
-      const result = { written: args.path, message: args.commit_message, chars: content.length, _pre_sha: sha };
+      const result = { staged: args.path, message: args.commit_message, chars: content.length };
       if (warnings.length > 0) result.warnings = warnings;
       return result;
     }
@@ -220,7 +303,10 @@ async function executeTool(name, args, env) {
       const allFiles = await gh.listTree();
       const path = args.path || '';
       const files = path ? allFiles.filter(f => f.startsWith(path)) : allFiles;
-      return { files, count: files.length };
+      // Include any pending writes not yet on disk
+      const pendingPaths = pendingWrites.map(f => f.path).filter(p => !files.includes(p));
+      const combined = [...files, ...pendingPaths];
+      return { files: combined, count: combined.length };
     }
 
     default:
@@ -588,6 +674,7 @@ async function runAgent(userMessage, env, businessInfo, mode) {
   let totalCompletionTokens = 0;
   let finalText = '';
   const buildLog = [];
+  const pendingWrites = []; // Collected during loop, batch-committed at end
 
   for (let turn = 0; turn < 25; turn++) {
     let response;
@@ -626,7 +713,7 @@ async function runAgent(userMessage, env, businessInfo, mode) {
     for (const tc of response.toolCalls) {
       let result;
       try {
-        result = await executeTool(tc.name, tc.args, env);
+        result = await executeTool(tc.name, tc.args, env, pendingWrites);
         buildLog.push({ tool: tc.name, args: tc.args, success: true });
       } catch (err) {
         result = { error: err.message };
@@ -642,11 +729,23 @@ async function runAgent(userMessage, env, businessInfo, mode) {
     }
   }
 
+  // Batch commit all pending writes in a single commit
+  const isBuild = (mode || 'modify') === 'build';
+  let commitResult = null;
+  if (pendingWrites.length > 0) {
+    const gh = makeGitHub(env);
+    const commitMsg = isBuild
+      ? `BuildMySite: initial site build (${pendingWrites.length} files)`
+      : `BuildMySite: update ${pendingWrites.map(f => f.path).join(', ')}`;
+    commitResult = await gh.batchCommit(pendingWrites, commitMsg);
+  }
+
   const cost = calcCost(model, totalPromptTokens, totalCompletionTokens);
 
   return {
     text: finalText,
     buildLog,
+    commit: commitResult,
     usage: {
       model,
       provider,
