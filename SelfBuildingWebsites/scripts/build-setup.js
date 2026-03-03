@@ -44,10 +44,14 @@ function escapeScriptClose(code) {
 // Process each file
 const cleanSetup = escapeScriptClose(stripModuleSyntax(setupJs));
 const cleanDiscover = escapeScriptClose(stripModuleSyntax(discoverJs));
-const cleanBundle = escapeScriptClose(stripModuleSyntax(bundleJs))
-  // The bundle declares 'const SITE_KIT_FILES = {...}' but setup.js already has
-  // 'let SITE_KIT_FILES = null'. Convert to assignment to avoid redeclaration.
-  .replace(/^const SITE_KIT_FILES\s*=/m, 'SITE_KIT_FILES =');
+// Do NOT run stripModuleSyntax on the bundle — it contains file contents as
+// string literals, and the regex would strip 'export default' from INSIDE those
+// strings, breaking the deployed serverless functions.
+const cleanBundle = escapeScriptClose(bundleJs)
+  // The bundle's only module-level export is 'export const SITE_KIT_FILES = {...}'.
+  // Strip that export keyword and convert const to assignment (setup.js already
+  // declares 'let SITE_KIT_FILES = null').
+  .replace(/^export\s+const\s+SITE_KIT_FILES\s*=/m, 'SITE_KIT_FILES =');
 
 // For setup-agent.js, also remove the setSiteKitFiles call since we'll do it after all scripts load
 let cleanAgent = escapeScriptClose(stripModuleSyntax(agentJs))

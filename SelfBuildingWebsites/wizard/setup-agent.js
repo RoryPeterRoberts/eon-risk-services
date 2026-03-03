@@ -713,7 +713,7 @@ This takes 2-5 minutes. Ready?`);
 </div>
 <div class="chat-card__row">
   <span class="chat-card__label">Admin Token</span>
-  <span class="chat-card__value"><code class="chat-token">${this.adminToken}</code></span>
+  <span class="chat-card__value"><code class="chat-token">${this.adminToken}</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('${this.adminToken}');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)" title="Copy token">Copy</button></span>
 </div>
 <p class="chat-hint" style="margin-top:12px">Save your admin token — you'll need it to log into the admin panel and make changes.</p>
 </div>`, true);
