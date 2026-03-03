@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # ============================================================
 # BuildMySite — Zip Builder
-# Creates buildmysite.zip for download from the landing page.
+# 1. Runs build-setup.js to inline all JS into setup.html
+# 2. Creates buildmysite.zip with the self-contained file
 # Usage: bash scripts/build-zip.sh
 # ============================================================
 
@@ -15,19 +16,16 @@ ZIP_NAME="buildmysite.zip"
 STAGE_DIR=$(mktemp -d)
 STAGE="$STAGE_DIR/buildmysite"
 
-echo "Building $ZIP_NAME..."
+echo "Step 1: Building self-contained setup.html..."
+node "$SCRIPT_DIR/build-setup.js"
+
+echo "Step 2: Creating $ZIP_NAME..."
 
 # Create staging directory
-mkdir -p "$STAGE/js"
+mkdir -p "$STAGE"
 
-# Copy setup.html (the new chat UI)
-cp "$ROOT/setup.html" "$STAGE/setup.html"
-
-# Copy JS modules
-cp "$ROOT/wizard/setup-agent.js" "$STAGE/js/setup-agent.js"
-cp "$ROOT/wizard/setup.js"       "$STAGE/js/setup.js"
-cp "$ROOT/wizard/discover.js"    "$STAGE/js/discover.js"
-cp "$ROOT/wizard/site-kit-bundle.js" "$STAGE/js/site-kit-bundle.js"
+# Copy the built setup.html (self-contained, no external JS needed)
+cp "$ROOT/dist/setup.html" "$STAGE/setup.html"
 
 # Copy README
 cp "$ROOT/README.txt" "$STAGE/README.txt"
