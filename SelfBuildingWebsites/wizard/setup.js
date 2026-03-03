@@ -152,6 +152,26 @@ export async function setVercelEnvVars(vercelToken, projectId, envVars) {
   return { set: envVars.length };
 }
 
+export async function triggerVercelDeploy(vercelToken, projectName, githubRepo) {
+  // Trigger a deployment via the Vercel API when auto-deploy doesn't fire
+  // (e.g. when the GitHub App doesn't have access to a newly created repo)
+  const data = await vercelApi('/v13/deployments', vercelToken, {
+    method: 'POST',
+    body: JSON.stringify({
+      name: projectName,
+      project: projectName,
+      gitSource: {
+        type: 'github',
+        repo: githubRepo.split('/')[1],
+        org: githubRepo.split('/')[0],
+        ref: 'main'
+      },
+      target: 'production'
+    })
+  });
+  return { deploymentId: data.id, url: data.url, readyState: data.readyState };
+}
+
 // ---- AI API Key Validation ----------------------------------
 
 const APPROVED_MODELS = {

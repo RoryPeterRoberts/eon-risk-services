@@ -8,7 +8,7 @@
 
 import {
   validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
-  validateVercelToken, createVercelProject, setVercelEnvVars,
+  validateVercelToken, createVercelProject, setVercelEnvVars, triggerVercelDeploy,
   validateAIKey, triggerInitialBuild, generateAdminToken, addCustomDomain
 } from './setup.js';
 import { discoverBusiness } from './discover.js';
@@ -524,30 +524,63 @@ This takes 2-5 minutes. Ready?`);
       ]);
       this.ui.setBuildStep('env_vars', 'done', 'Environment configured');
 
-      // Step 5: Wait for deployment
-      this.ui.setBuildStep('deploy', 'running', 'Waiting for Vercel deployment...');
+      // Step 5: Trigger and wait for deployment
+      this.ui.setBuildStep('deploy', 'running', 'Triggering Vercel deployment...');
       this.siteUrl = `https://${this.projectSlug}.vercel.app`;
-      let deployed = false;
-      for (let i = 0; i < 30; i++) {
-        try {
-          await fetch(this.siteUrl, { method: 'HEAD', mode: 'no-cors' });
-          deployed = true;
-          break;
-        } catch {}
-        await new Promise(r => setTimeout(r, 5000));
-        this.ui.setBuildStep('deploy', 'running', `Waiting... (${(i + 1) * 5}s)`);
+      try {
+        const deployResult = await triggerVercelDeploy(this.vercelToken, this.projectSlug, repo);
+        this.ui.setBuildStep('deploy', 'running', 'Deployment triggered, waiting for it to go live...');
+
+        // Poll for deployment readiness (up to 3 minutes)
+        let deployed = false;
+        for (let i = 0; i < 36; i++) {
+          await new Promise(r => setTimeout(r, 5000));
+          try {
+            const r = await fetch(this.siteUrl, { method: 'HEAD' });
+            if (r.ok || r.status === 404) {
+              // 404 is fine — means Vercel is serving the project, just no index yet
+              deployed = true;
+              break;
+            }
+          } catch {}
+          this.ui.setBuildStep('deploy', 'running', `Waiting for deployment... (${(i + 1) * 5}s)`);
+        }
+        this.ui.setBuildStep('deploy', deployed ? 'done' : 'error',
+          deployed ? `Live at ${this.siteUrl}` : 'Deployment may still be in progress');
+      } catch (deployErr) {
+        // Deployment trigger failed — fall back to waiting for auto-deploy
+        this.ui.setBuildStep('deploy', 'running', 'Waiting for auto-deployment...');
+        let deployed = false;
+        for (let i = 0; i < 36; i++) {
+          await new Promise(r => setTimeout(r, 5000));
+          try {
+            const r = await fetch(this.siteUrl, { method: 'HEAD' });
+            if (r.ok || r.status === 404) { deployed = true; break; }
+          } catch {}
+          this.ui.setBuildStep('deploy', 'running', `Waiting... (${(i + 1) * 5}s)`);
+        }
+        this.ui.setBuildStep('deploy', deployed ? 'done' : 'error',
+          deployed ? `Live at ${this.siteUrl}` : 'Deployment may still be in progress');
       }
-      this.ui.setBuildStep('deploy', deployed ? 'done' : 'error',
-        deployed ? `Live at ${this.siteUrl}` : 'May still be deploying');
+
+      // Give Vercel a moment to fully propagate before hitting the API
+      await new Promise(r => setTimeout(r, 5000));
 
       // Step 6: AI build
       this.ui.setBuildStep('ai_build', 'running', 'AI is writing your website...');
-      await new Promise(r => setTimeout(r, 10000));
       try {
         await triggerInitialBuild(this.siteUrl, this.adminToken, this.businessInfo);
         this.ui.setBuildStep('ai_build', 'done', 'Website built!');
       } catch (buildErr) {
-        this.ui.setBuildStep('ai_build', 'error', buildErr.message || 'Build can be retried from admin');
+        // Retry once after a longer delay — deployment may need more time
+        this.ui.setBuildStep('ai_build', 'running', 'Retrying build...');
+        await new Promise(r => setTimeout(r, 15000));
+        try {
+          await triggerInitialBuild(this.siteUrl, this.adminToken, this.businessInfo);
+          this.ui.setBuildStep('ai_build', 'done', 'Website built!');
+        } catch (retryErr) {
+          this.ui.setBuildStep('ai_build', 'error', 'Build can be retried from admin panel');
+        }
       }
 
       await this.enter(STATES.BUILD_COMPLETE);
