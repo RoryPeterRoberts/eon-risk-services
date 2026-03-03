@@ -3328,10 +3328,28 @@ const STATES = {
   DOMAIN_PROMPT:    'DOMAIN_PROMPT',
 };
 
+// ---- localStorage persistence ----
+const STORAGE_KEY = 'buildmysite_state';
+
+function saveState(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function clearState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
+}
+
 // ---- SetupAgent class ----
 class SetupAgent {
   constructor(ui) {
-    this.ui = ui; // { addMessage, addInput, addButtons, addProgress, setInputVisible, clearInput }
+    this.ui = ui;
     this.state = STATES.WELCOME;
     this.os = detectOS();
 
@@ -3354,8 +3372,77 @@ class SetupAgent {
     this.repoUrl = null;
   }
 
+  // Persist current progress
+  _save() {
+    saveState({
+      aiKey: this.aiKey, aiProvider: this.aiProvider, aiModel: this.aiModel,
+      githubToken: this.githubToken, githubLogin: this.githubLogin,
+      vercelToken: this.vercelToken, vercelUsername: this.vercelUsername,
+      businessInfo: this.businessInfo, repoName: this.repoName,
+    });
+  }
+
+  // Restore from localStorage
+  _restore(saved) {
+    this.aiKey = saved.aiKey;
+    this.aiProvider = saved.aiProvider;
+    this.aiModel = saved.aiModel;
+    this.githubToken = saved.githubToken;
+    this.githubLogin = saved.githubLogin;
+    this.vercelToken = saved.vercelToken;
+    this.vercelUsername = saved.vercelUsername;
+    this.businessInfo = saved.businessInfo;
+    this.repoName = saved.repoName;
+  }
+
+  // Figure out which state to resume from based on saved data
+  _resumeState(saved) {
+    if (saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BUILD_CONFIRM;
+    if (saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BIZ_NAME;
+    if (saved.githubToken && saved.aiKey) return STATES.VERCEL_INTRO;
+    if (saved.aiKey) return STATES.GITHUB_INTRO;
+    return null;
+  }
+
   // Start the conversation
   async start() {
+    const saved = loadState();
+    if (saved && saved.aiKey) {
+      // We have saved progress — offer to resume
+      const resumeState = this._resumeState(saved);
+      if (resumeState) {
+        const parts = [];
+        if (saved.aiProvider) parts.push(`AI: ${saved.aiProvider}`);
+        if (saved.githubLogin) parts.push(`GitHub: @${saved.githubLogin}`);
+        if (saved.vercelUsername) parts.push(`Vercel: ${saved.vercelUsername}`);
+        if (saved.businessInfo) parts.push(`Business: ${saved.businessInfo.name}`);
+
+        this.ui.addMessage('agent', `Welcome back! I have your previous progress saved:\n\n**${parts.join(' · ')}**\n\nWant to pick up where you left off, or start fresh?`);
+
+        this.ui.addButtons([
+          { label: 'Continue', action: 'resume' },
+          { label: 'Start fresh', action: 'start-fresh' },
+        ]);
+
+        this.ui.onAction = async (action) => {
+          if (action === 'resume') {
+            this._restore(saved);
+            // Show progress pips for completed steps
+            let step = 0;
+            if (this.aiKey) step = 1;
+            if (this.githubToken) step = 2;
+            if (this.vercelToken) step = 3;
+            if (this.businessInfo) step = 4;
+            this.ui.updateProgress(step);
+            await this.enter(resumeState);
+          } else {
+            clearState();
+            await this.enter(STATES.WELCOME);
+          }
+        };
+        return;
+      }
+    }
     await this.enter(STATES.WELCOME);
   }
 
@@ -3485,6 +3572,7 @@ First things first — I need an AI API key. This powers the brain that builds y
     this.aiKey = key;
     this.aiProvider = detected.provider;
     this.aiModel = detected.model;
+    this._save();
 
     this.ui.addMessage('agent', `AI key validated. Using <strong>${detected.model}</strong>. Nice one.`);
     this.ui.updateProgress(1);
@@ -3555,6 +3643,7 @@ Once you have an account, I'll need a personal access token. Let me show you how
 
     this.githubToken = token;
     this.githubLogin = result.login;
+    this._save();
 
     this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
     this.ui.updateProgress(2);
@@ -3621,6 +3710,7 @@ The easiest way: sign up with your GitHub account (one click).`);
 
     this.vercelToken = token;
     this.vercelUsername = result.username || result.name;
+    this._save();
 
     this.ui.addMessage('agent', `Vercel connected as <strong>${this.vercelUsername}</strong>. All three connections are set up!`);
     this.ui.updateProgress(3);
@@ -3669,6 +3759,7 @@ The easiest way: sign up with your GitHub account (one click).`);
 
     // Generate repo slug
     this.repoName = this.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'my-website';
+    this._save();
 
     await this.enter(STATES.BIZ_REVIEW);
   }
@@ -3849,11 +3940,24 @@ This takes 2-5 minutes. Ready?`);
       await this.enter(STATES.BUILD_COMPLETE);
 
     } catch (err) {
-      this.ui.addMessage('agent', `Something went wrong: <strong>${err.message}</strong>. You can retry from the admin panel once the site deploys.`);
+      this.ui.addMessage('agent', `Something went wrong: <strong>${err.message}</strong>`);
+      this.ui.addButtons([
+        { label: 'Retry build', action: 'retry-build' },
+        { label: 'Start fresh', action: 'start-fresh' },
+      ]);
+      this.ui.onAction = async (action) => {
+        if (action === 'retry-build') {
+          await this.enter(STATES.BUILD_CONFIRM);
+        } else {
+          clearState();
+          location.reload();
+        }
+      };
     }
   }
 
   async doBuildComplete() {
+    clearState();
     this.ui.updateProgress(5);
 
     this.ui.addMessage('agent', `<div class="chat-card chat-card--success">
