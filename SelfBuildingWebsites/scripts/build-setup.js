@@ -44,7 +44,10 @@ function escapeScriptClose(code) {
 // Process each file
 const cleanSetup = escapeScriptClose(stripModuleSyntax(setupJs));
 const cleanDiscover = escapeScriptClose(stripModuleSyntax(discoverJs));
-const cleanBundle = escapeScriptClose(stripModuleSyntax(bundleJs));
+const cleanBundle = escapeScriptClose(stripModuleSyntax(bundleJs))
+  // The bundle declares 'const SITE_KIT_FILES = {...}' but setup.js already has
+  // 'let SITE_KIT_FILES = null'. Convert to assignment to avoid redeclaration.
+  .replace(/^const SITE_KIT_FILES\s*=/m, 'SITE_KIT_FILES =');
 
 // For setup-agent.js, also remove the setSiteKitFiles call since we'll do it after all scripts load
 let cleanAgent = escapeScriptClose(stripModuleSyntax(agentJs))
