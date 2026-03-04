@@ -10,7 +10,8 @@ import {
   startGitHubDeviceFlow, pollGitHubToken,
   validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
   validateVercelToken, createVercelProject, setVercelEnvVars, triggerVercelDeploy,
-  validateAIKey, triggerSteppedBuild, generateAdminToken, addCustomDomain
+  validateAIKey, triggerSteppedBuild, generateAdminToken, addCustomDomain,
+  generateImage, pushImageToRepo
 } from './setup.js';
 import { discoverBusiness } from './discover.js';
 import { SITE_KIT_FILES } from './site-kit-bundle.js';
@@ -224,7 +225,9 @@ export class SetupAgent {
       case 'confirm-build':
         return this.enter(STATES.BUILD_RUNNING);
       case 'edit-info':
-        return this.enter(STATES.BIZ_NAME);
+        return this.doEditForm();
+      case 'save-edits':
+        return this.doSaveEdits(data);
       case 'confirm-info':
         return this.enter(STATES.PAGE_SELECT);
       case 'skip-domain':
@@ -239,6 +242,8 @@ export class SetupAgent {
         return this.enter(STATES.DOMAIN_PROMPT);
       case 'upload-images':
         return this.doImageUploadProcess();
+      case 'generate-images':
+        return this.doGenerateImages();
       default:
         break;
     }
@@ -575,8 +580,9 @@ The easiest way: sign up with your GitHub account (one click).`);
           this.ui.setInputVisible(true, 'Business name and details...');
           this.state = STATES.BIZ_NAME;
         } else {
-          // Generate repo slug and continue
-          this.repoName = this.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'my-website';
+          // Generate repo slug from extracted name (not raw input)
+          const slugName = (this.businessInfo && this.businessInfo.name) || this.businessName || 'my-website';
+          this.repoName = slugName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
           this._save();
           await this.enter(STATES.BIZ_REVIEW);
         }
@@ -584,8 +590,9 @@ The easiest way: sign up with your GitHub account (one click).`);
       return;
     }
 
-    // Generate repo slug
-    this.repoName = this.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'my-website';
+    // Generate repo slug from extracted name (not raw input)
+    const slugName = (this.businessInfo && this.businessInfo.name) || this.businessName || 'my-website';
+    this.repoName = slugName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
     this._save();
 
     await this.enter(STATES.BIZ_REVIEW);
@@ -630,6 +637,63 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.ui.onAction = async (action) => {
       await this.handleAction(action);
     };
+  }
+
+  doEditForm() {
+    const info = this.businessInfo || {};
+    const fields = [
+      { key: 'name',        label: 'Name',        value: info.name || '' },
+      { key: 'type',        label: 'Type',        value: info.type || '' },
+      { key: 'description', label: 'Description', value: info.description || '', textarea: true },
+      { key: 'address',     label: 'Address',     value: info.address || '' },
+      { key: 'phone',       label: 'Phone',       value: info.phone || '' },
+      { key: 'email',       label: 'Email',       value: info.email || '' },
+      { key: 'hours',       label: 'Hours',       value: info.hours || '' },
+      { key: 'tagline',     label: 'Tagline',     value: info.tagline || '' },
+      { key: 'services',    label: 'Services',    value: Array.isArray(info.services) ? info.services.join(', ') : (info.services || '') },
+    ];
+
+    let html = '<div class="chat-card"><div class="chat-card__title">Edit your business info</div>';
+    html += '<div class="edit-form" id="biz-edit-form">';
+    for (const f of fields) {
+      if (f.textarea) {
+        html += `<div class="edit-field"><label>${f.label}</label><textarea data-key="${f.key}" rows="3">${f.value}</textarea></div>`;
+      } else {
+        html += `<div class="edit-field"><label>${f.label}</label><input type="text" data-key="${f.key}" value="${f.value.replace(/"/g, '&quot;')}"></div>`;
+      }
+    }
+    html += '</div></div>';
+
+    this.ui.addMessage('agent', html, true);
+
+    this.ui.addButtons([
+      { label: 'Save changes', action: 'save-edits' },
+    ]);
+
+    this.ui.onAction = async (action) => {
+      await this.handleAction(action);
+    };
+  }
+
+  doSaveEdits() {
+    const form = document.getElementById('biz-edit-form');
+    if (form) {
+      const inputs = form.querySelectorAll('input[data-key], textarea[data-key]');
+      inputs.forEach(el => {
+        const key = el.dataset.key;
+        let val = el.value.trim();
+        if (key === 'services') {
+          val = val ? val.split(',').map(s => s.trim()).filter(Boolean) : [];
+        }
+        this.businessInfo[key] = val;
+      });
+    }
+    // Regenerate repo name from the (possibly edited) business name
+    const name = this.businessInfo.name || this.businessName || 'my-website';
+    this.repoName = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
+    this._save();
+    this.ui.addMessage('agent', 'Updated! Here\'s the revised info:');
+    return this.doBizReview();
   }
 
   // ================================================================
@@ -858,6 +922,21 @@ This takes 2-5 minutes. Ready?`);
 <p class="chat-hint" style="margin-top:12px">Save your admin token — you'll need it to log into the admin panel and make changes.</p>
 </div>`, true);
 
+    // Next-steps onboarding card
+    this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">What's next?</div>
+<ol class="chat-steps">
+<li><strong>Save your admin token</strong> (above) — you'll need it every time you sign in</li>
+<li><strong>Go to your admin panel</strong> — this is where you make changes to your site</li>
+<li><strong>Sign in with your admin token</strong></li>
+<li><strong>Tell the AI what you'd like to change</strong> — new content, colours, images, pages</li>
+</ol>
+</div>`, true);
+
+    this.ui.addButtons([
+      { label: 'Open Admin Panel', action: 'open-admin', url: `${this.siteUrl}/admin.html` },
+    ]);
+
     await this.enter(STATES.IMAGE_UPLOAD);
   }
 
@@ -884,10 +963,13 @@ This takes 2-5 minutes. Ready?`);
 <div id="upload-status" style="margin-top:8px"></div>
 </div>`, true);
 
-    this.ui.addButtons([
-      { label: 'Upload images', action: 'upload-images' },
-      { label: 'Skip for now', action: 'skip-images' },
-    ]);
+    const buttons = [];
+    if (this.aiProvider === 'google') {
+      buttons.push({ label: 'Generate with AI', action: 'generate-images' });
+    }
+    buttons.push({ label: 'Upload images', action: 'upload-images' });
+    buttons.push({ label: 'Skip for now', action: 'skip-images' });
+    this.ui.addButtons(buttons);
 
     this.ui.onAction = async (action) => {
       await this.handleAction(action);
@@ -955,34 +1037,78 @@ This takes 2-5 minutes. Ready?`);
     await this.enter(STATES.DOMAIN_PROMPT);
   }
 
+  async doGenerateImages() {
+    const info = this.businessInfo || {};
+    const name = info.name || 'the business';
+    const type = info.type || 'business';
+    const location = info.address || '';
+
+    this.ui.addMessage('agent', 'Generating your logo...', true);
+
+    try {
+      const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
+      const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+
+      this.ui.addMessage('agent', 'Logo done. Generating hero banner...', true);
+
+      const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
+      const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+
+      this.ui.addMessage('agent', 'Images generated. Pushing to your site...', true);
+
+      // Push images to GitHub repo
+      const repo = `${this.githubLogin}/${this.repoName}`;
+      await pushImageToRepo(this.githubToken, repo, 'images/logo.png', logoBase64, 'Add AI-generated logo');
+      await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
+
+      // Tell the agent to apply the images
+      this.ui.addMessage('agent', 'Applying images to your site...', true);
+      try {
+        const applyMsg = `Images have been added to the repo. Apply them to the site:
+- Logo: /images/logo.png
+- Hero: /images/hero.png
+
+For the logo: update the nav__brand in index.html (and all other pages) to include an <img src="/images/logo.png" alt="${name}" style="height:36px;margin-right:8px;vertical-align:middle"> before the text.
+For the hero: add a background-image style to the .hero section in css/style.css in the AI-GENERATED section: background-image: url('/images/hero.png'); background-size: cover; background-position: center;
+Keep all CSS classes and structure intact.`;
+        await fetch(`${this.siteUrl}/api/agent`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.adminToken}`
+          },
+          body: JSON.stringify({ mode: 'modify', message: applyMsg, businessInfo: this.businessInfo })
+        });
+      } catch {}
+
+      this.ui.addMessage('agent', 'Images generated and applied to your site!');
+    } catch (err) {
+      this.ui.addMessage('agent', `Image generation ran into an issue: ${err.message}. No worries — you can add images later from the admin panel.`);
+    }
+
+    await this.enter(STATES.DOMAIN_PROMPT);
+  }
+
   // ================================================================
   // Phase H: Domain (optional)
   // ================================================================
 
   doDomainPrompt() {
-    this.ui.addMessage('agent', 'Want to connect your own domain (like mybusiness.ie)?');
+    this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">Custom domain</div>
+<p>Already have a domain? Type it below.</p>
+<p>Need one? We recommend <a href="https://www.blacknight.com" target="_blank" rel="noopener"><strong>Blacknight</strong></a> for .ie or <a href="https://www.namecheap.com" target="_blank" rel="noopener"><strong>Namecheap</strong></a> for .com (around EUR 10/year).</p>
+</div>`, true);
+
+    this.ui.setInputVisible(true, 'e.g. mybusiness.ie');
+    this.state = STATES.DOMAIN_PROMPT;
 
     this.ui.addButtons([
-      { label: 'Yes, add a domain', action: 'show-domain-form' },
-      { label: "No, I'm happy with .vercel.app", action: 'skip-domain' },
+      { label: "Skip — I'll use .vercel.app", action: 'skip-domain' },
     ]);
 
     this.ui.onAction = async (action) => {
-      if (action === 'show-domain-form') {
-        this.ui.addMessage('agent', `<div class="chat-card">
-<div class="chat-card__title">Connect your domain</div>
-<p>Buy a domain from one of these registrars (around EUR 10/year):</p>
-<ul class="chat-steps">
-<li><a href="https://www.blacknight.com" target="_blank" rel="noopener"><strong>Blacknight</strong></a> — best for .ie domains</li>
-<li><a href="https://www.namecheap.com" target="_blank" rel="noopener"><strong>Namecheap</strong></a> — best for .com domains</li>
-</ul>
-<p>Once you have a domain, type it below (e.g. <code>mybusiness.ie</code>).</p>
-</div>`, true);
-        this.ui.setInputVisible(true, 'mybusiness.ie');
-        this.state = STATES.DOMAIN_PROMPT;
-      } else {
-        await this.handleAction(action);
-      }
+      await this.handleAction(action);
     };
   }
 
@@ -1007,8 +1133,86 @@ This takes 2-5 minutes. Ready?`);
 <p class="chat-hint">DNS takes 5-30 minutes to propagate (sometimes up to 48 hours). Once it does, your site will be live at <strong>${domain}</strong> with free SSL.</p>
 </div>`, true);
 
+      // Registrar-specific instructions
+      this.ui.addMessage('agent', 'Where did you buy your domain? I\'ll show you exactly where to add the DNS records.');
+
+      this.ui.addButtons([
+        { label: 'Namecheap', action: 'dns-namecheap' },
+        { label: 'GoDaddy', action: 'dns-godaddy' },
+        { label: 'Cloudflare', action: 'dns-cloudflare' },
+        { label: 'Blacknight', action: 'dns-blacknight' },
+      ]);
+
+      this.ui.onAction = async (action) => {
+        this._showDnsInstructions(action);
+      };
+
     } catch (err) {
       this.ui.addMessage('agent', `Couldn't add the domain: ${err.message}. You can add it manually from <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">Vercel's dashboard</a>.`);
     }
+  }
+
+  _showDnsInstructions(registrar) {
+    const instructions = {
+      'dns-namecheap': `<div class="chat-card">
+<div class="chat-card__title">Namecheap DNS setup</div>
+<ol class="chat-steps">
+<li>Log in to <a href="https://www.namecheap.com" target="_blank" rel="noopener">namecheap.com</a></li>
+<li>Go to <strong>Domain List</strong> and click <strong>Manage</strong> next to your domain</li>
+<li>Click the <strong>Advanced DNS</strong> tab</li>
+<li>Delete any existing A records or CNAME records for @ and www</li>
+<li>Add a new <strong>A Record</strong>: Host = <code>@</code>, Value = <code>76.76.21.21</code></li>
+<li>Add a new <strong>CNAME Record</strong>: Host = <code>www</code>, Value = <code>cname.vercel-dns.com</code></li>
+<li>Save changes</li>
+</ol>
+</div>`,
+      'dns-godaddy': `<div class="chat-card">
+<div class="chat-card__title">GoDaddy DNS setup</div>
+<ol class="chat-steps">
+<li>Log in to <a href="https://www.godaddy.com" target="_blank" rel="noopener">godaddy.com</a></li>
+<li>Go to <strong>My Products</strong> and find your domain</li>
+<li>Click <strong>DNS</strong> (or Manage DNS)</li>
+<li>Edit the <strong>A record</strong> for @ — change the value to <code>76.76.21.21</code></li>
+<li>Edit or add a <strong>CNAME record</strong> for www — set the value to <code>cname.vercel-dns.com</code></li>
+<li>Save</li>
+</ol>
+</div>`,
+      'dns-cloudflare': `<div class="chat-card">
+<div class="chat-card__title">Cloudflare DNS setup</div>
+<ol class="chat-steps">
+<li>Log in to <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">dash.cloudflare.com</a></li>
+<li>Select your domain</li>
+<li>Go to <strong>DNS</strong> in the sidebar</li>
+<li>Add an <strong>A record</strong>: Name = <code>@</code>, IPv4 = <code>76.76.21.21</code>, Proxy = <strong>DNS only</strong> (grey cloud)</li>
+<li>Add a <strong>CNAME record</strong>: Name = <code>www</code>, Target = <code>cname.vercel-dns.com</code>, Proxy = <strong>DNS only</strong> (grey cloud)</li>
+<li>Important: set both records to <strong>DNS only</strong> (not Proxied) so Vercel SSL works</li>
+</ol>
+</div>`,
+      'dns-blacknight': `<div class="chat-card">
+<div class="chat-card__title">Blacknight DNS setup</div>
+<ol class="chat-steps">
+<li>Log in to <a href="https://cp.blacknight.com" target="_blank" rel="noopener">cp.blacknight.com</a></li>
+<li>Go to <strong>DNS</strong> &gt; <strong>Zone Editor</strong></li>
+<li>Select your domain</li>
+<li>Add an <strong>A record</strong>: Name = <code>@</code>, Value = <code>76.76.21.21</code></li>
+<li>Add a <strong>CNAME record</strong>: Name = <code>www</code>, Value = <code>cname.vercel-dns.com</code></li>
+<li>Save changes</li>
+</ol>
+</div>`,
+    };
+
+    const html = instructions[registrar] || `<div class="chat-card">
+<div class="chat-card__title">Generic DNS setup</div>
+<ol class="chat-steps">
+<li>Log in to your domain registrar</li>
+<li>Find the DNS settings for your domain</li>
+<li>Add an <strong>A record</strong>: Name = <code>@</code>, Value = <code>76.76.21.21</code></li>
+<li>Add a <strong>CNAME record</strong>: Name = <code>www</code>, Value = <code>cname.vercel-dns.com</code></li>
+<li>Save changes</li>
+</ol>
+</div>`;
+
+    this.ui.addMessage('agent', html, true);
+    this.ui.addMessage('agent', 'That\'s it! Your site will be live on your domain once DNS propagates (usually 5-30 minutes). Enjoy your new website!');
   }
 }

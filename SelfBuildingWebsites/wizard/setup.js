@@ -296,6 +296,62 @@ export async function validateAIKey(apiKey, model) {
   }
 }
 
+// ---- AI Image Generation (Gemini) ---------------------------
+
+export async function generateImage(apiKey, prompt) {
+  const MAX_RETRIES = 3;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+      method: 'POST',
+      headers: {
+        'x-goog-api-key': apiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseModalities: ['TEXT', 'IMAGE']
+        }
+      })
+    });
+    if (r.status === 429 && attempt < MAX_RETRIES) {
+      const data = await r.json().catch(() => ({}));
+      const delay = (data.retryDelay || 60) * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+      continue;
+    }
+    if (!r.ok) {
+      const text = await r.text();
+      throw new Error(`Image generation failed: ${r.status} ${text}`);
+    }
+    const data = await r.json();
+    const parts = data.candidates?.[0]?.content?.parts || [];
+    const imagePart = parts.find(p => p.inlineData?.data);
+    if (!imagePart) throw new Error('No image returned from Gemini');
+    return imagePart.inlineData.data; // base64 PNG
+  }
+}
+
+export async function pushImageToRepo(token, repo, path, base64Data, message) {
+  let sha = null;
+  try {
+    const existing = await githubApi(`/repos/${repo}/contents/${path}`, token);
+    sha = existing.sha;
+  } catch {}
+
+  const body = {
+    message,
+    content: base64Data, // already base64-encoded
+    branch: 'main'
+  };
+  if (sha) body.sha = sha;
+
+  return githubApi(`/repos/${repo}/contents/${path}`, token, {
+    method: 'PUT',
+    body: JSON.stringify(body)
+  });
+}
+
 // ---- Trigger Initial Build (stepped) ------------------------
 // Breaks the build into multiple small requests, each under 60s,
 // so it works on Vercel's hobby plan (60s function timeout).
@@ -314,20 +370,30 @@ function buildBusinessBlock(info) {
   return parts.join('\n');
 }
 
-async function agentCall(siteUrl, adminToken, message, businessInfo) {
-  const r = await fetch(`${siteUrl}/api/agent`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${adminToken}`
-    },
-    body: JSON.stringify({ mode: 'modify', message, businessInfo })
-  });
-  if (!r.ok) {
-    const data = await r.json().catch(() => ({}));
-    throw new Error(data.error || `Agent call failed: ${r.status}`);
+async function agentCall(siteUrl, adminToken, message, businessInfo, onRetry) {
+  const MAX_RETRIES = 3;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const r = await fetch(`${siteUrl}/api/agent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${adminToken}`
+      },
+      body: JSON.stringify({ mode: 'modify', message, businessInfo })
+    });
+    if (r.status === 429 && attempt < MAX_RETRIES) {
+      const data = await r.json().catch(() => ({}));
+      const delay = (data.retryDelay || 60) * 1000;
+      if (onRetry) onRetry(attempt + 1, Math.round(delay / 1000));
+      await new Promise(resolve => setTimeout(resolve, delay));
+      continue;
+    }
+    if (!r.ok) {
+      const data = await r.json().catch(() => ({}));
+      throw new Error(data.error || `Agent call failed: ${r.status}`);
+    }
+    return r.json();
   }
-  return r.json();
 }
 
 // ---- Page prompt registry (keyed by page ID) ----
@@ -390,8 +456,15 @@ export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onS
   const results = [];
   for (let i = 0; i < steps.length; i++) {
     if (onStep) onStep(i, steps.length, steps[i].label);
-    const result = await agentCall(siteUrl, adminToken, steps[i].message, businessInfo);
+    const onRetry = (attempt, delaySec) => {
+      if (onStep) onStep(i, steps.length, `Rate limited — waiting ${delaySec}s (retry ${attempt}/3)...`);
+    };
+    const result = await agentCall(siteUrl, adminToken, steps[i].message, businessInfo, onRetry);
     results.push(result);
+    // Pace requests to avoid hitting rate limits on free-tier APIs
+    if (i < steps.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
   }
   if (onStep) onStep(steps.length, steps.length, 'Done');
   return results;
