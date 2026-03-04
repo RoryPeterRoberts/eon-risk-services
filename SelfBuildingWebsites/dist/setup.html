@@ -5852,13 +5852,15 @@ The easiest way: sign up with your GitHub account (one click).`);
         this.aiModel
       );
     } catch (err) {
-      this.businessInfo = { name: this.businessName, found: false };
+      console.error('Discovery failed:', err);
+      this.businessInfo = { name: this.businessName, found: false, _error: err.message };
     }
 
     if (this.businessInfo.found === false) {
       this.businessInfo = this.businessInfo || {};
       this.businessInfo.name = this.businessName;
-      this.ui.addMessage('agent', `I couldn't find details online for "${this.businessName}". You can try again with more detail (e.g. add the town or what you do), or continue and fill in details manually.`);
+      const errDetail = this.businessInfo._error ? ` <span style="font-size:0.8rem;color:var(--text-light)">(${this.businessInfo._error})</span>` : '';
+      this.ui.addMessage('agent', `I couldn't find details online for "${this.businessName}".${errDetail} You can try again with more detail (e.g. add the town or what you do), or continue and fill in details manually.`);
       this.ui.addButtons([
         { label: 'Try again', action: 'retry-discover' },
         { label: 'Continue without', action: 'skip-discover' },
