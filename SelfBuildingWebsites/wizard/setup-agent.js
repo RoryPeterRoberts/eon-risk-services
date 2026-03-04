@@ -423,7 +423,31 @@ Do you already have a GitHub account?`);
       this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
       this.ui.updateProgress(2);
 
-      await this.enter(STATES.VERCEL_INTRO);
+      // Prompt to install Vercel GitHub App
+      const vercelAppUrl = 'https://github.com/apps/vercel';
+      this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">One more GitHub step</div>
+<p>Vercel needs permission to read your GitHub repos so it can auto-deploy your site. Click below to install the Vercel app on your GitHub account.</p>
+<p class="chat-hint">On the GitHub page, click <strong>"Install"</strong> and allow access to <strong>all repositories</strong> (or select the one we'll create). Then come back here.</p>
+</div>`, true);
+
+      this.ui.addButtons([
+        { label: 'Install Vercel on GitHub', action: 'install-vercel-app', url: vercelAppUrl },
+        { label: 'Already installed', action: 'vercel-app-done' },
+      ]);
+
+      this.ui.onAction = async (action) => {
+        if (action === 'install-vercel-app' || action === 'vercel-app-done') {
+          if (action === 'install-vercel-app') {
+            this.ui.addMessage('agent', `Once you've clicked <strong>Install</strong> on GitHub, come back here.`);
+            this.ui.addButtons([
+              { label: 'Done — continue', action: 'vercel-app-done' },
+            ]);
+            return;
+          }
+          await this.enter(STATES.VERCEL_INTRO);
+        }
+      };
     } catch (err) {
       this.ui.addMessage('agent', `GitHub authorisation timed out or was denied. No worries — let's try again.`);
       this.ui.addButtons([
