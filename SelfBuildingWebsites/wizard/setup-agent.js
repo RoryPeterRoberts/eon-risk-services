@@ -375,12 +375,14 @@ Do you already have a GitHub account?`);
 
       this.ui.addMessage('agent', `<div class="chat-card">
 <div class="chat-card__title">Connect your GitHub account</div>
-<p>Click the button below — it will open GitHub in a new tab. Sign in (if needed) and click <strong>"Authorize"</strong>.</p>
+<p>Click the button below — it will open GitHub in a new tab.</p>
+<p>When GitHub asks for a code, enter: <strong style="font-size:1.3em;letter-spacing:0.1em;user-select:all">${flow.user_code}</strong></p>
+<p>Then click <strong>"Authorize"</strong>.</p>
 <p class="chat-hint">I'll detect it automatically once you've approved.</p>
 </div>`, true);
 
       this.ui.addButtons([
-        { label: 'Connect GitHub', action: 'open-github-auth', url: `${flow.verification_uri}?user_code=${flow.user_code}` },
+        { label: 'Connect GitHub', action: 'open-github-auth', url: flow.verification_uri },
       ]);
 
       this.ui.onAction = async (action) => {
