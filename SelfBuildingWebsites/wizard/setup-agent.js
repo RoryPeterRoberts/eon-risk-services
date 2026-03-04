@@ -842,6 +842,21 @@ This takes 2-5 minutes. Ready?`);
           this.businessInfo.logo_url = '/images/logo.png';
           this.businessInfo.hero_url = '/images/hero.png';
           this.ui.setBuildStep('gen_images', 'done', 'Logo & hero generated');
+
+          // Show image previews in the chat
+          this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">Your AI-generated images</div>
+<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+  <div style="text-align:center">
+    <img src="data:image/png;base64,${logoBase64}" alt="Generated logo" style="width:80px;height:80px;border-radius:8px;border:1px solid var(--border)">
+    <div style="font-size:0.8rem;color:var(--text-light);margin-top:4px">Logo</div>
+  </div>
+  <div style="text-align:center;flex:1;min-width:200px">
+    <img src="data:image/png;base64,${heroBase64}" alt="Generated hero" style="width:100%;max-width:400px;border-radius:8px;border:1px solid var(--border)">
+    <div style="font-size:0.8rem;color:var(--text-light);margin-top:4px">Hero banner</div>
+  </div>
+</div>
+</div>`, true);
         } catch (imgErr) {
           this.ui.setBuildStep('gen_images', 'error', imgErr.message || 'Skipped — you can add images later');
         }
