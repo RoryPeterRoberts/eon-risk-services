@@ -7,6 +7,7 @@
 // ============================================================
 
 import {
+  startGitHubDeviceFlow, pollGitHubToken,
   validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
   validateVercelToken, createVercelProject, setVercelEnvVars, triggerVercelDeploy,
   validateAIKey, triggerSteppedBuild, generateAdminToken, addCustomDomain
@@ -202,7 +203,7 @@ export class SetupAgent {
       case STATES.AI_KEY_VALIDATE:
         return this.enter(STATES.AI_KEY_VALIDATE, value);
       case STATES.GITHUB_TOKEN:
-        return this.enter(STATES.GITHUB_VALIDATE, value);
+        return; // Device flow — no text input needed
       case STATES.VERCEL_TOKEN:
         return this.enter(STATES.VERCEL_VALIDATE, value);
       case STATES.BIZ_NAME:
@@ -357,57 +358,81 @@ Do you already have a GitHub account?`);
     this.ui.onAction = async (action) => {
       if (action === 'has-github' || action === 'no-github') {
         if (action === 'no-github') {
-          this.ui.addMessage('agent', `No problem — sign up at <a href="${signupUrl}" target="_blank" rel="noopener">github.com/signup</a> (it's free). Come back here when you're done.
-
-Once you have an account, I'll need a personal access token. Let me show you how.`);
+          this.ui.addMessage('agent', `No problem — sign up at <a href="${signupUrl}" target="_blank" rel="noopener">github.com/signup</a> (it's free). Come back here when you're done.`);
         }
         await this.enter(STATES.GITHUB_TOKEN);
       }
     };
   }
 
-  doGitHubToken() {
-    const os = this.os;
-    const tokenUrl = 'https://github.com/settings/tokens/new?scopes=repo&description=BuildMySite';
+  async doGitHubToken() {
+    this.ui.setInputVisible(false);
+    this.ui.addMessage('agent', 'Starting GitHub connection...', true);
 
-    this.ui.addMessage('agent', `<div class="chat-card">
-<div class="chat-card__title">Create a GitHub token</div>
-<ol class="chat-steps">
-<li>Go to <a href="${tokenUrl}" target="_blank" rel="noopener">github.com/settings/tokens</a> — this link pre-fills the settings</li>
-<li>Set expiration to <strong>90 days</strong> (or "No expiration")</li>
-<li>Click <strong>"Generate token"</strong> at the bottom</li>
-<li>Copy the token (starts with <code>ghp_</code>) and paste it below</li>
-</ol>
-<p class="chat-hint">This token lets me create a repo and push your website files. You can revoke it anytime.</p>
+    try {
+      const flow = await startGitHubDeviceFlow();
+      this._deviceCode = flow.device_code;
+
+      this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">Connect your GitHub account</div>
+<p>Click the button below — it will open GitHub in a new tab. Sign in (if needed) and click <strong>"Authorize"</strong>.</p>
+<p class="chat-hint">I'll detect it automatically once you've approved.</p>
 </div>`, true);
 
-    this.ui.setInputVisible(true, 'Paste your GitHub token here (ghp_...)');
-    this.state = STATES.GITHUB_TOKEN;
+      this.ui.addButtons([
+        { label: 'Connect GitHub', action: 'open-github-auth', url: `${flow.verification_uri}?user_code=${flow.user_code}` },
+      ]);
+
+      this.ui.onAction = async (action) => {
+        if (action === 'open-github-auth') {
+          this.ui.addMessage('agent', `Waiting for you to authorise on GitHub...`, true);
+          await this.enter(STATES.GITHUB_VALIDATE);
+        }
+      };
+    } catch (err) {
+      this.ui.addMessage('agent', `Couldn't start GitHub connection: ${err.message}. Let's try again.`);
+      this.ui.addButtons([
+        { label: 'Try again', action: 'retry-github' },
+      ]);
+      this.ui.onAction = async (action) => {
+        if (action === 'retry-github') await this.enter(STATES.GITHUB_TOKEN);
+      };
+    }
   }
 
-  async doGitHubValidate(token) {
-    if (!token || !token.trim()) return;
-    token = token.trim();
+  async doGitHubValidate() {
+    try {
+      const token = await pollGitHubToken(this._deviceCode);
 
-    this.ui.setInputVisible(false);
-    this.ui.addMessage('agent', 'Checking your GitHub token...', true);
+      const result = await validateGitHubToken(token);
+      if (!result.valid) {
+        this.ui.addMessage('agent', `Got a token but it didn't validate: ${result.error || 'unknown error'}. Let's try again.`);
+        this.ui.addButtons([
+          { label: 'Try again', action: 'retry-github' },
+        ]);
+        this.ui.onAction = async (action) => {
+          if (action === 'retry-github') await this.enter(STATES.GITHUB_TOKEN);
+        };
+        return;
+      }
 
-    const result = await validateGitHubToken(token);
-    if (!result.valid) {
-      this.ui.addMessage('agent', `That token didn't work: ${result.error || 'invalid'}. Make sure you copied the full token (starts with <code>ghp_</code>).`);
-      this.ui.setInputVisible(true, 'Paste your GitHub token here (ghp_...)');
-      this.state = STATES.GITHUB_TOKEN;
-      return;
+      this.githubToken = token;
+      this.githubLogin = result.login;
+      this._save();
+
+      this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
+      this.ui.updateProgress(2);
+
+      await this.enter(STATES.VERCEL_INTRO);
+    } catch (err) {
+      this.ui.addMessage('agent', `GitHub authorisation timed out or was denied. No worries — let's try again.`);
+      this.ui.addButtons([
+        { label: 'Try again', action: 'retry-github' },
+      ]);
+      this.ui.onAction = async (action) => {
+        if (action === 'retry-github') await this.enter(STATES.GITHUB_TOKEN);
+      };
     }
-
-    this.githubToken = token;
-    this.githubLogin = result.login;
-    this._save();
-
-    this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
-    this.ui.updateProgress(2);
-
-    await this.enter(STATES.VERCEL_INTRO);
   }
 
   // ================================================================

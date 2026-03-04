@@ -12,8 +12,7 @@ export const SITE_KIT_FILES = {
     "dev": "vercel dev"
   },
   "dependencies": {
-    "resend": "^4.0.0",
-    "@vercel/blob": "^0.27.0"
+    "resend": "^4.0.0"
   }
 }
 `,
@@ -4110,11 +4109,9 @@ export default async function handler(req, res) {
 
   'api/upload.js': `// ============================================================
 // BUILDMYSITE — Image Upload Handler
-// Accepts image uploads (logo, hero), stores in Vercel Blob,
-// returns the public URL.
+// Accepts image uploads (logo, hero), commits to GitHub repo
+// via Contents API. Returns relative URL for the site.
 // ============================================================
-
-import { put } from '@vercel/blob';
 
 // Rate limiting
 const uploads = new Map();
@@ -4159,25 +4156,26 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  // Check Blob token
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  // Check GitHub config
+  const ghToken = process.env.GITHUB_TOKEN;
+  const ghRepo = process.env.GITHUB_REPO;
+
+  if (!ghToken || !ghRepo) {
     return res.status(500).json({
-      error: 'Image storage not configured',
-      hint: 'Set BLOB_READ_WRITE_TOKEN in your Vercel project settings.'
+      error: 'GitHub not configured',
+      hint: 'Set GITHUB_TOKEN and GITHUB_REPO in your Vercel project settings.'
     });
   }
 
   try {
     const contentType = req.headers['content-type'] || '';
 
-    // Expect raw body with content-type header
     if (!ALLOWED_TYPES.includes(contentType.split(';')[0])) {
       return res.status(400).json({
         error: \`Invalid file type: \${contentType}. Allowed: \${ALLOWED_TYPES.join(', ')}\`
       });
     }
 
-    // Get filename from query param or header
     const filename = req.query.filename || req.headers['x-filename'] || \`upload-\${Date.now()}\`;
 
     // Read body as buffer
@@ -4195,14 +4193,44 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Empty file' });
     }
 
-    // Upload to Vercel Blob
-    const blob = await put(filename, body, {
-      access: 'public',
-      contentType: contentType.split(';')[0],
+    const base64Content = body.toString('base64');
+    const path = \`images/\${filename}\`;
+    const apiUrl = \`https://api.github.com/repos/\${ghRepo}/contents/\${path}\`;
+    const headers = {
+      Authorization: \`token \${ghToken}\`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    };
+
+    // Check if file already exists (need SHA to update)
+    let sha;
+    const existing = await fetch(apiUrl, { headers });
+    if (existing.ok) {
+      const data = await existing.json();
+      sha = data.sha;
+    }
+
+    // Commit to GitHub
+    const commitBody = {
+      message: \`Upload \${filename}\`,
+      content: base64Content,
+      branch: 'main',
+    };
+    if (sha) commitBody.sha = sha;
+
+    const commitRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(commitBody),
     });
 
+    if (!commitRes.ok) {
+      const err = await commitRes.json();
+      throw new Error(err.message || 'GitHub commit failed');
+    }
+
     return res.status(200).json({
-      url: blob.url,
+      url: \`/\${path}\`,
       size: body.length,
       filename,
     });

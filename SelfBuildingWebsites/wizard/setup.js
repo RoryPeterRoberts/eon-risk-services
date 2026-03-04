@@ -36,6 +36,52 @@ async function githubApi(path, token, options = {}) {
   return r.json();
 }
 
+// ---- GitHub Device Flow ------------------------------------
+
+export async function startGitHubDeviceFlow() {
+  const r = await fetch('/api/github-device-code', { method: 'POST' });
+  const data = await r.json();
+  if (!r.ok || data.error) throw new Error(data.error_description || data.error || 'Failed to start device flow');
+  return data; // { device_code, user_code, verification_uri, expires_in, interval }
+}
+
+export function pollGitHubToken(deviceCode, interval = 5) {
+  return new Promise((resolve, reject) => {
+    const poll = async () => {
+      try {
+        const r = await fetch('/api/github-poll', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ device_code: deviceCode }),
+        });
+        const data = await r.json();
+
+        if (data.access_token) {
+          resolve(data.access_token);
+          return;
+        }
+
+        if (data.error === 'authorization_pending') {
+          setTimeout(poll, interval * 1000);
+          return;
+        }
+
+        if (data.error === 'slow_down') {
+          interval += 5;
+          setTimeout(poll, interval * 1000);
+          return;
+        }
+
+        // expired_token, access_denied, or other error
+        reject(new Error(data.error_description || data.error || 'Authorization failed'));
+      } catch (err) {
+        reject(err);
+      }
+    };
+    poll();
+  });
+}
+
 export async function validateGitHubToken(token) {
   try {
     const user = await githubApi('/user', token);
