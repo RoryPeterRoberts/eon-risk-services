@@ -922,8 +922,15 @@ This takes 2-5 minutes. Ready?`);
           deployed ? `Live at ${this.siteUrl}` : 'Deployment may still be in progress');
       }
 
-      // Give Vercel a moment to fully propagate before hitting the API
-      await new Promise(r => setTimeout(r, 5000));
+      // Give Vercel a moment to fully propagate before hitting the API.
+      // If we generated images, the rate limit needs a longer cooldown —
+      // the image calls + deploy time may not add up to a full 60s window.
+      if (this._generateImages) {
+        this.ui.setBuildStep('ai_build', 'running', 'Waiting for rate limit to reset...');
+        await new Promise(r => setTimeout(r, 60000));
+      } else {
+        await new Promise(r => setTimeout(r, 5000));
+      }
 
       // Step 6: AI builds the site (stepped — one page at a time to stay under 60s)
       this.ui.setBuildStep('ai_build', 'running', 'AI is writing your website...');
