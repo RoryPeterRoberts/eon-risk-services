@@ -206,8 +206,42 @@ function makeGitHub(env) {
 
 // ---- Security helpers ---------------------------------------
 
-const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
+const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
 const MAX_FILE_SIZE = 500_000; // 500KB per file
+
+// ---- Structural validation ----------------------------------
+// Required CSS classes per page file. If the AI's output is missing any of these,
+// the write is blocked before it reaches pendingWrites.
+// These are the same classes listed in the page prompt constraints (setup.js).
+const REQUIRED_CLASSES = {
+  'index.html': ['nav', 'nav__inner', 'nav__brand', 'nav__links', 'nav__link', 'hero', 'container', 'footer', 'footer__brand', 'footer__bottom', 'footer__badge'],
+  'contact.html': ['nav', 'nav__inner', 'nav__brand', 'contact-grid', 'contact-form', 'form-group', 'contact-info', 'footer'],
+  'about.html': ['nav', 'nav__inner', 'nav__brand', 'section', 'container', 'footer'],
+  'services.html': ['nav', 'nav__inner', 'nav__brand', 'hero--compact', 'grid', 'card', 'card__title', 'footer'],
+  'gallery.html': ['nav', 'gallery-grid', 'gallery-item', 'gallery-item__caption', 'hero--compact', 'footer'],
+  'menu.html': ['nav', 'menu-category', 'menu-item', 'menu-item__name', 'menu-item__price', 'hero--compact', 'footer'],
+  'testimonials.html': ['nav', 'testimonial-card', 'testimonial-card__quote', 'testimonial-card__author', 'hero--compact', 'footer'],
+  'faq.html': ['nav', 'faq-item', 'faq-item__question', 'faq-item__answer', 'hero--compact', 'footer'],
+};
+
+function validateStructure(filePath, content) {
+  const requiredClasses = REQUIRED_CLASSES[filePath];
+  if (!requiredClasses) return null; // No validation rules for this file
+
+  const missing = [];
+  for (const cls of requiredClasses) {
+    // Check for the class name as a class attribute value or substring
+    // Handles: class="nav", class="nav foo", class="foo nav bar"
+    if (!content.includes(cls)) {
+      missing.push(cls);
+    }
+  }
+
+  if (missing.length > 0) {
+    return `Build blocked: AI removed required structural classes from ${filePath}: ${missing.join(', ')}. The file was NOT committed.`;
+  }
+  return null;
+}
 
 function validatePath(path) {
   if (!path || typeof path !== 'string') throw new Error('Path is required');
@@ -270,13 +304,18 @@ async function executeTool(name, args, env, pendingWrites) {
         content = content.replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/\\'/g, "'");
       }
 
-      // Post-write validation
-      const warnings = [];
+      // Pre-commit validation: hard gate
       if (!content.trim()) {
-        warnings.push('Content is empty');
+        throw new Error(`Write blocked: content for ${args.path} is empty.`);
       }
       if (args.path.endsWith('.html') && !content.includes('<html') && !content.toLowerCase().includes('<!doctype')) {
-        warnings.push('HTML file is missing root element');
+        throw new Error(`Write blocked: ${args.path} is missing <!DOCTYPE html> or <html> root element.`);
+      }
+
+      // Structural validation: verify required CSS classes are preserved
+      const structureError = validateStructure(args.path, content);
+      if (structureError) {
+        throw new Error(structureError);
       }
 
       // Stage the file for batch commit (replaces any previous pending write to same path)
@@ -287,9 +326,7 @@ async function executeTool(name, args, env, pendingWrites) {
         pendingWrites.push({ path: args.path, content });
       }
 
-      const result = { staged: args.path, message: args.commit_message, chars: content.length };
-      if (warnings.length > 0) result.warnings = warnings;
-      return result;
+      return { staged: args.path, message: args.commit_message, chars: content.length };
     }
 
     case 'delete_file': {
@@ -586,7 +623,23 @@ The user is requesting changes to an existing site via the admin panel.
 2. Make targeted edits — do not rewrite entire pages unless necessary
 3. Maintain consistency: if you change the nav on one page, change it on ALL pages
 4. If adding a new page, read an existing page first to match the style
-5. Respect the existing colour scheme unless asked to change it`;
+5. Respect the existing colour scheme unless asked to change it
+
+## Page Templates (IMPORTANT)
+
+This site includes pre-built HTML templates with correct CSS structure for these page types:
+- gallery.html — image grid using gallery-grid, gallery-item, gallery-item__caption classes
+- menu.html — categorised items using menu-category, menu-item, menu-item__name, menu-item__price classes
+- testimonials.html — quote cards using testimonial-card, testimonial-card__quote, testimonial-card__author classes
+- faq.html — accordion using faq-item, faq-item__question, faq-item__answer with <details>/<summary>
+
+When asked to add, activate, or customise one of these page types:
+1. ALWAYS read the existing template file first — do NOT generate the page from scratch
+2. Read index.html to match the business name, nav links, and footer
+3. Rewrite ONLY the text content (business name, descriptions, items, captions)
+4. Keep every CSS class, SVG icon, and HTML structure exactly as-is
+5. Update the nav on ALL other .html pages to include a link to the new page
+6. These structural CSS classes are validated before commit — if they are missing, the write will be rejected`;
 
   return `You are BuildMySite, an AI website builder created by EON Risk Services.
 

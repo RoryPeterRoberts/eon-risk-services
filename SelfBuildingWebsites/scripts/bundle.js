@@ -24,9 +24,15 @@ const FILES_TO_BUNDLE = [
   'js/main.js',
   'index.html',
   'contact.html',
+  'gallery.html',
+  'menu.html',
+  'testimonials.html',
+  'faq.html',
   'admin.html',
   'api/agent.js',
+  'api/enhance-prompt.js',
   'api/contact.js',
+  'api/revert.js',
 ];
 
 function escapeForTemplateLiteral(str) {

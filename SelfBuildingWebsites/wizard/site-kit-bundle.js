@@ -33,6 +33,7 @@ export const SITE_KIT_FILES = {
   ],
   "functions": {
     "api/agent.js": { "maxDuration": 60 },
+    "api/enhance-prompt.js": { "maxDuration": 15 },
     "api/contact.js": { "maxDuration": 10 },
     "api/upload.js": { "maxDuration": 30 }
   }
@@ -347,6 +348,10 @@ p:last-child { margin-bottom: 0; }
 
 /* --- Hero --- */
 .hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: calc(var(--nav-height) + 80px) 0 80px;
   background: var(--color-primary);
   color: var(--color-white);
@@ -556,6 +561,168 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 @media (max-width: 480px) {
   .container, .container-narrow { padding: 0 16px; }
   .card { padding: 24px; }
+}
+
+/* --- Gallery --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.gallery-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition);
+}
+.gallery-item:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--color-border);
+}
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.gallery-item__placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+.gallery-item__caption {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-white);
+}
+
+/* --- Menu / Pricing --- */
+.menu-category {
+  margin-bottom: 48px;
+}
+.menu-category:last-child { margin-bottom: 0; }
+.menu-category__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent);
+  margin-bottom: 24px;
+}
+.menu-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+.menu-item__name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.menu-item__price {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+.menu-item__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: 0;
+}
+
+/* --- Testimonials --- */
+.testimonial-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all var(--transition);
+}
+.testimonial-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--color-border);
+}
+.testimonial-card__quote {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+.testimonial-card__author {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+.testimonial-card__role {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* --- FAQ --- */
+.faq-item {
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.faq-item:hover, .faq-item[open] {
+  border-color: var(--color-border);
+}
+.faq-item__question {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-primary);
+  padding: 18px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-item__question::-webkit-details-marker { display: none; }
+.faq-item__question::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+.faq-item[open] .faq-item__question::after {
+  content: '\\2212';
+}
+.faq-item__answer {
+  padding: 0 24px 18px;
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .faq-item__question { padding: 14px 16px; }
+  .faq-item__answer { padding: 0 16px 14px; }
 }
 
 /* ============================================================
@@ -921,6 +1088,477 @@ document.addEventListener('DOMContentLoaded', () => {
 </html>
 `,
 
+  'gallery.html': `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — My Business</title>
+  <meta name="description" content="Browse our gallery of work and projects.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">My Business</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="index.html#about" class="nav__link">About</a>
+        <a href="index.html#services" class="nav__link">Services</a>
+        <a href="gallery.html" class="nav__link nav__link--active">Gallery</a>
+        <a href="contact.html" class="nav__link nav__link--cta">Contact Us</a>
+      </div>
+      <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero hero--compact">
+    <div class="container">
+      <p class="eyebrow">Gallery</p>
+      <h1>Our Work</h1>
+      <p class="lead">A selection of our recent projects and work. Each image tells a story of quality and craftsmanship.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project One</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project Two</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project Three</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project Four</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project Five</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item__placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <div class="gallery-item__caption">Project Six</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--primary text-center">
+    <div class="container">
+      <h2>Like What You See?</h2>
+      <p class="lead cta-lead">Get in touch to discuss your project.</p>
+      <a href="contact.html" class="btn btn-highlight btn-lg">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">My Business</div>
+      <p class="footer__tagline">Professional services you can trust.</p>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 My Business. All rights reserved.</span>
+        <span class="footer__badge">Built with <a href="https://eonriskservices.com/buildmysite" target="_blank">BuildMySite</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+`,
+
+  'menu.html': `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — My Business</title>
+  <meta name="description" content="Browse our menu and pricing.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">My Business</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="index.html#about" class="nav__link">About</a>
+        <a href="menu.html" class="nav__link nav__link--active">Menu</a>
+        <a href="contact.html" class="nav__link nav__link--cta">Contact Us</a>
+      </div>
+      <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero hero--compact">
+    <div class="container">
+      <p class="eyebrow">Menu</p>
+      <h1>Our Menu</h1>
+      <p class="lead">Freshly prepared with care. Browse our selection below.</p>
+    </div>
+  </section>
+
+  <!-- Menu Items -->
+  <section class="section">
+    <div class="container">
+      <div class="container-narrow">
+
+        <div class="menu-category">
+          <h3 class="menu-category__title">Starters</h3>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Soup of the Day</span>
+              <span class="menu-item__price">&euro;6.50</span>
+            </div>
+            <p class="menu-item__desc">Freshly made with seasonal ingredients, served with homemade bread.</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Bruschetta</span>
+              <span class="menu-item__price">&euro;8.00</span>
+            </div>
+            <p class="menu-item__desc">Toasted sourdough topped with vine tomatoes, basil, and extra virgin olive oil.</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Caesar Salad</span>
+              <span class="menu-item__price">&euro;9.50</span>
+            </div>
+            <p class="menu-item__desc">Crisp romaine, parmesan, croutons, and our house-made dressing.</p>
+          </div>
+        </div>
+
+        <div class="menu-category">
+          <h3 class="menu-category__title">Mains</h3>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Grilled Chicken</span>
+              <span class="menu-item__price">&euro;16.50</span>
+            </div>
+            <p class="menu-item__desc">Free-range chicken breast with roasted vegetables and herb butter.</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Fish &amp; Chips</span>
+              <span class="menu-item__price">&euro;15.00</span>
+            </div>
+            <p class="menu-item__desc">Beer-battered Atlantic cod with hand-cut chips and mushy peas.</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Veggie Burger</span>
+              <span class="menu-item__price">&euro;14.00</span>
+            </div>
+            <p class="menu-item__desc">House-made black bean patty with avocado, slaw, and sweet potato fries.</p>
+          </div>
+        </div>
+
+        <div class="menu-category">
+          <h3 class="menu-category__title">Desserts</h3>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Chocolate Brownie</span>
+              <span class="menu-item__price">&euro;7.50</span>
+            </div>
+            <p class="menu-item__desc">Warm Belgian chocolate brownie with vanilla ice cream.</p>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item__header">
+              <span class="menu-item__name">Apple Crumble</span>
+              <span class="menu-item__price">&euro;7.00</span>
+            </div>
+            <p class="menu-item__desc">Traditional Irish apple crumble with custard.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--primary text-center">
+    <div class="container">
+      <h2>Ready to Book a Table?</h2>
+      <p class="lead cta-lead">Call us or send a message to reserve your spot.</p>
+      <a href="contact.html" class="btn btn-highlight btn-lg">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">My Business</div>
+      <p class="footer__tagline">Professional services you can trust.</p>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 My Business. All rights reserved.</span>
+        <span class="footer__badge">Built with <a href="https://eonriskservices.com/buildmysite" target="_blank">BuildMySite</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+`,
+
+  'testimonials.html': `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials — My Business</title>
+  <meta name="description" content="What our customers say about us.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">My Business</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="index.html#about" class="nav__link">About</a>
+        <a href="index.html#services" class="nav__link">Services</a>
+        <a href="testimonials.html" class="nav__link nav__link--active">Testimonials</a>
+        <a href="contact.html" class="nav__link nav__link--cta">Contact Us</a>
+      </div>
+      <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero hero--compact">
+    <div class="container">
+      <p class="eyebrow">Testimonials</p>
+      <h1>What Our Customers Say</h1>
+      <p class="lead">Don't just take our word for it. Here's what people are saying about us.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"Absolutely fantastic service from start to finish. Couldn't recommend them more highly."</div>
+          <div class="testimonial-card__author">Sarah Murphy</div>
+          <div class="testimonial-card__role">Local Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"Professional, reliable, and great value for money. They went above and beyond."</div>
+          <div class="testimonial-card__author">John O'Brien</div>
+          <div class="testimonial-card__role">Returning Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"The best in the business. I've been coming here for years and the quality never drops."</div>
+          <div class="testimonial-card__author">Mary Walsh</div>
+          <div class="testimonial-card__role">Loyal Customer</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__quote">"From the first phone call to the finished job, everything was handled with real care."</div>
+          <div class="testimonial-card__author">David Byrne</div>
+          <div class="testimonial-card__role">New Customer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--primary text-center">
+    <div class="container">
+      <h2>Ready to Experience It Yourself?</h2>
+      <p class="lead cta-lead">Join our growing list of happy customers.</p>
+      <a href="contact.html" class="btn btn-highlight btn-lg">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">My Business</div>
+      <p class="footer__tagline">Professional services you can trust.</p>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 My Business. All rights reserved.</span>
+        <span class="footer__badge">Built with <a href="https://eonriskservices.com/buildmysite" target="_blank">BuildMySite</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+`,
+
+  'faq.html': `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — My Business</title>
+  <meta name="description" content="Frequently asked questions about our business and services.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">My Business</a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="index.html#about" class="nav__link">About</a>
+        <a href="index.html#services" class="nav__link">Services</a>
+        <a href="faq.html" class="nav__link nav__link--active">FAQ</a>
+        <a href="contact.html" class="nav__link nav__link--cta">Contact Us</a>
+      </div>
+      <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="hero hero--compact">
+    <div class="container">
+      <p class="eyebrow">FAQ</p>
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead">Got questions? We've got answers. If you can't find what you're looking for, get in touch.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="container-narrow">
+        <details class="faq-item" open>
+          <summary class="faq-item__question">What services do you offer?</summary>
+          <div class="faq-item__answer">
+            <p>We offer a full range of professional services tailored to your needs. Visit our services page for a detailed breakdown, or contact us to discuss your specific requirements.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">What are your opening hours?</summary>
+          <div class="faq-item__answer">
+            <p>We're open Monday to Friday, 9am to 6pm, and Saturday 10am to 4pm. We're closed on Sundays and bank holidays.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">How do I book an appointment?</summary>
+          <div class="faq-item__answer">
+            <p>You can book by calling us directly, sending us an email through our contact page, or dropping in during business hours. We aim to respond to all enquiries within 24 hours.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">Do you offer free quotes?</summary>
+          <div class="faq-item__answer">
+            <p>Yes, we offer free no-obligation quotes for all our services. Just get in touch with the details of what you need and we'll get back to you promptly.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">What areas do you cover?</summary>
+          <div class="faq-item__answer">
+            <p>We serve customers across our local area and surrounding regions. Contact us to check if we cover your location.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__question">What payment methods do you accept?</summary>
+          <div class="faq-item__answer">
+            <p>We accept cash, card payments (Visa, Mastercard), bank transfer, and contactless payments. Payment terms are discussed at the time of booking.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--primary text-center">
+    <div class="container">
+      <h2>Still Have Questions?</h2>
+      <p class="lead cta-lead">We're happy to help. Reach out and we'll get back to you.</p>
+      <a href="contact.html" class="btn btn-highlight btn-lg">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">My Business</div>
+      <p class="footer__tagline">Professional services you can trust.</p>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 My Business. All rights reserved.</span>
+        <span class="footer__badge">Built with <a href="https://eonriskservices.com/buildmysite" target="_blank">BuildMySite</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+`,
+
   'admin.html': `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1141,6 +1779,28 @@ document.addEventListener('DOMContentLoaded', () => {
       transition: all 0.2s;
     }
     .build-entry__undo:hover { border-color: #C62828; color: #C62828; }
+    .build-entry__enhanced { margin-bottom: 12px; }
+    .build-entry__enhanced summary {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .build-entry__enhanced-text {
+      font-family: monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text-light);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-top: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
     .build-entry__footer {
       display: flex;
       justify-content: space-between;
@@ -1209,6 +1869,171 @@ document.addEventListener('DOMContentLoaded', () => {
     .input-area__btn:hover { background: var(--teal-dark); }
     .input-area__btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+    /* --- Feature Templates Panel --- */
+    .features {
+      padding: 16px 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .features__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding-bottom: 12px;
+      user-select: none;
+    }
+    .features__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .features__chevron {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+    .features--collapsed .features__chevron { transform: rotate(-90deg); }
+    .features--collapsed .features__grid { display: none; }
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding-bottom: 16px;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--teal); }
+    .feature-card__icon { color: var(--teal); margin-bottom: 6px; }
+    .feature-card__name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .feature-card__desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .feature-card__btn {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .feature-card__btn:hover { background: var(--teal-dark); }
+    .feature-card__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .feature-card__btn--done {
+      background: #E8F5E9;
+      color: #2E7D32;
+      pointer-events: none;
+    }
+
+    /* --- Images Panel --- */
+    .images {
+      padding: 16px 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .images__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding-bottom: 12px;
+      user-select: none;
+    }
+    .images__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .images__chevron {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+    .images--collapsed .images__chevron { transform: rotate(-90deg); }
+    .images--collapsed .images__body { display: none; }
+    .images__body {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 16px;
+    }
+    .upload-slot {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .upload-slot__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .upload-zone:hover, .upload-zone--drag {
+      border-color: var(--teal);
+      background: rgba(42,127,127,0.04);
+    }
+    .upload-zone--uploading {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .upload-zone__icon { color: var(--text-muted); margin-bottom: 8px; }
+    .upload-zone__text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .upload-zone__preview {
+      width: 100%;
+      max-height: 100px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .upload-zone__status {
+      font-size: 0.72rem;
+      color: var(--teal);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .upload-zone__error {
+      font-size: 0.72rem;
+      color: #C62828;
+      margin-top: 6px;
+    }
+
     /* --- Responsive --- */
     @media (max-width: 640px) {
       .history { padding: 16px; }
@@ -1218,6 +2043,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .build-entry { padding: 16px; }
       .build-entry__header { flex-direction: column; gap: 4px; }
       .login__card { padding: 28px 20px; }
+      .features { padding: 12px 16px 0; }
+      .features__grid { grid-template-columns: repeat(2, 1fr); }
+      .images { padding: 12px 16px 0; }
+      .images__body { flex-direction: column; }
     }
   </style>
 </head>
@@ -1246,6 +2075,41 @@ document.addEventListener('DOMContentLoaded', () => {
   </header>
 
   <div id="main-panel" class="main">
+    <div class="images" id="images-panel">
+      <div class="images__header" id="images-toggle">
+        <span class="images__title">Images</span>
+        <svg class="images__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="images__body">
+        <div class="upload-slot">
+          <span class="upload-slot__label">Logo</span>
+          <div class="upload-zone" id="upload-logo" data-type="logo">
+            <input type="file" accept="image/*" style="display:none">
+            <div class="upload-zone__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="upload-zone__text">Drop logo here or click to browse</div>
+          </div>
+        </div>
+        <div class="upload-slot">
+          <span class="upload-slot__label">Hero Banner</span>
+          <div class="upload-zone" id="upload-hero" data-type="hero">
+            <input type="file" accept="image/*" style="display:none">
+            <div class="upload-zone__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 14l5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>
+            </div>
+            <div class="upload-zone__text">Drop hero image here or click to browse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="features" id="features-panel">
+      <div class="features__header" id="features-toggle">
+        <span class="features__title">Add Pages</span>
+        <svg class="features__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="features__grid" id="features-grid"></div>
+    </div>
     <div class="history" id="history">
       <div class="history__empty" id="empty-state">
         <div class="history__empty-icon">
@@ -1385,11 +2249,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const costStr = entry.usage?.costUsd ? \`$\${entry.usage.costUsd.toFixed(4)}\` : '';
         const modelStr = entry.usage?.model || '';
 
+        const enhancedHtml = entry.enhancedPrompt ? \`
+          <details class="build-entry__enhanced">
+            <summary>Enhanced prompt</summary>
+            <pre class="build-entry__enhanced-text">\${escapeHtml(entry.enhancedPrompt)}</pre>
+          </details>\` : '';
+
         el.innerHTML = \`
           <div class="build-entry__header">
             <div class="build-entry__prompt">\${escapeHtml(entry.prompt)}</div>
             <div class="build-entry__time">\${formatTime(entry.timestamp)}</div>
           </div>
+          \${enhancedHtml}
           \${entry.response ? \`<div class="build-entry__response">\${escapeHtml(entry.response)}</div>\` : ''}
           \${filesHtml ? \`<div class="build-entry__files">\${filesHtml}</div>\` : ''}
           <div class="build-entry__footer">
@@ -1410,6 +2281,24 @@ document.addEventListener('DOMContentLoaded', () => {
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    // --- Prompt Enhancement ---
+    async function enhancePrompt(message) {
+      try {
+        const r = await fetch('/api/enhance-prompt', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': \`Bearer \${token}\`
+          },
+          body: JSON.stringify({ message })
+        });
+        if (!r.ok) return null;
+        return await r.json();
+      } catch {
+        return null;
+      }
+    }
+
     // --- Build Submission ---
     buildForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1417,7 +2306,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!message) return;
 
       buildBtn.disabled = true;
-      buildBtn.textContent = 'Building...';
+      buildBtn.textContent = 'Enhancing...';
       buildInput.disabled = true;
 
       // Add a "building" entry
@@ -1430,13 +2319,25 @@ document.addEventListener('DOMContentLoaded', () => {
       renderHistory();
 
       try {
+        // Step 1: Enhance the prompt
+        let agentMessage = message;
+        let enhanceCost = 0;
+        const enhanced = await enhancePrompt(message);
+        if (enhanced && enhanced.enhancedPrompt) {
+          agentMessage = enhanced.enhancedPrompt;
+          enhanceCost = enhanced.costUsd || 0;
+          tempEntry.enhancedPrompt = enhanced.enhancedPrompt;
+        }
+
+        // Step 2: Send to agent
+        buildBtn.textContent = 'Building...';
         const r = await fetch('/api/agent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': \`Bearer \${token}\`
           },
-          body: JSON.stringify({ message })
+          body: JSON.stringify({ message: agentMessage })
         });
 
         if (r.status === 401) {
@@ -1457,6 +2358,12 @@ document.addEventListener('DOMContentLoaded', () => {
           tempEntry.response = data.text || '';
           tempEntry.buildLog = data.buildLog || [];
           tempEntry.usage = data.usage || {};
+          tempEntry.commitSha = data.commit?.sha || null;
+          // Sum enhance + agent costs
+          if (enhanceCost && tempEntry.usage.costUsd) {
+            tempEntry.usage.enhanceCostUsd = enhanceCost;
+            tempEntry.usage.costUsd = Math.round((tempEntry.usage.costUsd + enhanceCost) * 10000) / 10000;
+          }
         }
       } catch (err) {
         tempEntry.status = 'error';
@@ -1473,7 +2380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       buildInput.focus();
     });
 
-    // --- Undo ---
+    // --- Undo (deterministic git revert via /api/revert) ---
     historyEl.addEventListener('click', async (e) => {
       const undoBtn = e.target.closest('.build-entry__undo');
       if (!undoBtn) return;
@@ -1482,44 +2389,378 @@ document.addEventListener('DOMContentLoaded', () => {
       const entry = buildHistory[idx];
       if (!entry?.buildLog) return;
 
-      if (!confirm('Undo this change? This will restore files to their previous versions.')) return;
+      if (!entry.commitSha) {
+        alert('Cannot undo: no commit SHA recorded for this build. Only builds from this session onwards support deterministic revert.');
+        return;
+      }
+
+      if (!confirm('Undo this change? This will restore each file to its exact state before this commit.')) return;
 
       undoBtn.disabled = true;
-      undoBtn.textContent = 'Undoing...';
+      undoBtn.textContent = 'Reverting...';
 
-      // Rollback: for each write_file, restore the pre-SHA version
-      // For each delete_file, recreate from pre-SHA
-      let rollbackCount = 0;
+      let revertedCount = 0;
+      let failedFiles = [];
+
       for (const log of entry.buildLog) {
-        if (!log.success) continue;
+        if (!log.success || log.tool !== 'write_file' || !log.args.path) continue;
 
         try {
-          if (log.tool === 'write_file' && log.args.path) {
-            // If there was a pre-SHA, the file existed before — we need the content at that SHA
-            // For simplicity, we delete what was written (the user can re-request)
-            // A more sophisticated rollback would fetch the old content via the SHA
-            await fetch('/api/agent', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': \`Bearer \${token}\`
-              },
-              body: JSON.stringify({
-                message: \`Undo: restore \${log.args.path} to its state before the last change. Read the git history and restore the previous version.\`
-              })
-            });
-            rollbackCount++;
+          const r = await fetch('/api/revert', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': \`Bearer \${token}\`
+            },
+            body: JSON.stringify({
+              filePath: log.args.path,
+              commitSha: entry.commitSha
+            })
+          });
+
+          if (!r.ok) {
+            const data = await r.json().catch(() => ({}));
+            throw new Error(data.error || \`HTTP \${r.status}\`);
           }
+          revertedCount++;
         } catch (err) {
-          console.error('Rollback failed for', log.args.path, err);
+          console.error('Revert failed for', log.args.path, err);
+          failedFiles.push(log.args.path);
         }
       }
 
-      // Mark entry as undone
+      if (failedFiles.length > 0) {
+        alert(\`Reverted \${revertedCount} file(s) but failed on: \${failedFiles.join(', ')}\`);
+      }
+
       entry.undone = true;
       localStorage.setItem('build_history', JSON.stringify(buildHistory));
       renderHistory();
     });
+
+    // --- Feature Templates (Add Pages) ---
+    const PAGE_TEMPLATES = {
+      gallery: {
+        name: 'Gallery',
+        file: 'gallery.html',
+        desc: 'Image grid with captions',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+        prompt: \`Add a Gallery page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read gallery.html — it is a pre-built template with the correct CSS grid structure. Do NOT write a gallery page from scratch.
+3. Rewrite gallery.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Gallery link)
+   - Update the hero section title and description for this business
+   - Write real, specific gallery item captions relevant to this business
+   - Keep every CSS class exactly as-is: gallery-grid, gallery-item, gallery-item__placeholder, gallery-item__caption, nav, hero--compact, footer
+   - Keep all SVG placeholder icons exactly as-is
+   - You may add or remove gallery-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "Gallery" nav link pointing to gallery.html, and write the updated file.
+5. Write all updated files.\`
+      },
+      menu: {
+        name: 'Menu',
+        file: 'menu.html',
+        desc: 'Categorised items with prices',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="8" cy="6" r="1" fill="currentColor"/><circle cx="8" cy="12" r="1" fill="currentColor"/><circle cx="8" cy="18" r="1" fill="currentColor"/></svg>',
+        prompt: \`Add a Menu / Pricing page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read menu.html — it is a pre-built template with the correct menu layout. Do NOT write a menu page from scratch.
+3. Rewrite menu.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Menu link)
+   - Update the hero section title and description
+   - Create menu categories and items relevant to this business with realistic EUR prices
+   - Keep every CSS class exactly as-is: menu-category, menu-category__title, menu-item, menu-item__header, menu-item__name, menu-item__price, menu-item__desc, nav, hero--compact, footer, container-narrow
+   - You may add or remove menu-category and menu-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "Menu" nav link pointing to menu.html, and write the updated file.
+5. Write all updated files.\`
+      },
+      testimonials: {
+        name: 'Testimonials',
+        file: 'testimonials.html',
+        desc: 'Customer quote cards',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 5v3c0 1 0 1 1 1z"/></svg>',
+        prompt: \`Add a Testimonials page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read testimonials.html — it is a pre-built template with the correct card layout. Do NOT write a testimonials page from scratch.
+3. Rewrite testimonials.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Testimonials link)
+   - Update the hero section title and description
+   - Write realistic, believable testimonials with Irish names relevant to this business type
+   - Keep every CSS class exactly as-is: testimonial-card, testimonial-card__quote, testimonial-card__author, testimonial-card__role, grid, grid-2, nav, hero--compact, footer
+   - You may add or remove testimonial-card blocks (keep them in a grid-2 layout)
+4. Use list_files to find all other .html pages. Read each one, add a "Testimonials" nav link pointing to testimonials.html, and write the updated file.
+5. Write all updated files.\`
+      },
+      faq: {
+        name: 'FAQ',
+        file: 'faq.html',
+        desc: 'Accordion Q&A section',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>',
+        prompt: \`Add a FAQ page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read faq.html — it is a pre-built template with the correct accordion structure using details/summary elements. Do NOT write a FAQ page from scratch.
+3. Rewrite faq.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new FAQ link)
+   - Update the hero section title and description
+   - Write 6-10 relevant FAQs for this specific type of business
+   - Keep the details/summary structure exactly as-is
+   - Keep the first details element open (has the "open" attribute)
+   - Keep every CSS class exactly as-is: faq-item, faq-item__question, faq-item__answer, container-narrow, nav, hero--compact, footer
+   - You may add or remove faq-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "FAQ" nav link pointing to faq.html, and write the updated file.
+5. Write all updated files.\`
+      }
+    };
+
+    // Render feature cards
+    const featuresGrid = document.getElementById('features-grid');
+    const featuresPanel = document.getElementById('features-panel');
+    const featuresToggle = document.getElementById('features-toggle');
+
+    function renderFeatureCards() {
+      featuresGrid.innerHTML = '';
+      for (const [key, tpl] of Object.entries(PAGE_TEMPLATES)) {
+        const card = document.createElement('div');
+        card.className = 'feature-card';
+        card.innerHTML = \`
+          <div class="feature-card__icon">\${tpl.icon}</div>
+          <div class="feature-card__name">\${tpl.name}</div>
+          <div class="feature-card__desc">\${tpl.desc}</div>
+          <button type="button" class="feature-card__btn" data-page="\${key}">Add to site</button>
+        \`;
+        featuresGrid.appendChild(card);
+      }
+    }
+
+    // Toggle collapse
+    if (localStorage.getItem('features_collapsed') === 'true') {
+      featuresPanel.classList.add('features--collapsed');
+    }
+    featuresToggle.addEventListener('click', () => {
+      featuresPanel.classList.toggle('features--collapsed');
+      localStorage.setItem('features_collapsed', featuresPanel.classList.contains('features--collapsed'));
+    });
+
+    // Handle "Add to site" clicks
+    featuresGrid.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.feature-card__btn');
+      if (!btn || btn.disabled) return;
+
+      const pageKey = btn.dataset.page;
+      const tpl = PAGE_TEMPLATES[pageKey];
+      if (!tpl) return;
+
+      // Disable all feature buttons while building
+      featuresGrid.querySelectorAll('.feature-card__btn').forEach(b => b.disabled = true);
+      btn.textContent = 'Building...';
+
+      // Add a build entry
+      const tempEntry = {
+        prompt: \`Add page: \${tpl.name}\`,
+        timestamp: Date.now(),
+        status: 'building'
+      };
+      buildHistory.push(tempEntry);
+      renderHistory();
+
+      try {
+        const r = await fetch('/api/agent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': \`Bearer \${token}\`
+          },
+          body: JSON.stringify({ message: tpl.prompt })
+        });
+
+        if (r.status === 401) {
+          token = '';
+          sessionStorage.removeItem('admin_token');
+          showLogin();
+          buildHistory.pop();
+          return;
+        }
+
+        const data = await r.json();
+
+        if (!r.ok) {
+          tempEntry.status = 'error';
+          tempEntry.response = data.error || 'Something went wrong.';
+          btn.textContent = 'Add to site';
+        } else {
+          tempEntry.status = 'success';
+          tempEntry.response = data.text || '';
+          tempEntry.buildLog = data.buildLog || [];
+          tempEntry.usage = data.usage || {};
+          tempEntry.commitSha = data.commit?.sha || null;
+          btn.textContent = 'Added';
+          btn.classList.add('feature-card__btn--done');
+        }
+      } catch (err) {
+        tempEntry.status = 'error';
+        tempEntry.response = \`Network error: \${err.message}\`;
+        btn.textContent = 'Add to site';
+      }
+
+      // Re-enable other buttons
+      featuresGrid.querySelectorAll('.feature-card__btn').forEach(b => {
+        if (!b.classList.contains('feature-card__btn--done')) b.disabled = false;
+      });
+
+      localStorage.setItem('build_history', JSON.stringify(buildHistory));
+      renderHistory();
+    });
+
+    renderFeatureCards();
+
+    // --- Images Panel ---
+    const imagesPanel = document.getElementById('images-panel');
+    const imagesToggle = document.getElementById('images-toggle');
+
+    if (localStorage.getItem('images_collapsed') === 'true') {
+      imagesPanel.classList.add('images--collapsed');
+    }
+    imagesToggle.addEventListener('click', () => {
+      imagesPanel.classList.toggle('images--collapsed');
+      localStorage.setItem('images_collapsed', imagesPanel.classList.contains('images--collapsed'));
+    });
+
+    // Restore previews from localStorage
+    function restoreUploadPreviews() {
+      ['logo', 'hero'].forEach(type => {
+        const url = localStorage.getItem(\`site_\${type}_url\`);
+        if (url) showUploadPreview(document.getElementById(\`upload-\${type}\`), url);
+      });
+    }
+
+    function showUploadPreview(zone, url) {
+      zone.innerHTML = \`
+        <img class="upload-zone__preview" src="\${escapeHtml(url)}" alt="Uploaded">
+        <div class="upload-zone__status">Uploaded</div>
+        <input type="file" accept="image/*" style="display:none">
+      \`;
+    }
+
+    async function handleUpload(file, type) {
+      const zone = document.getElementById(\`upload-\${type}\`);
+
+      // Validate client-side
+      if (!file.type.match(/^image\\/(jpeg|png|webp|svg\\+xml)$/)) {
+        zone.querySelector('.upload-zone__text')?.remove();
+        const err = document.createElement('div');
+        err.className = 'upload-zone__error';
+        err.textContent = 'Only JPG, PNG, WebP, or SVG allowed.';
+        zone.appendChild(err);
+        setTimeout(() => err.remove(), 3000);
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        zone.querySelector('.upload-zone__text')?.remove();
+        const err = document.createElement('div');
+        err.className = 'upload-zone__error';
+        err.textContent = 'File too large (max 5MB).';
+        zone.appendChild(err);
+        setTimeout(() => err.remove(), 3000);
+        return;
+      }
+
+      zone.classList.add('upload-zone--uploading');
+      const oldHtml = zone.innerHTML;
+      zone.innerHTML = \`
+        <div class="upload-zone__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <div class="upload-zone__text">Uploading...</div>
+      \`;
+
+      const ext = file.name.split('.').pop() || 'png';
+      const filename = \`\${type}-\${Date.now()}.\${ext}\`;
+
+      try {
+        const r = await fetch(\`/api/upload?filename=\${encodeURIComponent(filename)}\`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': file.type,
+            'Authorization': \`Bearer \${token}\`
+          },
+          body: file
+        });
+
+        if (r.status === 401) {
+          token = '';
+          sessionStorage.removeItem('admin_token');
+          showLogin();
+          return;
+        }
+
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || 'Upload failed');
+
+        // Store URL and show preview
+        localStorage.setItem(\`site_\${type}_url\`, data.url);
+        showUploadPreview(zone, data.url);
+        zone.classList.remove('upload-zone--uploading');
+
+        // Auto-fire agent prompt
+        const prompt = type === 'logo'
+          ? \`Update the site logo. Use this image URL as the logo in the nav on all pages: \${data.url}. Add <link rel="icon" href="\${data.url}"> to every page. Do NOT change nav structure or CSS class names.\`
+          : \`Update the hero section background image on index.html. Use this image URL: \${data.url}. Apply it as a CSS background-image on the hero section. Do NOT change nav structure, footer structure, or CSS class names.\`;
+
+        buildInput.value = prompt;
+        buildForm.dispatchEvent(new Event('submit'));
+      } catch (err) {
+        zone.innerHTML = oldHtml;
+        zone.classList.remove('upload-zone--uploading');
+        const errEl = document.createElement('div');
+        errEl.className = 'upload-zone__error';
+        errEl.textContent = err.message;
+        zone.appendChild(errEl);
+        setTimeout(() => errEl.remove(), 4000);
+      }
+    }
+
+    // Drag/drop + click-to-browse handlers
+    document.querySelectorAll('.upload-zone').forEach(zone => {
+      const fileInput = zone.querySelector('input[type="file"]');
+      const type = zone.dataset.type;
+
+      zone.addEventListener('click', (e) => {
+        if (e.target.closest('input')) return;
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files[0]) handleUpload(fileInput.files[0], type);
+        fileInput.value = '';
+      });
+
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('upload-zone--drag');
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.classList.remove('upload-zone--drag');
+      });
+
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('upload-zone--drag');
+        const file = e.dataTransfer.files[0];
+        if (file) handleUpload(file, type);
+      });
+    });
+
+    restoreUploadPreviews();
 
     // --- Auto-resize textarea ---
     buildInput.addEventListener('input', () => {
@@ -1747,8 +2988,42 @@ function makeGitHub(env) {
 
 // ---- Security helpers ---------------------------------------
 
-const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
+const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
 const MAX_FILE_SIZE = 500_000; // 500KB per file
+
+// ---- Structural validation ----------------------------------
+// Required CSS classes per page file. If the AI's output is missing any of these,
+// the write is blocked before it reaches pendingWrites.
+// These are the same classes listed in the page prompt constraints (setup.js).
+const REQUIRED_CLASSES = {
+  'index.html': ['nav', 'nav__inner', 'nav__brand', 'nav__links', 'nav__link', 'hero', 'container', 'footer', 'footer__brand', 'footer__bottom', 'footer__badge'],
+  'contact.html': ['nav', 'nav__inner', 'nav__brand', 'contact-grid', 'contact-form', 'form-group', 'contact-info', 'footer'],
+  'about.html': ['nav', 'nav__inner', 'nav__brand', 'section', 'container', 'footer'],
+  'services.html': ['nav', 'nav__inner', 'nav__brand', 'hero--compact', 'grid', 'card', 'card__title', 'footer'],
+  'gallery.html': ['nav', 'gallery-grid', 'gallery-item', 'gallery-item__caption', 'hero--compact', 'footer'],
+  'menu.html': ['nav', 'menu-category', 'menu-item', 'menu-item__name', 'menu-item__price', 'hero--compact', 'footer'],
+  'testimonials.html': ['nav', 'testimonial-card', 'testimonial-card__quote', 'testimonial-card__author', 'hero--compact', 'footer'],
+  'faq.html': ['nav', 'faq-item', 'faq-item__question', 'faq-item__answer', 'hero--compact', 'footer'],
+};
+
+function validateStructure(filePath, content) {
+  const requiredClasses = REQUIRED_CLASSES[filePath];
+  if (!requiredClasses) return null; // No validation rules for this file
+
+  const missing = [];
+  for (const cls of requiredClasses) {
+    // Check for the class name as a class attribute value or substring
+    // Handles: class="nav", class="nav foo", class="foo nav bar"
+    if (!content.includes(cls)) {
+      missing.push(cls);
+    }
+  }
+
+  if (missing.length > 0) {
+    return \`Build blocked: AI removed required structural classes from \${filePath}: \${missing.join(', ')}. The file was NOT committed.\`;
+  }
+  return null;
+}
 
 function validatePath(path) {
   if (!path || typeof path !== 'string') throw new Error('Path is required');
@@ -1811,13 +3086,18 @@ async function executeTool(name, args, env, pendingWrites) {
         content = content.replace(/\\\\n/g, '\\n').replace(/\\\\t/g, '\\t').replace(/\\\\'/g, "'");
       }
 
-      // Post-write validation
-      const warnings = [];
+      // Pre-commit validation: hard gate
       if (!content.trim()) {
-        warnings.push('Content is empty');
+        throw new Error(\`Write blocked: content for \${args.path} is empty.\`);
       }
       if (args.path.endsWith('.html') && !content.includes('<html') && !content.toLowerCase().includes('<!doctype')) {
-        warnings.push('HTML file is missing root element');
+        throw new Error(\`Write blocked: \${args.path} is missing <!DOCTYPE html> or <html> root element.\`);
+      }
+
+      // Structural validation: verify required CSS classes are preserved
+      const structureError = validateStructure(args.path, content);
+      if (structureError) {
+        throw new Error(structureError);
       }
 
       // Stage the file for batch commit (replaces any previous pending write to same path)
@@ -1828,9 +3108,7 @@ async function executeTool(name, args, env, pendingWrites) {
         pendingWrites.push({ path: args.path, content });
       }
 
-      const result = { staged: args.path, message: args.commit_message, chars: content.length };
-      if (warnings.length > 0) result.warnings = warnings;
-      return result;
+      return { staged: args.path, message: args.commit_message, chars: content.length };
     }
 
     case 'delete_file': {
@@ -2127,7 +3405,23 @@ The user is requesting changes to an existing site via the admin panel.
 2. Make targeted edits — do not rewrite entire pages unless necessary
 3. Maintain consistency: if you change the nav on one page, change it on ALL pages
 4. If adding a new page, read an existing page first to match the style
-5. Respect the existing colour scheme unless asked to change it\`;
+5. Respect the existing colour scheme unless asked to change it
+
+## Page Templates (IMPORTANT)
+
+This site includes pre-built HTML templates with correct CSS structure for these page types:
+- gallery.html — image grid using gallery-grid, gallery-item, gallery-item__caption classes
+- menu.html — categorised items using menu-category, menu-item, menu-item__name, menu-item__price classes
+- testimonials.html — quote cards using testimonial-card, testimonial-card__quote, testimonial-card__author classes
+- faq.html — accordion using faq-item, faq-item__question, faq-item__answer with <details>/<summary>
+
+When asked to add, activate, or customise one of these page types:
+1. ALWAYS read the existing template file first — do NOT generate the page from scratch
+2. Read index.html to match the business name, nav links, and footer
+3. Rewrite ONLY the text content (business name, descriptions, items, captions)
+4. Keep every CSS class, SVG icon, and HTML structure exactly as-is
+5. Update the nav on ALL other .html pages to include a link to the new page
+6. These structural CSS classes are validated before commit — if they are missing, the write will be rejected\`;
 
   return \`You are BuildMySite, an AI website builder created by EON Risk Services.
 
@@ -2386,6 +3680,193 @@ export default async function handler(req, res) {
 }
 `,
 
+  'api/enhance-prompt.js': `// ============================================================
+// PROMPT ENHANCER
+// Converts casual user requests into structured agent prompts.
+// Uses Gemini Flash for speed and cost (~$0.0003 per call).
+// ============================================================
+
+const ENHANCE_MODEL = 'gemini-2.5-flash';
+const ENHANCE_COST = { input: 0.15, output: 0.60 }; // per 1M tokens
+
+function calcCost(promptTokens, completionTokens) {
+  return (promptTokens * ENHANCE_COST.input + completionTokens * ENHANCE_COST.output) / 1_000_000;
+}
+
+// Extract :root { ... } blocks from CSS
+function extractCssVariables(css) {
+  const blocks = [];
+  const re = /:root\\s*\\{[^}]*\\}/g;
+  let m;
+  while ((m = re.exec(css)) !== null) {
+    blocks.push(m[0]);
+  }
+  return blocks.join('\\n\\n') || '(no :root variables found)';
+}
+
+// Extract <nav>...</nav> from HTML
+function extractNav(html) {
+  const m = html.match(/<nav[\\s\\S]*?<\\/nav>/i);
+  return m ? m[0] : '(no nav found)';
+}
+
+// Extract <title> content
+function extractTitle(html) {
+  const m = html.match(/<title>(.*?)<\\/title>/i);
+  return m ? m[1] : '(no title)';
+}
+
+// Fetch a file from GitHub, return content or null on 404
+async function fetchGitHubFile(repo, branch, path, headers) {
+  try {
+    const r = await fetch(
+      \`https://api.github.com/repos/\${repo}/contents/\${path}?ref=\${branch}\`,
+      { headers }
+    );
+    if (!r.ok) return null;
+    const data = await r.json();
+    return Buffer.from(data.content, 'base64').toString('utf-8');
+  } catch {
+    return null;
+  }
+}
+
+// Fetch the repo file tree
+async function fetchFileTree(repo, branch, headers) {
+  try {
+    const r = await fetch(
+      \`https://api.github.com/repos/\${repo}/git/trees/\${branch}?recursive=1\`,
+      { headers }
+    );
+    const data = await r.json();
+    return (data.tree || []).filter(f => f.type === 'blob').map(f => f.path);
+  } catch {
+    return [];
+  }
+}
+
+function buildMetaPrompt(fileList, cssVars, navHtml, pageTitle) {
+  return \`You are a prompt compiler for a website-building AI agent.
+
+The agent has these tools: read_file, write_file, delete_file, list_files.
+The agent has a 60-second timeout. It must finish in 3 reads + 2 writes max.
+
+Your job: take the user's casual request and convert it into a precise, structured agent prompt.
+
+## Site context
+
+Files in repo:
+\${fileList.join('\\n')}
+
+CSS design system variables:
+\${cssVars}
+
+Current nav structure:
+\${navHtml}
+
+Page title: \${pageTitle}
+
+## Rules for the enhanced prompt
+
+1. ALWAYS start with "Read [file1] and [file2]" — name the exact files the agent needs.
+2. Name specific CSS classes to preserve (from the nav, footer, design system).
+3. Limit scope: max 3 reads + 2 writes. If the request is large, focus on the most important page and say "repeat for others in a follow-up".
+4. Include this line: "Do NOT change nav structure, footer structure, or CSS class names."
+5. For color/theme changes: instruct to ONLY modify CSS variables in css/style.css :root block. Never touch HTML.
+6. For content changes: name the specific HTML section classes to find and edit.
+7. For new pages: instruct to read an existing page as template + read index.html for nav/footer consistency.
+8. Be specific about what to change and what to preserve.
+9. Output ONLY the enhanced prompt text. No explanation, no preamble.
+10. Keep the enhanced prompt under 500 words.\`;
+}
+
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
+
+  // Auth check
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.replace('Bearer ', '');
+  const adminToken = process.env.ADMIN_TOKEN;
+  if (!adminToken || token !== adminToken) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const { message } = req.body || {};
+  if (!message || typeof message !== 'string') {
+    return res.status(400).json({ error: 'Message is required' });
+  }
+
+  const apiKey = process.env.AI_API_KEY;
+  const repo = process.env.GITHUB_REPO;
+  const branch = process.env.GITHUB_BRANCH || 'main';
+  const ghToken = process.env.GITHUB_TOKEN;
+
+  if (!apiKey || !repo || !ghToken) {
+    return res.status(500).json({ error: 'Missing environment variables' });
+  }
+
+  const ghHeaders = {
+    'Authorization': \`Bearer \${ghToken}\`,
+    'Accept': 'application/vnd.github.v3+json'
+  };
+
+  try {
+    // Three parallel GitHub fetches
+    const [fileList, cssContent, indexContent] = await Promise.all([
+      fetchFileTree(repo, branch, ghHeaders),
+      fetchGitHubFile(repo, branch, 'css/style.css', ghHeaders),
+      fetchGitHubFile(repo, branch, 'index.html', ghHeaders)
+    ]);
+
+    const cssVars = cssContent ? extractCssVariables(cssContent) : '(no CSS file yet)';
+    const navHtml = indexContent ? extractNav(indexContent) : '(no index.html yet)';
+    const pageTitle = indexContent ? extractTitle(indexContent) : '(no title)';
+
+    const metaPrompt = buildMetaPrompt(fileList, cssVars, navHtml, pageTitle);
+
+    // Call Gemini Flash via OpenAI-compatible endpoint
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': \`Bearer \${apiKey}\`
+      },
+      body: JSON.stringify({
+        model: ENHANCE_MODEL,
+        messages: [
+          { role: 'system', content: metaPrompt },
+          { role: 'user', content: message }
+        ],
+        temperature: 0.3,
+        max_tokens: 2048
+      })
+    });
+
+    if (!r.ok) {
+      const errText = await r.text();
+      throw new Error(\`Gemini \${r.status}: \${errText}\`);
+    }
+
+    const data = await r.json();
+    const enhancedPrompt = data.choices?.[0]?.message?.content || '';
+    const usage = data.usage || {};
+    const cost = calcCost(usage.prompt_tokens || 0, usage.completion_tokens || 0);
+
+    return res.status(200).json({
+      enhancedPrompt,
+      originalMessage: message,
+      model: ENHANCE_MODEL,
+      costUsd: Math.round(cost * 10000) / 10000
+    });
+
+  } catch (err) {
+    console.error('Enhance error:', err);
+    return res.status(500).json({ error: err.message });
+  }
+}
+`,
+
   'api/contact.js': `// ============================================================
 // BUILDMYSITE — Contact Form Handler
 // Receives form submissions, validates, sends email via Resend.
@@ -2499,6 +3980,131 @@ export default async function handler(req, res) {
     message: 'Message received.',
     _note: 'Email delivery not configured. Set RESEND_API_KEY and CONTACT_EMAIL environment variables.'
   });
+}
+`,
+
+  'api/revert.js': `// ============================================================
+// BUILDMYSITE REVERT ENDPOINT
+// Deterministic git revert: fetches file content from the parent
+// commit and overwrites the current version. No LLM involved.
+// ============================================================
+
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
+
+  // Auth
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.replace('Bearer ', '');
+  const adminToken = process.env.ADMIN_TOKEN;
+  if (!adminToken || token !== adminToken) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const { filePath, commitSha } = req.body || {};
+  if (!filePath || typeof filePath !== 'string') {
+    return res.status(400).json({ error: 'filePath is required' });
+  }
+  if (!commitSha || typeof commitSha !== 'string') {
+    return res.status(400).json({ error: 'commitSha is required (the commit to revert FROM)' });
+  }
+
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  const GITHUB_REPO = process.env.GITHUB_REPO;
+  const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+
+  if (!GITHUB_TOKEN || !GITHUB_REPO) {
+    return res.status(500).json({ error: 'Missing GITHUB_TOKEN or GITHUB_REPO env vars' });
+  }
+
+  const headers = {
+    'Authorization': \`Bearer \${GITHUB_TOKEN}\`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json'
+  };
+
+  try {
+    // 1. Get the parent commit SHA (the state before the bad commit)
+    const commitR = await fetch(
+      \`https://api.github.com/repos/\${GITHUB_REPO}/git/commits/\${commitSha}\`,
+      { headers }
+    );
+    if (!commitR.ok) throw new Error(\`Failed to fetch commit \${commitSha}: \${commitR.status}\`);
+    const commitData = await commitR.json();
+
+    const parentSha = commitData.parents?.[0]?.sha;
+    if (!parentSha) {
+      return res.status(400).json({ error: 'No parent commit found — cannot revert the initial commit' });
+    }
+
+    // 2. Fetch the file content at the parent commit
+    const fileR = await fetch(
+      \`https://api.github.com/repos/\${GITHUB_REPO}/contents/\${filePath}?ref=\${parentSha}\`,
+      { headers }
+    );
+
+    if (fileR.status === 404) {
+      // File didn't exist before this commit — revert means delete it
+      const currentR = await fetch(
+        \`https://api.github.com/repos/\${GITHUB_REPO}/contents/\${filePath}?ref=\${GITHUB_BRANCH}\`,
+        { headers }
+      );
+      if (!currentR.ok) {
+        return res.status(404).json({ error: \`File \${filePath} not found on current branch either\` });
+      }
+      const currentData = await currentR.json();
+      const delR = await fetch(
+        \`https://api.github.com/repos/\${GITHUB_REPO}/contents/\${filePath}\`,
+        {
+          method: 'DELETE',
+          headers,
+          body: JSON.stringify({
+            message: \`Revert: remove \${filePath} (did not exist before \${commitSha.slice(0, 7)})\`,
+            sha: currentData.sha,
+            branch: GITHUB_BRANCH
+          })
+        }
+      );
+      if (!delR.ok) throw new Error(\`Failed to delete \${filePath}: \${delR.status}\`);
+      return res.status(200).json({ reverted: filePath, action: 'deleted', parentSha });
+    }
+
+    if (!fileR.ok) throw new Error(\`Failed to fetch \${filePath} at parent \${parentSha}: \${fileR.status}\`);
+    const fileData = await fileR.json();
+    const oldContent = fileData.content; // Already base64 from GitHub
+
+    // 3. Get the current file SHA (needed for the PUT)
+    const currentR = await fetch(
+      \`https://api.github.com/repos/\${GITHUB_REPO}/contents/\${filePath}?ref=\${GITHUB_BRANCH}\`,
+      { headers }
+    );
+    if (!currentR.ok) throw new Error(\`Failed to fetch current \${filePath}: \${currentR.status}\`);
+    const currentData = await currentR.json();
+
+    // 4. Overwrite with the parent version
+    const putR = await fetch(
+      \`https://api.github.com/repos/\${GITHUB_REPO}/contents/\${filePath}\`,
+      {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: \`Revert \${filePath} to pre-\${commitSha.slice(0, 7)} state\`,
+          content: oldContent,
+          sha: currentData.sha,
+          branch: GITHUB_BRANCH
+        })
+      }
+    );
+    if (!putR.ok) {
+      const t = await putR.text();
+      throw new Error(\`Failed to write reverted \${filePath}: \${putR.status} \${t}\`);
+    }
+
+    return res.status(200).json({ reverted: filePath, action: 'restored', parentSha });
+  } catch (err) {
+    console.error('Revert error:', err);
+    return res.status(500).json({ error: err.message });
+  }
 }
 `,
 

@@ -218,6 +218,28 @@
       transition: all 0.2s;
     }
     .build-entry__undo:hover { border-color: #C62828; color: #C62828; }
+    .build-entry__enhanced { margin-bottom: 12px; }
+    .build-entry__enhanced summary {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .build-entry__enhanced-text {
+      font-family: monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text-light);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-top: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
     .build-entry__footer {
       display: flex;
       justify-content: space-between;
@@ -286,6 +308,171 @@
     .input-area__btn:hover { background: var(--teal-dark); }
     .input-area__btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+    /* --- Feature Templates Panel --- */
+    .features {
+      padding: 16px 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .features__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding-bottom: 12px;
+      user-select: none;
+    }
+    .features__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .features__chevron {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+    .features--collapsed .features__chevron { transform: rotate(-90deg); }
+    .features--collapsed .features__grid { display: none; }
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding-bottom: 16px;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--teal); }
+    .feature-card__icon { color: var(--teal); margin-bottom: 6px; }
+    .feature-card__name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .feature-card__desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .feature-card__btn {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .feature-card__btn:hover { background: var(--teal-dark); }
+    .feature-card__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .feature-card__btn--done {
+      background: #E8F5E9;
+      color: #2E7D32;
+      pointer-events: none;
+    }
+
+    /* --- Images Panel --- */
+    .images {
+      padding: 16px 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .images__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding-bottom: 12px;
+      user-select: none;
+    }
+    .images__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .images__chevron {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+    .images--collapsed .images__chevron { transform: rotate(-90deg); }
+    .images--collapsed .images__body { display: none; }
+    .images__body {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 16px;
+    }
+    .upload-slot {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .upload-slot__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .upload-zone:hover, .upload-zone--drag {
+      border-color: var(--teal);
+      background: rgba(42,127,127,0.04);
+    }
+    .upload-zone--uploading {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .upload-zone__icon { color: var(--text-muted); margin-bottom: 8px; }
+    .upload-zone__text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .upload-zone__preview {
+      width: 100%;
+      max-height: 100px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .upload-zone__status {
+      font-size: 0.72rem;
+      color: var(--teal);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .upload-zone__error {
+      font-size: 0.72rem;
+      color: #C62828;
+      margin-top: 6px;
+    }
+
     /* --- Responsive --- */
     @media (max-width: 640px) {
       .history { padding: 16px; }
@@ -295,6 +482,10 @@
       .build-entry { padding: 16px; }
       .build-entry__header { flex-direction: column; gap: 4px; }
       .login__card { padding: 28px 20px; }
+      .features { padding: 12px 16px 0; }
+      .features__grid { grid-template-columns: repeat(2, 1fr); }
+      .images { padding: 12px 16px 0; }
+      .images__body { flex-direction: column; }
     }
   </style>
 </head>
@@ -323,6 +514,41 @@
   </header>
 
   <div id="main-panel" class="main">
+    <div class="images" id="images-panel">
+      <div class="images__header" id="images-toggle">
+        <span class="images__title">Images</span>
+        <svg class="images__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="images__body">
+        <div class="upload-slot">
+          <span class="upload-slot__label">Logo</span>
+          <div class="upload-zone" id="upload-logo" data-type="logo">
+            <input type="file" accept="image/*" style="display:none">
+            <div class="upload-zone__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="upload-zone__text">Drop logo here or click to browse</div>
+          </div>
+        </div>
+        <div class="upload-slot">
+          <span class="upload-slot__label">Hero Banner</span>
+          <div class="upload-zone" id="upload-hero" data-type="hero">
+            <input type="file" accept="image/*" style="display:none">
+            <div class="upload-zone__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 14l5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>
+            </div>
+            <div class="upload-zone__text">Drop hero image here or click to browse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="features" id="features-panel">
+      <div class="features__header" id="features-toggle">
+        <span class="features__title">Add Pages</span>
+        <svg class="features__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="features__grid" id="features-grid"></div>
+    </div>
     <div class="history" id="history">
       <div class="history__empty" id="empty-state">
         <div class="history__empty-icon">
@@ -462,11 +688,18 @@
         const costStr = entry.usage?.costUsd ? `$${entry.usage.costUsd.toFixed(4)}` : '';
         const modelStr = entry.usage?.model || '';
 
+        const enhancedHtml = entry.enhancedPrompt ? `
+          <details class="build-entry__enhanced">
+            <summary>Enhanced prompt</summary>
+            <pre class="build-entry__enhanced-text">${escapeHtml(entry.enhancedPrompt)}</pre>
+          </details>` : '';
+
         el.innerHTML = `
           <div class="build-entry__header">
             <div class="build-entry__prompt">${escapeHtml(entry.prompt)}</div>
             <div class="build-entry__time">${formatTime(entry.timestamp)}</div>
           </div>
+          ${enhancedHtml}
           ${entry.response ? `<div class="build-entry__response">${escapeHtml(entry.response)}</div>` : ''}
           ${filesHtml ? `<div class="build-entry__files">${filesHtml}</div>` : ''}
           <div class="build-entry__footer">
@@ -487,6 +720,24 @@
       return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    // --- Prompt Enhancement ---
+    async function enhancePrompt(message) {
+      try {
+        const r = await fetch('/api/enhance-prompt', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ message })
+        });
+        if (!r.ok) return null;
+        return await r.json();
+      } catch {
+        return null;
+      }
+    }
+
     // --- Build Submission ---
     buildForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -494,7 +745,7 @@
       if (!message) return;
 
       buildBtn.disabled = true;
-      buildBtn.textContent = 'Building...';
+      buildBtn.textContent = 'Enhancing...';
       buildInput.disabled = true;
 
       // Add a "building" entry
@@ -507,13 +758,25 @@
       renderHistory();
 
       try {
+        // Step 1: Enhance the prompt
+        let agentMessage = message;
+        let enhanceCost = 0;
+        const enhanced = await enhancePrompt(message);
+        if (enhanced && enhanced.enhancedPrompt) {
+          agentMessage = enhanced.enhancedPrompt;
+          enhanceCost = enhanced.costUsd || 0;
+          tempEntry.enhancedPrompt = enhanced.enhancedPrompt;
+        }
+
+        // Step 2: Send to agent
+        buildBtn.textContent = 'Building...';
         const r = await fetch('/api/agent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ message })
+          body: JSON.stringify({ message: agentMessage })
         });
 
         if (r.status === 401) {
@@ -534,6 +797,12 @@
           tempEntry.response = data.text || '';
           tempEntry.buildLog = data.buildLog || [];
           tempEntry.usage = data.usage || {};
+          tempEntry.commitSha = data.commit?.sha || null;
+          // Sum enhance + agent costs
+          if (enhanceCost && tempEntry.usage.costUsd) {
+            tempEntry.usage.enhanceCostUsd = enhanceCost;
+            tempEntry.usage.costUsd = Math.round((tempEntry.usage.costUsd + enhanceCost) * 10000) / 10000;
+          }
         }
       } catch (err) {
         tempEntry.status = 'error';
@@ -550,7 +819,7 @@
       buildInput.focus();
     });
 
-    // --- Undo ---
+    // --- Undo (deterministic git revert via /api/revert) ---
     historyEl.addEventListener('click', async (e) => {
       const undoBtn = e.target.closest('.build-entry__undo');
       if (!undoBtn) return;
@@ -559,44 +828,378 @@
       const entry = buildHistory[idx];
       if (!entry?.buildLog) return;
 
-      if (!confirm('Undo this change? This will restore files to their previous versions.')) return;
+      if (!entry.commitSha) {
+        alert('Cannot undo: no commit SHA recorded for this build. Only builds from this session onwards support deterministic revert.');
+        return;
+      }
+
+      if (!confirm('Undo this change? This will restore each file to its exact state before this commit.')) return;
 
       undoBtn.disabled = true;
-      undoBtn.textContent = 'Undoing...';
+      undoBtn.textContent = 'Reverting...';
 
-      // Rollback: for each write_file, restore the pre-SHA version
-      // For each delete_file, recreate from pre-SHA
-      let rollbackCount = 0;
+      let revertedCount = 0;
+      let failedFiles = [];
+
       for (const log of entry.buildLog) {
-        if (!log.success) continue;
+        if (!log.success || log.tool !== 'write_file' || !log.args.path) continue;
 
         try {
-          if (log.tool === 'write_file' && log.args.path) {
-            // If there was a pre-SHA, the file existed before — we need the content at that SHA
-            // For simplicity, we delete what was written (the user can re-request)
-            // A more sophisticated rollback would fetch the old content via the SHA
-            await fetch('/api/agent', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-              body: JSON.stringify({
-                message: `Undo: restore ${log.args.path} to its state before the last change. Read the git history and restore the previous version.`
-              })
-            });
-            rollbackCount++;
+          const r = await fetch('/api/revert', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              filePath: log.args.path,
+              commitSha: entry.commitSha
+            })
+          });
+
+          if (!r.ok) {
+            const data = await r.json().catch(() => ({}));
+            throw new Error(data.error || `HTTP ${r.status}`);
           }
+          revertedCount++;
         } catch (err) {
-          console.error('Rollback failed for', log.args.path, err);
+          console.error('Revert failed for', log.args.path, err);
+          failedFiles.push(log.args.path);
         }
       }
 
-      // Mark entry as undone
+      if (failedFiles.length > 0) {
+        alert(`Reverted ${revertedCount} file(s) but failed on: ${failedFiles.join(', ')}`);
+      }
+
       entry.undone = true;
       localStorage.setItem('build_history', JSON.stringify(buildHistory));
       renderHistory();
     });
+
+    // --- Feature Templates (Add Pages) ---
+    const PAGE_TEMPLATES = {
+      gallery: {
+        name: 'Gallery',
+        file: 'gallery.html',
+        desc: 'Image grid with captions',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+        prompt: `Add a Gallery page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read gallery.html — it is a pre-built template with the correct CSS grid structure. Do NOT write a gallery page from scratch.
+3. Rewrite gallery.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Gallery link)
+   - Update the hero section title and description for this business
+   - Write real, specific gallery item captions relevant to this business
+   - Keep every CSS class exactly as-is: gallery-grid, gallery-item, gallery-item__placeholder, gallery-item__caption, nav, hero--compact, footer
+   - Keep all SVG placeholder icons exactly as-is
+   - You may add or remove gallery-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "Gallery" nav link pointing to gallery.html, and write the updated file.
+5. Write all updated files.`
+      },
+      menu: {
+        name: 'Menu',
+        file: 'menu.html',
+        desc: 'Categorised items with prices',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="8" cy="6" r="1" fill="currentColor"/><circle cx="8" cy="12" r="1" fill="currentColor"/><circle cx="8" cy="18" r="1" fill="currentColor"/></svg>',
+        prompt: `Add a Menu / Pricing page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read menu.html — it is a pre-built template with the correct menu layout. Do NOT write a menu page from scratch.
+3. Rewrite menu.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Menu link)
+   - Update the hero section title and description
+   - Create menu categories and items relevant to this business with realistic EUR prices
+   - Keep every CSS class exactly as-is: menu-category, menu-category__title, menu-item, menu-item__header, menu-item__name, menu-item__price, menu-item__desc, nav, hero--compact, footer, container-narrow
+   - You may add or remove menu-category and menu-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "Menu" nav link pointing to menu.html, and write the updated file.
+5. Write all updated files.`
+      },
+      testimonials: {
+        name: 'Testimonials',
+        file: 'testimonials.html',
+        desc: 'Customer quote cards',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 5v3c0 1 0 1 1 1z"/></svg>',
+        prompt: `Add a Testimonials page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read testimonials.html — it is a pre-built template with the correct card layout. Do NOT write a testimonials page from scratch.
+3. Rewrite testimonials.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new Testimonials link)
+   - Update the hero section title and description
+   - Write realistic, believable testimonials with Irish names relevant to this business type
+   - Keep every CSS class exactly as-is: testimonial-card, testimonial-card__quote, testimonial-card__author, testimonial-card__role, grid, grid-2, nav, hero--compact, footer
+   - You may add or remove testimonial-card blocks (keep them in a grid-2 layout)
+4. Use list_files to find all other .html pages. Read each one, add a "Testimonials" nav link pointing to testimonials.html, and write the updated file.
+5. Write all updated files.`
+      },
+      faq: {
+        name: 'FAQ',
+        file: 'faq.html',
+        desc: 'Accordion Q&A section',
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>',
+        prompt: `Add a FAQ page to my site.
+
+Follow these exact steps:
+1. Read index.html to learn the business name, branding, and current nav links.
+2. Read faq.html — it is a pre-built template with the correct accordion structure using details/summary elements. Do NOT write a FAQ page from scratch.
+3. Rewrite faq.html with content customised for this business:
+   - Match the nav and footer exactly to index.html (same business name, same links, plus a new FAQ link)
+   - Update the hero section title and description
+   - Write 6-10 relevant FAQs for this specific type of business
+   - Keep the details/summary structure exactly as-is
+   - Keep the first details element open (has the "open" attribute)
+   - Keep every CSS class exactly as-is: faq-item, faq-item__question, faq-item__answer, container-narrow, nav, hero--compact, footer
+   - You may add or remove faq-item blocks
+4. Use list_files to find all other .html pages. Read each one, add a "FAQ" nav link pointing to faq.html, and write the updated file.
+5. Write all updated files.`
+      }
+    };
+
+    // Render feature cards
+    const featuresGrid = document.getElementById('features-grid');
+    const featuresPanel = document.getElementById('features-panel');
+    const featuresToggle = document.getElementById('features-toggle');
+
+    function renderFeatureCards() {
+      featuresGrid.innerHTML = '';
+      for (const [key, tpl] of Object.entries(PAGE_TEMPLATES)) {
+        const card = document.createElement('div');
+        card.className = 'feature-card';
+        card.innerHTML = `
+          <div class="feature-card__icon">${tpl.icon}</div>
+          <div class="feature-card__name">${tpl.name}</div>
+          <div class="feature-card__desc">${tpl.desc}</div>
+          <button type="button" class="feature-card__btn" data-page="${key}">Add to site</button>
+        `;
+        featuresGrid.appendChild(card);
+      }
+    }
+
+    // Toggle collapse
+    if (localStorage.getItem('features_collapsed') === 'true') {
+      featuresPanel.classList.add('features--collapsed');
+    }
+    featuresToggle.addEventListener('click', () => {
+      featuresPanel.classList.toggle('features--collapsed');
+      localStorage.setItem('features_collapsed', featuresPanel.classList.contains('features--collapsed'));
+    });
+
+    // Handle "Add to site" clicks
+    featuresGrid.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.feature-card__btn');
+      if (!btn || btn.disabled) return;
+
+      const pageKey = btn.dataset.page;
+      const tpl = PAGE_TEMPLATES[pageKey];
+      if (!tpl) return;
+
+      // Disable all feature buttons while building
+      featuresGrid.querySelectorAll('.feature-card__btn').forEach(b => b.disabled = true);
+      btn.textContent = 'Building...';
+
+      // Add a build entry
+      const tempEntry = {
+        prompt: `Add page: ${tpl.name}`,
+        timestamp: Date.now(),
+        status: 'building'
+      };
+      buildHistory.push(tempEntry);
+      renderHistory();
+
+      try {
+        const r = await fetch('/api/agent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ message: tpl.prompt })
+        });
+
+        if (r.status === 401) {
+          token = '';
+          sessionStorage.removeItem('admin_token');
+          showLogin();
+          buildHistory.pop();
+          return;
+        }
+
+        const data = await r.json();
+
+        if (!r.ok) {
+          tempEntry.status = 'error';
+          tempEntry.response = data.error || 'Something went wrong.';
+          btn.textContent = 'Add to site';
+        } else {
+          tempEntry.status = 'success';
+          tempEntry.response = data.text || '';
+          tempEntry.buildLog = data.buildLog || [];
+          tempEntry.usage = data.usage || {};
+          tempEntry.commitSha = data.commit?.sha || null;
+          btn.textContent = 'Added';
+          btn.classList.add('feature-card__btn--done');
+        }
+      } catch (err) {
+        tempEntry.status = 'error';
+        tempEntry.response = `Network error: ${err.message}`;
+        btn.textContent = 'Add to site';
+      }
+
+      // Re-enable other buttons
+      featuresGrid.querySelectorAll('.feature-card__btn').forEach(b => {
+        if (!b.classList.contains('feature-card__btn--done')) b.disabled = false;
+      });
+
+      localStorage.setItem('build_history', JSON.stringify(buildHistory));
+      renderHistory();
+    });
+
+    renderFeatureCards();
+
+    // --- Images Panel ---
+    const imagesPanel = document.getElementById('images-panel');
+    const imagesToggle = document.getElementById('images-toggle');
+
+    if (localStorage.getItem('images_collapsed') === 'true') {
+      imagesPanel.classList.add('images--collapsed');
+    }
+    imagesToggle.addEventListener('click', () => {
+      imagesPanel.classList.toggle('images--collapsed');
+      localStorage.setItem('images_collapsed', imagesPanel.classList.contains('images--collapsed'));
+    });
+
+    // Restore previews from localStorage
+    function restoreUploadPreviews() {
+      ['logo', 'hero'].forEach(type => {
+        const url = localStorage.getItem(`site_${type}_url`);
+        if (url) showUploadPreview(document.getElementById(`upload-${type}`), url);
+      });
+    }
+
+    function showUploadPreview(zone, url) {
+      zone.innerHTML = `
+        <img class="upload-zone__preview" src="${escapeHtml(url)}" alt="Uploaded">
+        <div class="upload-zone__status">Uploaded</div>
+        <input type="file" accept="image/*" style="display:none">
+      `;
+    }
+
+    async function handleUpload(file, type) {
+      const zone = document.getElementById(`upload-${type}`);
+
+      // Validate client-side
+      if (!file.type.match(/^image\/(jpeg|png|webp|svg\+xml)$/)) {
+        zone.querySelector('.upload-zone__text')?.remove();
+        const err = document.createElement('div');
+        err.className = 'upload-zone__error';
+        err.textContent = 'Only JPG, PNG, WebP, or SVG allowed.';
+        zone.appendChild(err);
+        setTimeout(() => err.remove(), 3000);
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        zone.querySelector('.upload-zone__text')?.remove();
+        const err = document.createElement('div');
+        err.className = 'upload-zone__error';
+        err.textContent = 'File too large (max 5MB).';
+        zone.appendChild(err);
+        setTimeout(() => err.remove(), 3000);
+        return;
+      }
+
+      zone.classList.add('upload-zone--uploading');
+      const oldHtml = zone.innerHTML;
+      zone.innerHTML = `
+        <div class="upload-zone__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <div class="upload-zone__text">Uploading...</div>
+      `;
+
+      const ext = file.name.split('.').pop() || 'png';
+      const filename = `${type}-${Date.now()}.${ext}`;
+
+      try {
+        const r = await fetch(`/api/upload?filename=${encodeURIComponent(filename)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': file.type,
+            'Authorization': `Bearer ${token}`
+          },
+          body: file
+        });
+
+        if (r.status === 401) {
+          token = '';
+          sessionStorage.removeItem('admin_token');
+          showLogin();
+          return;
+        }
+
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || 'Upload failed');
+
+        // Store URL and show preview
+        localStorage.setItem(`site_${type}_url`, data.url);
+        showUploadPreview(zone, data.url);
+        zone.classList.remove('upload-zone--uploading');
+
+        // Auto-fire agent prompt
+        const prompt = type === 'logo'
+          ? `Update the site logo. Use this image URL as the logo in the nav on all pages: ${data.url}. Add <link rel="icon" href="${data.url}"> to every page. Do NOT change nav structure or CSS class names.`
+          : `Update the hero section background image on index.html. Use this image URL: ${data.url}. Apply it as a CSS background-image on the hero section. Do NOT change nav structure, footer structure, or CSS class names.`;
+
+        buildInput.value = prompt;
+        buildForm.dispatchEvent(new Event('submit'));
+      } catch (err) {
+        zone.innerHTML = oldHtml;
+        zone.classList.remove('upload-zone--uploading');
+        const errEl = document.createElement('div');
+        errEl.className = 'upload-zone__error';
+        errEl.textContent = err.message;
+        zone.appendChild(errEl);
+        setTimeout(() => errEl.remove(), 4000);
+      }
+    }
+
+    // Drag/drop + click-to-browse handlers
+    document.querySelectorAll('.upload-zone').forEach(zone => {
+      const fileInput = zone.querySelector('input[type="file"]');
+      const type = zone.dataset.type;
+
+      zone.addEventListener('click', (e) => {
+        if (e.target.closest('input')) return;
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files[0]) handleUpload(fileInput.files[0], type);
+        fileInput.value = '';
+      });
+
+      zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('upload-zone--drag');
+      });
+
+      zone.addEventListener('dragleave', () => {
+        zone.classList.remove('upload-zone--drag');
+      });
+
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('upload-zone--drag');
+        const file = e.dataTransfer.files[0];
+        if (file) handleUpload(file, type);
+      });
+    });
+
+    restoreUploadPreviews();
 
     // --- Auto-resize textarea ---
     buildInput.addEventListener('input', () => {

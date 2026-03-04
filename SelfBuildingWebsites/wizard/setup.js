@@ -284,26 +284,62 @@ async function agentCall(siteUrl, adminToken, message, businessInfo) {
   return r.json();
 }
 
-export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onStep) {
-  const biz = buildBusinessBlock(businessInfo);
-  const steps = [
-    {
+// ---- Page prompt registry (keyed by page ID) ----
+// Each entry generates an agent prompt for building that page.
+// The 'css' entry always runs first; others run per selectedPages.
+
+function getPagePrompts(biz) {
+  return {
+    css: {
       label: 'Customising design',
-      message: `Read css/style.css to understand the design system. Then write an updated css/style.css that customises the colour scheme for this business. Choose colours that suit the business type. Override --color-primary, --color-accent, --color-highlight in a new :root block at the bottom. Keep all existing classes intact.\n\nBusiness:\n${biz}`
+      message: `Read css/style.css. At the very bottom there is a section marked "AI-GENERATED STYLES BELOW THIS LINE". Add a new :root block there that overrides --color-primary, --color-accent, --color-highlight with colours that suit this business type. Keep ALL existing CSS above that line exactly as-is. Write the complete file back.\n\nBusiness:\n${biz}`
     },
-    {
+    home: {
       label: 'Building home page',
-      message: `Build index.html for this business. It must be a complete HTML page with: nav, hero section with business name and tagline, about preview, services preview (use real plausible content), and a CTA section. Link to css/style.css and js/main.js. Use the nav and footer structure from the design system. Write real compelling copy — no placeholder text.\n\nBusiness:\n${biz}`
+      message: `Read the existing index.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: nav, nav__inner, nav__brand, nav__links, nav__link, nav__link--cta, nav__toggle, hero, container, eyebrow, lead, btn-group, btn, btn-primary, btn-secondary, btn-lg, section, section--alt, section--primary, text-center, container-narrow, grid, grid-3, card, card__icon, card__title, card__text, cta-lead, btn-highlight, footer, footer__brand, footer__tagline, footer__links, footer__bottom, footer__badge\n- Keep all <svg> icons exactly as-is\n- Keep the <script src="js/main.js"> tag\n- Keep the <link rel="stylesheet" href="css/style.css"> tag\n- Only change TEXT between tags: business name, tagline, about paragraphs, service titles/descriptions, footer text\n- You may add or remove <div class="card">...</div> blocks in the grid to match the business services (copy the existing card structure)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
     },
-    {
+    contact: {
       label: 'Building contact page',
-      message: `Build contact.html for this business. Complete HTML page with: nav (matching index.html), contact form that POSTs to /api/contact (fields: name, email, phone optional, message), business contact details (address, phone, email, hours if known), and footer. Include the JavaScript that handles form submission via fetch.\n\nBusiness:\n${biz}`
+      message: `Read the existing contact.html. It is a WORKING template — the HTML structure, CSS classes, form action, and JavaScript are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is (nav, nav__inner, nav__brand, contact-grid, contact-form, form-group, form-row, contact-info, info-item, footer, etc.)\n- Keep the form action="/api/contact" and all form JavaScript exactly as-is\n- Keep all <svg> icons exactly as-is\n- Only change TEXT: business name in nav/footer, email, phone, address, page title, page description\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
     },
-    {
+    about: {
       label: 'Building about page',
-      message: `Build about.html for this business. Complete HTML page with: nav (matching index.html), business story/background, what makes them special, and footer. Write authentic, warm copy that tells this business's story. If you don't have details, write plausible content based on the business type.\n\nBusiness:\n${biz}`
+      message: `Read index.html to see the exact nav structure and CSS classes. Then create about.html that uses the SAME structure.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the About link\n- Use the same <footer class="footer"> block from index.html\n- Use these CSS classes for content: section, container, text-center, eyebrow, container-narrow, lead\n- Link to css/style.css and js/main.js\n- Write warm, authentic copy about this business — their story, values, and what makes them special\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
     },
-  ];
+    services: {
+      label: 'Building services page',
+      message: `Read index.html to see the exact nav structure, CSS classes, and card layout. Then create services.html as a standalone page.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the Services link\n- Use the same <footer class="footer"> block from index.html\n- Use hero--compact class on the hero section\n- Use grid grid-3 with card, card__icon, card__title, card__text for each service\n- Link to css/style.css and js/main.js\n- Write detailed descriptions for each service this business offers\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
+    },
+    gallery: {
+      label: 'Building gallery page',
+      message: `Read the existing gallery.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: gallery-grid, gallery-item, gallery-item__placeholder, gallery-item__caption, nav, footer, hero--compact\n- Keep all <svg> icons exactly as-is\n- Only change TEXT: business name in nav/footer, gallery item captions, hero title/description\n- You may add or remove gallery-item blocks as appropriate (keep the SVG placeholder in each)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+    },
+    menu: {
+      label: 'Building menu page',
+      message: `Read the existing menu.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: menu-category, menu-category__title, menu-item, menu-item__header, menu-item__name, menu-item__price, menu-item__desc, nav, footer, hero--compact, container-narrow\n- Only change TEXT: business name in nav/footer, category names, item names/prices/descriptions, hero title/description\n- You may add or remove menu-category and menu-item blocks as appropriate for this business\n- Use realistic prices in EUR for an Irish business\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+    },
+    testimonials: {
+      label: 'Building testimonials page',
+      message: `Read the existing testimonials.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: testimonial-card, testimonial-card__quote, testimonial-card__author, testimonial-card__role, grid grid-2, nav, footer, hero--compact\n- Only change TEXT: business name in nav/footer, testimonial quotes/authors/roles, hero title/description\n- Write realistic, believable testimonials with Irish names\n- You may add or remove testimonial-card blocks (keep them in a grid-2)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+    },
+    faq: {
+      label: 'Building FAQ page',
+      message: `Read the existing faq.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: faq-item, faq-item__question, faq-item__answer, container-narrow, nav, footer, hero--compact\n- Keep the <details>/<summary> structure exactly as-is\n- Only change TEXT: business name in nav/footer, questions and answers, hero title/description\n- Write relevant FAQs for this specific type of business\n- Keep the first <details> element open (has the "open" attribute)\n- You may add or remove faq-item blocks as appropriate\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+    },
+  };
+}
+
+export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onStep, selectedPages) {
+  const biz = buildBusinessBlock(businessInfo);
+  const prompts = getPagePrompts(biz);
+
+  // Build the step list: always CSS first, then selected pages
+  // Default to original 4-page build if no selectedPages provided
+  const pageIds = selectedPages || ['home', 'contact', 'about'];
+  const steps = [prompts.css];
+  for (const id of pageIds) {
+    if (prompts[id]) steps.push(prompts[id]);
+  }
 
   const results = [];
   for (let i = 0; i < steps.length; i++) {

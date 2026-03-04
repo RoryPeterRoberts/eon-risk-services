@@ -13,6 +13,7 @@
   ],
   "functions": {
     "api/agent.js": { "maxDuration": 60 },
+    "api/enhance-prompt.js": { "maxDuration": 15 },
     "api/contact.js": { "maxDuration": 10 },
     "api/upload.js": { "maxDuration": 30 }
   }

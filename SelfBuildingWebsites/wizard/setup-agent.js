@@ -56,12 +56,18 @@ const STATES = {
   BIZ_DISCOVER:     'BIZ_DISCOVER',
   BIZ_REVIEW:       'BIZ_REVIEW',
 
-  // Phase E: Build
+  // Phase E: Page Selection
+  PAGE_SELECT:      'PAGE_SELECT',
+
+  // Phase F: Build
   BUILD_CONFIRM:    'BUILD_CONFIRM',
   BUILD_RUNNING:    'BUILD_RUNNING',
   BUILD_COMPLETE:   'BUILD_COMPLETE',
 
-  // Phase F: Domain (optional)
+  // Phase G: Image Upload (optional)
+  IMAGE_UPLOAD:     'IMAGE_UPLOAD',
+
+  // Phase H: Domain (optional)
   DOMAIN_PROMPT:    'DOMAIN_PROMPT',
 };
 
@@ -101,6 +107,7 @@ export class SetupAgent {
     this.businessName = null;
     this.businessLocation = null;
     this.businessInfo = null;
+    this.selectedPages = null;
     this.repoName = null;
     this.projectId = null;
     this.projectSlug = null;
@@ -116,6 +123,7 @@ export class SetupAgent {
       githubToken: this.githubToken, githubLogin: this.githubLogin,
       vercelToken: this.vercelToken, vercelUsername: this.vercelUsername,
       businessInfo: this.businessInfo, repoName: this.repoName,
+      selectedPages: this.selectedPages,
     });
   }
 
@@ -130,11 +138,13 @@ export class SetupAgent {
     this.vercelUsername = saved.vercelUsername;
     this.businessInfo = saved.businessInfo;
     this.repoName = saved.repoName;
+    this.selectedPages = saved.selectedPages;
   }
 
   // Figure out which state to resume from based on saved data
   _resumeState(saved) {
-    if (saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BUILD_CONFIRM;
+    if (saved.selectedPages && saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BUILD_CONFIRM;
+    if (saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.PAGE_SELECT;
     if (saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BIZ_NAME;
     if (saved.githubToken && saved.aiKey) return STATES.VERCEL_INTRO;
     if (saved.aiKey) return STATES.GITHUB_INTRO;
@@ -170,6 +180,7 @@ export class SetupAgent {
             if (this.githubToken) step = 2;
             if (this.vercelToken) step = 3;
             if (this.businessInfo) step = 4;
+            if (this.selectedPages) step = 5;
             this.ui.updateProgress(step);
             await this.enter(resumeState);
           } else {
@@ -197,8 +208,8 @@ export class SetupAgent {
       case STATES.BIZ_NAME:
         return this.enter(STATES.BIZ_DISCOVER, value);
       case STATES.BIZ_REVIEW:
-        // User confirmed — proceed to build
-        return this.enter(STATES.BUILD_CONFIRM);
+        // User confirmed — proceed to page selection
+        return this.enter(STATES.PAGE_SELECT);
       case STATES.DOMAIN_PROMPT:
         return this.handleDomain(value);
       default:
@@ -214,12 +225,19 @@ export class SetupAgent {
       case 'edit-info':
         return this.enter(STATES.BIZ_NAME);
       case 'confirm-info':
-        return this.enter(STATES.BUILD_CONFIRM);
+        return this.enter(STATES.PAGE_SELECT);
       case 'skip-domain':
         this.ui.addMessage('agent', "No problem. You can add a custom domain anytime from Vercel's dashboard. Enjoy your new website!");
         return;
+      case 'confirm-pages':
+        return this.enter(STATES.BUILD_CONFIRM);
       case 'add-domain':
         return this.enter(STATES.DOMAIN_PROMPT);
+      case 'skip-images':
+        this.ui.addMessage('agent', "No problem! You can add images later from the admin panel. Let's wrap up.");
+        return this.enter(STATES.DOMAIN_PROMPT);
+      case 'upload-images':
+        return this.doImageUploadProcess();
       default:
         break;
     }
@@ -252,12 +270,16 @@ export class SetupAgent {
         return this.doBizDiscover(input);
       case STATES.BIZ_REVIEW:
         return this.doBizReview();
+      case STATES.PAGE_SELECT:
+        return this.doPageSelect();
       case STATES.BUILD_CONFIRM:
         return this.doBuildConfirm();
       case STATES.BUILD_RUNNING:
         return this.doBuildRunning();
       case STATES.BUILD_COMPLETE:
         return this.doBuildComplete();
+      case STATES.IMAGE_UPLOAD:
+        return this.doImageUpload();
       case STATES.DOMAIN_PROMPT:
         return this.doDomainPrompt();
     }
@@ -560,7 +582,60 @@ The easiest way: sign up with your GitHub account (one click).`);
   }
 
   // ================================================================
-  // Phase E: Build
+  // Phase E: Page Selection
+  // ================================================================
+
+  doPageSelect() {
+    const bizType = (this.businessInfo && this.businessInfo.type || '').toLowerCase();
+
+    // Smart defaults based on business type
+    const isFood = /restaurant|cafe|bakery|bistro|pub|bar|coffee|pizza|takeaway|diner|kitchen|food|catering/i.test(bizType);
+    const isVisual = /restaurant|venue|photographer|photography|salon|beauty|florist|architect|interior|gallery|hotel|b&b|guesthouse/i.test(bizType);
+
+    const pages = [
+      { id: 'home',         label: 'Home',          locked: true,  checked: true },
+      { id: 'about',        label: 'About',         locked: false, checked: true },
+      { id: 'services',     label: 'Services',      locked: false, checked: true },
+      { id: 'contact',      label: 'Contact',       locked: true,  checked: true },
+      { id: 'gallery',      label: 'Gallery',       locked: false, checked: isVisual },
+      { id: 'menu',         label: 'Menu / Pricing', locked: false, checked: isFood },
+      { id: 'testimonials', label: 'Testimonials',  locked: false, checked: false },
+      { id: 'faq',          label: 'FAQ',           locked: false, checked: false },
+    ];
+
+    let html = '<div class="chat-card"><div class="chat-card__title">Choose your pages</div>';
+    html += '<p style="font-size:0.88rem;color:var(--text-light);margin-bottom:12px">Select which pages to include on your site. Home and Contact are always included.</p>';
+    html += '<div class="page-checklist" id="page-checklist">';
+    for (const p of pages) {
+      const checked = p.checked ? 'checked' : '';
+      const disabled = p.locked ? 'disabled' : '';
+      html += `<label class="page-check">
+        <input type="checkbox" value="${p.id}" ${checked} ${disabled}>
+        <span class="page-check__label">${p.label}</span>
+      </label>`;
+    }
+    html += '</div></div>';
+
+    this.ui.addMessage('agent', html, true);
+
+    this.ui.addButtons([
+      { label: 'Confirm pages', action: 'confirm-pages' },
+    ]);
+
+    this.ui.onAction = async (action) => {
+      // Read checked pages from the DOM
+      const checkboxes = document.querySelectorAll('#page-checklist input[type="checkbox"]');
+      const selected = [];
+      checkboxes.forEach(cb => { if (cb.checked) selected.push(cb.value); });
+      this.selectedPages = selected;
+      this._save();
+      this.ui.updateProgress(5);
+      await this.handleAction(action);
+    };
+  }
+
+  // ================================================================
+  // Phase F: Build
   // ================================================================
 
   doBuildConfirm() {
@@ -683,7 +758,7 @@ This takes 2-5 minutes. Ready?`);
           } else {
             this.ui.setBuildStep('ai_build', 'done', 'Website built!');
           }
-        });
+        }, this.selectedPages);
       } catch (buildErr) {
         this.ui.setBuildStep('ai_build', 'error', buildErr.message || 'Build can be retried from admin panel');
       }
@@ -709,7 +784,7 @@ This takes 2-5 minutes. Ready?`);
 
   async doBuildComplete() {
     clearState();
-    this.ui.updateProgress(5);
+    this.ui.updateProgress(6);
 
     this.ui.addMessage('agent', `<div class="chat-card chat-card--success">
 <div class="chat-card__title">Your website is live!</div>
@@ -732,11 +807,35 @@ This takes 2-5 minutes. Ready?`);
 <p class="chat-hint" style="margin-top:12px">Save your admin token — you'll need it to log into the admin panel and make changes.</p>
 </div>`, true);
 
-    this.ui.addMessage('agent', 'Want to connect your own domain (like mybusiness.ie)?');
+    await this.enter(STATES.IMAGE_UPLOAD);
+  }
+
+  // ================================================================
+  // Phase G: Image Upload (optional)
+  // ================================================================
+
+  doImageUpload() {
+    this.ui.addMessage('agent', `<div class="chat-card">
+<div class="chat-card__title">Add your images (optional)</div>
+<p style="font-size:0.88rem;color:var(--text-light);margin-bottom:12px">Upload a logo and hero image to personalise your site. You can skip this and add images later from the admin panel.</p>
+<div class="image-upload-group" id="image-upload-group">
+  <div class="image-upload-field">
+    <label class="image-upload-label">Logo</label>
+    <input type="file" id="upload-logo" accept="image/*" class="image-upload-input">
+    <div class="image-upload-hint">Square or horizontal, PNG or SVG preferred</div>
+  </div>
+  <div class="image-upload-field">
+    <label class="image-upload-label">Hero Image</label>
+    <input type="file" id="upload-hero" accept="image/*" class="image-upload-input">
+    <div class="image-upload-hint">Wide landscape image, at least 1200px wide</div>
+  </div>
+</div>
+<div id="upload-status" style="margin-top:8px"></div>
+</div>`, true);
 
     this.ui.addButtons([
-      { label: 'Yes, add a domain', action: 'add-domain' },
-      { label: "No, I'm happy with .vercel.app", action: 'skip-domain' },
+      { label: 'Upload images', action: 'upload-images' },
+      { label: 'Skip for now', action: 'skip-images' },
     ]);
 
     this.ui.onAction = async (action) => {
@@ -744,12 +843,82 @@ This takes 2-5 minutes. Ready?`);
     };
   }
 
+  async doImageUploadProcess() {
+    const logoInput = document.getElementById('upload-logo');
+    const heroInput = document.getElementById('upload-hero');
+    const statusEl = document.getElementById('upload-status');
+
+    const logoFile = logoInput && logoInput.files[0];
+    const heroFile = heroInput && heroInput.files[0];
+
+    if (!logoFile && !heroFile) {
+      this.ui.addMessage('agent', "No files selected. You can add images later from the admin panel.");
+      return this.enter(STATES.DOMAIN_PROMPT);
+    }
+
+    if (statusEl) statusEl.innerHTML = '<span style="color:var(--gold)">Uploading...</span>';
+
+    try {
+      const uploadFile = async (file, type) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('type', type);
+        const r = await fetch(`${this.siteUrl}/api/upload`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${this.adminToken}` },
+          body: formData
+        });
+        if (!r.ok) throw new Error(`Upload failed: ${r.status}`);
+        return r.json();
+      };
+
+      const results = [];
+      if (logoFile) {
+        results.push(await uploadFile(logoFile, 'logo'));
+      }
+      if (heroFile) {
+        results.push(await uploadFile(heroFile, 'hero'));
+      }
+
+      if (statusEl) statusEl.innerHTML = '<span style="color:#2E7D32">Uploaded! Applying to your site...</span>';
+
+      // Tell the agent to apply the images
+      const imageUrls = results.map(r => `${r.type}: ${r.url}`).join('\n');
+      try {
+        const applyMsg = `Images have been uploaded. Apply them to the site:\n${imageUrls}\n\nFor the logo: update the nav__brand in index.html (and all other pages) to include an <img> tag before the text.\nFor the hero: add a background-image style to the .hero section in css/style.css in the AI-GENERATED section.\nKeep all CSS classes and structure intact.`;
+        await fetch(`${this.siteUrl}/api/agent`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.adminToken}`
+          },
+          body: JSON.stringify({ mode: 'modify', message: applyMsg, businessInfo: this.businessInfo })
+        });
+      } catch {}
+
+      this.ui.addMessage('agent', 'Images uploaded and applied to your site!');
+    } catch (err) {
+      this.ui.addMessage('agent', `Image upload ran into an issue: ${err.message}. No worries — you can add images later from the admin panel.`);
+    }
+
+    await this.enter(STATES.DOMAIN_PROMPT);
+  }
+
   // ================================================================
-  // Phase F: Domain (optional)
+  // Phase H: Domain (optional)
   // ================================================================
 
   doDomainPrompt() {
-    this.ui.addMessage('agent', `<div class="chat-card">
+    this.ui.addMessage('agent', 'Want to connect your own domain (like mybusiness.ie)?');
+
+    this.ui.addButtons([
+      { label: 'Yes, add a domain', action: 'show-domain-form' },
+      { label: "No, I'm happy with .vercel.app", action: 'skip-domain' },
+    ]);
+
+    this.ui.onAction = async (action) => {
+      if (action === 'show-domain-form') {
+        this.ui.addMessage('agent', `<div class="chat-card">
 <div class="chat-card__title">Connect your domain</div>
 <p>Buy a domain from one of these registrars (around EUR 10/year):</p>
 <ul class="chat-steps">
@@ -758,9 +927,12 @@ This takes 2-5 minutes. Ready?`);
 </ul>
 <p>Once you have a domain, type it below (e.g. <code>mybusiness.ie</code>).</p>
 </div>`, true);
-
-    this.ui.setInputVisible(true, 'mybusiness.ie');
-    this.state = STATES.DOMAIN_PROMPT;
+        this.ui.setInputVisible(true, 'mybusiness.ie');
+        this.state = STATES.DOMAIN_PROMPT;
+      } else {
+        await this.handleAction(action);
+      }
+    };
   }
 
   async handleDomain(input) {
