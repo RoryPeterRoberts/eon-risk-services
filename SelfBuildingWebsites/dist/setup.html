@@ -6043,6 +6043,7 @@ The easiest way: sign up with your GitHub account (one click).`);
   // ================================================================
 
   doBuildConfirm() {
+    const hasImageGen = this.aiProvider === 'google';
     this.ui.addMessage('agent', `Ready to build <strong>${this.businessInfo.name || this.businessName}</strong>'s website. Here's what I'll do:
 
 1. Create a GitHub repo: <code>${this.githubLogin}/${this.repoName}</code>
@@ -6054,25 +6055,43 @@ The easiest way: sign up with your GitHub account (one click).`);
 
 This takes 2-5 minutes. Ready?`);
 
-    this.ui.addButtons([
-      { label: 'Build it!', action: 'confirm-build' },
-    ]);
+    if (hasImageGen) {
+      this.ui.addButtons([
+        { label: 'Build with AI images', action: 'confirm-build-images' },
+        { label: 'Build without images', action: 'confirm-build' },
+      ]);
+    } else {
+      this.ui.addButtons([
+        { label: 'Build it!', action: 'confirm-build' },
+      ]);
+    }
 
     this.ui.onAction = async (action) => {
+      if (action === 'confirm-build-images') {
+        this._generateImages = true;
+        return this.enter(STATES.BUILD_RUNNING);
+      }
+      this._generateImages = false;
       await this.handleAction(action);
     };
   }
 
   async doBuildRunning() {
     this.ui.setInputVisible(false);
-    this.ui.addProgress([
+    const steps = [
       { id: 'github_repo',    label: 'Create GitHub repository' },
       { id: 'push_files',     label: 'Push website files' },
+    ];
+    if (this._generateImages) {
+      steps.push({ id: 'gen_images', label: 'Generate logo & hero image' });
+    }
+    steps.push(
       { id: 'vercel_project', label: 'Create Vercel project' },
       { id: 'env_vars',       label: 'Configure environment' },
       { id: 'deploy',         label: 'Deploy to Vercel' },
       { id: 'ai_build',       label: 'AI builds your website' },
-    ]);
+    );
+    this.ui.addProgress(steps);
 
     try {
       // Step 1: Create GitHub repo
@@ -6089,6 +6108,33 @@ This takes 2-5 minutes. Ready?`);
         this.ui.setBuildStep('push_files', 'running', `${done}/${total} files`);
       });
       this.ui.setBuildStep('push_files', 'done', 'All files pushed');
+
+      // Step 2b: Generate images (if opted in)
+      if (this._generateImages) {
+        this.ui.setBuildStep('gen_images', 'running', 'Generating logo...');
+        try {
+          const info = this.businessInfo || {};
+          const name = info.name || 'the business';
+          const type = info.type || 'business';
+          const location = info.address || '';
+
+          const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
+          const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+          await pushImageToRepo(this.githubToken, repo, 'images/logo.png', logoBase64, 'Add AI-generated logo');
+
+          this.ui.setBuildStep('gen_images', 'running', 'Generating hero banner...');
+          const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
+          const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+          await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
+
+          // Set URLs in businessInfo so the AI build naturally uses them
+          this.businessInfo.logo_url = '/images/logo.png';
+          this.businessInfo.hero_url = '/images/hero.png';
+          this.ui.setBuildStep('gen_images', 'done', 'Logo & hero generated');
+        } catch (imgErr) {
+          this.ui.setBuildStep('gen_images', 'error', imgErr.message || 'Skipped — you can add images later');
+        }
+      }
 
       // Step 3: Create Vercel project
       this.ui.setBuildStep('vercel_project', 'running', 'Creating Vercel project...');
@@ -6222,11 +6268,23 @@ This takes 2-5 minutes. Ready?`);
 </ol>
 </div>`, true);
 
-    this.ui.addButtons([
-      { label: 'Open Admin Panel', action: 'open-admin', url: `${this.siteUrl}/admin.html` },
-    ]);
-
-    await this.enter(STATES.IMAGE_UPLOAD);
+    // If images were already generated during build, skip to domain
+    if (this._generateImages) {
+      this.ui.addButtons([
+        { label: 'Open Admin Panel', action: 'open-admin', url: `${this.siteUrl}/admin.html` },
+        { label: 'Add a custom domain', action: 'add-domain' },
+        { label: "I'm done!", action: 'skip-domain' },
+      ]);
+      this.ui.onAction = async (action) => {
+        if (action === 'add-domain') return this.enter(STATES.DOMAIN_PROMPT);
+        if (action === 'skip-domain') return this.handleAction(action);
+      };
+    } else {
+      this.ui.addButtons([
+        { label: 'Open Admin Panel', action: 'open-admin', url: `${this.siteUrl}/admin.html` },
+      ]);
+      await this.enter(STATES.IMAGE_UPLOAD);
+    }
   }
 
   // ================================================================
