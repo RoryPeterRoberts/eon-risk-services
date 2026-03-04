@@ -390,7 +390,16 @@ async function agentCall(siteUrl, adminToken, message, businessInfo, onRetry) {
     }
     if (!r.ok) {
       const data = await r.json().catch(() => ({}));
-      throw new Error(data.error || `Agent call failed: ${r.status}`);
+      const errMsg = data.error || `Agent call failed: ${r.status}`;
+      // Detect rate limit errors wrapped by the agent (Gemini 429 returned as 500)
+      if (attempt < MAX_RETRIES && /429|rate.?limit|RESOURCE_EXHAUSTED|quota/i.test(errMsg)) {
+        const delayMatch = errMsg.match(/retry\s*in\s*(\d+)/i);
+        const delay = (delayMatch ? parseInt(delayMatch[1], 10) : 60) * 1000;
+        if (onRetry) onRetry(attempt + 1, Math.round(delay / 1000));
+        await new Promise(resolve => setTimeout(resolve, delay));
+        continue;
+      }
+      throw new Error(errMsg);
     }
     return r.json();
   }
@@ -461,9 +470,10 @@ export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onS
     };
     const result = await agentCall(siteUrl, adminToken, steps[i].message, businessInfo, onRetry);
     results.push(result);
-    // Pace requests to avoid hitting rate limits on free-tier APIs
+    // Pace requests: free-tier Gemini allows 5 req/min, and each agent step
+    // may use multiple internal calls. 15s gap keeps us well under the limit.
     if (i < steps.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 15000));
     }
   }
   if (onStep) onStep(steps.length, steps.length, 'Done');

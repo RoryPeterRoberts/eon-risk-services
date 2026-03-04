@@ -398,7 +398,7 @@ async function callOpenAICompatible(messages, systemPrompt, model, apiKey, baseU
     })
   ];
 
-  const r = await fetch(url, {
+  let r = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -415,7 +415,36 @@ async function callOpenAICompatible(messages, systemPrompt, model, apiKey, baseU
       max_tokens: maxTokens
     })
   });
-  if (!r.ok) { const t = await r.text(); throw new Error(`${model} ${r.status}: ${t}`); }
+  if (r.status === 429) {
+    // Parse retry delay from Gemini/OpenAI 429 response
+    const errBody = await r.text();
+    const delayMatch = errBody.match(/"retryDelay"\s*:\s*"(\d+)s?"/);
+    const delaySec = delayMatch ? parseInt(delayMatch[1], 10) : 60;
+    const waitMs = Math.min(delaySec, 120) * 1000;
+    await new Promise(resolve => setTimeout(resolve, waitMs));
+    // Retry once
+    const r2 = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model,
+        messages: oaiMessages,
+        tools: TOOLS.map(t => ({
+          type: 'function',
+          function: { name: t.name, description: t.description, parameters: t.parameters }
+        })),
+        tool_choice: 'auto',
+        max_tokens: maxTokens
+      })
+    });
+    if (!r2.ok) { const t = await r2.text(); throw new Error(`${model} ${r2.status}: ${t}`); }
+    r = r2;
+  } else if (!r.ok) {
+    const t = await r.text(); throw new Error(`${model} ${r.status}: ${t}`);
+  }
   const data = await r.json();
   const choice = data.choices[0];
   const msg = choice.message;
