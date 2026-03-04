@@ -301,7 +301,7 @@ export async function validateAIKey(apiKey, model) {
 export async function generateImage(apiKey, prompt) {
   const MAX_RETRIES = 3;
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent', {
       method: 'POST',
       headers: {
         'x-goog-api-key': apiKey,
