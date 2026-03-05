@@ -125,12 +125,27 @@ export async function pushFileToRepo(token, repo, path, content, message) {
   });
 }
 
-export async function pushSiteKit(token, repo, onProgress) {
+export async function pushSiteKit(token, repo, onProgress, selectedPages) {
   if (!SITE_KIT_FILES) throw new Error('Site kit files not loaded. Call setSiteKitFiles() first.');
 
-  const files = Object.entries(SITE_KIT_FILES);
-  let pushed = 0;
+  // Optional page templates that should only be pushed if the user selected them
+  const optionalTemplates = {
+    'gallery.html': 'gallery',
+    'menu.html': 'menu',
+    'testimonials.html': 'testimonials',
+    'faq.html': 'faq',
+  };
 
+  const allFiles = Object.entries(SITE_KIT_FILES);
+  // Filter out unselected page templates
+  const files = selectedPages
+    ? allFiles.filter(([path]) => {
+        const pageId = optionalTemplates[path];
+        return !pageId || selectedPages.includes(pageId);
+      })
+    : allFiles;
+
+  let pushed = 0;
   for (const [path, content] of files) {
     await pushFileToRepo(token, repo, path, content, `Add ${path}`);
     pushed++;
@@ -220,13 +235,15 @@ export async function triggerVercelDeploy(vercelToken, projectName, githubRepo) 
 
 // ---- AI Image Generation (via EON proxy) --------------------
 
-export async function generateImage(prompt) {
+export async function generateImage(prompt, aspectRatio) {
   const MAX_RETRIES = 3;
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    const body = { prompt };
+    if (aspectRatio) body.aspectRatio = aspectRatio;
     const r = await fetch('https://www.eonriskservices.com/api/ai-image', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify(body)
     });
     if (r.status === 429 && attempt < MAX_RETRIES) {
       const data = await r.json().catch(() => ({}));
@@ -293,6 +310,9 @@ function buildBusinessBlock(info) {
   if (info.hours)       parts.push(`Hours: ${info.hours}`);
   if (info.services)    parts.push(`Services: ${Array.isArray(info.services) ? info.services.join(', ') : info.services}`);
   if (info.tagline)     parts.push(`Tagline: ${info.tagline}`);
+  if (info.tone)        parts.push(`Brand tone: ${info.tone}`);
+  if (info.logo_url)    parts.push(`Logo image: ${info.logo_url}`);
+  if (info.hero_url)    parts.push(`Hero/banner image: ${info.hero_url}`);
   return parts.join('\n');
 }
 
@@ -335,7 +355,33 @@ async function agentCall(siteUrl, adminToken, message, businessInfo, onRetry) {
 // Each entry generates an agent prompt for building that page.
 // The 'css' entry always runs first; others run per selectedPages.
 
-function getPagePrompts(biz) {
+function getPagePrompts(biz, selectedPages) {
+  // Build nav link instructions from selectedPages so AI only links to pages that exist
+  const pageLabels = { home: 'Home', about: 'About', services: 'Services', contact: 'Contact', gallery: 'Gallery', menu: 'Menu', testimonials: 'Testimonials', faq: 'FAQ' };
+  const navPages = (selectedPages || ['home', 'contact', 'about']).map(id => pageLabels[id] || id);
+  const navInstruction = `The nav must include ONLY links to these pages: ${navPages.join(', ')}. Contact should use nav__link--cta class. Do NOT add links to any other pages.`;
+
+  // Image instructions (conditional — only if images were generated)
+  const hasLogo = biz.includes('Logo image:');
+  const hasHero = biz.includes('Hero/banner image:');
+  const logoInstruction = hasLogo
+    ? '- Keep the <img src="/images/logo.png"> in the nav__brand element — update only its alt text to match the business name'
+    : '- Remove the <img> from nav__brand if present (no logo was generated)';
+  const heroInstruction = hasHero
+    ? '- Keep the hero--image class and background-image style on the hero section — the hero image is already set'
+    : '- Remove hero--image class and background-image style from the hero section (no hero image was generated)';
+
+  // Common rules for all template-based pages (pages that already exist)
+  const templateRules = `RULES:
+- Keep every CSS class name exactly as-is
+- Keep all <svg> icons exactly as-is
+- Keep <script src="js/main.js"> and <link rel="stylesheet" href="css/style.css">
+${logoInstruction}
+- ${navInstruction}
+- Update text content: business name, descriptions, service details, footer text
+- Update the footer copyright year and business name
+- Write the COMPLETE updated file`;
+
   return {
     css: {
       label: 'Customising design',
@@ -343,46 +389,45 @@ function getPagePrompts(biz) {
     },
     home: {
       label: 'Building home page',
-      message: `Read the existing index.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: nav, nav__inner, nav__brand, nav__links, nav__link, nav__link--cta, nav__toggle, hero, container, eyebrow, lead, btn-group, btn, btn-primary, btn-secondary, btn-lg, section, section--alt, section--primary, text-center, container-narrow, grid, grid-3, card, card__icon, card__title, card__text, cta-lead, btn-highlight, footer, footer__brand, footer__tagline, footer__links, footer__bottom, footer__badge\n- Keep all <svg> icons exactly as-is\n- Keep the <script src="js/main.js"> tag\n- Keep the <link rel="stylesheet" href="css/style.css"> tag\n- Only change TEXT between tags: business name, tagline, about paragraphs, service titles/descriptions, footer text\n- You may add or remove <div class="card">...</div> blocks in the grid to match the business services (copy the existing card structure)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing index.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct.\n\n${templateRules}\n${heroInstruction}\n- You may add or remove <div class="card">...</div> blocks in the services grid to match the business (copy the existing card structure)\n\nBusiness:\n${biz}`
     },
     contact: {
       label: 'Building contact page',
-      message: `Read the existing contact.html. It is a WORKING template — the HTML structure, CSS classes, form action, and JavaScript are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is (nav, nav__inner, nav__brand, contact-grid, contact-form, form-group, form-row, contact-info, info-item, footer, etc.)\n- Keep the form action="/api/contact" and all form JavaScript exactly as-is\n- Keep all <svg> icons exactly as-is\n- Only change TEXT: business name in nav/footer, email, phone, address, page title, page description\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing contact.html. It is a WORKING template — the HTML structure, CSS classes, form action, and JavaScript are ALREADY correct.\n\n${templateRules}\n- Keep the form action="/api/contact" and all form JavaScript exactly as-is\n- Update contact details: email, phone, address\n\nBusiness:\n${biz}`
     },
     about: {
       label: 'Building about page',
-      message: `Read index.html to see the exact nav structure and CSS classes. Then create about.html that uses the SAME structure.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the About link\n- Use the same <footer class="footer"> block from index.html\n- Use these CSS classes for content: section, container, text-center, eyebrow, container-narrow, lead\n- Link to css/style.css and js/main.js\n- Write warm, authentic copy about this business — their story, values, and what makes them special\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
+      message: `Read index.html to see the exact nav structure and CSS classes. Then create about.html that uses the SAME structure.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the About link\n- ${navInstruction}\n- Use the same <footer class="footer"> block from index.html\n- Use these CSS classes for content: section, container, text-center, eyebrow, container-narrow, lead\n- Link to css/style.css and js/main.js\n- Write warm, authentic copy about this business — their story, values, and what makes them special\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
     },
     services: {
       label: 'Building services page',
-      message: `Read index.html to see the exact nav structure, CSS classes, and card layout. Then create services.html as a standalone page.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the Services link\n- Use the same <footer class="footer"> block from index.html\n- Use hero--compact class on the hero section\n- Use grid grid-3 with card, card__icon, card__title, card__text for each service\n- Link to css/style.css and js/main.js\n- Write detailed descriptions for each service this business offers\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
+      message: `Read index.html to see the exact nav structure, CSS classes, and card layout. Then create services.html as a standalone page.\n\nRULES:\n- Use the exact same <nav class="nav"> block from index.html, but add nav__link--active class to the Services link\n- ${navInstruction}\n- Use the same <footer class="footer"> block from index.html\n- Use hero--compact class on the hero section\n- Use grid grid-3 with card, card__icon, card__title, card__text for each service\n- Link to css/style.css and js/main.js\n- Write detailed descriptions for each service this business offers\n- Write the COMPLETE file\n\nBusiness:\n${biz}`
     },
     gallery: {
       label: 'Building gallery page',
-      message: `Read the existing gallery.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: gallery-grid, gallery-item, gallery-item__placeholder, gallery-item__caption, nav, footer, hero--compact\n- Keep all <svg> icons exactly as-is\n- Only change TEXT: business name in nav/footer, gallery item captions, hero title/description\n- You may add or remove gallery-item blocks as appropriate (keep the SVG placeholder in each)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing gallery.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct.\n\n${templateRules}\n- You may add or remove gallery-item blocks as appropriate (keep the SVG placeholder in each)\n\nBusiness:\n${biz}`
     },
     menu: {
       label: 'Building menu page',
-      message: `Read the existing menu.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: menu-category, menu-category__title, menu-item, menu-item__header, menu-item__name, menu-item__price, menu-item__desc, nav, footer, hero--compact, container-narrow\n- Only change TEXT: business name in nav/footer, category names, item names/prices/descriptions, hero title/description\n- You may add or remove menu-category and menu-item blocks as appropriate for this business\n- Use realistic prices in EUR for an Irish business\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing menu.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct.\n\n${templateRules}\n- You may add or remove menu-category and menu-item blocks as appropriate for this business\n- Use realistic prices in EUR for an Irish business\n\nBusiness:\n${biz}`
     },
     testimonials: {
       label: 'Building testimonials page',
-      message: `Read the existing testimonials.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: testimonial-card, testimonial-card__quote, testimonial-card__author, testimonial-card__role, grid grid-2, nav, footer, hero--compact\n- Only change TEXT: business name in nav/footer, testimonial quotes/authors/roles, hero title/description\n- Write realistic, believable testimonials with Irish names\n- You may add or remove testimonial-card blocks (keep them in a grid-2)\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing testimonials.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct.\n\n${templateRules}\n- Write realistic, believable testimonials with Irish names\n- You may add or remove testimonial-card blocks (keep them in a grid-2)\n\nBusiness:\n${biz}`
     },
     faq: {
       label: 'Building FAQ page',
-      message: `Read the existing faq.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct and must NOT be changed.\n\nRULES:\n- Keep every CSS class exactly as-is: faq-item, faq-item__question, faq-item__answer, container-narrow, nav, footer, hero--compact\n- Keep the <details>/<summary> structure exactly as-is\n- Only change TEXT: business name in nav/footer, questions and answers, hero title/description\n- Write relevant FAQs for this specific type of business\n- Keep the first <details> element open (has the "open" attribute)\n- You may add or remove faq-item blocks as appropriate\n- Write the COMPLETE updated file\n\nBusiness:\n${biz}`
+      message: `Read the existing faq.html. It is a WORKING template — the HTML structure and CSS classes are ALREADY correct.\n\n${templateRules}\n- Keep the <details>/<summary> structure exactly as-is\n- Write relevant FAQs for this specific type of business\n- Keep the first <details> element open (has the "open" attribute)\n- You may add or remove faq-item blocks as appropriate\n\nBusiness:\n${biz}`
     },
   };
 }
 
 export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onStep, selectedPages) {
   const biz = buildBusinessBlock(businessInfo);
-  const prompts = getPagePrompts(biz);
+  const pageIds = selectedPages || ['home', 'contact', 'about'];
+  const prompts = getPagePrompts(biz, pageIds);
 
   // Build the step list: always CSS first, then selected pages
-  // Default to original 4-page build if no selectedPages provided
-  const pageIds = selectedPages || ['home', 'contact', 'about'];
   const steps = [prompts.css];
   for (const id of pageIds) {
     if (prompts[id]) steps.push(prompts[id]);

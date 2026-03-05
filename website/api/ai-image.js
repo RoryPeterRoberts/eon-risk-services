@@ -12,10 +12,13 @@ module.exports = async function handler(req, res) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'AI not configured' });
 
-  const { prompt } = req.body || {};
+  const { prompt, aspectRatio } = req.body || {};
   if (!prompt) return res.status(400).json({ error: 'prompt required' });
 
   try {
+    const genConfig = { responseModalities: ['TEXT', 'IMAGE'] };
+    if (aspectRatio) genConfig.aspectRatio = aspectRatio; // e.g. "16:9", "1:1"
+
     const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent', {
       method: 'POST',
       headers: {
@@ -24,7 +27,7 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+        generationConfig: genConfig
       })
     });
 

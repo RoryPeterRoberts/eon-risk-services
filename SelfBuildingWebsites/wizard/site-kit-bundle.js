@@ -358,6 +358,25 @@ p:last-child { margin-bottom: 0; }
 .hero h1 { color: var(--color-white); margin-bottom: 24px; }
 .hero .lead { color: rgba(255,255,255,0.75); max-width: 640px; margin-bottom: 36px; }
 
+/* Hero with background image */
+.hero--image {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.hero--image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary);
+  opacity: 0.72;
+  z-index: 0;
+}
+.hero--image > .container {
+  position: relative;
+  z-index: 1;
+}
+
 .hero--compact { padding-bottom: 48px; }
 .cta-lead { max-width: 560px; margin: 0 auto 32px; }
 
@@ -785,7 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="#about" class="nav__link">About</a>
         <a href="#services" class="nav__link">Services</a>
@@ -798,7 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </nav>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero hero--image" style="background-image: url('/images/hero.png')">
     <div class="container">
       <p class="eyebrow">Welcome</p>
       <h1>Your Business Name</h1>
@@ -954,7 +973,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="index.html#about" class="nav__link">About</a>
@@ -1101,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="index.html#about" class="nav__link">About</a>
@@ -1215,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="index.html#about" class="nav__link">About</a>
@@ -1360,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="index.html#about" class="nav__link">About</a>
@@ -1458,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__brand">My Business</a>
+      <a href="index.html" class="nav__brand"><img src="/images/logo.png" alt="My Business logo">My Business</a>
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="index.html#about" class="nav__link">About</a>

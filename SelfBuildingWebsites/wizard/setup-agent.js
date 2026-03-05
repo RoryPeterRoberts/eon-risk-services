@@ -755,7 +755,7 @@ This takes 2-5 minutes. Ready?`);
       this.ui.setBuildStep('push_files', 'running', 'Uploading website files...');
       await pushSiteKit(this.githubToken, repo, (done, total, file) => {
         this.ui.setBuildStep('push_files', 'running', `${done}/${total} files`);
-      });
+      }, this.selectedPages);
       this.ui.setBuildStep('push_files', 'done', 'All files pushed');
 
       // Step 2b: Generate images (if opted in)
@@ -773,7 +773,7 @@ This takes 2-5 minutes. Ready?`);
 
           this.ui.setBuildStep('gen_images', 'running', 'Generating hero banner...');
           const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-          const heroBase64 = await generateImage(heroPrompt);
+          const heroBase64 = await generateImage(heroPrompt, '16:9');
           await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
 
           // Set URLs in businessInfo so the AI build naturally uses them
