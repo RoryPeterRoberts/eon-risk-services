@@ -81,6 +81,20 @@ function clearState() {
   try { localStorage.removeItem(STORAGE_KEY); } catch {}
 }
 
+// ---- Slug generation ----
+function makeRepoSlug(name) {
+  if (!name) return 'my-website';
+  // Strip everything after a dash/pipe separator (e.g. "Copper Kettle — A Café in Wexford" → "Copper Kettle")
+  let slug = name.split(/\s*[—–|]\s*/)[0].trim();
+  // Remove common filler words
+  slug = slug.replace(/\b(the|a|an|and|of|in|at|for|by)\b/gi, '');
+  // Convert to URL-safe slug
+  slug = slug.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  // Limit length
+  slug = slug.slice(0, 40).replace(/-$/, '');
+  return slug || 'my-website';
+}
+
 // ---- SetupAgent class ----
 export class SetupAgent {
   constructor(ui) {
@@ -186,10 +200,19 @@ export class SetupAgent {
       case STATES.BIZ_NAME:
         return this.enter(STATES.BIZ_DISCOVER, value);
       case STATES.BIZ_REVIEW:
-        // User confirmed — proceed to page selection
-        return this.enter(STATES.PAGE_SELECT);
+        // User typed something — treat as wanting to edit
+        if (value && value.trim()) {
+          this.ui.addMessage('user', value);
+          this.ui.addMessage('agent', 'Let me open the edit form so you can update the details.');
+          return this.doEditForm();
+        }
+        return;
       case STATES.DOMAIN_PROMPT:
         return this.handleDomain(value);
+      case 'IMAGE_STYLE_PROMPT':
+        this._imageStyle = (value || '').trim();
+        this.ui.setInputVisible(false);
+        return this.enter(STATES.BUILD_RUNNING);
       default:
         break;
     }
@@ -519,8 +542,7 @@ The easiest way: sign up with your GitHub account (one click).`);
           this.state = STATES.BIZ_NAME;
         } else {
           // Generate repo slug from extracted name (not raw input)
-          const slugName = (this.businessInfo && this.businessInfo.name) || this.businessName || 'my-website';
-          this.repoName = slugName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
+          this.repoName = makeRepoSlug((this.businessInfo && this.businessInfo.name) || this.businessName);
           this._save();
           await this.enter(STATES.BIZ_REVIEW);
         }
@@ -529,8 +551,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     }
 
     // Generate repo slug from extracted name (not raw input)
-    const slugName = (this.businessInfo && this.businessInfo.name) || this.businessName || 'my-website';
-    this.repoName = slugName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
+    this.repoName = makeRepoSlug((this.businessInfo && this.businessInfo.name) || this.businessName);
     this._save();
 
     await this.enter(STATES.BIZ_REVIEW);
@@ -566,6 +587,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.ui.addMessage('agent', 'Does this look right? I can build your site with this, or you can tell me what to change.');
 
     this.ui.updateProgress(3);
+    this.ui.setInputVisible(false);
 
     this.ui.addButtons([
       { label: 'Looks good — build it!', action: 'confirm-info' },
@@ -627,8 +649,7 @@ The easiest way: sign up with your GitHub account (one click).`);
       });
     }
     // Regenerate repo name from the (possibly edited) business name
-    const name = this.businessInfo.name || this.businessName || 'my-website';
-    this.repoName = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '') || 'my-website';
+    this.repoName = makeRepoSlug(this.businessInfo.name || this.businessName);
     this._save();
     this.ui.addMessage('agent', 'Updated! Here\'s the revised info:');
     return this.doBizReview();
@@ -718,7 +739,11 @@ This takes 2-5 minutes. Ready?`);
     this.ui.onAction = async (action) => {
       if (action === 'confirm-build-images') {
         this._generateImages = true;
-        return this.enter(STATES.BUILD_RUNNING);
+        // Ask for image style preferences
+        this.ui.addMessage('agent', 'Any preferences for your images? Describe the vibe — e.g. "warm and rustic", "clean and modern", "colourful and playful". Or just hit Enter and I\'ll pick something that suits your business.');
+        this.ui.setInputVisible(true, 'e.g. warm and rustic, dark tones...');
+        this.state = 'IMAGE_STYLE_PROMPT';
+        return;
       }
       this._generateImages = false;
       await this.handleAction(action);
@@ -767,12 +792,13 @@ This takes 2-5 minutes. Ready?`);
           const type = info.type || 'business';
           const location = info.address || '';
 
-          const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
+          const styleHint = this._imageStyle ? ` Style: ${this._imageStyle}.` : '';
+          const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.${styleHint}`;
           const logoBase64 = await generateImage(logoPrompt);
           await pushImageToRepo(this.githubToken, repo, 'images/logo.png', logoBase64, 'Add AI-generated logo');
 
           this.ui.setBuildStep('gen_images', 'running', 'Generating hero banner...');
-          const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
+          const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, suitable as a website hero section background image. No text overlay.${styleHint}`;
           const heroBase64 = await generateImage(heroPrompt, '16:9');
           await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
 
@@ -1055,12 +1081,13 @@ This takes 2-5 minutes. Ready?`);
     this.ui.addMessage('agent', 'Generating your logo...', true);
 
     try {
-      const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
+      const styleHint = this._imageStyle ? ` Style: ${this._imageStyle}.` : '';
+      const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.${styleHint}`;
       const logoBase64 = await generateImage(logoPrompt);
 
       this.ui.addMessage('agent', 'Logo done. Generating hero banner...', true);
 
-      const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
+      const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, suitable as a website hero section background image. No text overlay.${styleHint}`;
       const heroBase64 = await generateImage(heroPrompt, '16:9');
 
       this.ui.addMessage('agent', 'Images generated. Pushing to your site...', true);
