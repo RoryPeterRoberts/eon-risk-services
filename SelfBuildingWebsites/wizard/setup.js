@@ -396,10 +396,9 @@ export async function triggerSteppedBuild(siteUrl, adminToken, businessInfo, onS
     };
     const result = await agentCall(siteUrl, adminToken, steps[i].message, businessInfo, onRetry);
     results.push(result);
-    // Pace requests: free-tier Gemini allows 5 req/min, and each agent step
-    // may use multiple internal calls. 15s gap keeps us well under the limit.
+    // Brief pause between steps to let Vercel settle
     if (i < steps.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 15000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
   }
   if (onStep) onStep(steps.length, steps.length, 'Done');
