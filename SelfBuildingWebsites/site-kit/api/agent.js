@@ -206,7 +206,7 @@ function makeGitHub(env) {
 
 // ---- Security helpers ---------------------------------------
 
-const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
+const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'api/site-info.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
 const MAX_FILE_SIZE = 500_000; // 500KB per file
 
 // ---- Structural validation ----------------------------------
@@ -885,14 +885,45 @@ export default async function handler(req, res) {
     userMessage = message;
   }
 
+  // Own-key support: user can provide their own API key via header
+  const userApiKey = req.headers['x-user-api-key'];
+  const usingOwnKey = !!userApiKey;
+
   // Build environment from Vercel env vars
   const env = {
-    AI_API_KEY: process.env.AI_API_KEY,
+    AI_API_KEY: usingOwnKey ? userApiKey : process.env.AI_API_KEY,
     AI_MODEL: process.env.AI_MODEL || 'claude-sonnet-4-6',
     GITHUB_TOKEN: process.env.GITHUB_TOKEN,
     GITHUB_REPO: process.env.GITHUB_REPO,
     GITHUB_BRANCH: process.env.GITHUB_BRANCH || 'main',
   };
+
+  // Usage gate: check/increment monthly edit count (skip if using own key)
+  if (!usingOwnKey && agentMode !== 'build') {
+    try {
+      const gateR = await fetch('https://www.eonriskservices.com/api/usage-gate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ githubRepo: env.GITHUB_REPO, action: 'increment' })
+      });
+      if (gateR.status === 402) {
+        const gateData = await gateR.json();
+        return res.status(402).json({
+          error: gateData.error || 'Free plan limit reached',
+          used: gateData.used,
+          limit: gateData.limit,
+          upgradeUrl: gateData.upgradeUrl
+        });
+      }
+      // Any other non-OK status: fail open (log and proceed)
+      if (!gateR.ok) {
+        console.error('Usage gate returned', gateR.status);
+      }
+    } catch (gateErr) {
+      // Fail open — usage gate is down, let request through
+      console.error('Usage gate unreachable:', gateErr.message);
+    }
+  }
 
   // Validate required env vars
   const missing = [];

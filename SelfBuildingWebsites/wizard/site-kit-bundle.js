@@ -2052,6 +2052,210 @@ document.addEventListener('DOMContentLoaded', () => {
       margin-top: 6px;
     }
 
+    /* --- Usage Bar --- */
+    .usage-bar {
+      padding: 12px 24px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+    }
+    .usage-bar__track {
+      flex: 1;
+      max-width: 200px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .usage-bar__fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    .usage-bar__fill--warning { background: var(--gold); }
+    .usage-bar__fill--full { background: #C62828; }
+    .usage-bar__text { color: var(--text-light); }
+    .usage-bar__text--pro { color: var(--teal); font-weight: 600; }
+    .usage-bar__text--own-key { color: var(--text-muted); font-style: italic; }
+    .usage-bar__upgrade {
+      margin-left: auto;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .usage-bar__upgrade:hover { text-decoration: underline; }
+    .usage-bar__settings {
+      color: var(--text-muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+    }
+    .usage-bar__settings:hover { color: var(--text); }
+
+    /* --- Upgrade Modal --- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .modal__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .modal__subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 24px;
+    }
+    .plan-cards { display: flex; gap: 12px; margin-bottom: 20px; }
+    .plan-card {
+      flex: 1;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .plan-card:hover { border-color: var(--teal); }
+    .plan-card--popular { border-color: var(--teal); background: rgba(42,127,127,0.04); }
+    .plan-card__name { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+    .plan-card__price { font-size: 1.3rem; font-weight: 700; color: var(--teal); }
+    .plan-card__period { font-size: 0.75rem; color: var(--text-muted); }
+    .plan-card__badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .modal__divider {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin: 16px 0;
+      position: relative;
+    }
+    .modal__divider::before, .modal__divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: var(--border);
+    }
+    .modal__divider::before { left: 0; }
+    .modal__divider::after { right: 0; }
+    .modal__own-key {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+    .modal__own-key a { color: var(--teal); cursor: pointer; }
+    .modal__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* --- Settings Panel --- */
+    .settings {
+      padding: 0 24px;
+      overflow: hidden;
+      transition: max-height 0.3s;
+    }
+    .settings--collapsed { max-height: 0 !important; padding: 0 24px; }
+    .settings__body {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .settings__label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .settings__hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .settings__hint a { color: var(--teal); }
+    .settings__row { display: flex; gap: 8px; align-items: center; }
+    .settings__input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+    .settings__input:focus { outline: none; border-color: var(--teal); }
+    .settings__save {
+      padding: 8px 16px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .settings__save:hover { background: var(--teal-dark); }
+    .settings__clear {
+      padding: 8px 12px;
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .settings__status {
+      font-size: 0.75rem;
+      margin-top: 6px;
+      color: var(--teal);
+    }
+
     /* --- Responsive --- */
     @media (max-width: 640px) {
       .history { padding: 16px; }
@@ -2065,6 +2269,11 @@ document.addEventListener('DOMContentLoaded', () => {
       .features__grid { grid-template-columns: repeat(2, 1fr); }
       .images { padding: 12px 16px 0; }
       .images__body { flex-direction: column; }
+      .usage-bar { padding: 10px 16px; flex-wrap: wrap; }
+      .plan-cards { flex-direction: column; }
+      .modal { padding: 24px 20px; }
+      .settings__row { flex-direction: column; }
+      .settings__save, .settings__clear { width: 100%; }
     }
   </style>
 </head>
@@ -2091,6 +2300,60 @@ document.addEventListener('DOMContentLoaded', () => {
       <button type="button" class="header__btn" id="logout-btn">Sign Out</button>
     </div>
   </header>
+
+  <!-- Usage Bar (shown after login) -->
+  <div id="usage-bar" class="usage-bar" style="display:none">
+    <div class="usage-bar__track"><div class="usage-bar__fill" id="usage-fill"></div></div>
+    <span class="usage-bar__text" id="usage-text"></span>
+    <button type="button" class="usage-bar__upgrade" id="usage-upgrade-btn" style="display:none">Upgrade to Pro</button>
+    <button type="button" class="usage-bar__settings" id="settings-toggle-btn" title="Settings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <!-- Settings Panel (collapsed by default) -->
+  <div id="settings-panel" class="settings settings--collapsed">
+    <div class="settings__body">
+      <div class="settings__label">Your own Gemini API Key</div>
+      <div class="settings__hint">Bypass free edit limits. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>. Stored locally only — never sent to EON.</div>
+      <div class="settings__row">
+        <input type="password" class="settings__input" id="own-key-input" placeholder="AIza...">
+        <button type="button" class="settings__save" id="own-key-save">Save</button>
+        <button type="button" class="settings__clear" id="own-key-clear">Clear</button>
+      </div>
+      <div class="settings__status" id="own-key-status"></div>
+    </div>
+  </div>
+
+  <!-- Upgrade Modal -->
+  <div id="upgrade-modal" class="modal-overlay">
+    <div class="modal" style="position:relative">
+      <button type="button" class="modal__close" id="modal-close">&times;</button>
+      <div class="modal__title">Upgrade to Pro</div>
+      <div class="modal__subtitle">You've used all 5 free AI edits this month. Upgrade for unlimited edits.</div>
+      <div class="plan-cards" id="plan-cards">
+        <a class="plan-card" id="plan-monthly">
+          <div class="plan-card__name">Monthly</div>
+          <div class="plan-card__price">&euro;7</div>
+          <div class="plan-card__period">/month</div>
+        </a>
+        <a class="plan-card plan-card--popular" id="plan-yearly">
+          <div class="plan-card__badge">Save 42%</div>
+          <div class="plan-card__name">Yearly</div>
+          <div class="plan-card__price">&euro;49</div>
+          <div class="plan-card__period">/year</div>
+        </a>
+        <a class="plan-card" id="plan-lifetime">
+          <div class="plan-card__badge">Launch Special</div>
+          <div class="plan-card__name">Lifetime</div>
+          <div class="plan-card__price">&euro;29</div>
+          <div class="plan-card__period">one-time</div>
+        </a>
+      </div>
+      <div class="modal__divider">or</div>
+      <div class="modal__own-key">Paste your own Gemini API key in <a id="modal-open-settings">Settings</a> for unlimited free edits.</div>
+    </div>
+  </div>
 
   <div id="main-panel" class="main">
     <div class="images" id="images-panel">
@@ -2149,6 +2412,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State ---
     let token = sessionStorage.getItem('admin_token') || '';
     let buildHistory = JSON.parse(localStorage.getItem('build_history') || '[]');
+    let siteRepo = null;
+    let ownApiKey = localStorage.getItem('own_gemini_key') || '';
+
+    const USAGE_GATE_URL = 'https://www.eonriskservices.com/api/usage-gate';
 
     const loginScreen = document.getElementById('login-screen');
     const mainHeader = document.getElementById('main-header');
@@ -2163,6 +2430,111 @@ document.addEventListener('DOMContentLoaded', () => {
     const buildInput = document.getElementById('build-input');
     const buildBtn = document.getElementById('build-btn');
 
+    // --- Usage Bar & Settings ---
+    const usageBar = document.getElementById('usage-bar');
+    const usageFill = document.getElementById('usage-fill');
+    const usageText = document.getElementById('usage-text');
+    const usageUpgradeBtn = document.getElementById('usage-upgrade-btn');
+    const settingsToggleBtn = document.getElementById('settings-toggle-btn');
+    const settingsPanel = document.getElementById('settings-panel');
+    const ownKeyInput = document.getElementById('own-key-input');
+    const ownKeySave = document.getElementById('own-key-save');
+    const ownKeyClear = document.getElementById('own-key-clear');
+    const ownKeyStatus = document.getElementById('own-key-status');
+    const upgradeModal = document.getElementById('upgrade-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalOpenSettings = document.getElementById('modal-open-settings');
+
+    async function fetchSiteRepo() {
+      try {
+        const r = await fetch('/api/site-info');
+        if (r.ok) {
+          const data = await r.json();
+          siteRepo = data.repo;
+        }
+      } catch {}
+    }
+
+    async function updateUsageBar() {
+      if (ownApiKey) {
+        usageBar.style.display = 'flex';
+        usageFill.style.width = '0%';
+        usageText.className = 'usage-bar__text usage-bar__text--own-key';
+        usageText.textContent = 'Using your own API key';
+        usageUpgradeBtn.style.display = 'none';
+        return;
+      }
+      if (!siteRepo) return;
+      try {
+        const r = await fetch(USAGE_GATE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ githubRepo: siteRepo, action: 'check' })
+        });
+        const data = await r.json();
+        usageBar.style.display = 'flex';
+
+        if (data.tier === 'pro' || data.tier === 'lifetime') {
+          usageFill.style.width = '100%';
+          usageFill.className = 'usage-bar__fill';
+          usageText.className = 'usage-bar__text usage-bar__text--pro';
+          usageText.textContent = data.tier === 'lifetime' ? 'Lifetime — unlimited edits' : 'Pro — unlimited edits';
+          usageUpgradeBtn.style.display = 'none';
+        } else {
+          const pct = Math.round((data.used / data.limit) * 100);
+          usageFill.style.width = pct + '%';
+          usageFill.className = 'usage-bar__fill' +
+            (pct >= 100 ? ' usage-bar__fill--full' : pct >= 80 ? ' usage-bar__fill--warning' : '');
+          usageText.className = 'usage-bar__text';
+          usageText.textContent = \`\${data.used}/\${data.limit} edits used this month\`;
+          usageUpgradeBtn.style.display = data.remaining <= 2 ? '' : 'none';
+        }
+      } catch {
+        // Silently fail — usage bar just won't show
+      }
+    }
+
+    function showUpgradeModal() {
+      if (!siteRepo) return;
+      const base = 'https://www.eonriskservices.com/api/create-checkout';
+      document.getElementById('plan-monthly').href = \`\${base}?repo=\${encodeURIComponent(siteRepo)}&plan=monthly\`;
+      document.getElementById('plan-yearly').href = \`\${base}?repo=\${encodeURIComponent(siteRepo)}&plan=yearly\`;
+      document.getElementById('plan-lifetime').href = \`\${base}?repo=\${encodeURIComponent(siteRepo)}&plan=lifetime\`;
+      upgradeModal.classList.add('active');
+    }
+
+    usageUpgradeBtn.addEventListener('click', showUpgradeModal);
+    modalClose.addEventListener('click', () => upgradeModal.classList.remove('active'));
+    upgradeModal.addEventListener('click', (e) => {
+      if (e.target === upgradeModal) upgradeModal.classList.remove('active');
+    });
+    modalOpenSettings.addEventListener('click', () => {
+      upgradeModal.classList.remove('active');
+      settingsPanel.classList.remove('settings--collapsed');
+    });
+
+    settingsToggleBtn.addEventListener('click', () => {
+      settingsPanel.classList.toggle('settings--collapsed');
+    });
+
+    ownKeyInput.value = ownApiKey ? '••••••••' : '';
+    ownKeySave.addEventListener('click', () => {
+      const key = ownKeyInput.value.trim();
+      if (!key || key === '••••••••') return;
+      ownApiKey = key;
+      localStorage.setItem('own_gemini_key', key);
+      ownKeyInput.value = '••••••••';
+      ownKeyStatus.textContent = 'Saved. Your edits now bypass the free limit.';
+      updateUsageBar();
+    });
+    ownKeyClear.addEventListener('click', () => {
+      ownApiKey = '';
+      localStorage.removeItem('own_gemini_key');
+      ownKeyInput.value = '';
+      ownKeyStatus.textContent = 'Cleared. Using EON\\'s API key with free limits.';
+      updateUsageBar();
+    });
+
     // --- Auth ---
     function showMain() {
       loginScreen.style.display = 'none';
@@ -2170,6 +2542,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mainPanel.classList.add('active');
       renderHistory();
       buildInput.focus();
+      // Load usage info
+      fetchSiteRepo().then(() => updateUsageBar());
     }
 
     function showLogin() {
@@ -2349,12 +2723,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Step 2: Send to agent
         buildBtn.textContent = 'Building...';
+        const agentHeaders = {
+          'Content-Type': 'application/json',
+          'Authorization': \`Bearer \${token}\`
+        };
+        if (ownApiKey) agentHeaders['X-User-Api-Key'] = ownApiKey;
+
         const r = await fetch('/api/agent', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': \`Bearer \${token}\`
-          },
+          headers: agentHeaders,
           body: JSON.stringify({ message: agentMessage })
         });
 
@@ -2363,6 +2740,15 @@ document.addEventListener('DOMContentLoaded', () => {
           sessionStorage.removeItem('admin_token');
           showLogin();
           buildHistory.pop();
+          return;
+        }
+
+        if (r.status === 402) {
+          buildHistory.pop();
+          showUpgradeModal();
+          buildBtn.disabled = false;
+          buildBtn.textContent = 'Build';
+          buildInput.disabled = false;
           return;
         }
 
@@ -2396,6 +2782,7 @@ document.addEventListener('DOMContentLoaded', () => {
       buildBtn.textContent = 'Build';
       buildInput.disabled = false;
       buildInput.focus();
+      updateUsageBar();
     });
 
     // --- Undo (deterministic git revert via /api/revert) ---
@@ -2591,12 +2978,15 @@ Follow these exact steps:
       renderHistory();
 
       try {
+        const featureHeaders = {
+          'Content-Type': 'application/json',
+          'Authorization': \`Bearer \${token}\`
+        };
+        if (ownApiKey) featureHeaders['X-User-Api-Key'] = ownApiKey;
+
         const r = await fetch('/api/agent', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': \`Bearer \${token}\`
-          },
+          headers: featureHeaders,
           body: JSON.stringify({ message: tpl.prompt })
         });
 
@@ -2605,6 +2995,16 @@ Follow these exact steps:
           sessionStorage.removeItem('admin_token');
           showLogin();
           buildHistory.pop();
+          return;
+        }
+
+        if (r.status === 402) {
+          buildHistory.pop();
+          showUpgradeModal();
+          btn.textContent = 'Add to site';
+          featuresGrid.querySelectorAll('.feature-card__btn').forEach(b => {
+            if (!b.classList.contains('feature-card__btn--done')) b.disabled = false;
+          });
           return;
         }
 
@@ -3006,7 +3406,7 @@ function makeGitHub(env) {
 
 // ---- Security helpers ---------------------------------------
 
-const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
+const PROTECTED_PATHS = ['api/agent.js', 'api/contact.js', 'api/revert.js', 'api/site-info.js', 'admin.html', 'vercel.json', 'package.json', '.env'];
 const MAX_FILE_SIZE = 500_000; // 500KB per file
 
 // ---- Structural validation ----------------------------------
@@ -3685,14 +4085,45 @@ export default async function handler(req, res) {
     userMessage = message;
   }
 
+  // Own-key support: user can provide their own API key via header
+  const userApiKey = req.headers['x-user-api-key'];
+  const usingOwnKey = !!userApiKey;
+
   // Build environment from Vercel env vars
   const env = {
-    AI_API_KEY: process.env.AI_API_KEY,
+    AI_API_KEY: usingOwnKey ? userApiKey : process.env.AI_API_KEY,
     AI_MODEL: process.env.AI_MODEL || 'claude-sonnet-4-6',
     GITHUB_TOKEN: process.env.GITHUB_TOKEN,
     GITHUB_REPO: process.env.GITHUB_REPO,
     GITHUB_BRANCH: process.env.GITHUB_BRANCH || 'main',
   };
+
+  // Usage gate: check/increment monthly edit count (skip if using own key)
+  if (!usingOwnKey && agentMode !== 'build') {
+    try {
+      const gateR = await fetch('https://www.eonriskservices.com/api/usage-gate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ githubRepo: env.GITHUB_REPO, action: 'increment' })
+      });
+      if (gateR.status === 402) {
+        const gateData = await gateR.json();
+        return res.status(402).json({
+          error: gateData.error || 'Free plan limit reached',
+          used: gateData.used,
+          limit: gateData.limit,
+          upgradeUrl: gateData.upgradeUrl
+        });
+      }
+      // Any other non-OK status: fail open (log and proceed)
+      if (!gateR.ok) {
+        console.error('Usage gate returned', gateR.status);
+      }
+    } catch (gateErr) {
+      // Fail open — usage gate is down, let request through
+      console.error('Usage gate unreachable:', gateErr.message);
+    }
+  }
 
   // Validate required env vars
   const missing = [];
@@ -4153,6 +4584,26 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+`,
+
+  'api/site-info.js': `// Site Info — returns site identity for usage-gate calls
+// GET → { repo: 'owner/repo-name' }
+
+module.exports = function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'GET only' });
+  }
+
+  const repo = process.env.GITHUB_REPO;
+  if (!repo) {
+    return res.status(500).json({ error: 'GITHUB_REPO not configured' });
+  }
+
+  return res.status(200).json({ repo });
+};
 `,
 
   'api/upload.js': `// ============================================================

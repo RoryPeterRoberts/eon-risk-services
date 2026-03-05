@@ -275,6 +275,19 @@ export async function setupAIEnvVars(vercelToken, projectId) {
   return r.json();
 }
 
+export async function registerSite(githubRepo) {
+  // Auto-register the site with the usage gate (creates a row in the sites table)
+  try {
+    await fetch('https://www.eonriskservices.com/api/usage-gate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ githubRepo, action: 'check' })
+    });
+  } catch {
+    // Non-critical — site will be registered on first agent call anyway
+  }
+}
+
 export async function pushImageToRepo(token, repo, path, base64Data, message) {
   let sha = null;
   try {
@@ -531,6 +544,9 @@ export async function runFullSetup(config, onStep) {
     { key: 'CONTACT_EMAIL', value: businessInfo.email || '' },
   ]);
   report('env_vars', 'done', 'Environment configured');
+
+  // Register site with usage tracking (non-blocking)
+  registerSite(repo).catch(() => {});
 
   // Step 5: Wait for Vercel deployment
   report('deploy', 'running', 'Waiting for deployment...');

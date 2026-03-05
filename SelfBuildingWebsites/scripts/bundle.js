@@ -33,6 +33,7 @@ const FILES_TO_BUNDLE = [
   'api/enhance-prompt.js',
   'api/contact.js',
   'api/revert.js',
+  'api/site-info.js',
 ];
 
 function escapeForTemplateLiteral(str) {
