@@ -17,7 +17,9 @@ module.exports = async function handler(req, res) {
 
   try {
     const genConfig = { responseModalities: ['TEXT', 'IMAGE'] };
-    if (aspectRatio) genConfig.aspectRatio = aspectRatio; // e.g. "16:9", "1:1"
+    if (aspectRatio) {
+      genConfig.imageConfig = { aspectRatio }; // e.g. "16:9", "1:1"
+    }
 
     const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent', {
       method: 'POST',

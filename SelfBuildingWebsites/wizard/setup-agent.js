@@ -1061,7 +1061,7 @@ This takes 2-5 minutes. Ready?`);
       this.ui.addMessage('agent', 'Logo done. Generating hero banner...', true);
 
       const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-      const heroBase64 = await generateImage(heroPrompt);
+      const heroBase64 = await generateImage(heroPrompt, '16:9');
 
       this.ui.addMessage('agent', 'Images generated. Pushing to your site...', true);
 

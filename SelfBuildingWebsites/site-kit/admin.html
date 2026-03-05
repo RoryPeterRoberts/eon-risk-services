@@ -1551,8 +1551,8 @@ Follow these exact steps:
 
         // Auto-fire agent prompt
         const prompt = type === 'logo'
-          ? `Update the site logo. Use this image URL as the logo in the nav on all pages: ${data.url}. Add <link rel="icon" href="${data.url}"> to every page. Do NOT change nav structure or CSS class names.`
-          : `Update the hero section background image on index.html. Use this image URL: ${data.url}. Apply it as a CSS background-image on the hero section. Do NOT change nav structure, footer structure, or CSS class names.`;
+          ? `Update the site logo on EVERY page. First, list all .html files in the repo root. Then for EACH .html file, add or update an <img src="${data.url}" alt="Logo" style="height:40px"> inside the .nav__brand element. Also add <link rel="icon" href="${data.url}"> to the <head> of every page. Do NOT change nav structure, CSS class names, or any other content. Write every modified file back.`
+          : `Update the hero section background image on EVERY page that has a .hero section. First, list all .html files in the repo root. For each file with a .hero section, set background-image: url('${data.url}') on it. Do NOT change nav structure, footer structure, or CSS class names. Write every modified file back.`;
 
         buildInput.value = prompt;
         buildForm.dispatchEvent(new Event('submit'));

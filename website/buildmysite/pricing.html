@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — BuildMySite</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <style>
+    .pricing-page {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      max-width: 560px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .pricing-card h1 { font-size: 1.5rem; margin-bottom: 12px; }
+    .pricing-card .lead { color: var(--text-light); margin-bottom: 32px; line-height: 1.6; }
+    .plan-grid { display: grid; gap: 16px; text-align: left; margin-bottom: 32px; }
+    .plan {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .plan__name { font-weight: 600; color: var(--navy); }
+    .plan__desc { font-size: 0.85rem; color: var(--text-light); margin-top: 2px; }
+    .plan__price { font-weight: 700; color: var(--teal); white-space: nowrap; }
+    .plan--free { background: var(--offwhite); }
+    .free-note { font-size: 0.85rem; color: var(--text-light); margin-bottom: 24px; }
+    .pricing-card .btn { display: inline-block; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__brand">EON Risk Services</a>
+    </div>
+  </nav>
+
+  <section class="pricing-page">
+    <div class="pricing-card">
+      <h1>BuildMySite Pro</h1>
+      <p class="lead">Your free plan includes 5 AI edits per month. Upgrade to Pro for unlimited edits, or paste your own Gemini API key in your admin panel Settings.</p>
+      <div class="plan-grid">
+        <div class="plan plan--free">
+          <div>
+            <div class="plan__name">Free</div>
+            <div class="plan__desc">5 AI edits/month</div>
+          </div>
+          <div class="plan__price">EUR 0</div>
+        </div>
+        <div class="plan">
+          <div>
+            <div class="plan__name">Pro Monthly</div>
+            <div class="plan__desc">Unlimited AI edits</div>
+          </div>
+          <div class="plan__price">EUR 7/mo</div>
+        </div>
+        <div class="plan">
+          <div>
+            <div class="plan__name">Pro Yearly</div>
+            <div class="plan__desc">Unlimited AI edits</div>
+          </div>
+          <div class="plan__price">EUR 49/yr</div>
+        </div>
+        <div class="plan">
+          <div>
+            <div class="plan__name">Lifetime</div>
+            <div class="plan__desc">Unlimited AI edits, forever</div>
+          </div>
+          <div class="plan__price">EUR 29</div>
+        </div>
+      </div>
+      <p class="free-note">Upgrade from your site's admin panel — the upgrade button is in the usage bar.</p>
+      <a href="../buildmysite.html" class="btn btn-primary">Back to BuildMySite</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>&copy; 2026 EON Risk Services Ltd. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
