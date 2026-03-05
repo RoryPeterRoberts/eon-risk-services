@@ -453,9 +453,38 @@ The easiest way: sign up with your GitHub account (one click).`);
   }
 
   doVercelToken() {
-    const tokenUrl = 'https://vercel.com/account/tokens';
+    // Primary: OAuth popup. Fallback: manual token paste.
+    const VERCEL_INTEGRATION_SLUG = 'buildmysite';
+    const oauthState = Math.random().toString(36).slice(2);
+    this._vercelOAuthState = oauthState;
 
-    this.ui.addMessage('agent', `<div class="chat-card">
+    this.ui.addMessage('agent', `Click below to connect your Vercel account. A popup will open — just approve the connection and you're done.`);
+
+    this.ui.addButtons([
+      { label: 'Connect Vercel', action: 'vercel-oauth' },
+      { label: 'Paste token instead', action: 'vercel-manual' },
+    ]);
+
+    this.state = STATES.VERCEL_TOKEN;
+
+    // Listen for OAuth postMessage from popup
+    const messageHandler = (event) => {
+      if (event.data && event.data.type === 'vercel-oauth-token' && event.data.state === oauthState) {
+        window.removeEventListener('message', messageHandler);
+        this.enter(STATES.VERCEL_VALIDATE, event.data.token);
+      }
+    };
+    window.addEventListener('message', messageHandler);
+
+    this.ui.onAction = async (action) => {
+      if (action === 'vercel-oauth') {
+        const oauthUrl = `https://vercel.com/integrations/${VERCEL_INTEGRATION_SLUG}/new?state=${oauthState}`;
+        window.open(oauthUrl, 'vercel-oauth', 'width=600,height=700,popup=yes');
+        this.ui.addMessage('agent', 'Waiting for you to approve in the popup...', true);
+      } else if (action === 'vercel-manual') {
+        window.removeEventListener('message', messageHandler);
+        const tokenUrl = 'https://vercel.com/account/tokens';
+        this.ui.addMessage('agent', `<div class="chat-card">
 <div class="chat-card__title">Create a Vercel token</div>
 <ol class="chat-steps">
 <li>Go to <a href="${tokenUrl}" target="_blank" rel="noopener">vercel.com/account/tokens</a></li>
@@ -464,9 +493,9 @@ The easiest way: sign up with your GitHub account (one click).`);
 <li>Copy the token and paste it below</li>
 </ol>
 </div>`, true);
-
-    this.ui.setInputVisible(true, 'Paste your Vercel token here...');
-    this.state = STATES.VERCEL_TOKEN;
+        this.ui.setInputVisible(true, 'Paste your Vercel token here...');
+      }
+    };
   }
 
   async doVercelValidate(token) {
