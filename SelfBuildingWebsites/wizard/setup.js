@@ -218,101 +218,15 @@ export async function triggerVercelDeploy(vercelToken, projectName, githubRepo) 
   return { deploymentId: data.id, url: data.url, readyState: data.readyState };
 }
 
-// ---- AI API Key Validation ----------------------------------
+// ---- AI Image Generation (via EON proxy) --------------------
 
-const APPROVED_MODELS = {
-  'gemini-2.5-flash':  { provider: 'google' },
-  'gemini-3.0-flash':  { provider: 'google' },
-  'gemini-3.1-pro':    { provider: 'google' },
-  'claude-sonnet-4-6': { provider: 'anthropic' },
-  'claude-opus-4-6':   { provider: 'anthropic' },
-  'gpt-5.2':           { provider: 'openai' },
-};
-
-export async function validateAIKey(apiKey, model) {
-  const config = APPROVED_MODELS[model];
-  if (!config) return { valid: false, error: `Model "${model}" is not approved` };
-
-  try {
-    if (config.provider === 'anthropic') {
-      const r = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401) return { valid: false, error: 'Invalid API key' };
-      if (r.status === 404 || r.status === 400) {
-        const data = await r.json();
-        if (data.error?.message?.includes('model')) return { valid: false, error: `Model "${model}" not available on this key` };
-      }
-      return { valid: r.ok || r.status === 400, provider: 'anthropic', model };
-    }
-
-    if (config.provider === 'openai') {
-      const r = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401) return { valid: false, error: 'Invalid API key' };
-      return { valid: r.ok, provider: 'openai', model };
-    }
-
-    if (config.provider === 'google') {
-      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401 || r.status === 403) return { valid: false, error: 'Invalid API key' };
-      return { valid: r.ok, provider: 'google', model };
-    }
-
-    return { valid: false, error: 'Unknown provider' };
-  } catch (e) {
-    return { valid: false, error: e.message };
-  }
-}
-
-// ---- AI Image Generation (Gemini) ---------------------------
-
-export async function generateImage(apiKey, prompt) {
+export async function generateImage(prompt) {
   const MAX_RETRIES = 3;
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent', {
+    const r = await fetch('https://www.eonriskservices.com/api/ai-image', {
       method: 'POST',
-      headers: {
-        'x-goog-api-key': apiKey,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseModalities: ['TEXT', 'IMAGE']
-        }
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
     });
     if (r.status === 429 && attempt < MAX_RETRIES) {
       const data = await r.json().catch(() => ({}));
@@ -321,15 +235,27 @@ export async function generateImage(apiKey, prompt) {
       continue;
     }
     if (!r.ok) {
-      const text = await r.text();
-      throw new Error(`Image generation failed: ${r.status} ${text}`);
+      const data = await r.json().catch(() => ({}));
+      throw new Error(data.error || `Image generation failed: ${r.status}`);
     }
     const data = await r.json();
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    const imagePart = parts.find(p => p.inlineData?.data);
-    if (!imagePart) throw new Error('No image returned from Gemini');
-    return imagePart.inlineData.data; // base64 PNG
+    return data.data; // base64 PNG
   }
+}
+
+// ---- AI Environment Setup (via EON proxy) -------------------
+
+export async function setupAIEnvVars(vercelToken, projectId) {
+  const r = await fetch('https://www.eonriskservices.com/api/ai-env', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ vercelToken, projectId })
+  });
+  if (!r.ok) {
+    const data = await r.json().catch(() => ({}));
+    throw new Error(data.error || `AI env setup failed: ${r.status}`);
+  }
+  return r.json();
 }
 
 export async function pushImageToRepo(token, repo, path, base64Data, message) {

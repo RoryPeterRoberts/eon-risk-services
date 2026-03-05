@@ -187,7 +187,7 @@ function getUIAndBootCode() {
       },
 
       updateProgress: function(completedStep) {
-        var pct = Math.round((completedStep / 6) * 100);
+        var pct = Math.round((completedStep / 5) * 100);
         progressFill.style.width = pct + '%';
         stepPips.forEach(function(pip) {
           var n = parseInt(pip.dataset.step);

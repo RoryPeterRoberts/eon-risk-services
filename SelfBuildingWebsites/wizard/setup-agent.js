@@ -10,7 +10,7 @@ import {
   startGitHubDeviceFlow, pollGitHubToken,
   validateGitHubToken, createGitHubRepo, pushSiteKit, setSiteKitFiles,
   validateVercelToken, createVercelProject, setVercelEnvVars, triggerVercelDeploy,
-  validateAIKey, triggerSteppedBuild, generateAdminToken, addCustomDomain,
+  setupAIEnvVars, triggerSteppedBuild, generateAdminToken, addCustomDomain,
   generateImage, pushImageToRepo
 } from './setup.js';
 import { discoverBusiness } from './discover.js';
@@ -18,15 +18,6 @@ import { SITE_KIT_FILES } from './site-kit-bundle.js';
 
 // Load site-kit files into the setup module
 setSiteKitFiles(SITE_KIT_FILES);
-
-// ---- AI provider detection from key prefix ----
-function detectProvider(apiKey) {
-  if (!apiKey) return null;
-  if (apiKey.startsWith('AIza'))    return { provider: 'google',    model: 'gemini-2.5-flash' };
-  if (apiKey.startsWith('sk-ant-')) return { provider: 'anthropic', model: 'claude-sonnet-4-6' };
-  if (apiKey.startsWith('sk-'))     return { provider: 'openai',    model: 'gpt-5.2' };
-  return null;
-}
 
 // ---- OS detection ----
 function detectOS() {
@@ -39,9 +30,8 @@ function detectOS() {
 
 // ---- State definitions ----
 const STATES = {
-  // Phase A: AI Key
+  // Phase A: Welcome
   WELCOME:          'WELCOME',
-  AI_KEY_VALIDATE:  'AI_KEY_VALIDATE',
 
   // Phase B: GitHub
   GITHUB_INTRO:     'GITHUB_INTRO',
@@ -99,9 +89,6 @@ export class SetupAgent {
     this.os = detectOS();
 
     // Collected data
-    this.aiKey = null;
-    this.aiProvider = null;
-    this.aiModel = null;
     this.githubToken = null;
     this.githubLogin = null;
     this.vercelToken = null;
@@ -121,7 +108,6 @@ export class SetupAgent {
   // Persist current progress
   _save() {
     saveState({
-      aiKey: this.aiKey, aiProvider: this.aiProvider, aiModel: this.aiModel,
       githubToken: this.githubToken, githubLogin: this.githubLogin,
       vercelToken: this.vercelToken, vercelUsername: this.vercelUsername,
       businessInfo: this.businessInfo, repoName: this.repoName,
@@ -131,9 +117,6 @@ export class SetupAgent {
 
   // Restore from localStorage
   _restore(saved) {
-    this.aiKey = saved.aiKey;
-    this.aiProvider = saved.aiProvider;
-    this.aiModel = saved.aiModel;
     this.githubToken = saved.githubToken;
     this.githubLogin = saved.githubLogin;
     this.vercelToken = saved.vercelToken;
@@ -145,23 +128,21 @@ export class SetupAgent {
 
   // Figure out which state to resume from based on saved data
   _resumeState(saved) {
-    if (saved.selectedPages && saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BUILD_CONFIRM;
-    if (saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.PAGE_SELECT;
-    if (saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BIZ_NAME;
-    if (saved.githubToken && saved.aiKey) return STATES.VERCEL_INTRO;
-    if (saved.aiKey) return STATES.GITHUB_INTRO;
+    if (saved.selectedPages && saved.businessInfo && saved.vercelToken && saved.githubToken) return STATES.BUILD_CONFIRM;
+    if (saved.businessInfo && saved.vercelToken && saved.githubToken) return STATES.PAGE_SELECT;
+    if (saved.vercelToken && saved.githubToken) return STATES.BIZ_NAME;
+    if (saved.githubToken) return STATES.VERCEL_INTRO;
     return null;
   }
 
   // Start the conversation
   async start() {
     const saved = loadState();
-    if (saved && saved.aiKey) {
+    if (saved && saved.githubToken) {
       // We have saved progress — offer to resume
       const resumeState = this._resumeState(saved);
       if (resumeState) {
         const parts = [];
-        if (saved.aiProvider) parts.push(`AI: ${saved.aiProvider}`);
         if (saved.githubLogin) parts.push(`GitHub: @${saved.githubLogin}`);
         if (saved.vercelUsername) parts.push(`Vercel: ${saved.vercelUsername}`);
         if (saved.businessInfo) parts.push(`Business: ${saved.businessInfo.name}`);
@@ -178,11 +159,10 @@ export class SetupAgent {
             this._restore(saved);
             // Show progress pips for completed steps
             let step = 0;
-            if (this.aiKey) step = 1;
-            if (this.githubToken) step = 2;
-            if (this.vercelToken) step = 3;
-            if (this.businessInfo) step = 4;
-            if (this.selectedPages) step = 5;
+            if (this.githubToken) step = 1;
+            if (this.vercelToken) step = 2;
+            if (this.businessInfo) step = 3;
+            if (this.selectedPages) step = 4;
             this.ui.updateProgress(step);
             await this.enter(resumeState);
           } else {
@@ -199,10 +179,6 @@ export class SetupAgent {
   // Main state handler — called on user input or button clicks
   async handleInput(value) {
     switch (this.state) {
-      case STATES.WELCOME:
-        return this.enter(STATES.AI_KEY_VALIDATE, value);
-      case STATES.AI_KEY_VALIDATE:
-        return this.enter(STATES.AI_KEY_VALIDATE, value);
       case STATES.GITHUB_TOKEN:
         return; // Device flow — no text input needed
       case STATES.VERCEL_TOKEN:
@@ -256,8 +232,6 @@ export class SetupAgent {
     switch (newState) {
       case STATES.WELCOME:
         return this.doWelcome();
-      case STATES.AI_KEY_VALIDATE:
-        return this.doAIKeyValidate(input);
       case STATES.GITHUB_INTRO:
         return this.doGitHubIntro();
       case STATES.GITHUB_TOKEN:
@@ -292,57 +266,21 @@ export class SetupAgent {
   }
 
   // ================================================================
-  // Phase A: AI Key
+  // Phase A: Welcome
   // ================================================================
 
   doWelcome() {
     this.ui.addMessage('agent', `Hey! I'm your setup assistant. I'll get your website live in about 10 minutes.
 
-First things first — I need an AI API key. This powers the brain that builds your site. The easiest (and free) option is Google Gemini.`);
+I just need two things from you: a GitHub account (to store your code) and a Vercel account (to host your site for free). The AI is included — no API key needed.`);
 
-    this.ui.addMessage('agent', `<div class="chat-card">
-<div class="chat-card__title">Get a free Gemini API key</div>
-<ol class="chat-steps">
-<li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a></li>
-<li>Sign in with your Google account</li>
-<li>Click <strong>"Create API key"</strong></li>
-<li>Copy the key and paste it below</li>
-</ol>
-<p class="chat-hint">Already have an Anthropic or OpenAI key? That works too — just paste it.</p>
-</div>`, true);
+    this.ui.addButtons([
+      { label: "Let's go!", action: 'start-setup' },
+    ]);
 
-    this.ui.setInputVisible(true, 'Paste your AI API key here...');
-  }
-
-  async doAIKeyValidate(key) {
-    if (!key || !key.trim()) return;
-    key = key.trim();
-
-    const detected = detectProvider(key);
-    if (!detected) {
-      this.ui.addMessage('agent', "I don't recognise that key format. It should start with `AIza` (Google), `sk-ant-` (Anthropic), or `sk-` (OpenAI). Try again?");
-      return;
-    }
-
-    this.ui.setInputVisible(false);
-    this.ui.addMessage('agent', `Detected <strong>${detected.provider}</strong> key. Validating...`, true);
-
-    const result = await validateAIKey(key, detected.model);
-    if (!result.valid) {
-      this.ui.addMessage('agent', `That key didn't work: ${result.error || 'validation failed'}. Double-check it and try again.`);
-      this.ui.setInputVisible(true, 'Paste your AI API key here...');
-      return;
-    }
-
-    this.aiKey = key;
-    this.aiProvider = detected.provider;
-    this.aiModel = detected.model;
-    this._save();
-
-    this.ui.addMessage('agent', `AI key validated. Using <strong>${detected.model}</strong>. Nice one.`);
-    this.ui.updateProgress(1);
-
-    await this.enter(STATES.GITHUB_INTRO);
+    this.ui.onAction = async (action) => {
+      await this.enter(STATES.GITHUB_INTRO);
+    };
   }
 
   // ================================================================
@@ -428,7 +366,7 @@ Do you already have a GitHub account?`);
       this._save();
 
       this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
-      this.ui.updateProgress(2);
+      this.ui.updateProgress(1);
 
       // Prompt to install Vercel GitHub App
       const vercelAppUrl = 'https://github.com/apps/vercel';
@@ -527,8 +465,8 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.vercelUsername = result.username || result.name;
     this._save();
 
-    this.ui.addMessage('agent', `Vercel connected as <strong>${this.vercelUsername}</strong>. All three connections are set up!`);
-    this.ui.updateProgress(3);
+    this.ui.addMessage('agent', `Vercel connected as <strong>${this.vercelUsername}</strong>. Both connections are set up!`);
+    this.ui.updateProgress(2);
 
     await this.enter(STATES.BIZ_NAME);
   }
@@ -558,9 +496,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     try {
       this.businessInfo = await discoverBusiness(
         this.businessName,
-        this.businessLocation,
-        this.aiKey,
-        this.aiModel
+        this.businessLocation
       );
     } catch (err) {
       console.error('Discovery failed:', err);
@@ -629,7 +565,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.ui.addMessage('agent', html, true);
     this.ui.addMessage('agent', 'Does this look right? I can build your site with this, or you can tell me what to change.');
 
-    this.ui.updateProgress(4);
+    this.ui.updateProgress(3);
 
     this.ui.addButtons([
       { label: 'Looks good — build it!', action: 'confirm-info' },
@@ -746,7 +682,7 @@ The easiest way: sign up with your GitHub account (one click).`);
       checkboxes.forEach(cb => { if (cb.checked) selected.push(cb.value); });
       this.selectedPages = selected;
       this._save();
-      this.ui.updateProgress(5);
+      this.ui.updateProgress(4);
       await this.handleAction(action);
     };
   }
@@ -756,7 +692,7 @@ The easiest way: sign up with your GitHub account (one click).`);
   // ================================================================
 
   doBuildConfirm() {
-    const hasImageGen = this.aiProvider === 'google';
+    const hasImageGen = true; // AI images always available — EON provides the key
     this.ui.addMessage('agent', `Ready to build <strong>${this.businessInfo.name || this.businessName}</strong>'s website. Here's what I'll do:
 
 1. Create a GitHub repo: <code>${this.githubLogin}/${this.repoName}</code>
@@ -832,12 +768,12 @@ This takes 2-5 minutes. Ready?`);
           const location = info.address || '';
 
           const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
-          const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+          const logoBase64 = await generateImage(logoPrompt);
           await pushImageToRepo(this.githubToken, repo, 'images/logo.png', logoBase64, 'Add AI-generated logo');
 
           this.ui.setBuildStep('gen_images', 'running', 'Generating hero banner...');
           const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-          const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+          const heroBase64 = await generateImage(heroPrompt);
           await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
 
           // Set URLs in businessInfo so the AI build naturally uses them
@@ -874,9 +810,9 @@ This takes 2-5 minutes. Ready?`);
       // Step 4: Set env vars
       this.ui.setBuildStep('env_vars', 'running', 'Setting environment variables...');
       this.adminToken = generateAdminToken();
+      // AI key is set via EON proxy (key never leaves server)
+      await setupAIEnvVars(this.vercelToken, this.projectId);
       await setVercelEnvVars(this.vercelToken, this.projectId, [
-        { key: 'AI_API_KEY',    value: this.aiKey },
-        { key: 'AI_MODEL',      value: this.aiModel },
         { key: 'GITHUB_TOKEN',  value: this.githubToken },
         { key: 'GITHUB_REPO',   value: repo },
         { key: 'GITHUB_BRANCH', value: 'main' },
@@ -969,7 +905,7 @@ This takes 2-5 minutes. Ready?`);
 
   async doBuildComplete() {
     clearState();
-    this.ui.updateProgress(6);
+    this.ui.updateProgress(5);
 
     this.ui.addMessage('agent', `<div class="chat-card chat-card--success">
 <div class="chat-card__title">Your website is live!</div>
@@ -1046,9 +982,7 @@ This takes 2-5 minutes. Ready?`);
 </div>`, true);
 
     const buttons = [];
-    if (this.aiProvider === 'google') {
-      buttons.push({ label: 'Generate with AI', action: 'generate-images' });
-    }
+    buttons.push({ label: 'Generate with AI', action: 'generate-images' });
     buttons.push({ label: 'Upload images', action: 'upload-images' });
     buttons.push({ label: 'Skip for now', action: 'skip-images' });
     this.ui.addButtons(buttons);
@@ -1129,12 +1063,12 @@ This takes 2-5 minutes. Ready?`);
 
     try {
       const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
-      const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+      const logoBase64 = await generateImage(logoPrompt);
 
       this.ui.addMessage('agent', 'Logo done. Generating hero banner...', true);
 
       const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-      const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+      const heroBase64 = await generateImage(heroPrompt);
 
       this.ui.addMessage('agent', 'Images generated. Pushing to your site...', true);
 

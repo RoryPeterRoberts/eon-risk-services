@@ -252,12 +252,11 @@
 
   <!-- Steps indicator -->
   <div class="steps">
-    <span class="step-pip step-pip--active" data-step="1">AI Key</span>
-    <span class="step-pip" data-step="2">GitHub</span>
-    <span class="step-pip" data-step="3">Vercel</span>
-    <span class="step-pip" data-step="4">Business</span>
-    <span class="step-pip" data-step="5">Pages</span>
-    <span class="step-pip" data-step="6">Build</span>
+    <span class="step-pip step-pip--active" data-step="1">GitHub</span>
+    <span class="step-pip" data-step="2">Vercel</span>
+    <span class="step-pip" data-step="3">Business</span>
+    <span class="step-pip" data-step="4">Pages</span>
+    <span class="step-pip" data-step="5">Build</span>
   </div>
 
   <!-- Messages -->
@@ -503,101 +502,15 @@ async function triggerVercelDeploy(vercelToken, projectName, githubRepo) {
   return { deploymentId: data.id, url: data.url, readyState: data.readyState };
 }
 
-// ---- AI API Key Validation ----------------------------------
+// ---- AI Image Generation (via EON proxy) --------------------
 
-const APPROVED_MODELS = {
-  'gemini-2.5-flash':  { provider: 'google' },
-  'gemini-3.0-flash':  { provider: 'google' },
-  'gemini-3.1-pro':    { provider: 'google' },
-  'claude-sonnet-4-6': { provider: 'anthropic' },
-  'claude-opus-4-6':   { provider: 'anthropic' },
-  'gpt-5.2':           { provider: 'openai' },
-};
-
-async function validateAIKey(apiKey, model) {
-  const config = APPROVED_MODELS[model];
-  if (!config) return { valid: false, error: `Model "${model}" is not approved` };
-
-  try {
-    if (config.provider === 'anthropic') {
-      const r = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401) return { valid: false, error: 'Invalid API key' };
-      if (r.status === 404 || r.status === 400) {
-        const data = await r.json();
-        if (data.error?.message?.includes('model')) return { valid: false, error: `Model "${model}" not available on this key` };
-      }
-      return { valid: r.ok || r.status === 400, provider: 'anthropic', model };
-    }
-
-    if (config.provider === 'openai') {
-      const r = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401) return { valid: false, error: 'Invalid API key' };
-      return { valid: r.ok, provider: 'openai', model };
-    }
-
-    if (config.provider === 'google') {
-      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 10,
-          messages: [{ role: 'user', content: 'Say OK' }]
-        })
-      });
-      if (r.status === 401 || r.status === 403) return { valid: false, error: 'Invalid API key' };
-      return { valid: r.ok, provider: 'google', model };
-    }
-
-    return { valid: false, error: 'Unknown provider' };
-  } catch (e) {
-    return { valid: false, error: e.message };
-  }
-}
-
-// ---- AI Image Generation (Gemini) ---------------------------
-
-async function generateImage(apiKey, prompt) {
+async function generateImage(prompt) {
   const MAX_RETRIES = 3;
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent', {
+    const r = await fetch('https://www.eonriskservices.com/api/ai-image', {
       method: 'POST',
-      headers: {
-        'x-goog-api-key': apiKey,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseModalities: ['TEXT', 'IMAGE']
-        }
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
     });
     if (r.status === 429 && attempt < MAX_RETRIES) {
       const data = await r.json().catch(() => ({}));
@@ -606,15 +519,27 @@ async function generateImage(apiKey, prompt) {
       continue;
     }
     if (!r.ok) {
-      const text = await r.text();
-      throw new Error(`Image generation failed: ${r.status} ${text}`);
+      const data = await r.json().catch(() => ({}));
+      throw new Error(data.error || `Image generation failed: ${r.status}`);
     }
     const data = await r.json();
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    const imagePart = parts.find(p => p.inlineData?.data);
-    if (!imagePart) throw new Error('No image returned from Gemini');
-    return imagePart.inlineData.data; // base64 PNG
+    return data.data; // base64 PNG
   }
+}
+
+// ---- AI Environment Setup (via EON proxy) -------------------
+
+async function setupAIEnvVars(vercelToken, projectId) {
+  const r = await fetch('https://www.eonriskservices.com/api/ai-env', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ vercelToken, projectId })
+  });
+  if (!r.ok) {
+    const data = await r.json().catch(() => ({}));
+    throw new Error(data.error || `AI env setup failed: ${r.status}`);
+  }
+  return r.json();
 }
 
 async function pushImageToRepo(token, repo, path, base64Data, message) {
@@ -889,126 +814,23 @@ async function addCustomDomain(vercelToken, projectId, domain) {
 // ---- discover.js (AI discovery) ----
 // ============================================================
 // BUILDMYSITE — Business Discovery Engine
-// Uses the user's AI API key to search for and extract
-// structured business information from a business name.
-// Runs client-side in the wizard.
+// Calls the EON proxy endpoint (which holds the Gemini key).
+// The prompt and AI model live server-side — this is just a thin client.
 // ============================================================
 
-const DISCOVERY_PROMPT = `You are a business information assistant. Given a business name (and optionally a location), search your knowledge for information about this business and return a JSON object with the following fields. Only include fields you are confident about. Do not invent information.
+async function discoverBusiness(businessName, location) {
+  const r = await fetch('https://www.eonriskservices.com/api/ai-discover', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ businessName, location })
+  });
 
-Return ONLY a JSON object (no markdown, no explanation):
-{
-  "name": "Full business name",
-  "description": "1-2 sentence description of what the business does",
-  "type": "Business category (e.g. restaurant, plumber, salon, accountant)",
-  "email": "Contact email if known",
-  "phone": "Phone number if known",
-  "address": "Full address if known",
-  "hours": "Opening hours if known",
-  "services": ["List of services or products offered"],
-  "tagline": "A suggested tagline for their website",
-  "tone": "Suggested tone for website copy (e.g. warm and welcoming, professional and trustworthy, modern and energetic)"
-}
-
-If you cannot find the business, return:
-{ "found": false, "suggestion": "A helpful message about what info the user should provide manually" }`;
-
-async function discoverBusiness(businessName, location, apiKey, model) {
-  const query = location ? `${businessName} in ${location}` : businessName;
-  const userMessage = `Find information about this business: ${query}`;
-
-  let response;
-
-  if (model.startsWith('claude')) {
-    response = await callAnthropic(userMessage, apiKey, model);
-  } else if (model.startsWith('gpt')) {
-    response = await callOpenAI(userMessage, apiKey, model);
-  } else if (model.startsWith('gemini')) {
-    response = await callGemini(userMessage, apiKey, model);
-  } else {
-    throw new Error(`Unsupported model: ${model}`);
+  if (!r.ok) {
+    const data = await r.json().catch(() => ({}));
+    throw new Error(data.error || `Discovery failed: ${r.status}`);
   }
 
-  // Parse the JSON response
-  try {
-    // Strip markdown code fences if the model wraps the response
-    let cleaned = response.trim();
-    if (cleaned.startsWith('```')) {
-      cleaned = cleaned.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
-    }
-    return JSON.parse(cleaned);
-  } catch (e) {
-    // If parsing fails, return the raw text so the wizard can show it
-    return {
-      found: false,
-      raw: response,
-      suggestion: 'Could not parse business information. Please enter details manually.'
-    };
-  }
-}
-
-// ---- Provider-specific calls --------------------------------
-
-async function callAnthropic(userMessage, apiKey, model) {
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 1024,
-      system: DISCOVERY_PROMPT,
-      messages: [{ role: 'user', content: userMessage }]
-    })
-  });
-  if (!r.ok) throw new Error(`Anthropic ${r.status}`);
-  const data = await r.json();
-  return data.content.filter(b => b.type === 'text').map(b => b.text).join('');
-}
-
-async function callOpenAI(userMessage, apiKey, model) {
-  const r = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 1024,
-      messages: [
-        { role: 'system', content: DISCOVERY_PROMPT },
-        { role: 'user', content: userMessage }
-      ]
-    })
-  });
-  if (!r.ok) throw new Error(`OpenAI ${r.status}`);
-  const data = await r.json();
-  return data.choices[0].message.content || '';
-}
-
-async function callGemini(userMessage, apiKey, model) {
-  const r = await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 1024,
-      messages: [
-        { role: 'system', content: DISCOVERY_PROMPT },
-        { role: 'user', content: userMessage }
-      ]
-    })
-  });
-  if (!r.ok) throw new Error(`Gemini ${r.status}`);
-  const data = await r.json();
-  return data.choices[0].message.content || '';
+  return r.json();
 }
 
 
@@ -5308,15 +5130,6 @@ setSiteKitFiles(SITE_KIT_FILES);
 
 // Load site-kit files into the setup module
 
-// ---- AI provider detection from key prefix ----
-function detectProvider(apiKey) {
-  if (!apiKey) return null;
-  if (apiKey.startsWith('AIza'))    return { provider: 'google',    model: 'gemini-2.5-flash' };
-  if (apiKey.startsWith('sk-ant-')) return { provider: 'anthropic', model: 'claude-sonnet-4-6' };
-  if (apiKey.startsWith('sk-'))     return { provider: 'openai',    model: 'gpt-5.2' };
-  return null;
-}
-
 // ---- OS detection ----
 function detectOS() {
   const p = navigator.platform || '';
@@ -5328,9 +5141,8 @@ function detectOS() {
 
 // ---- State definitions ----
 const STATES = {
-  // Phase A: AI Key
+  // Phase A: Welcome
   WELCOME:          'WELCOME',
-  AI_KEY_VALIDATE:  'AI_KEY_VALIDATE',
 
   // Phase B: GitHub
   GITHUB_INTRO:     'GITHUB_INTRO',
@@ -5388,9 +5200,6 @@ class SetupAgent {
     this.os = detectOS();
 
     // Collected data
-    this.aiKey = null;
-    this.aiProvider = null;
-    this.aiModel = null;
     this.githubToken = null;
     this.githubLogin = null;
     this.vercelToken = null;
@@ -5410,7 +5219,6 @@ class SetupAgent {
   // Persist current progress
   _save() {
     saveState({
-      aiKey: this.aiKey, aiProvider: this.aiProvider, aiModel: this.aiModel,
       githubToken: this.githubToken, githubLogin: this.githubLogin,
       vercelToken: this.vercelToken, vercelUsername: this.vercelUsername,
       businessInfo: this.businessInfo, repoName: this.repoName,
@@ -5420,9 +5228,6 @@ class SetupAgent {
 
   // Restore from localStorage
   _restore(saved) {
-    this.aiKey = saved.aiKey;
-    this.aiProvider = saved.aiProvider;
-    this.aiModel = saved.aiModel;
     this.githubToken = saved.githubToken;
     this.githubLogin = saved.githubLogin;
     this.vercelToken = saved.vercelToken;
@@ -5434,23 +5239,21 @@ class SetupAgent {
 
   // Figure out which state to resume from based on saved data
   _resumeState(saved) {
-    if (saved.selectedPages && saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BUILD_CONFIRM;
-    if (saved.businessInfo && saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.PAGE_SELECT;
-    if (saved.vercelToken && saved.githubToken && saved.aiKey) return STATES.BIZ_NAME;
-    if (saved.githubToken && saved.aiKey) return STATES.VERCEL_INTRO;
-    if (saved.aiKey) return STATES.GITHUB_INTRO;
+    if (saved.selectedPages && saved.businessInfo && saved.vercelToken && saved.githubToken) return STATES.BUILD_CONFIRM;
+    if (saved.businessInfo && saved.vercelToken && saved.githubToken) return STATES.PAGE_SELECT;
+    if (saved.vercelToken && saved.githubToken) return STATES.BIZ_NAME;
+    if (saved.githubToken) return STATES.VERCEL_INTRO;
     return null;
   }
 
   // Start the conversation
   async start() {
     const saved = loadState();
-    if (saved && saved.aiKey) {
+    if (saved && saved.githubToken) {
       // We have saved progress — offer to resume
       const resumeState = this._resumeState(saved);
       if (resumeState) {
         const parts = [];
-        if (saved.aiProvider) parts.push(`AI: ${saved.aiProvider}`);
         if (saved.githubLogin) parts.push(`GitHub: @${saved.githubLogin}`);
         if (saved.vercelUsername) parts.push(`Vercel: ${saved.vercelUsername}`);
         if (saved.businessInfo) parts.push(`Business: ${saved.businessInfo.name}`);
@@ -5467,11 +5270,10 @@ class SetupAgent {
             this._restore(saved);
             // Show progress pips for completed steps
             let step = 0;
-            if (this.aiKey) step = 1;
-            if (this.githubToken) step = 2;
-            if (this.vercelToken) step = 3;
-            if (this.businessInfo) step = 4;
-            if (this.selectedPages) step = 5;
+            if (this.githubToken) step = 1;
+            if (this.vercelToken) step = 2;
+            if (this.businessInfo) step = 3;
+            if (this.selectedPages) step = 4;
             this.ui.updateProgress(step);
             await this.enter(resumeState);
           } else {
@@ -5488,10 +5290,6 @@ class SetupAgent {
   // Main state handler — called on user input or button clicks
   async handleInput(value) {
     switch (this.state) {
-      case STATES.WELCOME:
-        return this.enter(STATES.AI_KEY_VALIDATE, value);
-      case STATES.AI_KEY_VALIDATE:
-        return this.enter(STATES.AI_KEY_VALIDATE, value);
       case STATES.GITHUB_TOKEN:
         return; // Device flow — no text input needed
       case STATES.VERCEL_TOKEN:
@@ -5545,8 +5343,6 @@ class SetupAgent {
     switch (newState) {
       case STATES.WELCOME:
         return this.doWelcome();
-      case STATES.AI_KEY_VALIDATE:
-        return this.doAIKeyValidate(input);
       case STATES.GITHUB_INTRO:
         return this.doGitHubIntro();
       case STATES.GITHUB_TOKEN:
@@ -5581,57 +5377,21 @@ class SetupAgent {
   }
 
   // ================================================================
-  // Phase A: AI Key
+  // Phase A: Welcome
   // ================================================================
 
   doWelcome() {
     this.ui.addMessage('agent', `Hey! I'm your setup assistant. I'll get your website live in about 10 minutes.
 
-First things first — I need an AI API key. This powers the brain that builds your site. The easiest (and free) option is Google Gemini.`);
+I just need two things from you: a GitHub account (to store your code) and a Vercel account (to host your site for free). The AI is included — no API key needed.`);
 
-    this.ui.addMessage('agent', `<div class="chat-card">
-<div class="chat-card__title">Get a free Gemini API key</div>
-<ol class="chat-steps">
-<li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a></li>
-<li>Sign in with your Google account</li>
-<li>Click <strong>"Create API key"</strong></li>
-<li>Copy the key and paste it below</li>
-</ol>
-<p class="chat-hint">Already have an Anthropic or OpenAI key? That works too — just paste it.</p>
-</div>`, true);
+    this.ui.addButtons([
+      { label: "Let's go!", action: 'start-setup' },
+    ]);
 
-    this.ui.setInputVisible(true, 'Paste your AI API key here...');
-  }
-
-  async doAIKeyValidate(key) {
-    if (!key || !key.trim()) return;
-    key = key.trim();
-
-    const detected = detectProvider(key);
-    if (!detected) {
-      this.ui.addMessage('agent', "I don't recognise that key format. It should start with `AIza` (Google), `sk-ant-` (Anthropic), or `sk-` (OpenAI). Try again?");
-      return;
-    }
-
-    this.ui.setInputVisible(false);
-    this.ui.addMessage('agent', `Detected <strong>${detected.provider}</strong> key. Validating...`, true);
-
-    const result = await validateAIKey(key, detected.model);
-    if (!result.valid) {
-      this.ui.addMessage('agent', `That key didn't work: ${result.error || 'validation failed'}. Double-check it and try again.`);
-      this.ui.setInputVisible(true, 'Paste your AI API key here...');
-      return;
-    }
-
-    this.aiKey = key;
-    this.aiProvider = detected.provider;
-    this.aiModel = detected.model;
-    this._save();
-
-    this.ui.addMessage('agent', `AI key validated. Using <strong>${detected.model}</strong>. Nice one.`);
-    this.ui.updateProgress(1);
-
-    await this.enter(STATES.GITHUB_INTRO);
+    this.ui.onAction = async (action) => {
+      await this.enter(STATES.GITHUB_INTRO);
+    };
   }
 
   // ================================================================
@@ -5717,7 +5477,7 @@ Do you already have a GitHub account?`);
       this._save();
 
       this.ui.addMessage('agent', `Connected to GitHub as <strong>@${result.login}</strong>. Your code will live under your account.`);
-      this.ui.updateProgress(2);
+      this.ui.updateProgress(1);
 
       // Prompt to install Vercel GitHub App
       const vercelAppUrl = 'https://github.com/apps/vercel';
@@ -5816,8 +5576,8 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.vercelUsername = result.username || result.name;
     this._save();
 
-    this.ui.addMessage('agent', `Vercel connected as <strong>${this.vercelUsername}</strong>. All three connections are set up!`);
-    this.ui.updateProgress(3);
+    this.ui.addMessage('agent', `Vercel connected as <strong>${this.vercelUsername}</strong>. Both connections are set up!`);
+    this.ui.updateProgress(2);
 
     await this.enter(STATES.BIZ_NAME);
   }
@@ -5847,9 +5607,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     try {
       this.businessInfo = await discoverBusiness(
         this.businessName,
-        this.businessLocation,
-        this.aiKey,
-        this.aiModel
+        this.businessLocation
       );
     } catch (err) {
       console.error('Discovery failed:', err);
@@ -5918,7 +5676,7 @@ The easiest way: sign up with your GitHub account (one click).`);
     this.ui.addMessage('agent', html, true);
     this.ui.addMessage('agent', 'Does this look right? I can build your site with this, or you can tell me what to change.');
 
-    this.ui.updateProgress(4);
+    this.ui.updateProgress(3);
 
     this.ui.addButtons([
       { label: 'Looks good — build it!', action: 'confirm-info' },
@@ -6035,7 +5793,7 @@ The easiest way: sign up with your GitHub account (one click).`);
       checkboxes.forEach(cb => { if (cb.checked) selected.push(cb.value); });
       this.selectedPages = selected;
       this._save();
-      this.ui.updateProgress(5);
+      this.ui.updateProgress(4);
       await this.handleAction(action);
     };
   }
@@ -6045,7 +5803,7 @@ The easiest way: sign up with your GitHub account (one click).`);
   // ================================================================
 
   doBuildConfirm() {
-    const hasImageGen = this.aiProvider === 'google';
+    const hasImageGen = true; // AI images always available — EON provides the key
     this.ui.addMessage('agent', `Ready to build <strong>${this.businessInfo.name || this.businessName}</strong>'s website. Here's what I'll do:
 
 1. Create a GitHub repo: <code>${this.githubLogin}/${this.repoName}</code>
@@ -6121,12 +5879,12 @@ This takes 2-5 minutes. Ready?`);
           const location = info.address || '';
 
           const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
-          const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+          const logoBase64 = await generateImage(logoPrompt);
           await pushImageToRepo(this.githubToken, repo, 'images/logo.png', logoBase64, 'Add AI-generated logo');
 
           this.ui.setBuildStep('gen_images', 'running', 'Generating hero banner...');
           const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-          const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+          const heroBase64 = await generateImage(heroPrompt);
           await pushImageToRepo(this.githubToken, repo, 'images/hero.png', heroBase64, 'Add AI-generated hero banner');
 
           // Set URLs in businessInfo so the AI build naturally uses them
@@ -6163,9 +5921,9 @@ This takes 2-5 minutes. Ready?`);
       // Step 4: Set env vars
       this.ui.setBuildStep('env_vars', 'running', 'Setting environment variables...');
       this.adminToken = generateAdminToken();
+      // AI key is set via EON proxy (key never leaves server)
+      await setupAIEnvVars(this.vercelToken, this.projectId);
       await setVercelEnvVars(this.vercelToken, this.projectId, [
-        { key: 'AI_API_KEY',    value: this.aiKey },
-        { key: 'AI_MODEL',      value: this.aiModel },
         { key: 'GITHUB_TOKEN',  value: this.githubToken },
         { key: 'GITHUB_REPO',   value: repo },
         { key: 'GITHUB_BRANCH', value: 'main' },
@@ -6258,7 +6016,7 @@ This takes 2-5 minutes. Ready?`);
 
   async doBuildComplete() {
     clearState();
-    this.ui.updateProgress(6);
+    this.ui.updateProgress(5);
 
     this.ui.addMessage('agent', `<div class="chat-card chat-card--success">
 <div class="chat-card__title">Your website is live!</div>
@@ -6335,9 +6093,7 @@ This takes 2-5 minutes. Ready?`);
 </div>`, true);
 
     const buttons = [];
-    if (this.aiProvider === 'google') {
-      buttons.push({ label: 'Generate with AI', action: 'generate-images' });
-    }
+    buttons.push({ label: 'Generate with AI', action: 'generate-images' });
     buttons.push({ label: 'Upload images', action: 'upload-images' });
     buttons.push({ label: 'Skip for now', action: 'skip-images' });
     this.ui.addButtons(buttons);
@@ -6418,12 +6174,12 @@ This takes 2-5 minutes. Ready?`);
 
     try {
       const logoPrompt = `Create a simple, modern, professional logo icon for "${name}", a ${type}. Clean minimal design, flat style, white background, no text, suitable for a website navigation bar. Square format.`;
-      const logoBase64 = await generateImage(this.aiKey, logoPrompt);
+      const logoBase64 = await generateImage(logoPrompt);
 
       this.ui.addMessage('agent', 'Logo done. Generating hero banner...', true);
 
       const heroPrompt = `Create a professional, high-quality hero banner photograph for "${name}", a ${type}${location ? ` in ${location}` : ''}. Wide landscape composition, warm and inviting, suitable as a website hero section background image. No text overlay.`;
-      const heroBase64 = await generateImage(this.aiKey, heroPrompt);
+      const heroBase64 = await generateImage(heroPrompt);
 
       this.ui.addMessage('agent', 'Images generated. Pushing to your site...', true);
 
@@ -6686,7 +6442,7 @@ Keep all CSS classes and structure intact.`;
       },
 
       updateProgress: function(completedStep) {
-        var pct = Math.round((completedStep / 6) * 100);
+        var pct = Math.round((completedStep / 5) * 100);
         progressFill.style.width = pct + '%';
         stepPips.forEach(function(pip) {
           var n = parseInt(pip.dataset.step);
