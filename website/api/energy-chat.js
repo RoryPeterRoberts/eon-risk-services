@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { supabase } = require('./_lib/supabase');
 
 // Load knowledge base at cold start (cached across invocations)
 let KNOWLEDGE_BASE = '';
@@ -70,6 +71,19 @@ module.exports = async function handler(req, res) {
   const { messages, household } = req.body || {};
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
     return res.status(400).json({ error: 'messages array required' });
+  }
+
+  // Log usage (fire-and-forget, don't block the response)
+  const isFirstMessage = messages.length === 1;
+  if (isFirstMessage) {
+    supabase.from('energy_advisor_usage').insert({
+      house_type: household?.houseType || null,
+      house_age: household?.houseAge || null,
+      heating_type: household?.heatingType || null,
+      monthly_spend: household?.monthlySpend || null,
+      county: household?.county || null,
+      concern: household?.concern || null,
+    }).then(() => {}).catch(() => {});
   }
 
   // Build household context string from intake form
