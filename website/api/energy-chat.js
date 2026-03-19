@@ -43,11 +43,18 @@ When the user provides household details via the intake form, use them to person
 - Monthly spend helps calculate payback periods
 - County helps with local supplier availability
 
+PRICE VOLATILITY WARNING:
+Oil prices have spiked sharply in 2026 due to Middle East geopolitical events. The knowledge base contains prices from early March 2026 but these change rapidly. When discussing oil prices:
+- Say "prices spiked sharply in early 2026" rather than quoting exact figures
+- For specific current prices, use your Google Search grounding to check
+- Always caveat: "prices are volatile — check with your local supplier for today's rate"
+- SEAI grant amounts are more stable and can be quoted directly
+
 KNOWLEDGE BASE (as of March 2026):
 ${KNOWLEDGE_BASE}
 
 DISCLAIMER (include in your FIRST response only):
-"This is AI-generated energy guidance, not professional advice. Grant amounts and energy prices are as of March 2026. Always check seai.ie for the latest figures and consult a qualified installer before making major changes."`;
+"This is AI-generated energy guidance, not professional advice. Grant amounts and energy prices are as of March 2026 and may have changed. Always check seai.ie for the latest figures and consult a qualified installer before making major changes."`;
 
 module.exports = async function handler(req, res) {
   // CORS
@@ -106,7 +113,8 @@ module.exports = async function handler(req, res) {
         model: 'gemini-3-flash-preview',
         max_tokens: 2048,
         stream: true,
-        messages: apiMessages
+        messages: apiMessages,
+        tools: [{ type: 'function', function: { name: 'google_search', parameters: {} } }]
       })
     });
 
