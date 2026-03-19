@@ -1,0 +1,312 @@
+# EON Energy Advisor — Irish Household Energy Knowledge Base
+# Last updated: March 2026
+# Inject this into the system prompt for the energy advisor chatbot.
+
+## CURRENT ENERGY CRISIS (March 2026)
+- Home heating oil: 500L went from €494.79 (late Feb) to €793.50 national avg by early March (61% spike)
+- 1,000L fill: jumped from €964 to €1,555 — highest spike in the EU
+- Kerosene at pump: ~€1.56/litre
+- Cause: military strikes on Middle East oil infrastructure, Strait of Hormuz disruption
+- Irish oil price increases 8x higher than EU average (27.3% vs 3.3%)
+- 320,000 people currently unable to pay energy bills
+- Government emergency session March 18th — targeted financial interventions confirmed
+- 9% reduced VAT on gas and electricity extended until end of 2030
+- Carbon tax: €71/tonne in 2026 (adds ~2.1c/litre to fossil heating oil)
+
+## IRISH HOUSING STOCK
+- ~2 million homes in Ireland
+- 700,000 off-gas-grid homes heated by oil (mostly rural)
+- ~500,000 homes heated by gas (mostly urban)
+- Common types: semi-detached (most common), detached, terraced, bungalow, apartment
+- Pre-2000 homes typically poorly insulated (BER D-G)
+- Post-2011 homes built to higher standards (BER A-B)
+- Average BER rating nationally: D1-D2
+- Solid wall construction common pre-1970s (no cavity)
+- Cavity wall construction standard from 1970s onward
+
+## BER (Building Energy Rating) EXPLAINED
+- Scale: A1 (best) to G (worst)
+- A1-A3: Nearly zero energy, new builds, deep retrofits
+- B1-B3: Good — well insulated, efficient heating
+- C1-C3: Average modern standard
+- D1-D2: National average — significant improvement possible
+- E1-G: Poor — high energy waste, urgent upgrade recommended
+- BER cert costs ~€150-€200 (€50 SEAI grant available)
+- BER required for selling or renting a property
+- Improving from D to B can cut energy bills by 40-60%
+
+## SEAI GRANTS (as of March 2026)
+
+### Individual Energy Upgrade Grants (Better Energy Homes)
+No income test. Available to all homeowners. Home must be built before 2011.
+
+Insulation:
+- Attic insulation: €2,000 grant for detached (typical cost €1,500-€3,000)
+- Cavity wall insulation: €1,800 grant (typical cost €1,500-€2,500)
+- External wall insulation (detached house): €8,000 grant (typical cost €12,000-€18,000)
+- External wall insulation (semi-detached/terrace): €6,000 grant (typical cost €8,000-€14,000)
+- Internal dry lining: €3,500 grant (typical cost €5,000-€10,000)
+- First-Time Buyers of existing homes: 100% median cost of attic insulation covered
+- "Second Wall" measure: homeowners who previously got wall insulation can now apply for another wall type
+
+Heating:
+- Heat pump system (air-to-water): up to €12,500 total grant, broken down as:
+  - Base heat pump grant: €6,500
+  - Heating system upgrade grant: €2,000 (radiators, pipework, cylinders)
+  - Renewable Heat Bonus: €4,000 (for removing fossil fuel or electric heating system)
+- Apartment heat pump: up to €9,500
+- Air-to-air heat pump: up to €7,500
+- Heating controls upgrade: €700 grant
+- Solar water heating: €1,200 grant (typical cost €3,000-€5,000)
+
+Renewable Energy:
+- Solar PV panels: SEAI grant up to €1,800. ZERO VAT on supply and installation
+- Battery storage: additional grant available with solar PV
+
+Windows and Doors (NEW from March 2, 2026):
+- Detached home: up to €4,000
+- Semi-detached / end of terrace: up to €3,000
+- Mid-terrace: up to €1,800
+- Apartment: up to €1,500
+- External doors: €800 per door (max 2 doors, €1,600 total)
+- Requirement: home must have good attic/wall insulation already (HLI of 2.3 W/K·m² or better)
+- New windows must achieve U-value of 1.4 W/m²K or better
+
+Other:
+- BER assessment: €50 grant
+- Air tightness testing: included in some packages
+
+Maximum combined grants: Up to approximately €25,000+ for a full deep retrofit.
+
+### One Stop Shop (Full Retrofit)
+- For homeowners who want to do multiple upgrades at once
+- SEAI-registered One Stop Shop manages the whole project
+- Higher grant rates than individual route
+- Must achieve minimum BER B2 after works
+- Typical cost for full deep retrofit: €40,000-€60,000
+- Typical grant: €20,000-€30,000
+
+### Warmer Homes Scheme (Free Upgrades)
+- Completely FREE energy upgrades
+- For homeowners on certain social welfare payments:
+  - Fuel Allowance
+  - Working Family Payment
+  - One-Parent Family Payment
+  - Domiciliary Care Allowance
+  - Carer's Allowance (and living with the person being cared for)
+  - Disability Allowance (for 6+ months)
+  - Job Seekers Allowance (for 6+ months, with children under 7)
+- Home must be built before 2006
+- Includes: attic insulation, cavity wall insulation, lagging jacket, draught proofing, energy-efficient lighting, heating upgrade if needed
+- Wait time: 22-26 months total (pre-works BER ~12 months, survey ~14 months, works complete ~22-26 months)
+- NEW March 2026: people on the waiting list can now access individual grants for attic/cavity wall insulation WITHOUT losing their place in the queue
+
+### How to Apply
+1. Check eligibility on seai.ie
+2. Get a BER assessment first (recommended)
+3. Get quotes from SEAI-registered contractors
+4. Apply online at seai.ie BEFORE starting any work
+5. SEAI approves the application
+6. Work is completed by registered contractor
+7. Submit proof of payment
+8. Grant is paid to homeowner
+IMPORTANT: Work must NOT begin before SEAI approval or the grant is void.
+
+## HEAT PUMP ECONOMICS
+- Air-to-water heat pump: most common type in Ireland
+- COP (Coefficient of Performance): 3.1 typical (produces 3.1 units of heat per 1 unit of electricity = 310% effective efficiency)
+- Installation cost: €8,000-€14,000 (before grants)
+- SEAI grants: €6,500 (heat pump) + €2,000 (system upgrade) + €4,000 (renewable bonus) = up to €12,500
+- Net cost after grants: as low as €1,500-€3,500
+- VAT reduced from 23% to 9% on heat pumps (since Jan 2025)
+
+Running cost comparison (3-bed semi, 14,000 kWh annual heat demand):
+- Oil boiler (80% efficiency): ~€2,730/year at current kerosene prices (€1.56/L)
+- Heat pump on standard electricity (30c/kWh): ~€1,355/year
+- Heat pump on night rate (16.34c/kWh): ~€738/year
+- Savings vs oil: €1,375-€1,992/year depending on tariff
+
+- Payback period: 6-8 years in well-insulated home (factoring €12,500 grant)
+- Best suited for: well-insulated homes (BER C or better), underfloor heating or oversized radiators
+- Heat pumps output water at 35-45°C (vs 65-75°C for oil boilers) — need low-temp distribution
+- May need radiator upgrades in older homes
+- Installing in poorly insulated home = compressor runs constantly, COP degrades, bills spiral
+- Lifespan: 15-20 years
+
+## HVO (Hydrotreated Vegetable Oil) — QUICK WIN FOR OIL HOMES
+- Drop-in replacement for kerosene in most existing oil boilers
+- Made from waste cooking oils and fats via hydrotreatment process
+- 88-90% carbon reduction vs kerosene
+- Grant and Worcester-Bosch (dominant Irish brands) have certified modern condensing boilers (post-2018) as HVO-compatible
+- Conversion for older boilers: replacement nozzle, flame sensor, fuel pump seal — typically done during annual service
+- Conversion cost: ~€500 (fraction of heat pump cost)
+- Price: slight premium over kerosene but gap narrowing as carbon tax increases
+- Major supplier: Certa (DCC Energy) — 22 domestic heating depots nationwide
+- Also available: Circle K (30+ forecourts with HVO)
+- LIMITATION: HVO supply is finite — can only cover 1-4% of national heat demand
+- Treated by policymakers as interim bridge technology, NOT a long-term solution
+- Good for: heritage buildings, solid stone walls, or homes where heat pump isn't feasible
+
+## ELECTRICITY TARIFFS & SMART METERS
+- 1.9+ million smart meters installed in Ireland
+- Smart meters enable time-of-use tariffs — cheaper electricity at off-peak times
+
+### Current Electricity Costs (March 2026)
+- National average unit rate: 36.34c/kWh
+- Cheapest standard unit rate: 28.80c/kWh (Community Power)
+- Cheapest discounted annual bill: €1,390.84 (Ecopower)
+- Electric Ireland standard variable: 28.49c/kWh (~€1,427/year)
+- Standing charges: €131.69 to €244.77/year depending on supplier and tariff type
+- Gas discounted rate: 8.09c/kWh (Flogas dual-fuel)
+- Gas standing charge: ~€151/year
+- 9% VAT on electricity and gas (extended to end of 2030)
+- Switching supplier can save €323-€664/year (use bonkers.ie, switcher.ie, PowerToSwitch.ie)
+
+### Time-of-Use Tariff Structure
+- Day rate: ~31.10c/kWh (8am-5pm and 7pm-11pm)
+- Peak rate: ~33.18c/kWh (5pm-7pm weekdays)
+- Night rate: ~16.34c/kWh (11pm-8am)
+- Free electricity hours: some suppliers offer free weekend hours
+- Optimized load shifting can save up to €414/year
+
+### Dynamic Electricity Tariffs (DETs) — COMING JUNE 2026
+- Mandatory for all suppliers with 200,000+ customers from June 1, 2026
+- Prices will fluctuate hourly based on wholesale market
+- Suppliers must give 24-hour advance pricing notifications
+- Potential savings: 15-20% baseline, up to 38% with solar + battery + automation
+- Affected suppliers: Bord Gáis, Electric Ireland, Energia, PrePay Power, SSE Airtricity, Yuno Energy
+
+### How to Save with Smart Meters
+- Run washing machine, dryer, dishwasher at night (timer) — night rate is ~half day rate
+- Charge EVs overnight
+- Heat water overnight with immersion timer
+- Avoid heavy electricity use 5pm-7pm weekdays (peak)
+- Check if your supplier offers free hours and schedule around them
+- Switch supplier annually — loyalty penalty is real (rollover to inflated standard rates)
+
+## SOLAR PV ECONOMICS
+- Typical domestic system: 3-6 kWp (8-14 panels)
+- Cost: €6,000-€16,000 before grants (depending on size and battery)
+- SEAI grant: up to €1,800
+- ZERO VAT on supply and installation of domestic solar panels (permanent)
+- Battery storage: €3,000-€5,000 additional
+
+Clean Export Guarantee (CEG) — sell excess to grid:
+- SSE Airtricity: 32c/kWh (Year 1), 27c/kWh (Year 2) — best rate
+- Pinergy: 25c/kWh
+- Electric Ireland: 19.5c/kWh
+- Bord Gáis / Energia: 18.5c/kWh
+- PrePay Power / Yuno: 15.89c/kWh
+- First €400 of CEG income is TAX FREE (until 2028)
+- Strategy: sell at 32c daytime, buy back at 16c night rate = energy arbitrage
+
+Payback periods (2026 data):
+- 3.5 kWp (8 panels): ~8 years 3 months
+- 4.4 kWp (10 panels): ~7 years 2 months
+- 5.3 kWp (12 panels): ~6 years 5 months
+- 6.2 kWp (14 panels): ~5 years 8 months
+- Bigger system = shorter payback (economies of scale in installation)
+
+- Best orientation: south-facing roof, 30-40 degree pitch (east/west also viable)
+- Panels last 25-30 years with minimal maintenance
+- Planning permission NOT needed for most domestic installations
+- Households typically export 10-40% of generation, earning €150-€400/year
+
+## INSULATION — THE FIRST PRIORITY
+Insulation should ALWAYS be the first upgrade. No point installing a heat pump in a poorly insulated home.
+
+### Priority Order
+1. Attic insulation (cheapest, biggest impact per euro)
+2. Cavity wall insulation (if applicable)
+3. Draught-proofing (windows, doors, letterbox, chimney)
+4. Hot water cylinder lagging jacket (€20-€40, DIY)
+5. External/internal wall insulation (expensive but transformative for solid-wall homes)
+6. Window and door upgrades (new grants from March 2026)
+
+### DIY Quick Wins (No Grant Needed)
+- Draught-proof doors and windows with foam strips (€10-€20)
+- Fit a lagging jacket on hot water cylinder (€20-€40, saves ~€100/year)
+- Close curtains at dusk to retain heat
+- Use reflective radiator panels behind radiators on external walls (€15-€30)
+- Bleed radiators regularly for efficient heating
+- Set heating thermostat to 20°C (each degree above costs ~10% more)
+- Use a timer — don't leave heating on all day
+- Close doors to unused rooms
+- LED bulbs throughout (save ~€50-€100/year vs old bulbs)
+- Seal gaps around pipes, cables, and floorboards with expandable foam
+
+## BEHAVIOURAL SAVINGS (No Cost)
+These changes cost nothing and can save over €1,232/year combined:
+
+Space heating (61% of home energy):
+- Reduce thermostat by 1°C: saves ~10% on heating = ~€164/year (~€7/week)
+- Cut heating by 1 hour/day: saves ~€234/year (~€9.38/week)
+- Heat only occupied rooms with portable heater instead of central heating: saves ~€6/week
+
+Hot water (20% of home energy):
+- Shorten electric shower by 2-4 minutes: saves €109/year (shower costs €3.95/hour at 9.5kW)
+- Lag hot water cylinder with 80mm jacket: reduces water heating cost by 30%
+
+Appliances:
+- Stop using tumble dryer (air-dry instead): saves €176/year (€3.40/week)
+- Run dishwasher 3x/week instead of 6x: saves €87/year
+- Only boil water you need in kettle (2.5kW = €1.03/hour)
+- Unplug devices on standby: saves €50-€80/year
+- Wash clothes at 30°C instead of 40°C
+- Use lids on pots when cooking
+- Keep fridge at 3-5°C, freezer at -18°C (not colder)
+- LED bulbs throughout: save ~€50-€100/year vs old bulbs
+
+## EMERGENCY ADVICE FOR OIL-DEPENDENT HOMES (CRISIS RESPONSE)
+If you're on oil and struggling with current prices:
+
+### Immediate (This Week)
+1. Turn thermostat down to 18-19°C (layer up instead)
+2. Only heat rooms you're actually using (close radiator valves in unused rooms)
+3. Set heating timer: 1 hour morning, 2-3 hours evening (not all day)
+4. Check if you qualify for the Fuel Allowance (€38/week, Oct-Apr — increased €5 in Budget 2026, now includes Working Family Payment recipients)
+5. Contact MABS (Money Advice & Budgeting Service) if in financial difficulty: 0818 07 2000
+6. Apply for Exceptional Needs Payment (ENP) from Community Welfare Officer for emergency fuel costs
+7. Contact your energy supplier's hardship fund (all major suppliers have them — mandated by CRU)
+8. Check if you qualify for Warmer Homes Scheme (free upgrades)
+9. Ask your oil supplier about payment plans or smaller deliveries
+10. Note: there is a moratorium on disconnecting vulnerable households
+
+### Short Term (This Month)
+1. Get quotes for HVO conversion (may save 10-20% vs current kerosene prices)
+2. Apply for SEAI attic insulation grant (quickest payback)
+3. Get a BER assessment to understand your starting point
+4. Switch electricity supplier if you haven't in 12 months (bonkers.ie)
+5. Install a smart thermostat (€100-€200, can save 10-15%)
+
+### Medium Term (3-6 Months)
+1. Get heat pump quotes from SEAI-registered contractors
+2. Apply for cavity wall insulation grant
+3. Consider solar PV to offset electricity costs
+4. Look into the One Stop Shop route if planning multiple upgrades
+
+## LPG (Liquefied Petroleum Gas) USERS
+- Bulk LPG: ~€1.12/litre average
+- 47kg Propane cylinder: ~€110
+- 34kg cylinder: €95-€126
+- Main suppliers: Calor and Flogas
+- WARNING: LPG tank is usually owned by the supplier — creates lock-in, hard to switch
+- Shared estate bulk tanks can have inflated pricing (some reports of €5+/m³)
+- Consider: switching directly to heat pump to bypass proprietary gas infrastructure entirely
+
+## USEFUL CONTACTS
+- SEAI (Sustainable Energy Authority of Ireland): seai.ie | 01 808 2100
+- MABS (Money Advice): mabs.ie | 0818 07 2000
+- Citizens Information: citizensinformation.ie | 0818 07 4000
+- Fuel Allowance info: gov.ie/fuel-allowance
+- Bonkers.ie (compare energy suppliers)
+- Switcher.ie (compare energy suppliers)
+- ESB Networks (smart meter queries): esbnetworks.ie
+
+## DISCLAIMERS
+- All grant amounts and energy prices are as of March 2026 and may change
+- This tool provides general guidance, not professional energy advice
+- Always get professional assessments for major upgrades
+- SEAI grants must be approved BEFORE work begins
+- Grant amounts may vary based on specific circumstances
+- Consult a qualified installer for heat pump and insulation recommendations

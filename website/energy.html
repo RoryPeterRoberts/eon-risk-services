@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free AI Energy Advisor — EON Risk Services</title>
+  <meta name="description" content="Free AI energy advisor for Irish households. Get personalised advice on cutting energy costs, SEAI grants, heat pumps, solar PV, and more. No signup required.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  <style>
+    /* Energy Advisor — Page Styles */
+    .energy-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      padding: calc(var(--nav-height) + 48px) 0 48px;
+      color: var(--white);
+      text-align: center;
+    }
+    .energy-hero h1 { font-family: var(--font-heading); font-size: 2.4rem; margin-bottom: 12px; }
+    .energy-hero .lead { color: var(--gold-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+    .energy-hero .crisis-badge {
+      display: inline-block;
+      background: rgba(197,165,90,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .energy-app {
+      max-width: 800px;
+      margin: -32px auto 64px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Intake Form */
+    .intake-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .intake-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .intake-card .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+    .intake-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .intake-grid { grid-template-columns: 1fr; } }
+    .intake-grid .full-width { grid-column: 1 / -1; }
+
+    .field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .field select, .field input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color var(--transition);
+    }
+    .field select:focus, .field input:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,127,127,0.1);
+    }
+
+    .intake-submit {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .intake-submit button {
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 14px 40px;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .intake-submit button:hover { background: var(--teal-dark); }
+
+    /* Chat Interface */
+    .chat-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-card.active { display: flex; }
+
+    .chat-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-header .dot { width: 10px; height: 10px; border-radius: 50%; background: #4ADE80; }
+    .chat-header h3 { font-size: 1rem; font-weight: 600; margin: 0; }
+    .chat-header .edit-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .chat-header .edit-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .chat-messages {
+      flex: 1;
+      min-height: 400px;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--offwhite);
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 14px 18px;
+      border-radius: var(--radius-lg);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+    .msg--user {
+      align-self: flex-end;
+      background: var(--teal);
+      color: var(--white);
+      border-bottom-right-radius: 4px;
+    }
+    .msg--ai {
+      align-self: flex-start;
+      background: var(--white);
+      color: var(--text);
+      border: 1px solid var(--border-light);
+      border-bottom-left-radius: 4px;
+      box-shadow: var(--shadow-sm);
+    }
+    .msg--ai strong { color: var(--navy); }
+    .msg--typing {
+      align-self: flex-start;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-bottom-left-radius: 4px;
+      padding: 14px 18px;
+    }
+    .msg--typing .dots span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      margin-right: 4px;
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+    .msg--typing .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .msg--typing .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 8px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-light);
+      background: var(--white);
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+    }
+    .chat-input input:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,127,127,0.1);
+    }
+    .chat-input button {
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+      white-space: nowrap;
+    }
+    .chat-input button:hover { background: var(--teal-dark); }
+    .chat-input button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Quick Action Chips */
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 24px 16px;
+      background: var(--offwhite);
+    }
+    .quick-actions button {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+    }
+    .quick-actions button:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-light);
+    }
+
+    /* Markdown-like formatting in AI messages */
+    .msg--ai p { margin-bottom: 8px; }
+    .msg--ai p:last-child { margin-bottom: 0; }
+    .msg--ai ul, .msg--ai ol { margin: 8px 0; padding-left: 20px; }
+    .msg--ai li { margin-bottom: 4px; }
+
+    /* Powered by footer */
+    .energy-footer {
+      text-align: center;
+      padding: 16px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .energy-footer a { color: var(--teal); text-decoration: none; }
+    .energy-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="consulting.html" class="nav__link">Services</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="appliances.html" class="nav__link">AI Tools</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html#audit" class="nav__link nav__link--cta">Free Digital Audit</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="energy-hero">
+    <div class="container">
+      <span class="crisis-badge">Oil Crisis March 2026 — 500L up 61% to &euro;793</span>
+      <h1>Free AI Energy Advisor</h1>
+      <p class="lead">Tell us about your home. Get personalised advice on cutting costs, SEAI grants you can claim, and what upgrades make financial sense. No signup. No data stored.</p>
+    </div>
+  </section>
+
+  <div class="energy-app">
+
+    <!-- Intake Form -->
+    <div class="intake-card" id="intake-card">
+      <h2>Tell us about your home</h2>
+      <p class="subtitle">The more you share, the more specific your advice. All fields are optional.</p>
+      <form id="intake-form">
+        <div class="intake-grid">
+          <div class="field">
+            <label for="houseType">House Type</label>
+            <select id="houseType">
+              <option value="">Select...</option>
+              <option value="Detached">Detached</option>
+              <option value="Semi-detached">Semi-detached</option>
+              <option value="Terraced">Terraced</option>
+              <option value="Bungalow">Bungalow</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="houseAge">When was it built?</label>
+            <select id="houseAge">
+              <option value="">Select...</option>
+              <option value="Pre-1970">Pre-1970</option>
+              <option value="1970-1990">1970-1990</option>
+              <option value="1990-2005">1990-2005</option>
+              <option value="2005-2011">2005-2011</option>
+              <option value="After 2011">After 2011</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="heatingType">Main Heating</label>
+            <select id="heatingType">
+              <option value="">Select...</option>
+              <option value="Oil (kerosene)">Oil (kerosene)</option>
+              <option value="Natural gas">Natural gas</option>
+              <option value="LPG">LPG</option>
+              <option value="Electric storage heaters">Electric storage heaters</option>
+              <option value="Heat pump">Heat pump</option>
+              <option value="Solid fuel (coal/turf)">Solid fuel (coal/turf)</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="monthlySpend">Monthly Energy Spend</label>
+            <select id="monthlySpend">
+              <option value="">Select...</option>
+              <option value="Under 100">Under &euro;100</option>
+              <option value="100-200">&euro;100-200</option>
+              <option value="200-300">&euro;200-300</option>
+              <option value="300-500">&euro;300-500</option>
+              <option value="Over 500">Over &euro;500</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="county">County</label>
+            <select id="county">
+              <option value="">Select...</option>
+              <option value="Carlow">Carlow</option><option value="Cavan">Cavan</option>
+              <option value="Clare">Clare</option><option value="Cork">Cork</option>
+              <option value="Donegal">Donegal</option><option value="Dublin">Dublin</option>
+              <option value="Galway">Galway</option><option value="Kerry">Kerry</option>
+              <option value="Kildare">Kildare</option><option value="Kilkenny">Kilkenny</option>
+              <option value="Laois">Laois</option><option value="Leitrim">Leitrim</option>
+              <option value="Limerick">Limerick</option><option value="Longford">Longford</option>
+              <option value="Louth">Louth</option><option value="Mayo">Mayo</option>
+              <option value="Meath">Meath</option><option value="Monaghan">Monaghan</option>
+              <option value="Offaly">Offaly</option><option value="Roscommon">Roscommon</option>
+              <option value="Sligo">Sligo</option><option value="Tipperary">Tipperary</option>
+              <option value="Waterford">Waterford</option><option value="Westmeath">Westmeath</option>
+              <option value="Wexford">Wexford</option><option value="Wicklow">Wicklow</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="concern">Biggest Concern</label>
+            <select id="concern">
+              <option value="">Select...</option>
+              <option value="Reducing monthly bills">Reducing monthly bills</option>
+              <option value="SEAI grants I can claim">SEAI grants I can claim</option>
+              <option value="Switching from oil">Switching from oil</option>
+              <option value="Heat pump - is it worth it?">Heat pump - is it worth it?</option>
+              <option value="Solar panels">Solar panels</option>
+              <option value="Insulation options">Insulation options</option>
+              <option value="Emergency help with costs">Emergency help with costs</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-submit">
+          <button type="submit">Get My Energy Advice</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Chat Interface -->
+    <div class="chat-card" id="chat-card">
+      <div class="chat-header">
+        <div class="dot"></div>
+        <h3>EON Energy Advisor</h3>
+        <button class="edit-btn" id="edit-household">Edit Home Details</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="quick-actions" id="quick-actions">
+        <button data-q="What SEAI grants can I get?">SEAI Grants</button>
+        <button data-q="Should I get a heat pump?">Heat Pumps</button>
+        <button data-q="How can I cut my bill this week?">Quick Savings</button>
+        <button data-q="Tell me about solar panels for my home">Solar PV</button>
+        <button data-q="What is HVO and can I use it?">HVO Oil</button>
+        <button data-q="How do I switch electricity supplier?">Switch Supplier</button>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Ask about your energy costs..." autocomplete="off">
+        <button id="chat-send">Send</button>
+      </div>
+    </div>
+
+    <div class="energy-footer">
+      Free tool by <a href="index.html">EON Risk Services</a> &mdash; AI solutions for Irish SMEs
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function() {
+    'use strict';
+
+    // State
+    let household = {};
+    let messages = []; // { role, content }
+    let streaming = false;
+
+    // DOM
+    const intakeCard = document.getElementById('intake-card');
+    const chatCard = document.getElementById('chat-card');
+    const intakeForm = document.getElementById('intake-form');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const editBtn = document.getElementById('edit-household');
+    const quickActions = document.getElementById('quick-actions');
+
+    // Intake form submit
+    intakeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      household = {
+        houseType: document.getElementById('houseType').value,
+        houseAge: document.getElementById('houseAge').value,
+        heatingType: document.getElementById('heatingType').value,
+        monthlySpend: document.getElementById('monthlySpend').value,
+        county: document.getElementById('county').value,
+        concern: document.getElementById('concern').value,
+      };
+
+      // Build initial message from household
+      const parts = [];
+      if (household.houseType) parts.push(`a ${household.houseType.toLowerCase()} house`);
+      if (household.houseAge) parts.push(`built ${household.houseAge}`);
+      if (household.heatingType) parts.push(`heated by ${household.heatingType.toLowerCase()}`);
+      if (household.county) parts.push(`in Co. ${household.county}`);
+      if (household.monthlySpend) parts.push(`spending about €${household.monthlySpend}/month on energy`);
+
+      let firstMsg = 'Hi, I need help with my energy costs.';
+      if (parts.length > 0) {
+        firstMsg = `Hi, I live in ${parts.join(', ')}. `;
+        if (household.concern) {
+          firstMsg += `My main concern is: ${household.concern.toLowerCase()}.`;
+        } else {
+          firstMsg += 'What can I do to reduce my energy costs?';
+        }
+      }
+
+      // Show chat
+      intakeCard.style.display = 'none';
+      chatCard.classList.add('active');
+
+      // Send first message
+      sendMessage(firstMsg);
+    });
+
+    // Edit household
+    editBtn.addEventListener('click', () => {
+      chatCard.classList.remove('active');
+      intakeCard.style.display = '';
+    });
+
+    // Chat send
+    chatSend.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (!text || streaming) return;
+      chatInput.value = '';
+      sendMessage(text);
+    });
+
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatSend.click();
+      }
+    });
+
+    // Quick action chips
+    quickActions.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-q]');
+      if (!btn || streaming) return;
+      sendMessage(btn.dataset.q);
+    });
+
+    function addMessage(role, content) {
+      const div = document.createElement('div');
+      div.className = role === 'user' ? 'msg msg--user' : 'msg msg--ai';
+      div.innerHTML = formatMarkdown(content);
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return div;
+    }
+
+    function addTypingIndicator() {
+      const div = document.createElement('div');
+      div.className = 'msg msg--typing';
+      div.id = 'typing';
+      div.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const el = document.getElementById('typing');
+      if (el) el.remove();
+    }
+
+    function formatMarkdown(text) {
+      // Basic markdown: bold, lists, paragraphs
+      let html = text
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/\n- /g, '</p><ul><li>')
+        .replace(/\n(\d+)\. /g, '</p><ol><li>');
+
+      // Wrap in paragraph
+      html = '<p>' + html + '</p>';
+
+      // Fix list items
+      html = html.replace(/<li>(.+?)(?=<li>|<\/p>|$)/g, '<li>$1</li>');
+      html = html.replace(/<\/p><ul>/g, '<ul>');
+      html = html.replace(/<\/p><ol>/g, '<ol>');
+
+      return html;
+    }
+
+    async function sendMessage(text) {
+      if (streaming) return;
+
+      // Add user message
+      addMessage('user', text);
+      messages.push({ role: 'user', content: text });
+
+      // Show typing indicator
+      addTypingIndicator();
+      streaming = true;
+      chatSend.disabled = true;
+
+      let aiText = '';
+      let aiDiv = null;
+
+      try {
+        const res = await fetch('/api/energy-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages, household })
+        });
+
+        if (!res.ok) throw new Error('Server error');
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        removeTypingIndicator();
+        aiDiv = addMessage('assistant', '');
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop();
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || !trimmed.startsWith('data: ')) continue;
+
+            const data = trimmed.slice(6);
+            if (data === '[DONE]') continue;
+
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.text) {
+                aiText += parsed.text;
+                aiDiv.innerHTML = formatMarkdown(aiText);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              }
+              if (parsed.error) {
+                aiText += '\n\nSorry, something went wrong. Please try again.';
+                aiDiv.innerHTML = formatMarkdown(aiText);
+              }
+            } catch (e) {}
+          }
+        }
+
+        messages.push({ role: 'assistant', content: aiText });
+
+        // Hide quick actions after first exchange
+        if (messages.length > 2) {
+          quickActions.style.display = 'none';
+        }
+
+      } catch (err) {
+        removeTypingIndicator();
+        addMessage('assistant', 'Sorry, I\'m having trouble connecting right now. Please try again in a moment.');
+      } finally {
+        streaming = false;
+        chatSend.disabled = false;
+        chatInput.focus();
+      }
+    }
+  })();
+  </script>
+
+</body>
+</html>

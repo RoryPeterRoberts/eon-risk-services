@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free AI Tools — EON Risk Services</title>
+  <meta name="description" content="Free AI-powered tools for Irish businesses and households. Energy advisor, contract reviewer, and more. No signup, no data stored. Built by EON Risk Services.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  <style>
+    .tools-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      padding: calc(var(--nav-height) + 64px) 0 64px;
+      color: var(--white);
+      text-align: center;
+    }
+    .tools-hero h1 { font-family: var(--font-heading); font-size: 2.6rem; margin-bottom: 12px; }
+    .tools-hero .lead { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 600px; margin: 0 auto 8px; }
+    .tools-hero .sub { color: var(--gold-light); font-size: 0.9rem; }
+
+    .tools-grid {
+      max-width: var(--container);
+      margin: -40px auto 64px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tool-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .tool-card--live { border-top: 3px solid var(--teal); }
+    .tool-card--soon { border-top: 3px solid var(--border); opacity: 0.7; }
+
+    .tool-card__badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .tool-card--live .tool-card__badge {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+    }
+    .tool-card--soon .tool-card__badge {
+      background: var(--offwhite);
+      color: var(--text-muted);
+    }
+
+    .tool-card__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .tool-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .tool-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .tool-card__cta {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background var(--transition);
+      width: fit-content;
+    }
+    .tool-card__cta:hover { background: var(--teal-dark); }
+    .tool-card--soon .tool-card__cta {
+      background: var(--border);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .tools-footer {
+      text-align: center;
+      padding: 0 20px 64px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .tools-footer h2 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .tools-footer p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .tools-footer a.btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background var(--transition);
+    }
+    .tools-footer a.btn:hover { background: var(--navy-light); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="consulting.html" class="nav__link">Services</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="appliances.html" class="nav__link nav__link--active">AI Tools</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html#audit" class="nav__link nav__link--cta">Free Digital Audit</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="tools-hero">
+    <div class="container">
+      <h1>Free AI Tools</h1>
+      <p class="lead">Practical AI tools for Irish businesses and households. No signup, no data stored, completely free.</p>
+      <p class="sub">Built by EON Risk Services &mdash; proving what AI can do for you</p>
+    </div>
+  </section>
+
+  <!-- Tools Grid -->
+  <div class="tools-grid">
+
+    <div class="tool-card tool-card--live">
+      <span class="tool-card__badge">Live Now</span>
+      <div class="tool-card__icon">&#9889;</div>
+      <h3>Energy Advisor</h3>
+      <p>AI energy consultant for Irish households. Get personalised advice on cutting costs, SEAI grants (up to &euro;25,000), heat pumps, solar PV, and emergency help during the oil crisis. Powered by March 2026 data.</p>
+      <a href="energy.html" class="tool-card__cta">Get Free Advice &rarr;</a>
+    </div>
+
+    <div class="tool-card tool-card--live">
+      <span class="tool-card__badge">Live Now</span>
+      <div class="tool-card__icon">&#127760;</div>
+      <h3>BuildMySite</h3>
+      <p>Free AI website builder that runs on your computer. Download it, talk to it, get a professional site in 10 minutes. No accounts, no vendor lock-in. You own everything.</p>
+      <a href="buildmysite.html" class="tool-card__cta">Download Free &rarr;</a>
+    </div>
+
+    <div class="tool-card tool-card--soon">
+      <span class="tool-card__badge">Coming Soon</span>
+      <div class="tool-card__icon">&#128221;</div>
+      <h3>Email Rewriter</h3>
+      <p>Paste any business email and get it rewritten for clarity, tone, and professionalism. Choose from formal, friendly, or concise styles. Perfect for client communications.</p>
+      <span class="tool-card__cta">Coming Soon</span>
+    </div>
+
+    <div class="tool-card tool-card--soon">
+      <span class="tool-card__badge">Coming Soon</span>
+      <div class="tool-card__icon">&#128196;</div>
+      <h3>Contract Reviewer</h3>
+      <p>Upload a business contract and get a plain-English summary of key terms, obligations, deadlines, and potential risks. Not legal advice &mdash; but a useful first pass.</p>
+      <span class="tool-card__cta">Coming Soon</span>
+    </div>
+
+    <div class="tool-card tool-card--soon">
+      <span class="tool-card__badge">Coming Soon</span>
+      <div class="tool-card__icon">&#128176;</div>
+      <h3>Proposal Generator</h3>
+      <p>Describe a project and your client, get a professional proposal draft in minutes. Customised for Irish SMEs with LEO grant alignment built in.</p>
+      <span class="tool-card__cta">Coming Soon</span>
+    </div>
+
+  </div>
+
+  <!-- Footer CTA -->
+  <div class="tools-footer">
+    <h2>Want a custom AI tool for your business?</h2>
+    <p>These free tools are samples of what we build. If you need something tailored &mdash; a chatbot, a dashboard, an automation &mdash; we can build it at SME prices.</p>
+    <a href="contact.html" class="btn">Talk to Us &rarr;</a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

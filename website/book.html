@@ -63,6 +63,7 @@
         <a href="consulting.html" class="nav__link">Services</a>
         <a href="about.html" class="nav__link">About</a>
         <a href="risk-identification.html" class="nav__link">Risk Identification</a>
+        <a href="appliances.html" class="nav__link">AI Tools</a>
         <a href="contact.html" class="nav__link">Contact</a>
         <a href="contact.html#audit" class="nav__link nav__link--cta">Free Digital Audit</a>
       </div>
@@ -103,7 +104,7 @@
           <p>Built from ISO 31000, COSO ERM, and 20 years of frontline practice at G-SIBs, global insurers, and regional banks. Not a textbook &mdash; a practitioner's methodology you can implement and defend to your regulator.</p>
           <div class="card__price" style="margin: 24px 0;">Free <span>PDF download</span></div>
           <div class="btn-group">
-            <a href="/downloads/Bank_Risk_Identification.pdf" class="btn btn-primary">Download PDF <span class="btn-icon">&rarr;</span></a>
+            <a href="/downloads/Bank_Risk_Identification.pdf" class="btn btn-primary" id="book-download" onclick="trackDownload('Bank_Risk_Identification.pdf')">Download PDF <span class="btn-icon">&rarr;</span></a>
           </div>
         </div>
       </div>
@@ -258,6 +259,19 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+function trackDownload(file) {
+  fetch('https://www.eonriskservices.com/api/track-download', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      file: file,
+      referrer: document.referrer || null,
+      ua: navigator.userAgent
+    })
+  }).catch(function() {});
+}
+</script>
+<script src="js/main.js"></script>
 </body>
 </html>
