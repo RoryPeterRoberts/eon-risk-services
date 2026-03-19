@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'gemini-2.5-flash-lite',
+        model: 'gemini-3-flash-preview',
         max_tokens: 2048,
         stream: true,
         messages: apiMessages
