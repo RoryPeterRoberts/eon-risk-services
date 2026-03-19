@@ -534,22 +534,69 @@
     }
 
     function formatMarkdown(text) {
-      // Basic markdown: bold, lists, paragraphs
-      let html = text
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/\n- /g, '</p><ul><li>')
-        .replace(/\n(\d+)\. /g, '</p><ol><li>');
+      // Process line by line for proper structure
+      const lines = text.split('\n');
+      let html = '';
+      let inUl = false;
+      let inOl = false;
+      let inP = false;
 
-      // Wrap in paragraph
-      html = '<p>' + html + '</p>';
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
 
-      // Fix list items
-      html = html.replace(/<li>(.+?)(?=<li>|<\/p>|$)/g, '<li>$1</li>');
-      html = html.replace(/<\/p><ul>/g, '<ul>');
-      html = html.replace(/<\/p><ol>/g, '<ol>');
+        // Apply inline formatting
+        line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        line = line.replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, '<em>$1</em>');
 
-      return html;
+        // Headings
+        if (line.match(/^#{1,4}\s/)) {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          if (inP) { html += '</p>'; inP = false; }
+          const level = line.match(/^(#{1,4})/)[1].length;
+          const txt = line.replace(/^#{1,4}\s+/, '');
+          html += '<h' + (level + 2) + ' style="margin:16px 0 8px;color:var(--navy);font-size:' + (level <= 2 ? '1.05' : '0.95') + 'rem">' + txt + '</h' + (level + 2) + '>';
+          continue;
+        }
+
+        // Unordered list items (* or -)
+        if (line.match(/^\s*[\*\-]\s+/)) {
+          if (inP) { html += '</p>'; inP = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          if (!inUl) { html += '<ul>'; inUl = true; }
+          html += '<li>' + line.replace(/^\s*[\*\-]\s+/, '') + '</li>';
+          continue;
+        }
+
+        // Ordered list items
+        if (line.match(/^\s*\d+\.\s+/)) {
+          if (inP) { html += '</p>'; inP = false; }
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (!inOl) { html += '<ol>'; inOl = true; }
+          html += '<li>' + line.replace(/^\s*\d+\.\s+/, '') + '</li>';
+          continue;
+        }
+
+        // Empty line = paragraph break
+        if (line.trim() === '') {
+          if (inUl) { html += '</ul>'; inUl = false; }
+          if (inOl) { html += '</ol>'; inOl = false; }
+          if (inP) { html += '</p>'; inP = false; }
+          continue;
+        }
+
+        // Regular text
+        if (!inP) { html += '<p>'; inP = true; }
+        else { html += ' '; }
+        html += line;
+      }
+
+      // Close any open tags
+      if (inUl) html += '</ul>';
+      if (inOl) html += '</ol>';
+      if (inP) html += '</p>';
+
+      return html || '<p>' + text + '</p>';
     }
 
     async function sendMessage(text) {
