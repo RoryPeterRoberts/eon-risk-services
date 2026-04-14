@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — EON Risk Services</title>
-  <meta name="description" content="Get in touch with EON Risk Services. Book a free digital audit, discuss AI solutions for your business, or ask about our services.">
+  <meta name="description" content="Book a discovery call with EON Risk Services. AI-agent-powered risk management for frontier finance, and global AI-as-a-Service for SMEs. Remote, contract, led by an ex-Credit Suisse SVP and FRM.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -20,12 +20,11 @@
         <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
       </a>
       <div class="nav__links">
-        <a href="consulting.html" class="nav__link">Services</a>
+        <a href="risk-identification.html" class="nav__link">Risk AI</a>
+        <a href="consulting.html" class="nav__link">AI for SMEs</a>
         <a href="about.html" class="nav__link">About</a>
-        <a href="risk-identification.html" class="nav__link">Risk Identification</a>
         <a href="contact.html" class="nav__link">Contact</a>
-        <a href="appliances.html" class="nav__link">AI Tools</a>
-        <a href="contact.html#audit" class="nav__link nav__link--cta">Free Digital Audit</a>
+        <a href="contact.html#discovery" class="nav__link nav__link--cta">Book a Discovery Call</a>
       </div>
       <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -37,20 +36,21 @@
   <section class="page-header">
     <div class="container">
       <h1>Get in Touch</h1>
-      <p class="lead">Whether you want to explore AI for your business, book a digital audit, or just ask a question.</p>
+      <p class="lead">Book a discovery call, ask about a specific engagement, or start a conversation about your risk surface or AI needs. Remote, global, usually a reply within 24 hours.</p>
     </div>
   </section>
 
-  <!-- Digital Audit CTA -->
-  <section class="section section--offwhite" id="audit">
+  <!-- Discovery Call CTA -->
+  <a id="audit"></a>
+  <section class="section section--offwhite" id="discovery">
     <div class="container">
       <div class="container-narrow" style="padding: 0; text-align: center;">
         <div class="audit-cta">
           <p class="eyebrow">Recommended Starting Point</p>
-          <h2>Book a Free Digital Audit</h2>
-          <p style="font-size: 1.05rem; color: var(--text-light); max-width: 520px; margin: 0 auto 24px;">30 minutes on a call. We'll map your business processes, identify where AI can help most, and score each opportunity by complexity and ROI. No obligation, no jargon.</p>
-          <a href="mailto:rory@eonriskservices.com?subject=Free%20Digital%20Audit%20Request" class="btn btn-primary btn-lg">Request a Digital Audit <span class="btn-icon">&rarr;</span></a>
-          <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">Or fill in the form below and select "Free digital audit" as the subject.</p>
+          <h2>Book a Discovery Call</h2>
+          <p style="font-size: 1.05rem; color: var(--text-light); max-width: 560px; margin: 0 auto 24px;">30 minutes. Remote. No pitch &mdash; just a conversation about what you're trying to solve, whether EON is the right fit, and what a first engagement would look like. If we're not the right fit, we'll say so.</p>
+          <a href="mailto:rory@eonriskservices.com?subject=Discovery%20Call%20Request" class="btn btn-primary btn-lg">Request a Discovery Call <span class="btn-icon">&rarr;</span></a>
+          <p class="text-muted" style="font-size: 0.85rem; margin-top: 16px;">Or fill in the form below and select "Discovery call" as the subject.</p>
         </div>
       </div>
     </div>
@@ -80,11 +80,12 @@
             <div class="form-group">
               <label class="form-label" for="subject">Subject</label>
               <select id="subject" name="subject" class="form-select">
+                <option value="discovery">Discovery call</option>
+                <option value="risk-ai">Risk AI (frontier finance)</option>
+                <option value="fractional-cro">Fractional CRO / first risk hire</option>
+                <option value="model-review">Model / VaR review</option>
+                <option value="ai-sme">AI for SMEs</option>
                 <option value="general">General enquiry</option>
-                <option value="audit">Free digital audit</option>
-                <option value="ai-services">AI services enquiry</option>
-                <option value="leo-grants">LEO grant question</option>
-                <option value="risk-id">Bank risk identification</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -108,7 +109,7 @@
           <div style="margin-bottom: 32px;">
             <p><strong style="color: var(--navy); font-size: 1.1rem;">Rory Roberts</strong></p>
             <p class="text-light">Founder, EON Risk Services Ltd</p>
-            <p class="text-light">Wexford, Ireland</p>
+            <p class="text-light">Dublin, Ireland &mdash; serving clients worldwide</p>
           </div>
           <div style="margin-bottom: 32px;">
             <p style="margin-bottom: 12px;">
@@ -125,8 +126,8 @@
           <!-- Schedule a Call -->
           <div style="margin-top: 48px; padding: 32px; background: var(--offwhite); border-radius: var(--radius-lg);">
             <h4>Prefer to schedule a call?</h4>
-            <p class="text-light" style="font-size: 0.95rem;">Book a free 30-minute digital audit to explore how AI can help your business.</p>
-            <a href="mailto:rory@eonriskservices.com?subject=Free%20Digital%20Audit%20Request" class="btn btn-outline btn-sm" style="margin-top: 12px;">Request a Call <span class="btn-icon">&rarr;</span></a>
+            <p class="text-light" style="font-size: 0.95rem;">Book a free 30-minute discovery call &mdash; remote, no obligation, no pitch.</p>
+            <a href="mailto:rory@eonriskservices.com?subject=Discovery%20Call%20Request" class="btn btn-outline btn-sm" style="margin-top: 12px;">Request a Call <span class="btn-icon">&rarr;</span></a>
           </div>
         </div>
 
@@ -140,13 +141,13 @@
       <div class="footer__inner">
         <div>
           <div class="footer__brand">EON Risk Services</div>
-          <p class="footer__tagline">AI-as-a-Service for Irish SMEs</p>
-          <p class="footer__tagline">Wexford, Ireland</p>
+          <p class="footer__tagline">Global AI-as-a-Service</p>
+          <p class="footer__tagline">Dublin, Ireland &mdash; serving clients worldwide</p>
         </div>
         <div class="footer__links">
-          <a href="consulting.html" class="footer__link">Services</a>
+          <a href="risk-identification.html" class="footer__link">Risk AI</a>
+          <a href="consulting.html" class="footer__link">AI for SMEs</a>
           <a href="about.html" class="footer__link">About</a>
-          <a href="risk-identification.html" class="footer__link">Risk Identification</a>
           <a href="contact.html" class="footer__link">Contact</a>
         </div>
         <div class="footer__links">
