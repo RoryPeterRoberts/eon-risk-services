@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EON Risk Sentinel — Live Regulator Scan</title>
+  <meta name="description" content="Live AI-agent scan of global financial regulators — ECB, Fed, SEC, Bank of England, FCA, EBA — ranked for relevance to fintechs, crypto funds and frontier finance. Powered by EON's AI-agent risk stack.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+  <style>
+    .sentinel-meta { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px; color: var(--text-muted); font-size: 0.9rem; }
+    .sentinel-meta strong { color: var(--navy); }
+    .sentinel-grid { display: grid; gap: 20px; margin-top: 32px; }
+    .sentinel-item { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: var(--radius-md); padding: 24px 28px; transition: border-left-color 0.15s ease; }
+    .sentinel-item[data-score="5"] { border-left-color: #C0392B; }
+    .sentinel-item[data-score="4"] { border-left-color: var(--gold); }
+    .sentinel-item[data-score="3"] { border-left-color: var(--teal); }
+    .sentinel-item[data-score="2"], .sentinel-item[data-score="1"] { border-left-color: var(--border); opacity: 0.78; }
+    .sentinel-item__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+    .sentinel-item__badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .sentinel-badge { display: inline-block; padding: 3px 10px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; border-radius: 999px; background: var(--offwhite); color: var(--navy); border: 1px solid var(--border); }
+    .sentinel-badge--source { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .sentinel-badge--cat { background: var(--offwhite); color: var(--text-light); }
+    .sentinel-score { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .sentinel-score--red { color: #C0392B; }
+    .sentinel-item h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--navy); margin: 4px 0 10px; line-height: 1.35; }
+    .sentinel-item h3 a { color: inherit; text-decoration: none; }
+    .sentinel-item h3 a:hover { color: var(--teal); text-decoration: underline; }
+    .sentinel-item__summary { color: var(--text-light); font-size: 0.95rem; line-height: 1.55; margin: 0 0 10px; }
+    .sentinel-item__why { color: var(--navy); font-size: 0.92rem; line-height: 1.55; margin: 0; padding: 10px 14px; background: var(--offwhite); border-radius: var(--radius-sm); border-left: 2px solid var(--teal); }
+    .sentinel-item__why strong { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--teal); display: block; margin-bottom: 4px; }
+    .sentinel-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .sentinel-loading { text-align: center; padding: 60px 20px; color: var(--text-muted); font-style: italic; }
+    .sentinel-sources { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .sentinel-sources span { padding: 4px 10px; background: var(--offwhite); border-radius: 999px; font-size: 0.78rem; color: var(--text-light); }
+    .sentinel-explainer { max-width: 720px; margin: 40px auto 0; padding: 24px 28px; background: var(--offwhite); border-radius: var(--radius-md); }
+    .sentinel-explainer h3 { margin-top: 0; }
+    .sentinel-explainer p { color: var(--text-light); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/logo-nav.png" alt="EON Risk Services" class="nav__logo-img">
+      </a>
+      <div class="nav__links">
+        <a href="risk-identification.html" class="nav__link">Risk AI</a>
+        <a href="consulting.html" class="nav__link">AI for SMEs</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html#discovery" class="nav__link nav__link--cta">Book a Discovery Call</a>
+      </div>
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Live Demo &mdash; Risk AI in Action</p>
+      <h1>EON Risk Sentinel</h1>
+      <p class="lead">A live AI-agent that scans global financial regulators every day and ranks each publication for relevance to frontier-finance firms &mdash; fintechs, crypto funds, prop shops and AI-native startups. This is a working demonstration of the agent stack EON uses to deliver Risk AI engagements.</p>
+      <div class="sentinel-meta" id="meta">
+        <div>Last scan: <strong id="scanned">—</strong></div>
+        <div>Items ranked: <strong id="count">—</strong></div>
+        <div>Model: <strong id="model">—</strong></div>
+      </div>
+      <div class="sentinel-sources" id="sources"></div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section section--white">
+    <div class="container container-narrow">
+      <div id="results" class="sentinel-loading">Loading latest scan&hellip;</div>
+
+      <div class="sentinel-explainer">
+        <h3>How this works</h3>
+        <p>Every day, an AI-agent session fetches the last 72 hours of press releases and news items from the ECB, US Federal Reserve, SEC, Bank of England, FCA and EBA. The agent reads each item, assigns a 1&ndash;5 relevance score from a frontier-finance risk perspective, categorises it, and writes a one-line summary plus a one-line "why it matters" for a CRO at a fintech or crypto fund. The result is the ranked list above.</p>
+        <p>This same agent stack powers the Risk AI engagements EON delivers to clients &mdash; adapted to the specific regulators, jurisdictions and risk surfaces of each firm. If you&rsquo;d like a private version of this running against your own risk universe, <a href="contact.html#discovery">book a discovery call</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Want a private sentinel for your firm?</h2>
+      <p>EON builds client-specific Risk AI agents tuned to your regulators, your portfolio, and your risk appetite. Book a discovery call.</p>
+      <a href="contact.html#discovery" class="btn btn-white btn-lg">Book a Discovery Call <span class="btn-icon">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">EON Risk Services</div>
+          <p class="footer__tagline">Global AI-as-a-Service</p>
+          <p class="footer__tagline">Dublin, Ireland &mdash; serving clients worldwide</p>
+        </div>
+        <div class="footer__links">
+          <a href="risk-identification.html" class="footer__link">Risk AI</a>
+          <a href="consulting.html" class="footer__link">AI for SMEs</a>
+          <a href="about.html" class="footer__link">About</a>
+          <a href="contact.html" class="footer__link">Contact</a>
+        </div>
+        <div class="footer__links">
+          <a href="https://www.linkedin.com/in/rorypeterroberts/" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" class="footer__link">Privacy</a>
+          <a href="#" class="footer__link">Terms</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 EON Risk Services Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (async function () {
+      const results = document.getElementById('results');
+      try {
+        const res = await fetch('data/sentinel.json?t=' + Date.now());
+        if (!res.ok) throw new Error('sentinel.json ' + res.status);
+        const data = await res.json();
+
+        const scanned = new Date(data.scanned_at);
+        document.getElementById('scanned').textContent = scanned.toUTCString();
+        document.getElementById('count').textContent = data.item_count;
+        document.getElementById('model').textContent = data.model;
+
+        const sourcesDiv = document.getElementById('sources');
+        (data.sources || []).forEach(s => {
+          const span = document.createElement('span');
+          span.textContent = s.code + ' — ' + s.name;
+          sourcesDiv.appendChild(span);
+        });
+
+        if (!data.items || data.items.length === 0) {
+          results.innerHTML = '<div class="sentinel-empty"><h3>No new items in the last ' + (data.lookback_hours || 72) + ' hours</h3><p>The sentinel will check again on the next scheduled run.</p></div>';
+          results.className = '';
+          return;
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'sentinel-grid';
+        data.items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'sentinel-item';
+          card.dataset.score = String(item.score);
+
+          const scoreClass = item.score >= 5 ? 'sentinel-score sentinel-score--red' : 'sentinel-score';
+          const dots = '●'.repeat(item.score) + '○'.repeat(5 - item.score);
+
+          card.innerHTML =
+            '<div class="sentinel-item__top">' +
+              '<div class="sentinel-item__badges">' +
+                '<span class="sentinel-badge sentinel-badge--source">' + escapeHtml(item.source_code) + '</span>' +
+                '<span class="sentinel-badge sentinel-badge--cat">' + escapeHtml(item.category) + '</span>' +
+              '</div>' +
+              '<div class="' + scoreClass + '">' + dots + '</div>' +
+            '</div>' +
+            '<h3><a href="' + escapeAttr(item.link) + '" target="_blank" rel="noopener">' + escapeHtml(item.title) + '</a></h3>' +
+            '<p class="sentinel-item__summary">' + escapeHtml(item.summary) + '</p>' +
+            '<p class="sentinel-item__why"><strong>Why it matters</strong>' + escapeHtml(item.why_it_matters) + '</p>';
+
+          grid.appendChild(card);
+        });
+
+        results.innerHTML = '';
+        results.className = '';
+        results.appendChild(grid);
+      } catch (e) {
+        results.className = 'sentinel-empty';
+        results.innerHTML = '<h3>Sentinel data unavailable</h3><p>The scan output is being refreshed. Please check back shortly.</p>';
+        console.error(e);
+      }
+
+      function escapeHtml(s) {
+        return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      }
+      function escapeAttr(s) {
+        return String(s || '').replace(/"/g, '&quot;');
+      }
+    })();
+  </script>
+</body>
+</html>

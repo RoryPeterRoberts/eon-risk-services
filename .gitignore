@@ -34,6 +34,11 @@ book/.sanitization_private/
 # Playwright MCP
 .playwright-mcp/
 
+# Sentinel secrets and local output
+sentinel/.env
+sentinel/output/
+sentinel/__pycache__/
+
 # Backup directories
 book_backup_*/
 
