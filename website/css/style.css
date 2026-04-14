@@ -327,6 +327,9 @@ p:last-child { margin-bottom: 0; }
 .card__price { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
 .card__price span { font-size: 0.875rem; font-weight: 400; color: var(--text-muted); }
 .card--highlight { border-color: var(--teal); border-width: 2px; }
+.card__list { list-style: none; padding: 0; margin: 0 0 24px 0; text-align: left; }
+.card__list li { position: relative; padding-left: 22px; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 8px; }
+.card__list li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
 
 /* Product cards */
 .product-card {
