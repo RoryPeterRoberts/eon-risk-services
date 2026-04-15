@@ -1,7 +1,29 @@
 {
-  "scanned_at": "2026-04-15T07:04:57.633466+00:00",
-  "lookback_hours": 72,
+  "scanned_at": "2026-04-15T07:34:52.338899+00:00",
+  "lookback_hours": 96,
   "sources": [
+    {
+      "code": "ECB",
+      "name": "European Central Bank"
+    },
+    {
+      "code": "FED",
+      "name": "US Federal Reserve"
+    },
+    {
+      "code": "BOE",
+      "name": "Bank of England"
+    },
+    {
+      "code": "FCA",
+      "name": "UK Financial Conduct Authority"
+    },
+    {
+      "code": "ESMA",
+      "name": "European Securities and Markets Authority"
+    }
+  ],
+  "sources_attempted": [
     {
       "code": "ECB",
       "name": "European Central Bank"
@@ -23,132 +45,126 @@
       "name": "UK Financial Conduct Authority"
     },
     {
+      "code": "BIS",
+      "name": "Bank for International Settlements"
+    },
+    {
+      "code": "ESMA",
+      "name": "European Securities and Markets Authority"
+    },
+    {
+      "code": "CBI",
+      "name": "Central Bank of Ireland"
+    },
+    {
+      "code": "CFTC",
+      "name": "US Commodity Futures Trading Commission"
+    },
+    {
       "code": "EBA",
       "name": "European Banking Authority"
     }
   ],
-  "item_count": 28,
+  "item_count": 16,
   "items": [
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "FCA fines Dinosaur Merchant Bank Limited for market abuse surveillance failures",
+      "link": "https://www.fca.org.uk/news/press-releases/fca-fines-dinosaur-merchant-bank-limited-market-abuse-surveillance-failures",
+      "published": "2026-04-15T07:33:56.943971+00:00",
+      "score": 4,
+      "category": "market",
+      "summary": "FCA fines Dinosaur Merchant Bank £338,000 for failing to maintain effective market abuse surveillance on CFD business.",
+      "why_it_matters": "Direct warning for CFD platforms, prop shops, and crypto derivatives desks that surveillance gaps attract significant FCA fines."
+    },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA sets out next phase of smarter, more effective regulation",
       "link": "https://www.fca.org.uk/news/news-stories/fca-sets-out-next-phase-smarter-more-effective-regulation",
-      "published": "2026-04-15T07:04:10.449124+00:00",
-      "score": 5,
+      "published": "2026-04-15T07:33:56.944031+00:00",
+      "score": 4,
       "category": "ai",
-      "summary": "FCA plans AI-powered authorisation tools and generative AI for supervision as part of its 2026/27 work programme.",
-      "why_it_matters": "AI-driven regulatory scrutiny will accelerate licensing decisions and risk identification; fintechs must ensure AI governance is audit-ready now."
+      "summary": "FCA announces AI-powered authorisation tools and generative AI integration in its 2026/27 regulatory work programme.",
+      "why_it_matters": "AI-driven authorisation and supervision signals faster, more data-intensive regulatory scrutiny that fintechs and AI-native firms must prepare for."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "ESMA releases reporting templates and instructions for the Active Account Requirement",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-releases-reporting-templates-and-instructions-active-account-requirement",
+      "published": "2026-04-15T07:33:57.383272+00:00",
+      "score": 4,
+      "category": "market",
+      "summary": "ESMA releases reporting templates and instructions for the EU Active Account Requirement under EMIR.",
+      "why_it_matters": "Binding operational requirements for EU clearing and derivatives trading; prop shops, hedge funds, and crypto derivatives desks must comply."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "ESAs spring risk update highlights geopolitical pressures and rising private finance risks",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/esas-spring-risk-update-highlights-geopolitical-pressures-and-rising-private",
+      "published": "2026-04-15T07:33:57.383359+00:00",
+      "score": 4,
+      "category": "market",
+      "summary": "ESAs spring 2026 risk update flags elevated geopolitical risks and growing vulnerabilities in private finance markets.",
+      "why_it_matters": "Cross-sectoral risk warning from all three ESAs directly relevant to hedge funds, crypto funds, and private credit fintechs managing tail risks."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA sets out vision for open finance to empower consumers and businesses",
       "link": "https://www.fca.org.uk/news/press-releases/fca-sets-out-vision-open-finance",
-      "published": "2026-04-15T07:04:10.448935+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "FCA publishes open finance vision enabling consumers to securely share financial data with providers for better deals.",
-      "why_it_matters": "Fintechs and data-driven lenders must prepare for open finance licensing, data-sharing obligations, and new competitive dynamics."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA fines Dinosaur Merchant Bank Limited for market abuse surveillance failures",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-fines-dinosaur-merchant-bank-limited-market-abuse-surveillance-failures",
-      "published": "2026-04-15T07:04:10.449067+00:00",
-      "score": 4,
-      "category": "market",
-      "summary": "FCA fines Dinosaur Merchant Bank £338,000 for inadequate market abuse surveillance on its CFD business.",
-      "why_it_matters": "Direct warning to prop shops and CFD platforms: FCA actively enforces surveillance standards and will fine for control gaps."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA highlights risks when dealing with unregulated lenders",
-      "link": "https://www.fca.org.uk/news/statements/fca-highlights-risks-unregulated-lenders",
-      "published": "2026-04-15T07:04:10.449161+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "FCA reminds regulated firms to conduct proper due diligence when dealing with unregulated Annex 1 firms.",
-      "why_it_matters": "Crypto and fintech firms using unregulated counterparties for custody or lending face heightened FCA scrutiny and AML liability."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Spotting risk earlier by tracking consumer credit journeys",
-      "link": "https://www.fca.org.uk/news/blogs/spotting-risk-earlier-tracking-consumer-credit-journeys",
-      "published": "2026-04-15T07:04:10.448956+00:00",
+      "published": "2026-04-15T07:33:56.943835+00:00",
       "score": 3,
-      "category": "model",
-      "summary": "FCA uses data science and richer datasets to track consumer credit journeys and identify risk earlier.",
-      "why_it_matters": "Signals FCA's increasing supervisory analytics capability; consumer-credit fintechs face more data-driven, proactive regulatory scrutiny."
+      "category": "compliance",
+      "summary": "FCA publishes open finance vision enabling consumers and businesses to share financial data with regulated providers.",
+      "why_it_matters": "Open finance frameworks directly shape data-sharing infrastructure that fintechs and AI-native startups will build products upon."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA imposes restrictions on Bazar Money Transfer Limited",
       "link": "https://www.fca.org.uk/news/news-stories/fca-restrictions-bazar-money-transfer-limited",
-      "published": "2026-04-15T07:04:10.448972+00:00",
+      "published": "2026-04-15T07:33:56.943874+00:00",
       "score": 3,
       "category": "compliance",
-      "summary": "FCA restricts Bazar Money Transfer from providing regulated payment services due to registration failures.",
-      "why_it_matters": "Enforcement on a payment institution signals FCA will act swiftly when registration conditions lapse; relevant to e-money and remittance fintechs."
+      "summary": "FCA imposes restrictions on Bazar Money Transfer Limited, preventing it from providing regulated payment services.",
+      "why_it_matters": "Direct enforcement on a registered payments firm signals FCA will act swiftly against fintechs failing registration conditions."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA and Bank seek members for their Transaction and Post-trade Reporting Taskforce",
       "link": "https://www.fca.org.uk/news/news-stories/fca-and-bank-seek-members-their-transaction-and-post-trade-reporting-taskforce",
-      "published": "2026-04-15T07:04:10.448986+00:00",
+      "published": "2026-04-15T07:33:56.943889+00:00",
       "score": 3,
       "category": "compliance",
-      "summary": "FCA and BoE launch taskforce to harmonise transaction and post-trade reporting requirements long-term.",
-      "why_it_matters": "Prop shops, crypto funds, and trading fintechs should engage now as reporting rule redesign will reshape compliance infrastructure."
+      "summary": "FCA and Bank of England launch taskforce to harmonise transaction and post-trade reporting requirements long-term.",
+      "why_it_matters": "Reporting rule changes will affect hedge funds, prop shops, and crypto trading venues; early engagement opportunity exists now."
     },
     {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Shojin Financial Services Limited enters administration",
-      "link": "https://www.fca.org.uk/news/news-stories/shojin-financial-services-limited-enters-administration",
-      "published": "2026-04-15T07:04:10.449030+00:00",
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "ESMA clarifies expectations in the run-up to the launch of EU’s Consolidated Tapes",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-clarifies-expectations-run-launch-eus-consolidated-tapes",
+      "published": "2026-04-15T07:33:57.383345+00:00",
       "score": 3,
-      "category": "operational",
-      "summary": "FCA-authorised crowdfunding platform Shojin Financial Services enters administration in March 2026.",
-      "why_it_matters": "Crowdfunding and property-debt platform failure highlights liquidity and governance risks relevant to similar alternative investment fintechs."
+      "category": "market",
+      "summary": "ESMA clarifies implementation expectations for firms ahead of the EU Consolidated Tape launch.",
+      "why_it_matters": "Consolidated Tape obligations affect trading venues, data vendors, and algo trading fintechs operating in EU equity markets."
     },
     {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA plans to help people get more financial advice for important decisions",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-plans-help-people-get-more-financial-advice-important-decisions",
-      "published": "2026-04-15T07:04:10.449136+00:00",
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "EU financial markets enter 2026 amid high-risk environment",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/eu-financial-markets-enter-2026-amid-high-risk-environment",
+      "published": "2026-04-15T07:33:57.383415+00:00",
       "score": 3,
-      "category": "compliance",
-      "summary": "FCA consults on simplified financial advice rules to make individualised advice more accessible and affordable.",
-      "why_it_matters": "Robo-advice and AI-native wealth fintechs should engage with the consultation as it reshapes the advice boundary."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Investigation into Market Financial Solutions Limited",
-      "link": "https://www.fca.org.uk/news/statements/investigation-market-financial-solutions-limited",
-      "published": "2026-04-15T07:04:10.449173+00:00",
-      "score": 3,
-      "category": "compliance",
-      "summary": "FCA opens enforcement investigation into Annex 1 lender Market Financial Solutions following its administration.",
-      "why_it_matters": "Signals FCA will pursue AML enforcement even against unregulated lenders; relevant to firms with similar Annex 1 counterparty exposures."
-    },
-    {
-      "source_code": "BOE",
-      "source_name": "Bank of England",
-      "title": "Bank of England enhances resolution readiness with updated operational guides",
-      "link": "https://www.bankofengland.co.uk/news/2026/april/boe-enhances-resolution-readiness-with-updated-operational-guides",
-      "published": "2026-04-13T10:00:00+00:00",
-      "score": 2,
-      "category": "operational",
-      "summary": "Bank of England publishes updated operational guides on implementing the UK bank resolution regime.",
-      "why_it_matters": "Primarily targets traditional banks; fintech CROs should note resolution planning expectations may extend to larger payment institutions."
+      "category": "market",
+      "summary": "ESMA annual risk report warns EU financial markets face a high-risk environment entering 2026.",
+      "why_it_matters": "Elevated systemic risk flag from ESMA warrants attention from hedge funds and crypto firms with EU market exposure and leverage."
     },
     {
       "source_code": "BOE",
@@ -158,8 +174,8 @@
       "published": "2026-04-13T14:15:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "BoE-chaired FXJSC Operations and Legal Sub-Committees met to discuss wholesale FX market issues.",
-      "why_it_matters": "Relevant to firms with FX exposure or payment flows, but output is advisory rather than binding regulatory change."
+      "summary": "Bank of England FXJSC Operations and Legal Sub-Committees convene to discuss FX market operations and legal matters.",
+      "why_it_matters": "Relevant to FX-active prop shops and crypto firms with FX exposure, but largely procedural with limited immediate impact."
     },
     {
       "source_code": "BOE",
@@ -169,74 +185,30 @@
       "published": "2026-04-13T14:15:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "London FXJSC Main Committee met in November 2025 to discuss wholesale foreign exchange market matters.",
-      "why_it_matters": "Useful intelligence on FX market conventions but no immediate compliance obligations for frontier finance firms."
+      "summary": "London FXJSC November 2025 main committee meeting minutes covering wholesale FX market developments.",
+      "why_it_matters": "Useful for FX-active hedge funds and crypto market makers monitoring wholesale FX conventions, but no binding rules issued."
     },
     {
-      "source_code": "ECB",
-      "source_name": "European Central Bank",
-      "title": "ECB Governing Council urges Single Market boost to strengthen bank competitiveness",
-      "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260414~ad43db8bb6.en.html",
-      "published": "2026-04-14T09:00:00+00:00",
+      "source_code": "BOE",
+      "source_name": "Bank of England",
+      "title": "Bank of England enhances resolution readiness with updated operational guides",
+      "link": "https://www.bankofengland.co.uk/news/2026/april/boe-enhances-resolution-readiness-with-updated-operational-guides",
+      "published": "2026-04-13T10:00:00+00:00",
       "score": 2,
-      "category": "compliance",
-      "summary": "ECB Governing Council calls for Single Market reforms to improve European bank competitiveness.",
-      "why_it_matters": "Signals potential structural changes to EU banking landscape but no immediate rule changes affecting fintechs or crypto firms."
+      "category": "operational",
+      "summary": "Bank of England publishes updated operational guidance on implementing the UK bank resolution regime.",
+      "why_it_matters": "Primarily affects large banks; fintechs approaching systemic scale or holding bank licences should note resolution planning expectations."
     },
     {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA confirms motor finance redress scheme",
-      "link": "https://www.fca.org.uk/news/statements/fca-confirms-motor-finance-redress-scheme",
-      "published": "2026-04-15T07:04:10.449000+00:00",
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "Postponement of the rollout for Commodity Derivatives Weekly Position Reporting",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/postponement-rollout-commodity-derivatives-weekly-position-reporting",
+      "published": "2026-04-15T07:33:57.383373+00:00",
       "score": 2,
-      "category": "compliance",
-      "summary": "FCA confirms industry-wide redress scheme to compensate motor finance customers treated unfairly by lenders.",
-      "why_it_matters": "Directly affects auto-lending firms; limited relevance to crypto or fintech unless they have motor finance exposure."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Millions of car finance customers to get payouts this year as FCA goes ahead with compensation scheme",
-      "link": "https://www.fca.org.uk/news/press-releases/millions-car-finance-customers-payouts-fca-goes-ahead-compensation-scheme",
-      "published": "2026-04-15T07:04:10.449015+00:00",
-      "score": 2,
-      "category": "compliance",
-      "summary": "FCA finalises motor finance compensation scheme; millions of customers to receive payouts in 2026.",
-      "why_it_matters": "Significant for consumer credit and motor finance lenders but low direct impact on crypto funds or AI-native fintechs."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Equity for Growth (Securities) Limited enters liquidation",
-      "link": "https://www.fca.org.uk/news/news-stories/equity-growth-securities-limited-enters-liquidation",
-      "published": "2026-04-15T07:04:10.449109+00:00",
-      "score": 2,
-      "category": "compliance",
-      "summary": "FCA petitions High Court to wind up Equity for Growth Securities for regulatory breaches via appointed representatives.",
-      "why_it_matters": "Principal-appointed representative liability risk is a cautionary signal for any fintech using the AR regime."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "How technology is changing the pensions conversation",
-      "link": "https://www.fca.org.uk/news/speeches/how-technology-changing-pensions-conversation",
-      "published": "2026-04-15T07:04:10.449185+00:00",
-      "score": 2,
-      "category": "other",
-      "summary": "FCA CEO Rathi speech discusses technology's role in transforming pensions and savings decisions.",
-      "why_it_matters": "Contains fintech-relevant signals on data and advice but is a generic speech without immediate binding regulatory impact."
-    },
-    {
-      "source_code": "EBA",
-      "source_name": "European Banking Authority",
-      "title": "EBA E-mail alert 13 April, 2026",
-      "link": "https://www.eba.europa.eu/node/19552",
-      "published": "2026-04-13T15:00:03+00:00",
-      "score": 1,
-      "category": "other",
-      "summary": "EBA weekly email alert digest for 13 April 2026 with no substantive content visible.",
-      "why_it_matters": "No extractable regulatory content; cannot assess relevance without underlying publication details."
+      "category": "market",
+      "summary": "ESMA postpones rollout of new commodity derivatives weekly position reporting requirements.",
+      "why_it_matters": "Delay gives commodity-trading prop shops and hedge funds more time to build reporting infrastructure; note revised timeline."
     },
     {
       "source_code": "ECB",
@@ -246,19 +218,19 @@
       "published": "2026-04-14T14:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "ECB Chief Economist Lane discusses euro area economic outlook and monetary policy direction.",
-      "why_it_matters": "Generic macro commentary with no direct regulatory action; minimal immediate compliance or risk management implication for frontier firms."
+      "summary": "ECB Chief Economist Lane delivers speech on euro area economic outlook and monetary policy direction.",
+      "why_it_matters": "Generic macro commentary with no direct regulatory impact on frontier finance firms; low actionability for a CRO."
     },
     {
-      "source_code": "EBA",
-      "source_name": "European Banking Authority",
-      "title": "EBA E-mail alert 14 April, 2026",
-      "link": "https://www.eba.europa.eu/node/19557",
-      "published": "2026-04-14T15:00:02+00:00",
+      "source_code": "ECB",
+      "source_name": "European Central Bank",
+      "title": "ECB Governing Council urges Single Market boost to strengthen bank competitiveness",
+      "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260414~ad43db8bb6.en.html",
+      "published": "2026-04-14T09:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "EBA weekly email alert digest for 14 April 2026 with no substantive content visible.",
-      "why_it_matters": "No extractable regulatory content; cannot assess relevance without underlying publication details."
+      "summary": "ECB Governing Council calls for Single Market reforms to boost traditional bank competitiveness.",
+      "why_it_matters": "Focused on legacy banking competitiveness policy; minimal direct relevance to fintechs, crypto funds, or prop shops."
     },
     {
       "source_code": "FED",
@@ -267,75 +239,9 @@
       "link": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260414a.htm",
       "published": "2026-04-14T18:00:00+00:00",
       "score": 1,
-      "category": "market",
-      "summary": "Federal Reserve Board releases minutes from February and March 2026 discount rate meetings.",
-      "why_it_matters": "Routine Fed minutes on legacy bank discount rates; negligible direct impact on fintech or crypto fund operations."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA bans CMC's misleading adverts",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-bans-cmcs-misleading-adverts",
-      "published": "2026-04-15T07:04:10.448886+00:00",
-      "score": 1,
-      "category": "compliance",
-      "summary": "FCA bans misleading motor finance compensation adverts by claims management company Conclusive Financial.",
-      "why_it_matters": "Enforcement against a CMC for ad misconduct; no material relevance to frontier finance or crypto firms."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Regulators launch joint taskforce  to crack down on poor practice in motor finance claims",
-      "link": "https://www.fca.org.uk/news/press-releases/regulators-taskforce-crack-down-poor-practice-motor-finance-claims",
-      "published": "2026-04-15T07:04:10.449042+00:00",
-      "score": 1,
-      "category": "compliance",
-      "summary": "FCA-led joint taskforce targets poor handling of motor finance claims by CMCs and law firms.",
-      "why_it_matters": "Relevant only to claims management sector; no meaningful impact on frontier finance or digital asset firms."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Investment trust votes, conflicts of interest, and our role",
-      "link": "https://www.fca.org.uk/news/blogs/investment-trust-votes-conflicts-interest-and-our-role",
-      "published": "2026-04-15T07:04:10.449055+00:00",
-      "score": 1,
-      "category": "compliance",
-      "summary": "FCA clarifies its role regarding investment trust voting rules and board independence under UK Listing Rules.",
-      "why_it_matters": "Legacy investment trust governance debate; not relevant to fintech, crypto, or AI-native firm operations."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "My FCA marks first year with a single, streamlined sign in for all firms",
-      "link": "https://www.fca.org.uk/news/news-stories/my-fca-marks-first-year-single-streamlined-sign-all-firms",
-      "published": "2026-04-15T07:04:10.449082+00:00",
-      "score": 1,
-      "category": "other",
-      "summary": "FCA consolidates firm portal access into a single My FCA sign-in, removing direct Connect and RegData links.",
-      "why_it_matters": "Administrative IT change with no risk or compliance implications for CROs at frontier finance firms."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA responds to Complaint Commissioner’s report on the British Steel Pension Scheme",
-      "link": "https://www.fca.org.uk/news/statements/fca-responds-complaint-commissioners-report-british-steel-pension-scheme",
-      "published": "2026-04-15T07:04:10.449096+00:00",
-      "score": 1,
-      "category": "other",
-      "summary": "FCA responds to Complaints Commissioner report on British Steel Pension Scheme unsuitable advice failures.",
-      "why_it_matters": "Historical pension mis-selling case; no relevance to crypto, fintech, or modern trading firm risk management."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Timing of the FCA's motor finance announcement",
-      "link": "https://www.fca.org.uk/news/statements/timing-fca-motor-finance-announcement",
-      "published": "2026-04-15T07:04:10.449149+00:00",
-      "score": 1,
-      "category": "other",
-      "summary": "FCA announces it will publish its motor finance redress approach just after market close on 30 March.",
-      "why_it_matters": "Procedural timing notice only; no new regulatory content relevant to frontier finance firms."
+      "category": "liquidity",
+      "summary": "Federal Reserve publishes minutes from February and March 2026 discount rate meetings.",
+      "why_it_matters": "Routine Fed discount rate minutes; no new capital or crypto rules — background macro context only for frontier firms."
     }
   ],
   "model": "claude-sonnet-4-6"

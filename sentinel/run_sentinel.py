@@ -20,8 +20,9 @@ from anthropic import Anthropic
 
 ROOT = Path(__file__).parent
 OUTPUT_JSON = ROOT.parent / "website" / "data" / "sentinel.json"
-LOOKBACK_HOURS = 72
-MAX_ITEMS_TO_RANK = 40
+LOOKBACK_HOURS = 96
+MAX_ITEMS_TO_RANK = 60
+MAX_ITEMS_PER_SOURCE = 5
 MODEL = "claude-sonnet-4-6"
 
 SOURCES = [
@@ -30,7 +31,11 @@ SOURCES = [
     ("SEC", "US Securities and Exchange Commission", "https://www.sec.gov/news/pressreleases.rss"),
     ("BOE", "Bank of England", "https://www.bankofengland.co.uk/rss/news"),
     ("FCA", "UK Financial Conduct Authority", "https://www.fca.org.uk/news/rss.xml"),
-    ("EBA", "European Banking Authority", "https://www.eba.europa.eu/rss.xml"),
+    ("BIS", "Bank for International Settlements", "https://www.bis.org/rss/home.xml"),
+    ("ESMA", "European Securities and Markets Authority", "https://www.esma.europa.eu/rss.xml"),
+    ("CBI", "Central Bank of Ireland", "https://www.centralbank.ie/rss/news"),
+    ("CFTC", "US Commodity Futures Trading Commission", "https://www.cftc.gov/rss/press_releases.xml"),
+    ("EBA", "European Banking Authority", "https://www.eba.europa.eu/news-press/news/news/rss.xml"),
 ]
 
 RANKING_PROMPT = """You are a senior risk manager scoring regulator publications for their relevance to frontier-finance firms: fintechs, crypto funds, prop shops, hedge funds, AI-native startups, stablecoin issuers, tokenisation platforms.
@@ -139,9 +144,16 @@ def rank_items(client: Anthropic, items: list[dict]) -> list[dict]:
             "summary": r.get("summary", "").strip(),
             "why_it_matters": r.get("why_it_matters", "").strip(),
         })
-    enriched.sort(key=lambda x: (-x["score"], x["published"]), reverse=False)
     enriched.sort(key=lambda x: x["score"], reverse=True)
-    return enriched
+    counts: dict[str, int] = {}
+    capped: list[dict] = []
+    for item in enriched:
+        src = item["source_code"]
+        if counts.get(src, 0) >= MAX_ITEMS_PER_SOURCE:
+            continue
+        counts[src] = counts.get(src, 0) + 1
+        capped.append(item)
+    return capped
 
 
 def main() -> int:
@@ -152,10 +164,12 @@ def main() -> int:
     print(f"[run]  fetched {len(items)} recent items total", file=sys.stderr)
     ranked = rank_items(client, items) if items else []
     print(f"[run]  ranked {len(ranked)} items", file=sys.stderr)
+    active_source_codes = {i["source_code"] for i in items}
     output = {
         "scanned_at": datetime.now(timezone.utc).isoformat(),
         "lookback_hours": LOOKBACK_HOURS,
-        "sources": [{"code": c, "name": n} for c, n, _ in SOURCES],
+        "sources": [{"code": c, "name": n} for c, n, _ in SOURCES if c in active_source_codes],
+        "sources_attempted": [{"code": c, "name": n} for c, n, _ in SOURCES],
         "item_count": len(ranked),
         "items": ranked,
         "model": MODEL,
