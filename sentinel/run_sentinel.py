@@ -16,6 +16,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import feedparser
+import requests
 from anthropic import Anthropic
 
 ROOT = Path(__file__).parent
@@ -57,17 +58,88 @@ Publications to rank:
 """
 
 
-def load_api_key() -> str:
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if key:
-        return key
+def load_env_var(name: str, required: bool = True) -> str:
+    val = os.environ.get(name)
+    if val:
+        return val
     env_file = ROOT / ".env"
     if env_file.exists():
         for line in env_file.read_text().splitlines():
             line = line.strip()
-            if line.startswith("ANTHROPIC_API_KEY="):
+            if line.startswith(f"{name}="):
                 return line.split("=", 1)[1].strip().strip('"').strip("'")
-    raise SystemExit("ANTHROPIC_API_KEY not found. Set env var or add to sentinel/.env")
+    if required:
+        raise SystemExit(f"{name} not found. Set env var or add to sentinel/.env")
+    return ""
+
+
+def load_api_key() -> str:
+    return load_env_var("ANTHROPIC_API_KEY", required=True)
+
+
+def fetch_sec_api_io(start_id: int) -> list[dict]:
+    """Fetch recent 8-K filings via sec-api.io — richer than SEC's public RSS.
+
+    Filters to financial-sector SIC codes (6020 commercial banks, 6199 finance services,
+    6770 blank checks / holding co, 7372 software, 6211 security brokers, etc.) and
+    cryptocurrency-exposed issuers via company name pattern.
+    """
+    key = load_env_var("SEC_API_IO_KEY", required=False)
+    if not key:
+        print("[info] SEC_API_IO_KEY not set, skipping sec-api.io fetch", file=sys.stderr)
+        return []
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=LOOKBACK_HOURS)
+    start_date = cutoff.strftime("%Y-%m-%d")
+    end_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # Frontier-finance issuer watchlist: public fintechs, crypto firms,
+    # neobanks, brokers, digital asset miners. A CRO at a frontier firm
+    # cares more about what these peers file than about generic 8-K noise.
+    frontier_tickers = (
+        'COIN OR HOOD OR SOFI OR PYPL OR MSTR OR MARA OR RIOT OR CLSK OR BTBT OR '
+        'NU OR AFRM OR UPST OR LC OR SQ OR IBKR OR BMNR OR GLXY OR BKKT OR WULF OR '
+        'XYZ OR JANO OR APO OR BX OR KKR'
+    )
+    query = (
+        f'formType:"8-K" AND filedAt:[{start_date} TO {end_date}]'
+        f' AND ticker:({frontier_tickers})'
+    )
+    try:
+        resp = requests.post(
+            "https://api.sec-api.io",
+            json={
+                "query": query,
+                "from": "0",
+                "size": "15",
+                "sort": [{"filedAt": {"order": "desc"}}],
+            },
+            headers={"Authorization": key},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:
+        print(f"[err]  sec-api.io: {e}", file=sys.stderr)
+        return []
+    filings = data.get("filings", []) or []
+    items: list[dict] = []
+    for idx, f in enumerate(filings):
+        company = (f.get("companyName") or "").strip()
+        items_list = f.get("items") or []
+        items_str = ", ".join(items_list[:4])
+        title = f"{company} — 8-K ({items_str})" if items_str else f"{company} — 8-K filing"
+        link = f.get("linkToFilingDetails") or f.get("linkToHtml") or ""
+        filed_at = f.get("filedAt") or ""
+        items.append({
+            "id": start_id + idx,
+            "source_code": "SEC",
+            "source_name": "US Securities and Exchange Commission (8-K filings)",
+            "title": title[:200],
+            "link": link,
+            "published": filed_at,
+            "summary_raw": f"Form 8-K filed by {company}. Items reported: {items_str}",
+        })
+    print(f"[ok]   SEC (sec-api.io): {len(items)} 8-K filings fetched", file=sys.stderr)
+    return items
 
 
 def fetch_items() -> list[dict]:
@@ -112,7 +184,7 @@ def rank_items(client: Anthropic, items: list[dict]) -> list[dict]:
     prompt = RANKING_PROMPT.format(items_json=json.dumps(ranking_input, ensure_ascii=False, indent=2))
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=4096,
+        max_tokens=16384,
         messages=[{"role": "user", "content": prompt}],
     )
     text = "".join(block.text for block in resp.content if getattr(block, "type", None) == "text")
@@ -158,9 +230,12 @@ def rank_items(client: Anthropic, items: list[dict]) -> list[dict]:
 def main() -> int:
     api_key = load_api_key()
     client = Anthropic(api_key=api_key)
-    print(f"[run]  scanning {len(SOURCES)} regulators, lookback {LOOKBACK_HOURS}h", file=sys.stderr)
+    print(f"[run]  scanning {len(SOURCES)} regulators + sec-api.io, lookback {LOOKBACK_HOURS}h", file=sys.stderr)
     items = fetch_items()
+    sec_api_items = fetch_sec_api_io(start_id=len(items))
+    items.extend(sec_api_items)
     print(f"[run]  fetched {len(items)} recent items total", file=sys.stderr)
+    items = items[:MAX_ITEMS_TO_RANK]
     ranked = rank_items(client, items) if items else []
     print(f"[run]  ranked {len(ranked)} items", file=sys.stderr)
     active_source_codes = {i["source_code"] for i in items}
