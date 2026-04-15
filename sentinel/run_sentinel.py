@@ -31,11 +31,10 @@ SOURCES = [
     ("SEC", "US Securities and Exchange Commission", "https://www.sec.gov/news/pressreleases.rss"),
     ("BOE", "Bank of England", "https://www.bankofengland.co.uk/rss/news"),
     ("FCA", "UK Financial Conduct Authority", "https://www.fca.org.uk/news/rss.xml"),
-    ("BIS", "Bank for International Settlements", "https://www.bis.org/rss/home.xml"),
     ("ESMA", "European Securities and Markets Authority", "https://www.esma.europa.eu/rss.xml"),
-    ("CBI", "Central Bank of Ireland", "https://www.centralbank.ie/rss/news"),
-    ("CFTC", "US Commodity Futures Trading Commission", "https://www.cftc.gov/rss/press_releases.xml"),
-    ("EBA", "European Banking Authority", "https://www.eba.europa.eu/news-press/news/news/rss.xml"),
+    ("EBA", "European Banking Authority", "https://www.eba.europa.eu/rss.xml"),
+    ("BIS", "Bank for International Settlements", "https://www.bis.org/doclist/all_pressrels.rss"),
+    ("CBI", "Central Bank of Ireland", "https://www.centralbank.ie/feeds/news-media-feed"),
 ]
 
 RANKING_PROMPT = """You are a senior risk manager scoring regulator publications for their relevance to frontier-finance firms: fintechs, crypto funds, prop shops, hedge funds, AI-native startups, stablecoin issuers, tokenisation platforms.

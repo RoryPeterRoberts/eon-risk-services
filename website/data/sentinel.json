@@ -1,5 +1,5 @@
 {
-  "scanned_at": "2026-04-15T07:48:02.825062+00:00",
+  "scanned_at": "2026-04-15T07:59:35.421689+00:00",
   "lookback_hours": 96,
   "sources": [
     {
@@ -21,6 +21,14 @@
     {
       "code": "ESMA",
       "name": "European Securities and Markets Authority"
+    },
+    {
+      "code": "EBA",
+      "name": "European Banking Authority"
+    },
+    {
+      "code": "CBI",
+      "name": "Central Bank of Ireland"
     }
   ],
   "sources_attempted": [
@@ -45,137 +53,122 @@
       "name": "UK Financial Conduct Authority"
     },
     {
-      "code": "BIS",
-      "name": "Bank for International Settlements"
-    },
-    {
       "code": "ESMA",
       "name": "European Securities and Markets Authority"
     },
     {
-      "code": "CBI",
-      "name": "Central Bank of Ireland"
-    },
-    {
-      "code": "CFTC",
-      "name": "US Commodity Futures Trading Commission"
-    },
-    {
       "code": "EBA",
       "name": "European Banking Authority"
+    },
+    {
+      "code": "BIS",
+      "name": "Bank for International Settlements"
+    },
+    {
+      "code": "CBI",
+      "name": "Central Bank of Ireland"
     }
   ],
-  "item_count": 16,
+  "item_count": 21,
   "items": [
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA sets out next phase of smarter, more effective regulation",
       "link": "https://www.fca.org.uk/news/news-stories/fca-sets-out-next-phase-smarter-more-effective-regulation",
-      "published": "2026-04-15T07:47:08.642136+00:00",
-      "score": 5,
+      "published": "2026-04-15T07:58:36.672131+00:00",
+      "score": 4,
       "category": "ai",
-      "summary": "FCA plans to deploy generative AI for authorisations and risk identification as part of 2026/27 work programme.",
-      "why_it_matters": "AI-driven FCA supervision will directly affect authorisation timelines and risk targeting for fintechs and AI-native firms seeking licensing."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA sets out vision for open finance to empower consumers and businesses",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-sets-out-vision-open-finance",
-      "published": "2026-04-15T07:47:08.641942+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "FCA publishes open finance vision enabling consumers to share financial data with providers for better outcomes.",
-      "why_it_matters": "Directly shapes data-sharing frameworks fintech and AI-native startups will operate under; expect new licensing and API obligations."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA fines Dinosaur Merchant Bank Limited for market abuse surveillance failures",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-fines-dinosaur-merchant-bank-limited-market-abuse-surveillance-failures",
-      "published": "2026-04-15T07:47:08.642080+00:00",
-      "score": 4,
-      "category": "market",
-      "summary": "FCA fines Dinosaur Merchant Bank £338k for failing to implement adequate market abuse surveillance on CFD business.",
-      "why_it_matters": "Direct warning to CFD platforms, prop shops, and crypto derivatives desks that surveillance system deficiencies draw enforcement action."
+      "summary": "FCA unveils AI-powered authorisation tool and generative AI integration as part of its 2026/27 smarter regulation programme.",
+      "why_it_matters": "AI-native fintechs and crypto firms seeking FCA authorisation will face faster, data-driven scrutiny; supervisory AI sets new compliance expectations."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
       "title": "ESMA releases reporting templates and instructions for the Active Account Requirement",
       "link": "https://www.esma.europa.eu/press-news/esma-news/esma-releases-reporting-templates-and-instructions-active-account-requirement",
-      "published": "2026-04-15T07:47:09.083812+00:00",
+      "published": "2026-04-15T07:58:36.876406+00:00",
       "score": 4,
-      "category": "compliance",
-      "summary": "ESMA releases reporting templates and instructions for the Active Account Requirement under EMIR.",
-      "why_it_matters": "Mandatory for EU clearing participants and hedge funds; Active Account Requirement reporting obligations now have concrete templates to implement."
+      "category": "market",
+      "summary": "ESMA releases mandatory reporting templates for the EU Active Account Requirement under EMIR Refit.",
+      "why_it_matters": "Hedge funds, prop shops and CCPs using EU clearing must prepare systems for new active account reporting obligations immediately."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
       "title": "ESAs spring risk update highlights geopolitical pressures and rising private finance risks",
       "link": "https://www.esma.europa.eu/press-news/esma-news/esas-spring-risk-update-highlights-geopolitical-pressures-and-rising-private",
-      "published": "2026-04-15T07:47:09.083885+00:00",
+      "published": "2026-04-15T07:58:36.876483+00:00",
       "score": 4,
       "category": "market",
-      "summary": "ESAs spring 2026 risk update flags geopolitical pressures and rising risks in private finance markets.",
-      "why_it_matters": "Cross-sector risk alert from ESAs directly relevant to hedge funds and private credit fintechs monitoring systemic stress indicators."
-    },
-    {
-      "source_code": "ESMA",
-      "source_name": "European Securities and Markets Authority",
-      "title": "EU financial markets enter 2026 amid high-risk environment",
-      "link": "https://www.esma.europa.eu/press-news/esma-news/eu-financial-markets-enter-2026-amid-high-risk-environment",
-      "published": "2026-04-15T07:47:09.083937+00:00",
-      "score": 4,
-      "category": "market",
-      "summary": "ESMA annual risk assessment warns EU financial markets face high-risk environment entering 2026.",
-      "why_it_matters": "CROs at hedge funds and fintechs should factor ESMA's elevated risk designation into stress testing and liquidity planning for 2026."
+      "summary": "ESAs spring 2026 risk update flags elevated geopolitical risks and growing vulnerabilities in private finance markets.",
+      "why_it_matters": "Hedge funds and private credit platforms should treat this as a supervisory signal to stress-test portfolios and liquidity buffers now."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
-      "title": "Spotting risk earlier by tracking consumer credit journeys",
-      "link": "https://www.fca.org.uk/news/blogs/spotting-risk-earlier-tracking-consumer-credit-journeys",
-      "published": "2026-04-15T07:47:08.641965+00:00",
-      "score": 3,
-      "category": "model",
-      "summary": "FCA uses data science and richer datasets to track consumer credit journeys and identify risk earlier.",
-      "why_it_matters": "Signals FCA is building AI-driven surveillance of consumer credit; fintechs in lending should expect more data-intensive supervision."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA imposes restrictions on Bazar Money Transfer Limited",
-      "link": "https://www.fca.org.uk/news/news-stories/fca-restrictions-bazar-money-transfer-limited",
-      "published": "2026-04-15T07:47:08.641981+00:00",
+      "title": "FCA sets out vision for open finance to empower consumers and businesses",
+      "link": "https://www.fca.org.uk/news/press-releases/fca-sets-out-vision-open-finance",
+      "published": "2026-04-15T07:58:36.671933+00:00",
       "score": 3,
       "category": "compliance",
-      "summary": "FCA restricts Bazar Money Transfer Limited from providing regulated payment services due to registration failures.",
-      "why_it_matters": "Enforcement against a small payment institution signals FCA will act swiftly on registration condition breaches for payment fintechs."
+      "summary": "FCA publishes open finance vision enabling consumers to share financial data broadly with regulated providers.",
+      "why_it_matters": "Fintechs and AI-native startups building data-driven products must engage with open finance licensing and data-sharing frameworks."
+    },
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "FCA and Bank seek members for their Transaction and Post-trade Reporting Taskforce",
+      "link": "https://www.fca.org.uk/news/news-stories/fca-and-bank-seek-members-their-transaction-and-post-trade-reporting-taskforce",
+      "published": "2026-04-15T07:58:36.671986+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "FCA and BoE launch taskforce to harmonise transaction and post-trade reporting requirements across UK markets.",
+      "why_it_matters": "Prop shops, crypto funds, and fintechs with reporting obligations should engage to shape long-term trade reporting architecture."
+    },
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "FCA fines Dinosaur Merchant Bank Limited for market abuse surveillance failures",
+      "link": "https://www.fca.org.uk/news/press-releases/fca-fines-dinosaur-merchant-bank-limited-market-abuse-surveillance-failures",
+      "published": "2026-04-15T07:58:36.672071+00:00",
+      "score": 3,
+      "category": "market",
+      "summary": "FCA fines Dinosaur Merchant Bank £338k for inadequate market abuse surveillance systems in its CFD business.",
+      "why_it_matters": "CFD platforms, crypto exchanges, and prop shops must ensure MAR-compliant surveillance or face similar enforcement and fines."
+    },
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "FCA highlights risks when dealing with unregulated lenders",
+      "link": "https://www.fca.org.uk/news/statements/fca-highlights-risks-unregulated-lenders",
+      "published": "2026-04-15T07:58:36.672171+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "FCA warns regulated firms to conduct proper due diligence when dealing with unregulated Annex 1 lenders.",
+      "why_it_matters": "Fintechs and crypto lenders partnering with unregulated credit or custody firms face heightened AML and counterparty compliance exposure."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
       "title": "ESMA clarifies expectations in the run-up to the launch of EU’s Consolidated Tapes",
       "link": "https://www.esma.europa.eu/press-news/esma-news/esma-clarifies-expectations-run-launch-eus-consolidated-tapes",
-      "published": "2026-04-15T07:47:09.083871+00:00",
+      "published": "2026-04-15T07:58:36.876467+00:00",
       "score": 3,
       "category": "market",
       "summary": "ESMA clarifies expectations for market participants ahead of the EU Consolidated Tape launch.",
-      "why_it_matters": "Prop shops, trading fintechs, and hedge funds must align data reporting and consumption practices with incoming Consolidated Tape rules."
+      "why_it_matters": "Trading firms, fintechs and crypto venues operating in EU equities markets must align data contribution and consumption practices."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
-      "title": "ESMA sets out actions to simplify the retail investor journey and make investing more accessible",
-      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-sets-out-actions-simplify-retail-investor-journey-and-make-investing-more",
-      "published": "2026-04-15T07:47:09.083925+00:00",
+      "title": "EU financial markets enter 2026 amid high-risk environment",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/eu-financial-markets-enter-2026-amid-high-risk-environment",
+      "published": "2026-04-15T07:58:36.876536+00:00",
       "score": 3,
-      "category": "compliance",
-      "summary": "ESMA outlines measures to simplify retail investor onboarding and improve accessibility of EU investment products.",
-      "why_it_matters": "Retail-facing fintechs and tokenisation platforms offering EU investment products must align KYC and product disclosure with new ESMA guidance."
+      "category": "market",
+      "summary": "ESMA's 2026 risk report warns EU financial markets face high volatility, geopolitical stress and liquidity risks.",
+      "why_it_matters": "Crypto funds, hedge funds and fintech lenders should use this supervisory risk assessment to benchmark their own stress scenarios."
     },
     {
       "source_code": "BOE",
@@ -185,8 +178,8 @@
       "published": "2026-04-13T14:15:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "BoE-chaired FXJSC operations and legal sub-committees met to discuss FX market operational and legal issues.",
-      "why_it_matters": "Relevant to prop shops and hedge funds active in FX, but routine committee meeting minutes with limited immediate impact."
+      "summary": "BoE-chaired FXJSC Operations and Legal Sub-Committee meeting covering wholesale FX market issues.",
+      "why_it_matters": "Relevant to prop shops and hedge funds active in FX, but operational/legal subcommittee minutes rarely drive immediate compliance action."
     },
     {
       "source_code": "BOE",
@@ -196,8 +189,8 @@
       "published": "2026-04-13T14:15:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "London FXJSC main committee November 2025 meeting minutes covering wholesale FX market discussions.",
-      "why_it_matters": "Useful context for FX-active hedge funds and prop shops, but routine minutes with no urgent regulatory changes."
+      "summary": "Minutes of November 2025 London FXJSC main committee meeting on wholesale FX market developments.",
+      "why_it_matters": "FX-active hedge funds and prop shops should monitor for emerging best-practice expectations, but impact is low urgency."
     },
     {
       "source_code": "BOE",
@@ -207,8 +200,52 @@
       "published": "2026-04-13T10:00:00+00:00",
       "score": 2,
       "category": "operational",
-      "summary": "BoE publishes updated operational guides on implementing UK bank resolution regime during a bank failure.",
-      "why_it_matters": "Primarily legacy bank-focused; fintech CROs with banking licenses or banking counterparty exposure should note resolution mechanics."
+      "summary": "Bank of England publishes updated operational guides on implementing the UK bank resolution regime.",
+      "why_it_matters": "Primarily relevant to large deposit-taking banks; fintechs with payment e-money licences should note resolution planning expectations."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "Postponement of the rollout for Commodity Derivatives Weekly Position Reporting",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/postponement-rollout-commodity-derivatives-weekly-position-reporting",
+      "published": "2026-04-15T07:58:36.876495+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "ESMA postpones rollout of new weekly commodity derivatives position reporting requirements.",
+      "why_it_matters": "Commodity-focused hedge funds and prop traders gain extra compliance runway but must still build reporting infrastructure."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Finance Advice Help- Central Bank of Ireland Issues Warning on Unauthorised Firm",
+      "link": "https://www.centralbank.ie/news/article/finance-advice-help--central-bank-of-ireland-issues-warning-on-unauthorised-firm",
+      "published": "2026-04-14T11:19:05+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "Central Bank of Ireland issues warning about an unauthorised retail credit firm operating without authorisation.",
+      "why_it_matters": "Fintechs and crypto lenders operating in Ireland should verify their own authorisation status and watch for clone fraud risks."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Fisher Investments Ireland Limited (CLONE) - Central Bank of Ireland Issues Warning on Unauthorised Firm",
+      "link": "https://www.centralbank.ie/news/article/fisher-investments-ireland-limited-(clone)---central-bank-of-ireland-issues-warning-on-unauthorised-firm",
+      "published": "2026-04-14T10:00:06+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "Central Bank of Ireland warns about a clone firm impersonating authorised entity Fisher Investments Ireland.",
+      "why_it_matters": "Crypto and fintech firms should reinforce brand protection and client authentication measures against clone fraud attacks."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Damac Trade (Clone) - Central Bank of Ireland Issues Warning on Unauthorised Firm",
+      "link": "https://www.centralbank.ie/news/article/damac-trade-(clone)---central-bank-of-ireland-issues-warning-on-unauthorised-firm",
+      "published": "2026-04-14T10:00:06+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "Central Bank of Ireland warns about unauthorised clone firm Damac Trade impersonating a regulated entity.",
+      "why_it_matters": "Clone firm warnings signal active fraud campaigns; fintechs and crypto platforms should alert clients and review impersonation risks."
     },
     {
       "source_code": "ECB",
@@ -218,8 +255,8 @@
       "published": "2026-04-14T14:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "ECB Chief Economist Lane discusses euro area economic outlook and monetary policy direction.",
-      "why_it_matters": "Generic macro commentary; no direct regulatory or capital requirement implications for frontier finance firms."
+      "summary": "ECB chief economist Lane delivers routine speech on euro area economic outlook and monetary policy.",
+      "why_it_matters": "Generic macro commentary with no direct regulatory or operational impact on frontier finance firms."
     },
     {
       "source_code": "ECB",
@@ -229,8 +266,8 @@
       "published": "2026-04-14T09:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "ECB Governing Council calls for Single Market improvements to boost European bank competitiveness.",
-      "why_it_matters": "Legacy banking competitiveness narrative; minimal direct impact on fintechs, crypto funds, or AI-native firms."
+      "summary": "ECB Governing Council calls for Single Market reforms to boost European bank competitiveness.",
+      "why_it_matters": "Policy advocacy speech targeting legacy banks; no immediate compliance or capital impact for fintechs or crypto firms."
     },
     {
       "source_code": "FED",
@@ -240,8 +277,30 @@
       "published": "2026-04-14T18:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "Fed Board minutes from February and March 2026 discount rate meetings released.",
-      "why_it_matters": "Routine historical rate meeting minutes; no new policy signals directly affecting frontier finance firms."
+      "summary": "Fed Board releases minutes of February and March 2026 discount rate meetings.",
+      "why_it_matters": "Routine Fed discount window minutes with no direct relevance to frontier finance firm operations or compliance."
+    },
+    {
+      "source_code": "EBA",
+      "source_name": "European Banking Authority",
+      "title": "EBA E-mail alert 14 April, 2026",
+      "link": "https://www.eba.europa.eu/node/19557",
+      "published": "2026-04-14T15:00:02+00:00",
+      "score": 1,
+      "category": "other",
+      "summary": "EBA routine email alert digest for 14 April 2026 with no specific publication content provided.",
+      "why_it_matters": "No actionable content visible; requires reading underlying linked publications to assess relevance."
+    },
+    {
+      "source_code": "EBA",
+      "source_name": "European Banking Authority",
+      "title": "EBA E-mail alert 13 April, 2026",
+      "link": "https://www.eba.europa.eu/node/19552",
+      "published": "2026-04-13T15:00:03+00:00",
+      "score": 1,
+      "category": "other",
+      "summary": "EBA routine email alert digest for 13 April 2026 with no specific publication content provided.",
+      "why_it_matters": "No actionable content visible; requires reading underlying linked publications to assess relevance."
     }
   ],
   "model": "claude-sonnet-4-6"
