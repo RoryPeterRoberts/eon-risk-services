@@ -25,12 +25,15 @@
     .sentinel-badge--cat { background: var(--offwhite); color: var(--text-light); }
     .sentinel-score { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--navy); white-space: nowrap; }
     .sentinel-score--red { color: #C0392B; }
-    .sentinel-item h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--navy); margin: 4px 0 10px; line-height: 1.35; }
-    .sentinel-item h3 a { color: inherit; text-decoration: none; }
-    .sentinel-item h3 a:hover { color: var(--teal); text-decoration: underline; }
+    .sentinel-item h3 { font-family: var(--font-heading); font-size: 1.15rem; margin: 4px 0 10px; line-height: 1.35; }
+    .sentinel-item h3 a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+    .sentinel-item h3 a:hover { color: var(--teal); text-decoration-color: var(--teal); }
     .sentinel-item__summary { color: var(--text-light); font-size: 0.95rem; line-height: 1.55; margin: 0 0 10px; }
-    .sentinel-item__why { color: var(--navy); font-size: 0.92rem; line-height: 1.55; margin: 0; padding: 10px 14px; background: var(--offwhite); border-radius: var(--radius-sm); border-left: 2px solid var(--teal); }
+    .sentinel-item__why { color: var(--navy); font-size: 0.92rem; line-height: 1.55; margin: 0 0 14px; padding: 10px 14px; background: var(--offwhite); border-radius: var(--radius-sm); border-left: 2px solid var(--teal); }
     .sentinel-item__why strong { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--teal); display: block; margin-bottom: 4px; }
+    .sentinel-item__source { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--teal); text-decoration: none; }
+    .sentinel-item__source:hover { color: var(--navy); text-decoration: underline; }
+    .sentinel-item__source-arrow { font-size: 1.1em; line-height: 1; }
     .sentinel-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
     .sentinel-loading { text-align: center; padding: 60px 20px; color: var(--text-muted); font-style: italic; }
     .sentinel-sources { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
@@ -145,15 +148,18 @@
           sourcesDiv.appendChild(span);
         });
 
-        if (!data.items || data.items.length === 0) {
-          results.innerHTML = '<div class="sentinel-empty"><h3>No new items in the last ' + (data.lookback_hours || 72) + ' hours</h3><p>The sentinel will check again on the next scheduled run.</p></div>';
+        const visibleItems = (data.items || []).filter(it => (it.score || 0) >= 2);
+        const hiddenCount = (data.items || []).length - visibleItems.length;
+
+        if (visibleItems.length === 0) {
+          results.innerHTML = '<div class="sentinel-empty"><h3>No material items in the last ' + (data.lookback_hours || 72) + ' hours</h3><p>The sentinel scanned ' + (data.item_count || 0) + ' publications and none scored above 1/5 for frontier-finance relevance. Next scheduled scan will run on the next cycle.</p></div>';
           results.className = '';
           return;
         }
 
         const grid = document.createElement('div');
         grid.className = 'sentinel-grid';
-        data.items.forEach(item => {
+        visibleItems.forEach(item => {
           const card = document.createElement('div');
           card.className = 'sentinel-item';
           card.dataset.score = String(item.score);
@@ -171,10 +177,19 @@
             '</div>' +
             '<h3><a href="' + escapeAttr(item.link) + '" target="_blank" rel="noopener">' + escapeHtml(item.title) + '</a></h3>' +
             '<p class="sentinel-item__summary">' + escapeHtml(item.summary) + '</p>' +
-            '<p class="sentinel-item__why"><strong>Why it matters</strong>' + escapeHtml(item.why_it_matters) + '</p>';
+            '<p class="sentinel-item__why"><strong>Why it matters</strong>' + escapeHtml(item.why_it_matters) + '</p>' +
+            '<a class="sentinel-item__source" href="' + escapeAttr(item.link) + '" target="_blank" rel="noopener">Read at source <span class="sentinel-item__source-arrow">→</span></a>';
 
           grid.appendChild(card);
         });
+
+        if (hiddenCount > 0) {
+          const note = document.createElement('p');
+          note.className = 'sentinel-empty';
+          note.style.cssText = 'padding: 20px; font-size: 0.85rem; font-style: italic;';
+          note.textContent = hiddenCount + ' lower-relevance items (score 1/5) scanned but hidden from this view.';
+          grid.appendChild(note);
+        }
 
         results.innerHTML = '';
         results.className = '';
