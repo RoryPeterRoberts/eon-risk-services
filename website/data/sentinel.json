@@ -1,5 +1,5 @@
 {
-  "scanned_at": "2026-05-01T05:01:38.707018+00:00",
+  "scanned_at": "2026-05-02T05:01:21.329772+00:00",
   "lookback_hours": 96,
   "sources": [
     {
@@ -73,95 +73,139 @@
       "name": "Central Bank of Ireland"
     }
   ],
-  "item_count": 32,
+  "item_count": 33,
   "items": [
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "Cryptoasset firms can request pre-application meetings from 11 May 2026",
       "link": "https://www.fca.org.uk/news/news-stories/cryptoasset-firms-can-request-pre-application-meetings-11-may-2026",
-      "published": "2026-05-01T05:00:03.919569+00:00",
+      "published": "2026-05-02T05:00:02.816814+00:00",
       "score": 5,
       "category": "crypto",
-      "summary": "FCA opens pre-application meetings from 11 May 2026 for firms seeking cryptoasset authorisation under new FSMA regime.",
-      "why_it_matters": "Crypto firms targeting UK market must engage now; pre-application process is critical first step toward mandatory authorisation under the incoming regime."
+      "summary": "FCA opens pre-application meetings from May 2026 for crypto firms ahead of new FSMA authorisation regime.",
+      "why_it_matters": "Directly affects all UK crypto firms needing authorisation; CROs must engage now to avoid operating without permissions."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA sets out guidance to support innovation in fund tokenisation",
       "link": "https://www.fca.org.uk/news/press-releases/fca-sets-out-guidance-support-innovation-fund-tokenisation",
-      "published": "2026-05-01T05:00:03.919618+00:00",
+      "published": "2026-05-02T05:00:02.816826+00:00",
       "score": 5,
       "category": "crypto",
-      "summary": "FCA publishes guidance enabling fund tokenisation using DLT within existing rules, plus a new Direct to Fund dealing model.",
-      "why_it_matters": "Tokenisation platforms and asset managers can now operationalise on-chain funds under clear FCA guidance, reducing regulatory uncertainty materially."
+      "summary": "FCA publishes guidance enabling asset managers to use DLT for fund tokenisation under existing rules.",
+      "why_it_matters": "Immediate green light for tokenisation platforms and DLT-based fund structures; CROs should review compliance implications now."
     },
     {
       "source_code": "FCA",
       "source_name": "UK Financial Conduct Authority",
       "title": "FCA spearheads global action to stop illegal finfluencers",
       "link": "https://www.fca.org.uk/news/press-releases/fca-spearheads-global-action-stop-illegal-finfluencers",
-      "published": "2026-05-01T05:00:03.919759+00:00",
+      "published": "2026-05-02T05:00:02.816856+00:00",
       "score": 4,
       "category": "compliance",
-      "summary": "FCA leads global 17-regulator crackdown on illegal finfluencers promoting financial products on social media.",
-      "why_it_matters": "Crypto and fintech firms using influencer marketing face heightened enforcement risk; compliance with financial promotion rules is now urgent."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "Sapia agrees to pay more than £19m to WealthTek clients after failing to protect client money",
-      "link": "https://www.fca.org.uk/news/press-releases/sapia-agrees-pay-more-than-19m-to-wealthtek-clients",
-      "published": "2026-05-01T05:00:03.919774+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "FCA censures Sapia and requires £19.6m repayment for failing to protect client money held via appointed representative WealthTek.",
-      "why_it_matters": "Principal firms using appointed representatives for crypto or fintech distribution face direct liability for client money failures; a critical compliance warning."
-    },
-    {
-      "source_code": "FCA",
-      "source_name": "UK Financial Conduct Authority",
-      "title": "FCA and PRA confirm changes to streamline senior manager accountability and boost growth",
-      "link": "https://www.fca.org.uk/news/press-releases/fca-pra-changes-streamline-senior-manager-accountability-boost-growth",
-      "published": "2026-05-01T05:00:03.919841+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "FCA and PRA confirm first-phase SM&CR reforms giving firms more flexibility and reduced compliance costs.",
-      "why_it_matters": "All FCA and PRA authorised fintechs must update SM&CR processes; reduced burden but requires review of senior manager application timelines and certification arrangements."
+      "summary": "FCA leads global 17-regulator crackdown on illegal finfluencers with arrests and guilty pleas.",
+      "why_it_matters": "Crypto and fintech firms using social media promotions face material enforcement risk; review all influencer marketing now."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
       "title": "ESMA launches its sixth stress test exercise for Central Counterparties",
       "link": "https://www.esma.europa.eu/press-news/esma-news/esma-launches-its-sixth-stress-test-exercise-central-counterparties",
-      "published": "2026-05-01T05:00:04.109348+00:00",
+      "published": "2026-05-02T05:00:02.966010+00:00",
       "score": 4,
       "category": "market",
-      "summary": "ESMA launches sixth CCP stress test to assess resilience of central counterparties to market shocks.",
-      "why_it_matters": "Prop shops, crypto funds and hedge funds clearing through EU CCPs should monitor results as they signal margin and default fund requirement changes."
-    },
-    {
-      "source_code": "ESMA",
-      "source_name": "European Securities and Markets Authority",
-      "title": "ESMA releases reporting templates and instructions for the Active Account Requirement",
-      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-releases-reporting-templates-and-instructions-active-account-requirement",
-      "published": "2026-05-01T05:00:04.109461+00:00",
-      "score": 4,
-      "category": "compliance",
-      "summary": "ESMA releases reporting templates and instructions for the EMIR Active Account Requirement for EU clearing.",
-      "why_it_matters": "Hedge funds and prop shops using non-EU CCPs for EU-listed derivatives must now implement AAR reporting; operational systems changes are required immediately."
+      "summary": "ESMA launches sixth CCP stress test exercise to assess central counterparty resilience across EU.",
+      "why_it_matters": "Results will signal systemic stress in clearing infrastructure relevant to all derivatives and crypto-adjacent cleared products."
     },
     {
       "source_code": "ESMA",
       "source_name": "European Securities and Markets Authority",
       "title": "ESAs spring risk update highlights geopolitical pressures and rising private finance risks",
       "link": "https://www.esma.europa.eu/press-news/esma-news/esas-spring-risk-update-highlights-geopolitical-pressures-and-rising-private",
-      "published": "2026-05-01T05:00:04.109499+00:00",
+      "published": "2026-05-02T05:00:02.966057+00:00",
       "score": 4,
       "category": "market",
-      "summary": "ESAs spring risk report warns of geopolitical shocks, private finance vulnerabilities and rising market stress.",
-      "why_it_matters": "CROs at hedge funds and crypto firms should review highlighted tail risks including liquidity stress in private markets and cross-border contagion scenarios."
+      "summary": "ESAs spring risk update warns of elevated geopolitical risks and growing vulnerabilities in private finance.",
+      "why_it_matters": "Cross-sector risk warning directly relevant to hedge funds, crypto funds, and private credit fintechs facing stressed conditions."
+    },
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "Three arrested in FCA investigation into suspected unlawful financial promotions",
+      "link": "https://www.fca.org.uk/news/news-stories/three-arrested-fca-investigation-suspected-unlawful-financial-promotions",
+      "published": "2026-05-02T05:00:02.816790+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "FCA arrests three individuals for suspected illegal financial promotions following enforcement operation.",
+      "why_it_matters": "Signals aggressive FCA enforcement on unauthorised promotions; relevant to finfluencer-adjacent fintechs and crypto marketers."
+    },
+    {
+      "source_code": "FCA",
+      "source_name": "UK Financial Conduct Authority",
+      "title": "FCA invites ESG rating providers to join a voluntary reporting pilot",
+      "link": "https://www.fca.org.uk/news/news-stories/fca-invites-esg-rating-providers-join-reporting-pilot",
+      "published": "2026-05-02T05:00:02.816841+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "FCA invites ESG rating providers to join a voluntary reporting pilot ahead of formal regime launch.",
+      "why_it_matters": "Crypto and fintech firms using or providing ESG ratings should monitor; early engagement shapes proportionate rules."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "ESMA launches a call for evidence on the structure of European equity markets",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-launches-call-evidence-structure-european-equity-markets",
+      "published": "2026-05-02T05:00:02.966032+00:00",
+      "score": 3,
+      "category": "market",
+      "summary": "ESMA calls for evidence on European equity market structure to inform potential reforms.",
+      "why_it_matters": "Prop shops and HFTs operating in EU equities should engage; findings could reshape venue and transparency rules."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "ESMA consults on guidelines on endorsement under the ESG Ratings Regulation",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-consults-guidelines-endorsement-under-esg-ratings-regulation",
+      "published": "2026-05-02T05:00:02.966036+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "ESMA consults on guidelines for endorsement of third-country ESG ratings under EU ESG Ratings Regulation.",
+      "why_it_matters": "Crypto funds and fintechs relying on non-EU ESG ratings must understand endorsement obligations under the new regime."
+    },
+    {
+      "source_code": "ESMA",
+      "source_name": "European Securities and Markets Authority",
+      "title": "Joint Committee annual report highlights digitalisation, cyber resilience and sustainable finance as key priorities of 2025",
+      "link": "https://www.esma.europa.eu/press-news/esma-news/joint-committee-annual-report-highlights-digitalisation-cyber-resilience-and",
+      "published": "2026-05-02T05:00:02.966039+00:00",
+      "score": 3,
+      "category": "operational",
+      "summary": "ESA Joint Committee annual report flags digitalisation, cyber resilience, and sustainable finance as 2025 priorities.",
+      "why_it_matters": "Cyber and digital operational resilience themes directly affect fintechs; signals supervisory focus areas for 2026 examinations."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Remarks by Director of Horizontal Supervision, Patricia Dunne to the European Anti-Financial Crime Summit, Dublin",
+      "link": "https://www.centralbank.ie/news/article/speech-patricia-dunne-european-anti-financial-crime-summit-29-april-2026",
+      "published": "2026-04-29T08:30:17+00:00",
+      "score": 3,
+      "category": "compliance",
+      "summary": "Central Bank of Ireland director outlines AML and financial crime prevention priorities at European summit.",
+      "why_it_matters": "AML expectations are escalating for Irish-authorised fintechs and crypto firms; CROs should review financial crime frameworks."
+    },
+    {
+      "source_code": "SEC",
+      "source_name": "US Securities and Exchange Commission (8-K filings)",
+      "title": "Strategy Inc — 8-K (Item 7.01: Regulation FD Disclosure, Item 8.01: Other Events)",
+      "link": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526199155/mstr-20250902.htm",
+      "published": "2026-05-01T08:00:16-04:00",
+      "score": 3,
+      "category": "crypto",
+      "summary": "Strategy Inc (formerly MicroStrategy) files 8-K with material Bitcoin-related event or FD disclosure.",
+      "why_it_matters": "Strategy's Bitcoin treasury moves can signal market direction; crypto funds and hedgers should monitor for volatility triggers."
     },
     {
       "source_code": "SEC",
@@ -169,109 +213,10 @@
       "title": "Bakkt, Inc. — 8-K (Item 2.01: Completion of Acquisition or Disposition of Assets, Item 3.02: Unregistered Sales of Equity Securities, Item 5.01: Changes in Control of Registrant, Item 7.01: Regulation",
       "link": "https://www.sec.gov/Archives/edgar/data/1820302/000119312526197835/d233784d8k.htm",
       "published": "2026-04-30T17:14:38-04:00",
-      "score": 4,
-      "category": "crypto",
-      "summary": "Bakkt reports completion of asset disposition, change of control and unregistered equity securities issuance.",
-      "why_it_matters": "Bakkt's corporate restructuring signals ongoing instability in institutional crypto infrastructure; counterparty risk assessment for firms using Bakkt is warranted."
-    },
-    {
-      "source_code": "SEC",
-      "source_name": "US Securities and Exchange Commission (8-K filings)",
-      "title": "Galaxy Digital Inc. — 8-K (Item 2.02: Results of Operations and Financial Condition, Item 7.01: Regulation FD Disclosure, Item 9.01: Financial Statements and Exhibits)",
-      "link": "https://www.sec.gov/Archives/edgar/data/1859392/000185939226000047/glxy-20260428.htm",
-      "published": "2026-04-28T07:03:07-04:00",
-      "score": 4,
-      "category": "crypto",
-      "summary": "Galaxy Digital discloses quarterly financial results and Regulation FD materials as a listed crypto firm.",
-      "why_it_matters": "Galaxy's results reflect institutional crypto market conditions, counterparty health and digital asset investment banking trends directly relevant to crypto funds."
-    },
-    {
-      "source_code": "BOE",
-      "source_name": "Bank of England",
-      "title": "PRA publishes plans to support resilience in the life insurance industry",
-      "link": "https://www.bankofengland.co.uk/news/2026/april/pra-publishes-plans-to-support-resilience-in-the-life-insurance-industry",
-      "published": "2026-04-29T08:30:00+00:00",
-      "score": 3,
-      "category": "compliance",
-      "summary": "PRA proposes enhanced requirements for funded reinsurance transactions in UK life insurance.",
-      "why_it_matters": "Relevant if your fund or fintech has embedded insurance or reinsurance exposure; signals PRA appetite for tighter non-bank financial oversight."
-    },
-    {
-      "source_code": "ESMA",
-      "source_name": "European Securities and Markets Authority",
-      "title": "ESMA launches a call for evidence on the structure of European equity markets",
-      "link": "https://www.esma.europa.eu/press-news/esma-news/esma-launches-call-evidence-structure-european-equity-markets",
-      "published": "2026-05-01T05:00:04.109389+00:00",
-      "score": 3,
-      "category": "market",
-      "summary": "ESMA calls for evidence on European equity market structure to inform potential reforms.",
-      "why_it_matters": "Trading firms and market-makers in EU equities should respond; outputs will shape MiFID II venue and transparency rule changes."
-    },
-    {
-      "source_code": "ESMA",
-      "source_name": "European Securities and Markets Authority",
-      "title": "Joint Committee annual report highlights digitalisation, cyber resilience and sustainable finance as key priorities of 2025",
-      "link": "https://www.esma.europa.eu/press-news/esma-news/joint-committee-annual-report-highlights-digitalisation-cyber-resilience-and",
-      "published": "2026-05-01T05:00:04.109417+00:00",
-      "score": 3,
-      "category": "operational",
-      "summary": "ESA Joint Committee 2025 annual report flags digitalisation, cyber resilience and sustainable finance as supervisory priorities.",
-      "why_it_matters": "Fintechs and crypto firms should note that DORA cyber resilience and digital operational risk remain top ESA enforcement priorities in 2026."
-    },
-    {
-      "source_code": "CBI",
-      "source_name": "Central Bank of Ireland",
-      "title": "Raisin Bank AG (Clone) - Central Bank of Ireland Issues Warning on Unauthorised Firm",
-      "link": "https://www.centralbank.ie/news/article/raisin-bank-ag-(clone)---central-bank-of-ireland-issues-warning-on-unauthorised-firm",
-      "published": "2026-04-29T10:00:06+00:00",
-      "score": 3,
-      "category": "compliance",
-      "summary": "Central Bank of Ireland warns public about Raisin Bank AG clone firm conducting unauthorised financial business.",
-      "why_it_matters": "Clone firm warnings indicate active fraud targeting regulated firm identities; fintechs should monitor for brand impersonation and customer confusion risks."
-    },
-    {
-      "source_code": "SEC",
-      "source_name": "US Securities and Exchange Commission (8-K filings)",
-      "title": "Riot Platforms, Inc. — 8-K (Item 2.02: Results of Operations and Financial Condition, Item 9.01: Financial Statements and Exhibits)",
-      "link": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926052943/riot-20260430x8k.htm",
-      "published": "2026-04-30T16:15:27-04:00",
       "score": 3,
       "category": "crypto",
-      "summary": "Riot Platforms files 8-K disclosing latest operational and financial results for its Bitcoin mining business.",
-      "why_it_matters": "Riot earnings reflect Bitcoin mining economics and hash rate trends; relevant context for crypto funds with mining exposure or BTC price correlation."
-    },
-    {
-      "source_code": "SEC",
-      "source_name": "US Securities and Exchange Commission (8-K filings)",
-      "title": "MARA Holdings, Inc. — 8-K (Item 1.01: Entry into a Material Definitive Agreement, Item 7.01: Regulation FD Disclosure, Item 9.01: Financial Statements and Exhibits)",
-      "link": "https://www.sec.gov/Archives/edgar/data/1507605/000119312526193982/d54802d8k.htm",
-      "published": "2026-04-30T07:19:42-04:00",
-      "score": 3,
-      "category": "crypto",
-      "summary": "MARA Holdings enters a material definitive agreement disclosed alongside Regulation FD materials.",
-      "why_it_matters": "Material agreement at a major Bitcoin miner may signal new financing structures or BTC treasury strategies relevant to crypto market participants."
-    },
-    {
-      "source_code": "SEC",
-      "source_name": "US Securities and Exchange Commission (8-K filings)",
-      "title": "SoFi Technologies, Inc. — 8-K (Item 2.02: Results of Operations and Financial Condition, Item 9.01: Financial Statements and Exhibits)",
-      "link": "https://www.sec.gov/Archives/edgar/data/1818874/000181887426000020/sofi-20260429.htm",
-      "published": "2026-04-29T07:09:05-04:00",
-      "score": 3,
-      "category": "compliance",
-      "summary": "SoFi Technologies discloses latest quarterly financial results in SEC 8-K filing.",
-      "why_it_matters": "SoFi's fintech banking results provide peer benchmarking data for digital bank CROs assessing credit quality and deposit trends."
-    },
-    {
-      "source_code": "ECB",
-      "source_name": "European Central Bank",
-      "title": "Christine Lagarde, Luis de Guindos: Monetary policy statement (with Q&A)",
-      "link": "https://www.ecb.europa.eu//press/press_conference/monetary-policy-statement/2026/html/ecb.is260430~f99cb123a8.en.html",
-      "published": "2026-04-30T13:00:00+00:00",
-      "score": 2,
-      "category": "market",
-      "summary": "ECB press conference on monetary policy decisions with Lagarde and de Guindos.",
-      "why_it_matters": "Rate path affects crypto and risk-asset valuations but contains no frontier-finance specific regulatory action."
+      "summary": "Bakkt files 8-K disclosing completion of asset acquisition and change of control.",
+      "why_it_matters": "Major ownership change at a crypto infrastructure firm affects counterparty and custody risk for firms using Bakkt services."
     },
     {
       "source_code": "ECB",
@@ -281,19 +226,8 @@
       "published": "2026-04-30T12:15:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "ECB announces latest monetary policy decisions for the euro area.",
-      "why_it_matters": "Interest rate changes affect funding costs and asset prices but carry no direct regulatory obligation for frontier firms."
-    },
-    {
-      "source_code": "ECB",
-      "source_name": "European Central Bank",
-      "title": "Survey on the Access to Finance of Enterprises: lending conditions tightened",
-      "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260427~039951e152.en.html",
-      "published": "2026-04-27T08:00:00+00:00",
-      "score": 2,
-      "category": "credit",
-      "summary": "ECB survey finds lending conditions for enterprises tightened across the euro area.",
-      "why_it_matters": "Tighter credit may push SME borrowers toward fintech lenders, a secondary opportunity signal rather than a compliance trigger."
+      "summary": "ECB announces monetary policy decisions including interest rate settings.",
+      "why_it_matters": "Rate decisions affect crypto and risk-asset valuations but contain no firm-specific regulatory requirements."
     },
     {
       "source_code": "FED",
@@ -303,8 +237,8 @@
       "published": "2026-04-29T18:00:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "Federal Reserve FOMC holds or adjusts policy rate with forward guidance statement.",
-      "why_it_matters": "Rate decisions move crypto and risk assets materially but impose no direct regulatory requirement on frontier firms."
+      "summary": "Federal Reserve FOMC holds or adjusts rates, signalling monetary policy stance.",
+      "why_it_matters": "Rate decisions influence crypto and risk-asset markets but impose no direct compliance obligations on frontier firms."
     },
     {
       "source_code": "BOE",
@@ -314,19 +248,52 @@
       "published": "2026-04-30T11:00:00+00:00",
       "score": 2,
       "category": "market",
-      "summary": "Bank of England MPC holds Bank Rate at 3.75% in April 2026 policy decision.",
-      "why_it_matters": "Stable UK rates affect sterling liquidity and fintech funding costs but impose no new regulatory requirements."
+      "summary": "Bank of England MPC maintains Bank Rate at 3.75% in April 2026 decision.",
+      "why_it_matters": "Rate hold affects GBP liquidity and risk appetite but imposes no new rules on frontier firms."
+    },
+    {
+      "source_code": "BOE",
+      "source_name": "Bank of England",
+      "title": "PRA publishes plans to support resilience in the life insurance industry",
+      "link": "https://www.bankofengland.co.uk/news/2026/april/pra-publishes-plans-to-support-resilience-in-the-life-insurance-industry",
+      "published": "2026-04-29T08:30:00+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "PRA proposes enhanced regulatory requirements for funded reinsurance transactions in UK life insurance.",
+      "why_it_matters": "Targets life insurers only; limited relevance unless a fintech or fund has significant reinsurance exposure."
     },
     {
       "source_code": "CBI",
       "source_name": "Central Bank of Ireland",
-      "title": "Remarks by Director of Horizontal Supervision, Patricia Dunne to the European Anti-Financial Crime Summit, Dublin",
-      "link": "https://www.centralbank.ie/news/article/speech-patricia-dunne-european-anti-financial-crime-summit-29-april-2026",
-      "published": "2026-04-29T08:30:17+00:00",
+      "title": "From Washington to Frankfurt via Dublin: policy priorities in an uncertain world",
+      "link": "https://www.centralbank.ie/news/article/blog-from-washington-to-frankfurt-via-dublin-policy-priorities-in-an-uncertain-world-1-may-2026",
+      "published": "2026-05-01T10:45:22+00:00",
+      "score": 2,
+      "category": "other",
+      "summary": "Central Bank of Ireland Governor blogs on policy priorities amid geopolitical and macroeconomic uncertainty.",
+      "why_it_matters": "High-level macro commentary; useful for context on EU regulatory direction but no immediate compliance actions."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Promontoria Scariff Designated Activity Company (Clone) - Central Bank of Ireland Issues Warning on Unauthorised Firm",
+      "link": "https://www.centralbank.ie/news/article/promontoria-scariff-designated-activity-company-(clone)---central-bank-of-ireland-issues-warning-on-unauthorised-firm",
+      "published": "2026-05-01T10:00:08+00:00",
       "score": 2,
       "category": "compliance",
-      "summary": "Central Bank of Ireland Director speech outlines CBI's approach to financial crime prevention and AML supervision.",
-      "why_it_matters": "Fintechs and crypto firms regulated in Ireland should note CBI's heightened AML focus and supervisory expectations for financial crime controls."
+      "summary": "Central Bank of Ireland warns public about a clone firm impersonating Promontoria Scariff DAC.",
+      "why_it_matters": "Clone firm warnings signal active fraud risk; relevant to fintechs for customer due diligence and AML screening processes."
+    },
+    {
+      "source_code": "CBI",
+      "source_name": "Central Bank of Ireland",
+      "title": "Raisin Bank AG (Clone) - Central Bank of Ireland Issues Warning on Unauthorised Firm",
+      "link": "https://www.centralbank.ie/news/article/raisin-bank-ag-(clone)---central-bank-of-ireland-issues-warning-on-unauthorised-firm",
+      "published": "2026-04-29T10:00:06+00:00",
+      "score": 2,
+      "category": "compliance",
+      "summary": "Central Bank of Ireland warns about a clone impersonating licensed German bank Raisin Bank AG.",
+      "why_it_matters": "Fintechs and neobanks operating in savings markets should alert compliance teams to Raisin clone fraud activity."
     },
     {
       "source_code": "CBI",
@@ -335,9 +302,53 @@
       "link": "https://www.centralbank.ie/news/article/new-central-bank-research-reveals-one-in-three-irish-adults-have-experienced-fraud--yet-38--never-report-it",
       "published": "2026-04-28T07:07:31+00:00",
       "score": 2,
+      "category": "operational",
+      "summary": "Central Bank of Ireland research shows one in three Irish adults experienced fraud, with low reporting rates.",
+      "why_it_matters": "Highlights fraud risk environment relevant to fintechs' AML and consumer protection obligations in Ireland."
+    },
+    {
+      "source_code": "SEC",
+      "source_name": "US Securities and Exchange Commission (8-K filings)",
+      "title": "BITMINE IMMERSION TECHNOLOGIES, INC. — 8-K (Item 4.01: Changes in Registrant's Certifying Accountant, Item 9.01: Financial Statements and Exhibits)",
+      "link": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226020901/form8-k.htm",
+      "published": "2026-05-01T16:30:21-04:00",
+      "score": 2,
+      "category": "crypto",
+      "summary": "BitMine Immersion Technologies files 8-K disclosing change in certifying accountant.",
+      "why_it_matters": "Auditor change at a crypto mining firm may signal financial distress; counterparty risk flag for exposed funds."
+    },
+    {
+      "source_code": "SEC",
+      "source_name": "US Securities and Exchange Commission (8-K filings)",
+      "title": "PayPal Holdings, Inc. — 8-K (Item 5.02: Departure of Directors or Certain Officers; Election of Directors; Appointment of Certain Officers: Compensatory Arrangements of Certain Officers, Item 7.01: Re",
+      "link": "https://www.sec.gov/Archives/edgar/data/1633917/000119312526197533/d128781d8k.htm",
+      "published": "2026-04-30T16:33:28-04:00",
+      "score": 2,
       "category": "compliance",
-      "summary": "CBI research finds 35% of Irish adults experienced fraud but 38% never reported it to authorities.",
-      "why_it_matters": "Fintechs operating in Ireland face growing CBI pressure to strengthen fraud detection and customer reporting mechanisms."
+      "summary": "PayPal Holdings files 8-K disclosing senior officer departure and related Reg FD information.",
+      "why_it_matters": "Leadership change at a major payments fintech could affect PayPal's stablecoin and crypto product strategy; monitor for follow-on guidance."
+    },
+    {
+      "source_code": "SEC",
+      "source_name": "US Securities and Exchange Commission (8-K filings)",
+      "title": "Riot Platforms, Inc. — 8-K (Item 2.02: Results of Operations and Financial Condition, Item 9.01: Financial Statements and Exhibits)",
+      "link": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926052943/riot-20260430x8k.htm",
+      "published": "2026-04-30T16:15:27-04:00",
+      "score": 2,
+      "category": "crypto",
+      "summary": "Riot Platforms files 8-K reporting quarterly operational and financial results for crypto mining.",
+      "why_it_matters": "Mining firm financials provide a benchmark for crypto sector health but impose no compliance obligations on frontier firms."
+    },
+    {
+      "source_code": "ECB",
+      "source_name": "European Central Bank",
+      "title": "Christine Lagarde, Luis de Guindos: Monetary policy statement (with Q&A)",
+      "link": "https://www.ecb.europa.eu//press/press_conference/monetary-policy-statement/2026/html/ecb.is260430~f99cb123a8.en.html",
+      "published": "2026-04-30T13:00:00+00:00",
+      "score": 1,
+      "category": "other",
+      "summary": "ECB press conference covers monetary policy decisions and Q&A with Lagarde and de Guindos.",
+      "why_it_matters": "Generic macro commentary; no direct regulatory action affecting frontier finance firms."
     },
     {
       "source_code": "ECB",
@@ -347,8 +358,8 @@
       "published": "2026-04-28T08:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "ECB publishes March 2026 consumer inflation and expectations survey results.",
-      "why_it_matters": "Generic macroeconomic data with no direct regulatory or compliance implication for frontier finance firms."
+      "summary": "ECB publishes March 2026 consumer inflation and expectations survey data.",
+      "why_it_matters": "Background macro data; no actionable regulatory content for fintech or crypto firms."
     },
     {
       "source_code": "ECB",
@@ -358,8 +369,19 @@
       "published": "2026-04-28T08:00:00+00:00",
       "score": 1,
       "category": "credit",
-      "summary": "ECB April 2026 bank lending survey shows lending conditions and credit demand trends.",
-      "why_it_matters": "Legacy bank credit data; minimal direct relevance to fintech or crypto fund operations."
+      "summary": "ECB surveys euro area banks on credit standards and loan demand for April 2026.",
+      "why_it_matters": "Legacy bank lending survey; minimal direct relevance to frontier finance or crypto firms."
+    },
+    {
+      "source_code": "FED",
+      "source_name": "US Federal Reserve",
+      "title": "Agencies issue host state loan-to-deposit ratios",
+      "link": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260501a.htm",
+      "published": "2026-05-01T15:00:00+00:00",
+      "score": 1,
+      "category": "credit",
+      "summary": "US agencies publish updated host state loan-to-deposit ratios for regulatory compliance.",
+      "why_it_matters": "Applies only to traditional bank branching rules; no relevance to fintechs or crypto firms."
     },
     {
       "source_code": "BOE",
@@ -369,8 +391,8 @@
       "published": "2026-04-30T11:00:00+00:00",
       "score": 1,
       "category": "other",
-      "summary": "BoE Governor and Chancellor exchange letters explaining CPI inflation overshoot.",
-      "why_it_matters": "Routine accountability correspondence; no regulatory action or obligation relevant to frontier finance firms."
+      "summary": "BoE Governor and UK Chancellor exchange letters explaining above-target CPI inflation.",
+      "why_it_matters": "Routine inflation accountability letter; no actionable content for fintech or crypto CROs."
     },
     {
       "source_code": "BOE",
@@ -381,7 +403,7 @@
       "score": 1,
       "category": "other",
       "summary": "BoE statistical notice requests updated contact details for Bank of England Levy purposes.",
-      "why_it_matters": "Administrative housekeeping notice with no strategic or risk management relevance for frontier firms."
+      "why_it_matters": "Administrative data request; no risk or regulatory substance for frontier finance firms."
     },
     {
       "source_code": "EBA",
@@ -391,8 +413,8 @@
       "published": "2026-04-30T15:00:03+00:00",
       "score": 1,
       "category": "other",
-      "summary": "EBA daily email digest of publications and notices dated 30 April 2026.",
-      "why_it_matters": "Aggregated digest with no standalone regulatory content; review underlying items individually for relevance."
+      "summary": "EBA daily email alert digest for 30 April 2026 with no specified content.",
+      "why_it_matters": "Routine aggregator alert with no extractable regulatory substance; check underlying links directly."
     },
     {
       "source_code": "EBA",
@@ -402,8 +424,8 @@
       "published": "2026-04-29T15:00:03+00:00",
       "score": 1,
       "category": "other",
-      "summary": "EBA daily email digest of publications and notices dated 29 April 2026.",
-      "why_it_matters": "Aggregated digest with no standalone regulatory content; review underlying items individually for relevance."
+      "summary": "EBA daily email alert digest for 29 April 2026 with no specified content.",
+      "why_it_matters": "Routine aggregator alert with no extractable regulatory substance; check underlying links directly."
     },
     {
       "source_code": "EBA",
@@ -413,19 +435,8 @@
       "published": "2026-04-28T15:15:02+00:00",
       "score": 1,
       "category": "other",
-      "summary": "EBA daily email digest of publications and notices dated 28 April 2026.",
-      "why_it_matters": "Aggregated digest with no standalone regulatory content; review underlying items individually for relevance."
-    },
-    {
-      "source_code": "CBI",
-      "source_name": "Central Bank of Ireland",
-      "title": "Vigilance and Resilience - Strengthening Credit Unions in a Changing Landscape - Remarks by Domhnall Cullinan at  ILCU Internal Audit Services (IAS) Annual Conference",
-      "link": "https://www.centralbank.ie/news/article/vigilance-and-resilience---strengthening-credit-unions-in-a-changing-landscape---remarks-by-domhnall-cullinan-at-ilcu-annual-conference",
-      "published": "2026-04-28T10:30:11+00:00",
-      "score": 1,
-      "category": "other",
-      "summary": "CBI Director speech on credit union resilience and internal audit at ILCU conference.",
-      "why_it_matters": "Credit union-specific speech; no direct relevance to fintech, crypto or frontier finance business models."
+      "summary": "EBA daily email alert digest for 28 April 2026 with no specified content.",
+      "why_it_matters": "Routine aggregator alert with no extractable regulatory substance; check underlying links directly."
     }
   ],
   "model": "claude-sonnet-4-6"
